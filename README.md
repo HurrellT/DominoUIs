@@ -12,3 +12,4 @@ TODO:
   Dudas sobre la implementacion para los pedidos y tipos de envio. (Strategy + State, Array de States [Con singleton], if a secas)
 - Distribucion no va en el ingrediente
 - Preguntar como hay que hacer para controlar el timepo del pedido (desde que lo haces hasta que se entrega)
+- Verificar si esta bien que no hagamos la Clase "Distribucion", ya que son innecesarios
