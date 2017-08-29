@@ -14,10 +14,15 @@ class DominoPizzaTest {
 	val cliente3 = mock(Cliente)
 	
 	@Test
-	def test001_UnDominoPizzaTiene2ClientesConMailsUnicos() {
+	def test001_UnDominoPizzaTiene2ClientesConMailsYNicksUnicos() {
+		//Mails
 		when(cliente1.email).thenReturn("pepe999@hotmail.com")
 		when(cliente2.email).thenReturn("pepe999@hotmail.com")
 		when(cliente3.email).thenReturn("roberto_kpo125@gmail.com")
+		//Nicks
+		when(cliente1.nick).thenReturn("Rob")
+		when(cliente2.nick).thenReturn("Rob")
+		when(cliente3.nick).thenReturn("Pepe")
 		
 		dominoPizza.agregarCliente(cliente1)
 		dominoPizza.agregarCliente(cliente2)
@@ -26,4 +31,5 @@ class DominoPizzaTest {
 		assertEquals(2,dominoPizza.clientes.size)
 		assertFalse(dominoPizza.clientes.contains(cliente2))
 	}
+	
 }
