@@ -7,7 +7,7 @@ import static org.mockito.Mockito.*
 class MenuTest {
 
 	Menu menu = new Menu
-	Promo dummyPromo = mock(Promo)
+	Pizza dummyPizza = mock(Pizza)
 	Integer precio = new Integer(15)
 	Ingrediente dummyIngrediente = mock(Ingrediente)
 
@@ -20,20 +20,20 @@ class MenuTest {
 	@Test
 	def testAUnMenuSeLePuedenAgregarPromosEIngredientes() {
 
-		menu.agregarPromo(dummyPromo, precio)
+		menu.actualizarPromo(dummyPizza, precio)
 		menu.agregarIngrediente(dummyIngrediente, precio)
 
-		assertTrue(menu.promos.containsKey(dummyPromo))
+		assertTrue(menu.promos.containsKey(dummyPizza))
 		assertTrue(menu.ingredientesDisponibles.containsKey(dummyIngrediente))
 	}
 
 	@Test
 	def testElMenuSabeDecirQuePrecioTieneCadaIngredienteYCadaPromo() {
 
-		menu.agregarPromo(dummyPromo, precio)
+		menu.actualizarPromo(dummyPizza, precio)
 		menu.agregarIngrediente(dummyIngrediente, precio)
 
-		assertEquals(precio, menu.precioDePromo(dummyPromo))
+		assertEquals(precio, menu.precioPromo(dummyPizza))
 		assertEquals(precio, menu.precioIngrediente(dummyIngrediente))
 	}
 	
@@ -43,12 +43,12 @@ class MenuTest {
 		var nuevoPrecio =  new Integer(50)
 		
 		menu.agregarIngrediente(dummyIngrediente, precio)
-		menu.agregarPromo(dummyPromo,precio)
+		menu.actualizarPromo(dummyPizza,precio)
 		
-		menu.nuevoPrecioPromo(dummyPromo,nuevoPrecio)
+		menu.actualizarPromo(dummyPizza,nuevoPrecio)
 		menu.nuevoPrecioIngrediente(dummyIngrediente, nuevoPrecio2)
 		
 		assertEquals(nuevoPrecio2, menu.precioIngrediente(dummyIngrediente))
-		assertEquals(nuevoPrecio, menu.precioDePromo(dummyPromo))
+		assertEquals(nuevoPrecio, menu.precioPromo(dummyPizza))
 	}
 }
