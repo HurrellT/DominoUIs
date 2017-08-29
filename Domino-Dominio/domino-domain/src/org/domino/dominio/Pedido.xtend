@@ -18,6 +18,7 @@ class Pedido {
 		this.fecha		= fecha
 		this.aclaracion	= aclaracion
 		this.envio		= envio
+		this.estado = new Preparando
 	}
 	
 	def siguienteEstado(){

@@ -3,6 +3,7 @@ package org.domino.dominio
 import org.junit.Test
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
+import org.mockito.internal.matchers.InstanceOf
 
 class PedidosTest {
 	
@@ -12,28 +13,29 @@ class PedidosTest {
 	// Date fecha = sdf.parse(fechaString);
 	Integer fecha = new Integer(1)
 	String aclaracion = "Esto es una aclaracion"
-	Envio envio = mock(Envio)
+	Envio envio1 = new RetiraPorElLocal
+	Envio envio2 = new Delivery("Calle 777")
 	
-	Pedido pedido = new Pedido(cliente, fecha, aclaracion, envio)
+	Pedido pedido1 = new Pedido(cliente, fecha, aclaracion, envio1)
+	Pedido pedido2 = new Pedido(cliente, fecha, aclaracion, envio2)
 
 	@Test
 	def testUnPedidoTieneUnClienteUnaFechaUnaAclaracion() {
 		when(cliente.nombre).thenReturn("Juan")
-		assertEquals(cliente.nombre, pedido.cliente.nombre)
-		assertEquals(fecha, pedido.fecha)
-		assertEquals(aclaracion, pedido.aclaracion)
-		assertEquals(envio, pedido.envio)
+		assertEquals(cliente.nombre, pedido1.cliente.nombre)
+		assertEquals(fecha, pedido1.fecha)
+		assertEquals(aclaracion, pedido1.aclaracion)
 	}
 	
 	@Test
-	def testUnPedidoTieneUnEstadoInicial() {
-		assertEquals("Preparando", pedido.estado)
+	def testUnPedidoTieneUnEstadoInicialDePreparado() {
+		assertTrue(pedido1.estado instanceof Preparando)
 	}
 	
 	@Test
-	def testUnPedidoPuedeCambiarDeEstado() {
-		pedido.siguienteEstado()
-		assertEquals("Listo para enviar", pedido.estado)
+	def testUnPedidoPuedeCambiarDeEstadoCuandoSeRetiraPorElLocal() {
+		pedido1.siguienteEstado()
+		assertTrue(pedido1.estado instanceof ListoParaRetirar)
 	}
 
 	
