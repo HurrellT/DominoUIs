@@ -6,3 +6,9 @@ Colaboradores:
 - Luca Hazuca
 - Henry Borda
 - Brian Goldman
+
+TODO:
+- Preguntar si es necesario que el sistema sea escalable.
+  Dudas sobre la implementacion para los pedidos y tipos de envio. (Strategy + State, Array de States [Con singleton], if a secas)
+- Distribucion no va en el ingrediente
+- Preguntar como hay que hacer para controlar el timepo del pedido (desde que lo haces hasta que se entrega)

@@ -36,4 +36,11 @@ class Menu {
 		ingredientesDisponibles.put(ingrediente, precio)
 	}
 	
+	def eliminarPromoDelMenu(Pizza pizza){
+		promos.remove(pizza)
+	}
+	
+	def quitarIngredienteDeMenu(Ingrediente ingrediente){
+		ingredientesDisponibles.remove(ingrediente)
+	}
 }
