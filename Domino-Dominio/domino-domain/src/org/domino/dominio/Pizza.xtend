@@ -4,7 +4,7 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
-class Pizza {
+class Pizza extends DominoPizza {
 	String nombre
 	List<Ingrediente> ingredientes
 	
