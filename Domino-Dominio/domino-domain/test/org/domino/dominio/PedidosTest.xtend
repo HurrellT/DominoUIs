@@ -27,13 +27,13 @@ class PedidosTest {
 	
 	@Test
 	def testUnPedidoTieneUnEstadoInicial() {
-		assertEquals("Preparando", pedido.estado.nombre)
+		assertEquals("Preparando", pedido.estado)
 	}
 	
 	@Test
 	def testUnPedidoPuedeCambiarDeEstado() {
 		pedido.siguienteEstado()
-		assertEquals("Listo para enviar", pedido.estado.nombre)
+		assertEquals("Listo para enviar", pedido.estado)
 	}
 
 	
