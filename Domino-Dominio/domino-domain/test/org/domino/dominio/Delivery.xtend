@@ -7,4 +7,9 @@ class Delivery implements Envio {
 	new(String direccion){
 		this.direccion = direccion
 	}
+	
+	override recargo() {
+		15
+	}
+	
 }

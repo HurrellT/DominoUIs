@@ -20,4 +20,9 @@ class Plato {
 	def agregarIngredienteExtra(Ingrediente ingred){
 		this.ingredientes.add(ingred)
 	}
+	
+	def montoTotal() {
+		1
+	}
+	
 }

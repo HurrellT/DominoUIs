@@ -2,6 +2,7 @@ package org.domino.dominio
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
+import java.util.stream.Collectors
 
 @Accessors
 class Pedido {
@@ -9,7 +10,7 @@ class Pedido {
 	Cliente cliente
 	Integer fecha
 	String aclaracion
-	List<Plato> platos  //Debe existir un objeto Plato?
+	List<Plato> platos  
 	EstadoPedido estado
 	Envio envio  
 	
@@ -19,9 +20,21 @@ class Pedido {
 		this.aclaracion	= aclaracion
 		this.envio		= envio
 		this.estado = new Preparando
+		this.platos = newArrayList
 	}
 	
 	def siguienteEstado(){
-		this.estado = this.envio.siguienteEstado(estado)
+		this.estado = this.estado.siguienteEstado(envio)
 	}
+	
+	def agregarPlato(Plato plato) {
+		this.platos.add(plato)
+	}
+	
+	def montoTotal() {
+		platos.stream.mapToInt[p | p.montoTotal()].sum() + this.envio.recargo
+		
+		
+	}
+	
 }
