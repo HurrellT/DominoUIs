@@ -1,0 +1,26 @@
+package org.domino.dominio
+
+import org.junit.Test
+
+import static org.junit.Assert.*
+import static org.mockito.Mockito.*
+
+class PizzaTest {
+	String nombre = 'Clasica'
+	Pizza pizzaBase = new Pizza(nombre)
+
+	@Test
+	def testUnaPizzaEstaCompuestaPorNombreEIngredientes() {
+
+		assertEquals(nombre, pizzaBase.nombre)
+		assertTrue(pizzaBase.ingredientes.isEmpty())
+	}
+
+	@Test
+	def testAUnaPizzaSeLePuedeAgregarUnIngrediente() {
+		val ingrediente = mock(Ingrediente)
+		pizzaBase.agregar(ingrediente)
+		assertTrue(pizzaBase.ingredientes.contains(ingrediente))
+	}
+
+}
