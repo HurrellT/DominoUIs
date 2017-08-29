@@ -8,12 +8,12 @@ import java.util.List
 class Plato {
 	
 	Pizza pizza
-	String tamaño
+	String tamanio
 	List<Ingrediente> ingredientes
 	
-	new(Pizza pizza, String tamaño) {
+	new(Pizza pizza, String tamanio) {
 		this.pizza 	= pizza
-		this.tamaño		= tamaño
+		this.tamanio		= tamanio
 		this.ingredientes = newArrayList
 	}
 	
