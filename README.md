@@ -13,3 +13,4 @@ TODO:
 - Distribucion no va en el ingrediente
 - Preguntar como hay que hacer para controlar el timepo del pedido (desde que lo haces hasta que se entrega)
 - Verificar si esta bien que no hagamos la Clase "Distribucion", ya que son innecesarios
+- Preguntar si los tamaños tiene que ser clases, o si pueden estar dentro del menu en forma de un Map<Tamaño,Precio>
