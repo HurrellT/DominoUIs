@@ -8,7 +8,7 @@ import java.util.stream.Collectors
 class Pedido {
 	
 	Cliente cliente
-	Integer fecha  //Arreglar la fecha
+	Integer fecha
 	String aclaracion
 	List<Plato> platos  
 	EstadoPedido estado
@@ -31,8 +31,8 @@ class Pedido {
 		this.platos.add(plato)
 	}
 	
-	def montoTotal() {
-		platos.stream.mapToInt[p | p.montoTotal()].sum() + this.envio.recargo
+	def montoTotal(Menu unMenu) {
+		platos.stream.mapToInt[p | p.montoTotal(unMenu)].sum() + this.envio.recargo
 		
 		
 	}
