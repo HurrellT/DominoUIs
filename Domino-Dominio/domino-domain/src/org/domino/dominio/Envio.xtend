@@ -4,5 +4,7 @@ interface Envio {
 	
 	def int recargo()
 	
+	def boolean esDelivery()
+	
 	
 }

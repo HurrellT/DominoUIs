@@ -1,9 +1,9 @@
 package org.domino.dominio
 
 import org.junit.Test
+
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
-import org.mockito.internal.matchers.InstanceOf
 
 class PedidosTest {
 
@@ -18,8 +18,8 @@ class PedidosTest {
 
 	Pedido pedido1 = new Pedido(cliente, fecha, aclaracion, envio1)
 	Pedido pedido2 = new Pedido(cliente, fecha, aclaracion, envio2)
-	var unMenuMock= mock(Menu)
-	
+	var unMenuMock = mock(Menu)
+
 	@Test
 	def testUnPedidoTieneUnClienteUnaFechaUnaAclaracion() {
 		when(cliente.nombre).thenReturn("Juan")
@@ -36,14 +36,17 @@ class PedidosTest {
 	@Test
 	def testUnPedidoPuedeCambiarDeEstadoCuandoSeRetiraPorElLocal() {
 		pedido1.siguienteEstado()
-		assertTrue(pedido1.estado instanceof ListoParaRetirar)
+		pedido1.siguienteEstado()
+		assertTrue(pedido1.estado instanceof Entregado)
 	}
 
 	@Test
 	def testUnPedidoPuedeCambiarDeEstadoCuandoSePideDelivery() {
 
-		pedido2.siguienteEstado()
-		assertTrue(pedido2.estado instanceof ListoParaEnviar)
+		pedido2.siguienteEstado
+		pedido2.siguienteEstado
+		pedido2.siguienteEstado
+		assertTrue(pedido2.estado instanceof Entregado)
 	}
 
 	@Test
