@@ -22,6 +22,7 @@ class Plato {
 	}
 
 	def montoTotal(Menu unMenu) {
+		//Agregar el precio del tamaño del plato para calcular el monto total final. 
 		var sumaTotalDePlato = unMenu.precioPromo(pizza)
 		if (ingredientes.size != 0) {
 			sumaTotalDePlato = 70
