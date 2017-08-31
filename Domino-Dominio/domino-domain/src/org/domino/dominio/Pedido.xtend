@@ -8,7 +8,7 @@ import java.util.stream.Collectors
 class Pedido {
 	
 	Cliente cliente
-	Integer fecha
+	Integer fecha  //Arreglar la fecha
 	String aclaracion
 	List<Plato> platos  
 	EstadoPedido estado
