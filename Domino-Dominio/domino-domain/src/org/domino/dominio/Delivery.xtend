@@ -12,4 +12,8 @@ class Delivery implements Envio {
 		15
 	}
 	
+	override esDelivery() {
+		true
+	}
+	
 }

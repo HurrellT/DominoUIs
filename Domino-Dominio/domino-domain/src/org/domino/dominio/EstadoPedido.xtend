@@ -2,5 +2,5 @@ package org.domino.dominio
 
 interface EstadoPedido {
 	
-	def void siguienteEstado()
+	def EstadoPedido siguienteEstado(Envio envio)
 }
