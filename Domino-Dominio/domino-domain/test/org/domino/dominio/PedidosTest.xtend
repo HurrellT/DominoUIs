@@ -4,7 +4,8 @@ import org.junit.Test
 
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
-
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class PedidosTest {
 
@@ -17,7 +18,7 @@ class PedidosTest {
 
 	Pedido pedido1 = new Pedido(cliente, fecha, aclaracion, envio1)
 	Pedido pedido2 = new Pedido(cliente, fecha, aclaracion, envio2)
-	var unMenuMock = mock(Menu)
+	
 
 	@Test
 	def testUnPedidoTieneUnClienteUnaFechaUnaAclaracion() {
@@ -59,27 +60,27 @@ class PedidosTest {
 	@Test
 	def unPedidoParaRetirarEnElLocalTieneComoMontoFinalLaSumaDelMontoDeSusPlatos() {
 		var plato1 = mock(Plato)
-		when(plato1.montoTotal(unMenuMock)).thenReturn(10)
+		when(plato1.montoTotal()).thenReturn(10.0)
 		var plato2 = mock(Plato)
-		when(plato2.montoTotal(unMenuMock)).thenReturn(25)
+		when(plato2.montoTotal()).thenReturn(25.0)
 
 		pedido1.agregarPlato(plato1)
 		pedido1.agregarPlato(plato2)
 
-		assertEquals(35, pedido1.montoTotal(unMenuMock))
+		assertEquals(35, pedido1.montoTotal())
 	}
 
 	@Test
 	def unPedidoParaDevliveryTieneComoMontoFinalLaSumaDelMontoDeSusPlatosMasUnRecargo() {
 		var plato1 = mock(Plato)
-		when(plato1.montoTotal(unMenuMock)).thenReturn(10)
+		when(plato1.montoTotal()).thenReturn(10.0)
 		var plato2 = mock(Plato)
-		when(plato2.montoTotal(unMenuMock)).thenReturn(25)
+		when(plato2.montoTotal()).thenReturn(25.0)
 
 		pedido2.agregarPlato(plato1)
 		pedido2.agregarPlato(plato2)
 
-		assertEquals(50, pedido2.montoTotal(unMenuMock))
+		assertEquals(50, pedido2.montoTotal())
 	}
 
 }

@@ -1,9 +1,8 @@
 package org.domino.dominio
 
-import org.eclipse.xtend.lib.annotations.Accessors
-import java.util.List
-import java.util.stream.Collectors
 import java.util.Date
+import java.util.List
+import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
 class Pedido {
@@ -32,8 +31,8 @@ class Pedido {
 		this.platos.add(plato)
 	}
 	
-	def montoTotal(Menu unMenu) {
-		platos.stream.mapToInt[p | p.montoTotal(unMenu)].sum() + this.envio.recargo
+	def montoTotal() {
+		platos.stream.mapToInt[p | p.montoTotal() as int].sum() + this.envio.recargo
 		
 		
 	}
