@@ -6,17 +6,15 @@ import static org.junit.Assert.*
 
 class IngredientesTest {
 	
-	
-	String nombre
-	Ingrediente ingrediente = new Ingrediente(nombre)
-	String distribucion
+	String nombre = "Aceituna"
+	String distribucion = "Toda la pizza"
+	Ingrediente ingrediente = new Ingrediente(nombre, 17, distribucion)
 	
 	@Test
-	def testUnIngredienteEstaCompuestoPorNombreYDistribucion(){
-		
-		ingrediente.distribucion = distribucion
+	def testUnIngredienteEstaCompuestoPorNombrePrecioYDistribucion(){
 		
 		assertEquals(nombre, ingrediente.nombre)
 		assertEquals(distribucion, ingrediente.distribucion)
+		assertEquals(17, ingrediente.precio)
 	}
 }
