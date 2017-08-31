@@ -4,14 +4,14 @@ import org.junit.Test
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
 import org.mockito.internal.matchers.InstanceOf
+import java.util.Date
+import java.text.SimpleDateFormat
 
 class PedidosTest {
 
 	Cliente cliente = mock(Cliente)
-	// SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:ii:ss")
-	// String fechaString = "2014-09-15 15:03:23"
-	// Date fecha = sdf.parse(fechaString);
-	Integer fecha = new Integer(1)
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	Date fecha= sdf.parse("2015-05-26");
 	String aclaracion = "Esto es una aclaracion"
 	Envio envio1 = new RetiraPorElLocal
 	Envio envio2 = new Delivery("Calle 777")

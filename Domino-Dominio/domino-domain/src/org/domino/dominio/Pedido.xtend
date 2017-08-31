@@ -3,18 +3,19 @@ package org.domino.dominio
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
 import java.util.stream.Collectors
+import java.util.Date
 
 @Accessors
 class Pedido {
 	
 	Cliente cliente
-	Integer fecha
+	Date fecha
 	String aclaracion
 	List<Plato> platos  
 	EstadoPedido estado
 	Envio envio  
 	
-	new(Cliente cliente, Integer fecha, String aclaracion, Envio envio) {
+	new(Cliente cliente, Date fecha, String aclaracion, Envio envio) {
 		this.cliente 	= cliente
 		this.fecha		= fecha
 		this.aclaracion	= aclaracion

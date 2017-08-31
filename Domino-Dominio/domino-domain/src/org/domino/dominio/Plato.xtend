@@ -8,10 +8,10 @@ import java.util.List
 class Plato {
 
 	Pizza pizza
-	String tamanio
+	Tamanio tamanio
 	List<Ingrediente> ingredientes
 
-	new(Pizza pizza, String tamanio) {
+	new(Pizza pizza, Tamanio tamanio) {
 		this.pizza = pizza
 		this.tamanio = tamanio
 		this.ingredientes = newArrayList
@@ -21,16 +21,18 @@ class Plato {
 		this.ingredientes.add(ingred)
 	}
 
-	def montoTotal(Menu unMenu) {
-		//Agregar el precio del tamaño del plato para calcular el monto total final. 
-		var sumaTotalDePlato = unMenu.precioPromo(pizza)
-		if (ingredientes.size != 0) {
-			sumaTotalDePlato = 70
-			for (Ingrediente unIngrediente : ingredientes) {
-				sumaTotalDePlato =sumaTotalDePlato + unMenu.precioIngrediente(unIngrediente)
-			}
-			return sumaTotalDePlato
+	def montoTotal() {
+		var monto = 0.0
+		val custom = 70.0
+		if(pizza.ingredientes.isEmpty()){
+			monto = custom * (tamanio.factor)
 		}
-		sumaTotalDePlato
+		else {
+			monto = pizza.precio * (tamanio.factor)
+		}
+		for(Ingrediente ing : ingredientes){
+			monto += ing.precio
+		}
+		monto
 	}
 }

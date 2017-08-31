@@ -6,9 +6,13 @@ import org.eclipse.xtend.lib.annotations.Accessors
 class Ingrediente extends DominoPizza {
 
 	String nombre
+	int precio
+	String distribucion
 
-	new(String nombre) {
+	new(String nombre, int precio, String distribucion) {
 		this.nombre = nombre
+		this.precio = precio
+		this.distribucion = distribucion
 	}
 
 }

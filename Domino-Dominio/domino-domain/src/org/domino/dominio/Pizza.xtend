@@ -1,20 +1,22 @@
 package org.domino.dominio
 
-import java.util.Map
 import org.eclipse.xtend.lib.annotations.Accessors
+import java.util.List
 
 @Accessors
 class Pizza extends DominoPizza {
 	String nombre
-	Map<Ingrediente, String> ingredientes
+	int precio
+	List<Ingrediente> ingredientes
 	
-	new(String nombre) {
+	new(String nombre, int precio) {
 		this.nombre = nombre
-		this.ingredientes = newHashMap
+		this.precio = precio
+		this.ingredientes = newArrayList
 	}
 	
-	def agregar(Ingrediente ingrediente, String distribucion) {
-		ingredientes.put(ingrediente, distribucion)
+	def agregar(Ingrediente ingrediente) {
+		ingredientes.add(ingrediente)
 	}
 	
 }
