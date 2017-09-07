@@ -2,12 +2,9 @@ package org.domino.dominio
 
 class ListoParaEnviar implements EstadoPedido {
 	
-
-	override siguienteEstado(Envio envio) {
+	override siguienteEstado(FormaDeEnvio envio) {
 		new EnViaje
 	}
 	
-	
-	
-	
+
 }

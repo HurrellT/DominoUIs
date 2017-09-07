@@ -1,6 +1,6 @@
 package org.domino.dominio
 
-class Entregado implements EstadoPedido {
+class Cancelado implements EstadoPedido {
 	
 	override siguienteEstado(FormaDeEnvio envio) {
 		

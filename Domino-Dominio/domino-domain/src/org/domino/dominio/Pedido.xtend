@@ -12,9 +12,9 @@ class Pedido {
 	String aclaracion
 	List<Plato> platos  
 	EstadoPedido estado
-	Envio envio  
+	FormaDeEnvio envio  
 	
-	new(Cliente cliente, Date fecha, String aclaracion, Envio envio) {
+	new(Cliente cliente, Date fecha, String aclaracion, FormaDeEnvio envio) {
 		this.cliente 	= cliente
 		this.fecha		= fecha
 		this.aclaracion	= aclaracion
@@ -33,8 +33,11 @@ class Pedido {
 	
 	def montoTotal() {
 		platos.stream.mapToInt[p | p.montoTotal() as int].sum() + this.envio.recargo
-		
-		
+	
+	}
+	
+	def cancelar() {
+		this.estado = new Cancelado
 	}
 	
 }

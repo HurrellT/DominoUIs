@@ -11,14 +11,13 @@ class PedidosTest {
 
 	Cliente cliente = mock(Cliente)
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	Date fecha= sdf.parse("2015-05-26");
+	Date fecha = sdf.parse("2015-05-26");
 	String aclaracion = "Esto es una aclaracion"
-	Envio envio1 = new RetiraPorElLocal
-	Envio envio2 = new Delivery("Calle 777")
+	FormaDeEnvio envio1 = new RetiraPorElLocal
+	FormaDeEnvio envio2 = new Delivery("Calle 777")
 
 	Pedido pedido1 = new Pedido(cliente, fecha, aclaracion, envio1)
 	Pedido pedido2 = new Pedido(cliente, fecha, aclaracion, envio2)
-	
 
 	@Test
 	def testUnPedidoTieneUnClienteUnaFechaUnaAclaracion() {
@@ -81,6 +80,17 @@ class PedidosTest {
 		pedido2.agregarPlato(plato2)
 
 		assertEquals(50, pedido2.montoTotal())
+	}
+
+	@Test
+	def testUnPedidoPuedeSerCanceladoEnCualquierEtapa() {
+		pedido1.cancelar
+		assertTrue(pedido1.estado instanceof Cancelado)
+
+		pedido2.siguienteEstado
+		pedido2.siguienteEstado
+		pedido2.cancelar
+		assertTrue(pedido2.estado instanceof Cancelado)
 	}
 
 }

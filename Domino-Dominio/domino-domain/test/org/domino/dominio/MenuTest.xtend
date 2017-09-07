@@ -46,7 +46,7 @@ class MenuTest {
 		menu.actualizarPromo(dummyPizza,precio)
 		
 		menu.actualizarPromo(dummyPizza,nuevoPrecio)
-		menu.nuevoPrecioIngrediente(dummyIngrediente, nuevoPrecio2)
+		menu.agregarIngrediente(dummyIngrediente, nuevoPrecio2)
 		
 		assertEquals(nuevoPrecio2, menu.precioIngrediente(dummyIngrediente))
 		assertEquals(nuevoPrecio, menu.precioPromo(dummyPizza))

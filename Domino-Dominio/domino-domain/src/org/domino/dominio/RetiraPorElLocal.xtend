@@ -1,6 +1,6 @@
 package org.domino.dominio
 
-class RetiraPorElLocal implements Envio {
+class RetiraPorElLocal implements FormaDeEnvio {
 
 	override recargo() {
 		0

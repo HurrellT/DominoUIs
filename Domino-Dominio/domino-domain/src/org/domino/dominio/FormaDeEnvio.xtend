@@ -1,6 +1,6 @@
 package org.domino.dominio
 
-interface Envio {
+interface FormaDeEnvio {
 	
 	def int recargo()
 	

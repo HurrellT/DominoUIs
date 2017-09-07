@@ -2,10 +2,9 @@ package org.domino.dominio
 
 class ListoParaRetirar implements EstadoPedido {
 	
-	override siguienteEstado(Envio envio) {
+	override siguienteEstado(FormaDeEnvio envio) {
 		new Entregado
 	}
 	
-	
-	
+
 }

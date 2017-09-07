@@ -4,7 +4,7 @@ import org.domino.dominio.EstadoPedido
 
 class EnViaje implements EstadoPedido {
 	
-	override siguienteEstado(Envio envio) {
+	override siguienteEstado(FormaDeEnvio envio) {
 		new Entregado
 	}
 	
