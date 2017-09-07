@@ -1,9 +1,11 @@
 package org.domino.dominio
 
 import org.eclipse.xtend.lib.annotations.Accessors
+import java.util.Observer
+import java.util.Observable
 
 @Accessors
-class Cliente extends DominoPizza {
+class Cliente extends DominoPizza implements Observer {
 	
 	String nombre
 	String nick
@@ -19,4 +21,8 @@ class Cliente extends DominoPizza {
 		this.direccion	= direccion
 	}
 	
+	override update(Observable o, Object arg) {
+		System.out.print(arg)
+	}
+
 }
