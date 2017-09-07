@@ -30,11 +30,6 @@ class Menu {
 	def precioIngrediente(Ingrediente ingrediente) {
 		ingredientesDisponibles.get(ingrediente)
 	}
-
-	
-	def nuevoPrecioIngrediente(Ingrediente ingrediente, Integer precio) {
-		ingredientesDisponibles.put(ingrediente, precio)
-	}
 	
 	def eliminarPromoDelMenu(Pizza pizza){
 		promos.remove(pizza)

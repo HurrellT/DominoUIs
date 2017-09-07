@@ -13,9 +13,9 @@ class Pedido extends Observable {
 	String aclaracion
 	List<Plato> platos  
 	EstadoPedido estado
-	Envio envio
+	FormaDeEnvio envio
 	
-	new(Cliente cliente, Date fecha, String aclaracion, Envio envio) {
+	new(Cliente cliente, Date fecha, String aclaracion, FormaDeEnvio envio) {
 		this.cliente 	= cliente
 		this.fecha		= fecha
 		this.aclaracion	= aclaracion
@@ -41,6 +41,10 @@ class Pedido extends Observable {
 		sendMail(cliente.email, "Estamos bien", "Esto es una demo en clase, por favor, funcionar!")
 		
 	}
+
+	def anteriorEstado() {
+		this.estado = this.estado.anteriorEstado(envio)
+	}
 	
 	def agregarPlato(Plato plato) {
 		this.platos.add(plato)
@@ -48,8 +52,11 @@ class Pedido extends Observable {
 	
 	def montoTotal() {
 		platos.stream.mapToInt[p | p.montoTotal() as int].sum() + this.envio.recargo
-		
-		
+	
+	}
+	
+	def cancelar() {
+		this.estado = new Cancelado
 	}
 	
 }

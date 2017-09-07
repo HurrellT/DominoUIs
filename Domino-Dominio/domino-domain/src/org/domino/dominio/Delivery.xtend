@@ -1,6 +1,6 @@
 package org.domino.dominio
 
-class Delivery implements Envio {
+class Delivery implements FormaDeEnvio {
 	
 	String direccion
 	

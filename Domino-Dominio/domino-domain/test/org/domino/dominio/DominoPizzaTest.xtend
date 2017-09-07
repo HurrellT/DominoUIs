@@ -8,18 +8,17 @@ class DominoPizzaTest {
 	
 	DominoPizza dominoPizza = new DominoPizza()
 	
-	//Clientes
 	val cliente1 = mock(Cliente)
 	val cliente2 = mock(Cliente)
 	val cliente3 = mock(Cliente)
 	
 	@Test
 	def test001_UnDominoPizzaTiene2ClientesConMailsYNicksUnicos() {
-		//Mails
+	
 		when(cliente1.email).thenReturn("pepe999@hotmail.com")
 		when(cliente2.email).thenReturn("pepe999@hotmail.com")
 		when(cliente3.email).thenReturn("roberto_kpo125@gmail.com")
-		//Nicks
+	
 		when(cliente1.nick).thenReturn("Rob")
 		when(cliente2.nick).thenReturn("Rob")
 		when(cliente3.nick).thenReturn("Pepe")

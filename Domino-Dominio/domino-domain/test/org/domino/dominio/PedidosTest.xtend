@@ -11,15 +11,13 @@ class PedidosTest {
 
 	Cliente cliente = mock(Cliente)
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	Date fecha= sdf.parse("2015-05-26");
+	Date fecha = sdf.parse("2015-05-26");
 	String aclaracion = "Esto es una aclaracion"
-	Envio envio1 = new RetiraPorElLocal
-	Envio envio2 = new Delivery("Calle 777")
-	Cliente cl1 = new Cliente("Honer", "henborda", "123456", "henryborda17@yopmail.com" ,"Calle 28")
-
-	Pedido pedido1 = new Pedido(cliente, fecha, aclaracion, envio1)
-	Pedido pedido2 = new Pedido(cl1, fecha, aclaracion, envio2)
-	
+  Cliente cl1 = new Cliente("Honer", "henborda", "123456", "henryborda17@yopmail.com" ,"Calle 28")
+	FormaDeEnvio envio1 = new RetiraPorElLocal
+	FormaDeEnvio envio2 = new Delivery("Calle 777")
+  Pedido pedido1 = new Pedido(cliente, fecha, aclaracion, envio1)
+	Pedido pedido2 = new Pedido(cliente, fecha, aclaracion, envio2)
 
 	@Test
 	def testUnPedidoTieneUnClienteUnaFechaUnaAclaracion() {
@@ -71,7 +69,7 @@ class PedidosTest {
 	}
 
 	@Test
-	def unPedidoParaDevliveryTieneComoMontoFinalLaSumaDelMontoDeSusPlatosMasUnRecargo() {
+	def unPedidoParaDeliveryTieneComoMontoFinalLaSumaDelMontoDeSusPlatosMasUnRecargo() {
 		var plato1 = mock(Plato)
 		when(plato1.montoTotal()).thenReturn(10.0)
 		var plato2 = mock(Plato)
@@ -90,6 +88,32 @@ class PedidosTest {
 		pedido2.siguienteEstado
 		
 		assertTrue(pedido2.estado instanceof EnViaje)
+	}
+
+	@Test
+	def testUnPedidoPuedeSerCanceladoEnCualquierEtapa() {
+		pedido1.cancelar
+		assertTrue(pedido1.estado instanceof Cancelado)
+
+		pedido2.siguienteEstado
+		pedido2.siguienteEstado
+		pedido2.cancelar
+		assertTrue(pedido2.estado instanceof Cancelado)
+	}
+	
+	@Test
+	def testUnPedidoPuedeVolverASuEstadoAnterior() {
+		pedido1.siguienteEstado
+		assertTrue(pedido1.estado instanceof ListoParaRetirar)
+		pedido1.anteriorEstado
+		assertTrue(pedido1.estado instanceof Preparando)
+
+		pedido2.siguienteEstado
+		pedido2.siguienteEstado
+		assertTrue(pedido2.estado instanceof EnViaje)
+		pedido2.anteriorEstado
+		assertTrue(pedido2.estado instanceof ListoParaEnviar)
+		
 	}
 
 }
