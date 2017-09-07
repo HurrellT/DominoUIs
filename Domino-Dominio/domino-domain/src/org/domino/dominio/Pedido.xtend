@@ -2,17 +2,18 @@ package org.domino.dominio
 
 import java.util.Date
 import java.util.List
+import java.util.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
-class Pedido {
+class Pedido extends Observable {
 	
 	Cliente cliente
 	Date fecha
 	String aclaracion
 	List<Plato> platos  
 	EstadoPedido estado
-	FormaDeEnvio envio  
+	FormaDeEnvio envio
 	
 	new(Cliente cliente, Date fecha, String aclaracion, FormaDeEnvio envio) {
 		this.cliente 	= cliente
@@ -21,10 +22,24 @@ class Pedido {
 		this.envio		= envio
 		this.estado = new Preparando
 		this.platos = newArrayList
+ 	
+ 		this.addObserver(cliente)
 	}
 	
 	def siguienteEstado(){
 		this.estado = this.estado.siguienteEstado(envio)
+		if(estado instanceof EnViaje){
+			this.notifyObservers
+		}
+	}
+	
+	
+	override notifyObservers(){
+		cliente.update(this, estado.toString)
+		ServicioDeNotificacion.
+		instance.
+		sendMail(cliente.email, "Estamos bien", "Esto es una demo en clase, por favor, funcionar!")
+		
 	}
 
 	def anteriorEstado() {
