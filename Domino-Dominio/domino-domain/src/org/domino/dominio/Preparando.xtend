@@ -9,5 +9,9 @@ class Preparando implements EstadoPedido {
 			new ListoParaRetirar()
 		}
 	}
+	
+	override anteriorEstado(FormaDeEnvio envio) {
+		
+	}
 
 }

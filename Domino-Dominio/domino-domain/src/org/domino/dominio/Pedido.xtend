@@ -26,6 +26,10 @@ class Pedido {
 	def siguienteEstado(){
 		this.estado = this.estado.siguienteEstado(envio)
 	}
+
+	def anteriorEstado() {
+		this.estado = this.estado.anteriorEstado(envio)
+	}
 	
 	def agregarPlato(Plato plato) {
 		this.platos.add(plato)

@@ -6,5 +6,9 @@ class ListoParaRetirar implements EstadoPedido {
 		new Entregado
 	}
 	
+	override anteriorEstado(FormaDeEnvio envio) {
+		new Preparando
+	}
+	
 
 }

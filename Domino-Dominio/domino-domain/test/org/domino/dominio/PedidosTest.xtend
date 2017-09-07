@@ -70,7 +70,7 @@ class PedidosTest {
 	}
 
 	@Test
-	def unPedidoParaDevliveryTieneComoMontoFinalLaSumaDelMontoDeSusPlatosMasUnRecargo() {
+	def unPedidoParaDeliveryTieneComoMontoFinalLaSumaDelMontoDeSusPlatosMasUnRecargo() {
 		var plato1 = mock(Plato)
 		when(plato1.montoTotal()).thenReturn(10.0)
 		var plato2 = mock(Plato)
@@ -91,6 +91,21 @@ class PedidosTest {
 		pedido2.siguienteEstado
 		pedido2.cancelar
 		assertTrue(pedido2.estado instanceof Cancelado)
+	}
+	
+	@Test
+	def testUnPedidoPuedeVolverASuEstadoAnterior() {
+		pedido1.siguienteEstado
+		assertTrue(pedido1.estado instanceof ListoParaRetirar)
+		pedido1.anteriorEstado
+		assertTrue(pedido1.estado instanceof Preparando)
+
+		pedido2.siguienteEstado
+		pedido2.siguienteEstado
+		assertTrue(pedido2.estado instanceof EnViaje)
+		pedido2.anteriorEstado
+		assertTrue(pedido2.estado instanceof ListoParaEnviar)
+		
 	}
 
 }

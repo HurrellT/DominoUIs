@@ -8,4 +8,8 @@ class EnViaje implements EstadoPedido {
 		new Entregado
 	}
 	
+	override anteriorEstado(FormaDeEnvio envio) {
+		new ListoParaEnviar
+	}
+	
 }

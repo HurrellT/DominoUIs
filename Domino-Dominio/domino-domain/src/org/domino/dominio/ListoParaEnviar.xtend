@@ -6,5 +6,9 @@ class ListoParaEnviar implements EstadoPedido {
 		new EnViaje
 	}
 	
+	override anteriorEstado(FormaDeEnvio envio) {
+		new Preparando
+	}
+	
 
 }

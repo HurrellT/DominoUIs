@@ -6,4 +6,8 @@ class Cancelado implements EstadoPedido {
 		
 	}
 	
+	override anteriorEstado(FormaDeEnvio envio) {
+		
+	}
+	
 }
