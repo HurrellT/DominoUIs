@@ -2,11 +2,11 @@ package org.domino.dominio
 
 class Cancelado implements EstadoPedido {
 	
-	override siguienteEstado(FormaDeEnvio envio) {
+	override siguienteEstado(Pedido pedido) {
 		
 	}
 	
-	override anteriorEstado(FormaDeEnvio envio) {
+	override anteriorEstado(Pedido pedido) {
 		
 	}
 	

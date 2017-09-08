@@ -23,27 +23,16 @@ class Pedido extends Observable {
 		this.estado = new Preparando
 		this.platos = newArrayList
  	
- 		this.addObserver(cliente)
+ 		this.addObserver(ServicioDeNotificacion.config(new ServicioDeNotificacionMock("interfacesprueba@gmail.com", "interfacesunq")))
 	}
 	
 	def siguienteEstado(){
-		this.estado = this.estado.siguienteEstado(envio)
-		if(estado instanceof EnViaje){
-			this.notifyObservers
-		}
+		this.estado = this.estado.siguienteEstado(this)
 	}
 	
-	
-	override notifyObservers(){
-		cliente.update(this, estado.toString)
-		ServicioDeNotificacion.
-		instance.
-		sendMail(cliente.email, "Estamos bien", "Esto es una demo en clase, por favor, funcionar!")
-		
-	}
 
 	def anteriorEstado() {
-		this.estado = this.estado.anteriorEstado(envio)
+		this.estado = this.estado.anteriorEstado(this)
 	}
 	
 	def agregarPlato(Plato plato) {
@@ -57,6 +46,10 @@ class Pedido extends Observable {
 	
 	def cancelar() {
 		this.estado = new Cancelado
+	}
+	
+	def cambio() {
+		setChanged
 	}
 	
 }

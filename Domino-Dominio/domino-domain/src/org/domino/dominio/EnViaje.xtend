@@ -4,11 +4,11 @@ import org.domino.dominio.EstadoPedido
 
 class EnViaje implements EstadoPedido {
 	
-	override siguienteEstado(FormaDeEnvio envio) {
+	override siguienteEstado(Pedido pedido) {
 		new Entregado
 	}
 	
-	override anteriorEstado(FormaDeEnvio envio) {
+	override anteriorEstado(Pedido pedido) {
 		new ListoParaEnviar
 	}
 	

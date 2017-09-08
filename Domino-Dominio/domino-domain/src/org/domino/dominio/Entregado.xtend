@@ -2,12 +2,12 @@ package org.domino.dominio
 
 class Entregado implements EstadoPedido {
 	
-	override siguienteEstado(FormaDeEnvio envio) {
+	override siguienteEstado(Pedido pedido) {
 		
 	}
 	
-	override anteriorEstado(FormaDeEnvio envio) {
-		if (envio.esDelivery()) {
+	override anteriorEstado(Pedido pedido) {
+		if (pedido.envio.esDelivery()) {
 			new EnViaje()
 		}else{
 			new ListoParaRetirar()

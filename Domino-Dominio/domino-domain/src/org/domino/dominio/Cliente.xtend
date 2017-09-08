@@ -5,7 +5,7 @@ import java.util.Observer
 import java.util.Observable
 
 @Accessors
-class Cliente extends DominoPizza implements Observer {
+class Cliente {
 	
 	String nombre
 	String nick
@@ -21,8 +21,4 @@ class Cliente extends DominoPizza implements Observer {
 		this.direccion	= direccion
 	}
 	
-	override update(Observable o, Object arg) {
-		System.out.print(arg)
-	}
-
 }

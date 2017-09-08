@@ -9,11 +9,13 @@ import javax.mail.Session
 import javax.mail.Transport
 import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeMessage
+import java.util.Observer
+import java.util.Observable
 
 /**
  * @author datojava.blogspot.com
  */
-class ServicioDeNotificacion {
+class ServicioDeNotificacion implements Observer {
 	UserPasswordAuthentication authentication
 
 	new(String username, String password) {
@@ -54,6 +56,13 @@ class ServicioDeNotificacion {
 
 		Session.getInstance(props, authentication)
 	}
+	
+	override update(Observable o, Object arg) {
+		val pedido = o as Pedido
+		
+		ServicioDeNotificacion.instance.sendMail(pedido.cliente.email,"Test", "Test")
+	}
+	
 }
 
 class UserPasswordAuthentication extends Authenticator {
