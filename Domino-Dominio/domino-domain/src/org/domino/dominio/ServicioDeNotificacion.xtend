@@ -24,6 +24,14 @@ class ServicioDeNotificacion implements Observer {
 		comprobanteDeMailEnviado = false
 		
 	}
+	
+	static ServicioDeNotificacion instance
+	
+	static def instance() { instance }
+	
+	static def config(ServicioDeNotificacion sender) { 
+		instance = sender
+	}
 
 	def sendMail(String para, String asunto, String cuerpo) {
 
@@ -63,7 +71,7 @@ class ServicioDeNotificacion implements Observer {
 	override update(Observable o, Object arg) {
 		val pedido = o as Pedido
 		
-		ServicioDeNotificacion.newInstance.sendMail(pedido.cliente.email,"Test", "Test")
+		ServicioDeNotificacion.instance.sendMail(pedido.cliente.email,"Test", "Test")
 	}
 	
 }
