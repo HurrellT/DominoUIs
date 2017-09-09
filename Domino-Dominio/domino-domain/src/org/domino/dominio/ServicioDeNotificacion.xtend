@@ -9,17 +9,20 @@ import javax.mail.Session
 import javax.mail.Transport
 import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeMessage
+import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.Observer
 import java.util.Observable
 
-/**
- * @author datojava.blogspot.com
- */
+@Accessors
 class ServicioDeNotificacion implements Observer {
-	UserPasswordAuthentication authentication
 
-	new(String username, String password) {
-		authentication = new UserPasswordAuthentication(username, password)
+	UserPasswordAuthentication authentication
+	boolean comprobanteDeMailEnviado
+
+	new(String usuario, String contraseña) {
+		authentication = new UserPasswordAuthentication(usuario, contraseña)
+		comprobanteDeMailEnviado = false
+		
 	}
 	
 	static ServicioDeNotificacion instance
@@ -30,23 +33,30 @@ class ServicioDeNotificacion implements Observer {
 		instance = sender
 	}
 
-	def sendMail(String to, String subject, String text) {
+	def sendMail(String para, String asunto, String cuerpo) {
 
 		try {
+			comprobanteDeMailEnviado = true
+			
 			val message = new MimeMessage(createSession)
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to))
-			message.subject = subject
-			message.text = text
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(para))
+			message.subject = asunto
+			message.text = cuerpo
 
 			Transport.send(message)
+			
+		}
+		catch (MessagingException exception) {
+			comprobanteDeMailEnviado = false
 
-		} catch (MessagingException e) {
-			e.printStackTrace
-			throw e
+			exception.printStackTrace
+			throw exception
+			
 		}
 	}
 
 	private def createSession() {
+		
 		val props = new Properties => [
 			put("mail.smtp.auth", "true")
 			put("mail.smtp.starttls.enable", "true")
@@ -55,6 +65,7 @@ class ServicioDeNotificacion implements Observer {
 		]
 
 		Session.getInstance(props, authentication)
+		
 	}
 	
 	override update(Observable o, Object arg) {

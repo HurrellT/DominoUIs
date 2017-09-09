@@ -13,15 +13,15 @@ class PedidosTest {
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	Date fecha = sdf.parse("2015-05-26");
 	String aclaracion = "Esto es una aclaracion"
-  Cliente cl1 = new Cliente("Honer", "henborda", "123456", "lhazuca@gmail.com" ,"Calle 28")
+ 	Cliente cl1 = new Cliente("Honer", "henborda", "123456", "ranidalf@gmail.com" ,"Calle 28")
 	FormaDeEnvio envio1 = new RetiraPorElLocal
 	FormaDeEnvio envio2 = new Delivery("Calle 777")
-  Pedido pedido1 = new Pedido(cl1, fecha, aclaracion, envio1)
+  	Pedido pedido1 = new Pedido(cl1, fecha, aclaracion, envio1)
 	Pedido pedido2 = new Pedido(cl1, fecha, aclaracion, envio2)
 
 	@Test
 	def testUnPedidoTieneUnClienteUnaFechaUnaAclaracion() {
-		when(cliente.nombre).thenReturn("Juan")
+		when(cliente.nombre).thenReturn("Honer")
 		assertEquals(cliente.nombre, pedido1.cliente.nombre)
 		assertEquals(fecha, pedido1.fecha)
 		assertEquals(aclaracion, pedido1.aclaracion)
@@ -115,12 +115,4 @@ class PedidosTest {
 		
 	}
 
-}
-class ServicioDeNotificacionMock extends ServicioDeNotificacion{
-	
-	new(String username, String password) {
-		super(username, password)
-	}
-	
-	override sendMail(String to, String subject, String text) {}
 }

@@ -2,8 +2,8 @@ package org.domino.dominio
 
 import java.util.Date
 import java.util.List
-import java.util.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
+import java.util.Observable
 
 @Accessors
 class Pedido extends Observable {
@@ -22,8 +22,7 @@ class Pedido extends Observable {
 		this.envio		= envio
 		this.estado = new Preparando
 		this.platos = newArrayList
- 	
- 		this.addObserver(ServicioDeNotificacion.config(new ServicioDeNotificacionMock("interfacesprueba@gmail.com", "interfacesunq")))
+		this.addObserver(ServicioDeNotificacion.config(new ServicioDeNotificacion("ciu.dominos.pizza@gmail.com", "interfaces2017")))
 	}
 	
 	def siguienteEstado(){
@@ -51,5 +50,4 @@ class Pedido extends Observable {
 	def cambio() {
 		setChanged
 	}
-	
 }
