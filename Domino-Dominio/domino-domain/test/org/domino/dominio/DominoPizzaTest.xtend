@@ -6,11 +6,17 @@ import static org.junit.Assert.*
 
 class DominoPizzaTest {
 	
-	DominoPizza dominoPizza = new DominoPizza()
+	Menu menu = mock(Menu)
+	ServicioDeNotificacion servicio = mock(ServicioDeNotificacion)
+	DominoPizza dominoPizza = new DominoPizza(menu, servicio)
 	
 	val cliente1 = mock(Cliente)
 	val cliente2 = mock(Cliente)
 	val cliente3 = mock(Cliente)
+	
+	val pedido1 = mock(Pedido)
+	val pedido2 = mock(Pedido)
+	val pedido3 = mock(Pedido)
 	
 	@Test
 	def test001_UnDominoPizzaTiene2ClientesConMailsYNicksUnicos() {
@@ -29,6 +35,19 @@ class DominoPizzaTest {
 		
 		assertEquals(2,dominoPizza.clientes.size)
 		assertFalse(dominoPizza.clientes.contains(cliente2))
+	}
+	
+	@Test
+	def test002_UnDominoPizzaGuardaUnHistorialDeLosPedidosRealizados() {
+	
+		dominoPizza.realizarPedido(pedido1)
+		dominoPizza.realizarPedido(pedido2)
+		dominoPizza.realizarPedido(pedido3)
+		
+		assertEquals(3,dominoPizza.historial.size)
+		assertTrue(dominoPizza.historial.contains(pedido1))
+		assertTrue(dominoPizza.historial.contains(pedido2))
+		assertTrue(dominoPizza.historial.contains(pedido3))
 	}
 	
 }
