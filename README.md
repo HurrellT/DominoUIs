@@ -11,10 +11,10 @@ TODO:
 - Completar el Observer de Pedidos que notifica:
   1) Cuando el Pedido esta EnViaje HECHO
   2) Cuando tarda mas de 30 min en entregarse
-- Crear el historial de Pedidos
-- La clase DominoPizza no deberia tener el Menu?
+- Crear el historial de Pedidos HECHO
+- La clase DominoPizza no deberia tener el Menu? HECHO
 - El Observer de los pedidos es DominoPizza, no el Cliente 
-  1) Hasta ahora el ServicioDeNotificacion observa a Pedido. ¿Tendriamos que hacer que el DominoPizza tenga el servicio incorporado o que sea externo como es actualmente?
+  1) Hasta ahora el ServicioDeNotificacion observa a Pedido. ¿Tendriamos que hacer que el DominoPizza tenga el servicio incorporado o que sea externo como es actualmente? HECHO
 - El tiempo del Pedido se calcula guardando las fechas de creacion y de llegada del pedido
 - Sacar todos los instance of
 - Verificar que le llega la notificacion al cliente HECHO
