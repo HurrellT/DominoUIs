@@ -21,7 +21,7 @@ class PedidosTest {
 
 	@Test
 	def testUnPedidoTieneUnClienteUnaFechaUnaAclaracion() {
-		when(cliente.nombre).thenReturn("Juan")
+		when(cliente.nombre).thenReturn("Honer")
 		assertEquals(cliente.nombre, pedido1.cliente.nombre)
 		assertEquals(fecha, pedido1.fecha)
 		assertEquals(aclaracion, pedido1.aclaracion)

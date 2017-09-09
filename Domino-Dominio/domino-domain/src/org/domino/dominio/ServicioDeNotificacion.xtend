@@ -10,9 +10,11 @@ import javax.mail.Transport
 import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeMessage
 import org.eclipse.xtend.lib.annotations.Accessors
+import java.util.Observer
+import java.util.Observable
 
 @Accessors
-class ServicioDeNotificacion {
+class ServicioDeNotificacion implements Observer {
 
 	UserPasswordAuthentication authentication
 	boolean comprobanteDeMailEnviado
@@ -56,6 +58,12 @@ class ServicioDeNotificacion {
 
 		Session.getInstance(props, authentication)
 		
+	}
+	
+	override update(Observable o, Object arg) {
+		val pedido = o as Pedido
+		
+		ServicioDeNotificacion.newInstance.sendMail(pedido.cliente.email,"Test", "Test")
 	}
 	
 }
