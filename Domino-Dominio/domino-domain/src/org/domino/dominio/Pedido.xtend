@@ -2,11 +2,10 @@ package org.domino.dominio
 
 import java.util.Date
 import java.util.List
-import java.util.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
-class Pedido extends Observable {
+class Pedido {
 	
 	Cliente cliente
 	Date fecha
@@ -22,8 +21,6 @@ class Pedido extends Observable {
 		this.envio		= envio
 		this.estado = new Preparando
 		this.platos = newArrayList
- 	
- 		this.addObserver(ServicioDeNotificacion.config(new ServicioDeNotificacionMock("interfacesprueba@gmail.com", "interfacesunq")))
 	}
 	
 	def siguienteEstado(){
@@ -47,9 +44,4 @@ class Pedido extends Observable {
 	def cancelar() {
 		this.estado = new Cancelado
 	}
-	
-	def cambio() {
-		setChanged
-	}
-	
 }
