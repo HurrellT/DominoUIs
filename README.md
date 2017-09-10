@@ -15,7 +15,7 @@ TODO:
 - La clase DominoPizza no deberia tener el Menu? HECHO
 - El Observer de los pedidos es DominoPizza, no el Cliente 
   1) Hasta ahora el ServicioDeNotificacion observa a Pedido. ¿Tendriamos que hacer que el DominoPizza tenga el servicio incorporado o que sea externo como es actualmente? HECHO
-- El tiempo del Pedido se calcula guardando las fechas de creacion y de llegada del pedido
+- El tiempo del Pedido se calcula guardando las fechas de creacion y de llegada del pedido HECHO
 - Sacar todos los instance of
 - Verificar que le llega la notificacion al cliente HECHO
 - Sacar el if para el notifyObservers (si no me equivoco ya esta HECHO)
