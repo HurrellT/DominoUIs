@@ -35,6 +35,7 @@ class DominoPizza {
 	def realizarPedido(Pedido pedido) {
 		this.historial.add(pedido)
 		pedido.addObserver(this.servicio)
+		pedido.cronometro.activar
 	}
 	
 }

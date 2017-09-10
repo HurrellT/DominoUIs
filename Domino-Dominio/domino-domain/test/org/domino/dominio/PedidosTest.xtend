@@ -10,14 +10,17 @@ import static org.mockito.Mockito.*
 class PedidosTest {
 
 	Cliente cliente = mock(Cliente)
+	Cliente cl1 = new Cliente("Honer", "henborda", "123456", "ranidalf@gmail.com" ,"Calle 28")
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	Date fecha = sdf.parse("2015-05-26");
 	String aclaracion = "Esto es una aclaracion"
- 	Cliente cl1 = new Cliente("Honer", "henborda", "123456", "ranidalf@gmail.com" ,"Calle 28")
 	FormaDeEnvio envio1 = new RetiraPorElLocal
 	FormaDeEnvio envio2 = new Delivery("Calle 777")
   	Pedido pedido1 = new Pedido(cl1, fecha, aclaracion, envio1)
 	Pedido pedido2 = new Pedido(cl1, fecha, aclaracion, envio2)
+	Menu menu = mock(Menu)
+	ServicioDeNotificacion servicio = mock(ServicioDeNotificacion)
+	DominoPizza dominoPizza = new DominoPizza(menu, servicio)
 
 	@Test
 	def testUnPedidoTieneUnClienteUnaFechaUnaAclaracion() {
@@ -113,6 +116,16 @@ class PedidosTest {
 		pedido2.anteriorEstado
 		assertTrue(pedido2.estado instanceof ListoParaEnviar)
 		
+	}
+	
+	@Test
+	def testUnPedidoPuedeDecirCuantoTiempoTardoEnEntregarse() {
+		
+		dominoPizza.realizarPedido(pedido1)
+		pedido1.siguienteEstado
+		pedido1.siguienteEstado
+		
+		assertEquals(0, pedido1.tiempoDelPedido())
 	}
 
 }
