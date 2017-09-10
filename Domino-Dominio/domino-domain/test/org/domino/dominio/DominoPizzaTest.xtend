@@ -7,7 +7,7 @@ import static org.junit.Assert.*
 class DominoPizzaTest {
 	
 	Menu menu = mock(Menu)
-	ServicioDeNotificacion servicio = mock(ServicioDeNotificacion)
+	ServicioDeNotificacion servicio = new ServicioDeNotificacion("ciu.dominos.pizza@gmail.com", "interfaces2017")
 	DominoPizza dominoPizza = new DominoPizza(menu, servicio)
 	
 	val cliente1 = mock(Cliente)

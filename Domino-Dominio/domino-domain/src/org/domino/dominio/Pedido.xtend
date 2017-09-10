@@ -22,7 +22,6 @@ class Pedido extends Observable {
 		this.envio		= envio
 		this.estado = new Preparando
 		this.platos = newArrayList
-		this.addObserver(ServicioDeNotificacion.config(new ServicioDeNotificacion("ciu.dominos.pizza@gmail.com", "interfaces2017")))
 	}
 	
 	def siguienteEstado(){
