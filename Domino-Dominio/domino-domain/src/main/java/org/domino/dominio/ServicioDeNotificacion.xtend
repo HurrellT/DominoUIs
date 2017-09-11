@@ -19,8 +19,8 @@ class ServicioDeNotificacion implements Observer {
 	UserPasswordAuthentication authentication
 	boolean comprobanteDeMailEnviado
 
-	new(String usuario, String contraseña) {
-		authentication = new UserPasswordAuthentication(usuario, contraseña)
+	new(String usuario, String contrasenia) {
+		authentication = new UserPasswordAuthentication(usuario, contrasenia)
 		comprobanteDeMailEnviado = false
 		
 	}
