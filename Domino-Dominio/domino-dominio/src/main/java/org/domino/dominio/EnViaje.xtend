@@ -5,6 +5,7 @@ import org.domino.dominio.EstadoPedido
 class EnViaje implements EstadoPedido {
 	
 	override siguienteEstado(Pedido pedido) {
+		pedido.cronometro.detener
 		new Entregado
 	}
 	

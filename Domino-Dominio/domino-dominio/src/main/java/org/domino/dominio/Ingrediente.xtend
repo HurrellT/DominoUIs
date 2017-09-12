@@ -3,7 +3,7 @@ package org.domino.dominio
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
-class Ingrediente extends DominoPizza {
+class Ingrediente {
 
 	String nombre
 	int precio

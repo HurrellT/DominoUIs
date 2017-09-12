@@ -14,7 +14,8 @@ class Pedido extends Observable {
 	List<Plato> platos  
 	EstadoPedido estado
 	FormaDeEnvio envio
-	
+	Cronometro cronometro
+
 	new(Cliente cliente, Date fecha, String aclaracion, FormaDeEnvio envio) {
 		this.cliente 	= cliente
 		this.fecha		= fecha
@@ -22,7 +23,7 @@ class Pedido extends Observable {
 		this.envio		= envio
 		this.estado = new Preparando
 		this.platos = newArrayList
-		this.addObserver(ServicioDeNotificacion.config(new ServicioDeNotificacion("ciu.dominos.pizza@gmail.com", "interfaces2017")))
+		this.cronometro = new Cronometro()
 	}
 	
 	def siguienteEstado(){
@@ -50,4 +51,9 @@ class Pedido extends Observable {
 	def cambio() {
 		setChanged
 	}
+	
+	def tiempoDelPedido() {
+		this.cronometro.tiempoEnMinutos()
+	}
+	
 }

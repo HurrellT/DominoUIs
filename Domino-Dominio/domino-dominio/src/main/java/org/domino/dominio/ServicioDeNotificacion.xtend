@@ -19,8 +19,8 @@ class ServicioDeNotificacion implements Observer {
 	UserPasswordAuthentication authentication
 	boolean comprobanteDeMailEnviado
 
-	new(String usuario, String contraseña) {
-		authentication = new UserPasswordAuthentication(usuario, contraseña)
+	new(String usuario, String contrasenia) {
+		authentication = new UserPasswordAuthentication(usuario, contrasenia)
 		comprobanteDeMailEnviado = false
 		
 	}
@@ -62,6 +62,7 @@ class ServicioDeNotificacion implements Observer {
 			put("mail.smtp.starttls.enable", "true")
 			put("mail.smtp.host", "smtp.gmail.com")
 			put("mail.smtp.port", "587")
+			put("mail.smtp.ssl.trust", "smtp.gmail.com")
 		]
 
 		Session.getInstance(props, authentication)

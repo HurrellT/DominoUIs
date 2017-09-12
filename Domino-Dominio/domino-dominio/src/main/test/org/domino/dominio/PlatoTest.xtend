@@ -15,7 +15,7 @@ class PlatoTest {
 	List<Ingrediente> ingredientes = newArrayList
 
 	@Test
-	def testUnPlatoTieneUnaPizzaYUnTamaño() {
+	def testUnPlatoTieneUnaPizzaYUnTamanio() {
 		
 		assertEquals(plato1.getPizza, pizza)
 		assertEquals(plato1.tamanio, tamanio)
