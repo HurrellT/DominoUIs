@@ -4,8 +4,10 @@ import java.util.Date
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.Observable
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @Accessors
+@org.uqbar.commons.model.annotations.Observable
 class Pedido extends Observable {
 	
 	Cliente cliente
@@ -15,6 +17,7 @@ class Pedido extends Observable {
 	EstadoPedido estado
 	FormaDeEnvio envio
 	Cronometro cronometro
+	String nombre
 
 	new(Cliente cliente, Date fecha, String aclaracion, FormaDeEnvio envio) {
 		this.cliente 	= cliente
@@ -56,4 +59,7 @@ class Pedido extends Observable {
 		this.cronometro.tiempoEnMinutos()
 	}
 	
+	def setNombre(Integer num){
+		this.nombre = "Pedido #" + num
+	}	
 }
