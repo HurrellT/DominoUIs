@@ -7,7 +7,7 @@ import static org.junit.Assert.*
 class DominoPizzaTest {
 	
 	Menu menu = new Menu
-	ServicioDeNotificacion servicio = new ServicioDeNotificacion("ciu.dominos.pizza@gmail.com", "interfaces2017")
+	ServicioDeNotificacion servicio = mock(ServicioDeNotificacion)
 	DominoPizza dominoPizza = new DominoPizza(menu, servicio)
 	
 	val cliente1 = mock(Cliente)
@@ -17,6 +17,8 @@ class DominoPizzaTest {
 	val pedido1 = mock(Pedido)
 	val pedido2 = mock(Pedido)
 	val pedido3 = mock(Pedido)
+	
+	val crono = new Cronometro
 	
 	Pizza pizza = mock(Pizza)
 	Integer precio1 = new Integer(70)
@@ -44,6 +46,9 @@ class DominoPizzaTest {
 	@Test
 	def test002_UnDominoPizzaGuardaUnHistorialDeLosPedidosRealizados() {
 	
+		when(pedido1.cronometro).thenReturn(this.crono)
+		when(pedido2.cronometro).thenReturn(this.crono)
+		when(pedido3.cronometro).thenReturn(this.crono)
 		dominoPizza.realizarPedido(pedido1)
 		dominoPizza.realizarPedido(pedido2)
 		dominoPizza.realizarPedido(pedido3)

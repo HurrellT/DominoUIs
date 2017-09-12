@@ -17,6 +17,7 @@ class DominoPizza {
 	new(Menu menu, ServicioDeNotificacion servicio){
 		this.menu = menu
 		this.servicio = servicio
+		ServicioDeNotificacion.config(this.servicio)
 	}
 	
 	def agregarCliente(Cliente cliente) {

@@ -86,6 +86,7 @@ class PedidosTest {
 	
 	@Test
 	def unPedidoEnViajeNotificaAlClienteQueSuPedidoEstaEnCamino(){
+		dominoPizza.realizarPedido(pedido2)
 		pedido2.siguienteEstado
 		pedido2.siguienteEstado
 		
