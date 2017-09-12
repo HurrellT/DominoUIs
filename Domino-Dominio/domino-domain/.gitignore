@@ -1,9 +1,0 @@
-
-
-/target/
-.classpath
-.project
-.settings/
-*generated-sources*
-/bin
-/xtend-gen
