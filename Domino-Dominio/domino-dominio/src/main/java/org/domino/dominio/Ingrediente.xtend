@@ -1,8 +1,10 @@
 package org.domino.dominio
 
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.annotations.Observable
 
 @Accessors
+@Observable
 class Ingrediente {
 
 	String nombre
@@ -15,4 +17,16 @@ class Ingrediente {
 		this.distribucion = distribucion
 	}
 
+		
+	/*
+	 * PropertyAdapter
+	 */
+	 
+	 def getNombreIngrediente() {
+	 	this.nombre
+	 }
+	 
+	 def getPrecioIngrediente() {
+	 	this.precio
+	 }
 }
