@@ -110,11 +110,22 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoPizza> {
 			
 			onClick [close]
 		]
+		
+		new Button(bottomButtonPanel) => [
+			caption = "Tester Button"
+			width = 150
+			
+			onClick [ this.crearIngredienteWindow ]
+		]
 	}
 	
 	/*
 	 * Acciones
 	 */
+	
+	def crearIngredienteWindow() {
+		this.openDialog(new CrearIngredienteWindow(this, modelObject))
+	}
 	 
 	def crearPedidosCerradosWindow() {
 		this.openDialog(new CrearPedidosCerradosWindow(this, modelObject))
