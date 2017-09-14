@@ -35,7 +35,7 @@ class CrearMenuWindow extends TransactionalDialog<Menu> {
 		title = "Dominos Pizza - Menú"
 
 		val tablePromos = new Table<Pizza>(panelPromos, typeof(Pizza)) => [
-			items <=> "promos"
+			items <=> "promos" 
 		]
 		this.describirPromos(tablePromos)
 

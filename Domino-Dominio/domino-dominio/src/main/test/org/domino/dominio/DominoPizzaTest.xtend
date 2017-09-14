@@ -20,11 +20,9 @@ class DominoPizzaTest {
 	
 	val crono = new Cronometro
 	
-	Pizza pizza = mock(Pizza)
-	Integer precio1 = new Integer(70)
-	Integer precio2 = new Integer(120)
+	Pizza pizza = new Pizza("Muzza",70)
 	
-	@Test
+	@Test(expected = RuntimeException)
 	def test001_UnDominoPizzaTiene2ClientesConMailsYNicksUnicos() {
 	
 		when(cliente1.email).thenReturn("pepe999@hotmail.com")
@@ -61,11 +59,7 @@ class DominoPizzaTest {
 	
 	@Test
 	def test003_UnDominoPizzaTieneUnSoloMenuQueSePuedeActualizar() {
-	
-		menu.actualizarPromo(pizza, precio1)
-		assertEquals(70,dominoPizza.menu.precioPromo(pizza))
-		
-		menu.actualizarPromo(pizza, precio2)
+		menu.actualizarPromo(pizza, 120)
 		assertEquals(120,dominoPizza.menu.precioPromo(pizza))
 	}
 	

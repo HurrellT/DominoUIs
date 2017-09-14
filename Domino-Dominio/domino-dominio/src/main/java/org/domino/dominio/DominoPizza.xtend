@@ -25,16 +25,13 @@ class DominoPizza {
 	}
 	
 	def agregarCliente(Cliente cliente) {
-		if (!clientes.stream.anyMatch [c | c.email == cliente.email]) {
-			if (!clientes.stream.anyMatch [c | c.nick == cliente.nick]) {
+		if (!clientes.stream.anyMatch [c | c.email == cliente.email] &&
+			!clientes.stream.anyMatch [c | c.nick == cliente.nick]) {
 				clientes.add(cliente)				
 			}
 			else {
-				System.out.println("El nick "+cliente.nick+" que quiere usar ya se encuentra registrado. Por favor elija otro.")
+				throw new RuntimeException("El nick "+cliente.nick+" que quiere usar ya se encuentra registrado. Por favor elija otro.")
 			}
-		} else {
-			System.out.println("El mail "+cliente.email+" que quiere usar ya se encuentra registrado. Por favor elija otro.")
-		}
 	}
 	
 	def realizarPedido(Pedido pedido) {
