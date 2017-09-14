@@ -16,4 +16,8 @@ class Delivery implements FormaDeEnvio {
 		true
 	}
 	
+	override siguienteEstado() {
+		new ListoParaEnviar()
+	}
+	
 }

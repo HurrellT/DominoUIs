@@ -9,5 +9,9 @@ class RetiraPorElLocal implements FormaDeEnvio {
 	override esDelivery() {
 		false
 	}
+	
+	override siguienteEstado() {
+		new ListoParaRetirar()
+	}
 
 }

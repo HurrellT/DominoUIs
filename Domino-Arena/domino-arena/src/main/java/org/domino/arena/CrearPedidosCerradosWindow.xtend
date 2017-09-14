@@ -46,7 +46,7 @@ class CrearPedidosCerradosWindow extends TransactionalDialog<AppDominoAplication
 
 	def crearTablaPedidosCerrados(Panel panel) {
 		val tabla = new Table<Pedido>(panel, typeof(Pedido)) => [
-			items <=> 'dominoPizza.pedidosCerrados'
+			items <=> 'domino.pedidosCerrados'
 			value <=> "pedidoSeleccionado"
 		]
 
