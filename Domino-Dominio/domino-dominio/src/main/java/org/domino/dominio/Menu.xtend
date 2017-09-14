@@ -1,13 +1,15 @@
 package org.domino.dominio
 
-import java.util.HashMap
+
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
+
 import java.util.List
 
 @TransactionalAndObservable
 @Accessors
 class Menu {
+
 
 	List<Ingrediente> ingredientesDisponibles
 
@@ -58,6 +60,7 @@ class Menu {
 				throw new RuntimeException("No se encuentra la pizza deseada")
 			}
 		}
+
 	}
 
 	def precioIngrediente(Ingrediente ingrediente) {
@@ -76,6 +79,7 @@ class Menu {
 
 	def quitarIngredienteDeMenu(Ingrediente ingrediente) {
 		ingredientesDisponibles.remove(ingrediente)
+
 	}
 
 }

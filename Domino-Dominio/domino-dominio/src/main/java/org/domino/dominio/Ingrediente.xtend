@@ -2,7 +2,6 @@ package org.domino.dominio
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
-
 import java.util.List
 
 @Accessors
@@ -26,4 +25,16 @@ class Ingrediente {
 		}
 	}
 
+		
+	/*
+	 * PropertyAdapter
+	 */
+	 
+	 def getNombreIngrediente() {
+	 	this.nombre
+	 }
+	 
+	 def getPrecioIngrediente() {
+	 	this.precio
+	 }
 }
