@@ -2,10 +2,9 @@ package org.domino.dominio
 
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.model.annotations.TransactionalAndObservable
-import java.util.Date
 import org.uqbar.commons.model.annotations.Observable
 import java.util.stream.Collectors
+import java.util.Date
 
 @Accessors
 @Observable
@@ -18,13 +17,14 @@ class DominoPizza {
 	List<Cliente> clientes = newArrayList
 	
 	List<Pedido> historial = newArrayList
+	
 			
 	new(Menu menu, ServicioDeNotificacion servicio){
 		this.menu = menu
 		this.servicio = servicio
 		ServicioDeNotificacion.config(this.servicio)
 		
-		historial.add(new Pedido(new Cliente('luca','l','lala','kasldka@a;fkas.com','5564'),new Date,'aclariacin', new RetiraPorElLocal))
+		//historial.add(new Pedido(new Cliente('luca','l','lala','kasldka@a;fkas.com','5564'),new Date,'aclariacin', new RetiraPorElLocal))
 	}
 	
 	def agregarCliente(Cliente cliente) {

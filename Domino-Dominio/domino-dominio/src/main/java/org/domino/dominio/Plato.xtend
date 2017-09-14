@@ -11,6 +11,10 @@ class Plato {
 	Tamanio tamanio
 	List<Ingrediente> ingredientes
 
+	new(){
+		this.ingredientes = newArrayList
+	}
+
 	new(Pizza pizza, Tamanio tamanio) {
 		this.pizza = pizza
 		this.tamanio = tamanio

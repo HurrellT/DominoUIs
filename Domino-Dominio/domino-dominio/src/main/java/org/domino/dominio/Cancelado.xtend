@@ -10,12 +10,17 @@ class Cancelado implements EstadoPedido {
 		
 	}
 	
+
 	override esCancelado() {
 		true
 	}
 	
 	override esEntregado() {
 		false
+	}
+	override toString(){
+		"Cancelado"
+
 	}
 	
 }

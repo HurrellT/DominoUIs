@@ -1,6 +1,5 @@
 package org.domino.arena
 
-import org.domino.dominio.DominoPizza
 import org.uqbar.arena.aop.windows.TransactionalDialog
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
@@ -14,9 +13,10 @@ import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
 import org.domino.arena.AppModel.DominoAppModel
 
-class CrearPedidosCerradosWindow extends TransactionalDialog<DominoAppModel> {
 
-	new(WindowOwner owner, DominoAppModel model) {
+class CrearPedidosCerradosWindow extends TransactionalDialog<AppDominoAplicationModel> {
+	
+	new(WindowOwner owner, AppDominoAplicationModel model) {
 		super(owner, model)
 	}
 
