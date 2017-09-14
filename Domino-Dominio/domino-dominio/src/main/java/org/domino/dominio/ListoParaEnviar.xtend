@@ -3,8 +3,7 @@ package org.domino.dominio
 class ListoParaEnviar implements EstadoPedido {
 
 	override siguienteEstado(Pedido pedido) {
-		pedido.cambio()
-		pedido.notifyObservers()
+		pedido.notifyObservers(pedido.cliente.email,"Su pedido esta en viaje")
 		new EnViaje
 	}
 

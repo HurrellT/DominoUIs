@@ -5,6 +5,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
 import java.util.stream.Collectors
 import java.util.Date
+import java.time.LocalDateTime
 
 @Accessors
 @Observable
@@ -24,7 +25,7 @@ class DominoPizza {
 		this.servicio = servicio
 		ServicioDeNotificacion.config(this.servicio)
 		
-		//historial.add(new Pedido(new Cliente('luca','l','lala','kasldka@a;fkas.com','5564'),new Date,'aclariacin', new RetiraPorElLocal))
+		historial.add(new Pedido(new Cliente('luca','l','lala','lhazuca@gmail.com','5564'),LocalDateTime.now,'aclariacin', new RetiraPorElLocal))
 	}
 	
 	def agregarCliente(Cliente cliente) {
@@ -43,8 +44,8 @@ class DominoPizza {
 	def realizarPedido(Pedido pedido) {
 		pedido.nombre =(this.historial.size + 1)
 		this.historial.add(pedido)
-		pedido.addObserver(this.servicio)
 		pedido.cronometro.activar
+		pedido.addObserver(servicio)
 	}
 	
 	/*

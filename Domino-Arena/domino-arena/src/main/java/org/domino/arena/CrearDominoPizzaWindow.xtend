@@ -1,9 +1,6 @@
 package org.domino.arena
 
-
-import org.domino.arena.AppModel.DominoAppModel
-import org.domino.dominio.*
-
+import org.domino.dominio.Pedido
 import org.eclipse.swt.widgets.DateTime
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
@@ -18,7 +15,6 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-
 
 class CrearDominoPizzaWindow extends SimpleWindow<AppDominoAplicationModel> {
 
@@ -126,8 +122,8 @@ class CrearDominoPizzaWindow extends SimpleWindow<AppDominoAplicationModel> {
 		this.openDialog(new CrearPedidosCerradosWindow(this, modelObject))
 	}
 	
-	def crearEditarPromoWindow() {  //BORRAR
-		this.openDialog(new CrearEditarPromoWindow(this, modelObject))
+	def crearEditarPromoWindow() {  
+		//this.openDialog(new EditarPedidoWindow(this, new AppPedidoAplicationModel(new Pedido())))
 	}
 	
 	def openDialog(Dialog<?> dialog) {

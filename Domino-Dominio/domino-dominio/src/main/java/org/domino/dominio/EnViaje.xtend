@@ -5,7 +5,9 @@ import org.domino.dominio.EstadoPedido
 class EnViaje implements EstadoPedido {
 
 	override siguienteEstado(Pedido pedido) {
-		pedido.cronometro.detener
+		if(pedido.tiempoDelPedido > 30){
+			pedido.notifyObservers(pedido.cliente.email,"Su pedido tardo mas de 30 min :(")
+		}
 		new Entregado
 	}
 

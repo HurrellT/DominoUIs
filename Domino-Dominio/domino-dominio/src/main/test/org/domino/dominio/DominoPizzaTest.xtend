@@ -53,10 +53,7 @@ class DominoPizzaTest {
 		dominoPizza.realizarPedido(pedido2)
 		dominoPizza.realizarPedido(pedido3)
 		
-		assertEquals(3,dominoPizza.historial.size)
-		assertTrue(dominoPizza.historial.contains(pedido1))
-		assertTrue(dominoPizza.historial.contains(pedido2))
-		assertTrue(dominoPizza.historial.contains(pedido3))
+		assertArrayEquals(newArrayList(pedido1, pedido2, pedido3), dominoPizza.historial)
 	}
 	
 	@Test

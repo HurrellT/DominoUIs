@@ -2,23 +2,26 @@ package org.domino.dominio
 
 import java.util.Date
 import java.util.List
-import java.util.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.annotations.Observable
+import java.time.LocalDateTime
+import java.time.temporal.ChronoUnit
 
 @Accessors
-@org.uqbar.commons.model.annotations.Observable
-class Pedido extends Observable {
+@Observable
+class Pedido {
 	
 	Cliente cliente
-	Date fecha
+	LocalDateTime fecha
 	String aclaracion
 	List<Plato> platos  
 	EstadoPedido estado
 	FormaDeEnvio envio
 	Cronometro cronometro
 	String nombre
+	List<ServicioDeNotificacion> obs = newArrayList
 
-	new(Cliente cliente, Date fecha, String aclaracion, FormaDeEnvio envio) {
+	new(Cliente cliente, LocalDateTime fecha, String aclaracion, FormaDeEnvio envio) {
 		this.cliente 	= cliente
 		this.fecha		= fecha
 		this.aclaracion	= aclaracion
@@ -26,6 +29,10 @@ class Pedido extends Observable {
 		this.estado = new Preparando
 		this.platos = newArrayList
 		this.cronometro = new Cronometro()
+	}
+	
+	new() {
+		this.platos = newArrayList
 	}
 	
 	def siguienteEstado(){
@@ -50,15 +57,25 @@ class Pedido extends Observable {
 		this.estado = new Cancelado
 	}
 	
-	def cambio() {
-		setChanged
-	}
 	
 	def tiempoDelPedido() {
-		this.cronometro.tiempoEnMinutos()
+		val diferenciaDeHoras= ChronoUnit.HOURS.between(fecha, LocalDateTime.now)
+		val diferenciaDeMinutos= ChronoUnit.MINUTES.between(fecha, LocalDateTime.now)
+		
+		diferenciaDeHoras * 60 + diferenciaDeMinutos
 	}
 	
+	
+	def addObserver(ServicioDeNotificacion o){
+		this.obs.add(o)
+	}
 	def setNombre(Integer num){
+					  //TODO: Esto es responsabilidad de la vista
 		this.nombre = "Pedido #" + num
-	}	
+	}
+	
+	def notifyObservers(String mail, String msj) {
+		obs.stream.forEach(s | s.sendMail(mail,"DominoPizza informa", msj))
+	}
+	
 }
