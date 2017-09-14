@@ -6,11 +6,6 @@ class Entregado implements EstadoPedido {
 	}
 
 	override anteriorEstado(Pedido pedido) {
-		if (pedido.envio.esDelivery()) {
-			new EnViaje()
-		} else {
-			new ListoParaRetirar()
-		}
 	}
 
 	override esCancelado() {
