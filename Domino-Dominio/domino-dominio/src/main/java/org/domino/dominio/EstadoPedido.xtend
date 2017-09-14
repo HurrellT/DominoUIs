@@ -6,4 +6,8 @@ interface EstadoPedido {
 	
 	def EstadoPedido anteriorEstado(Pedido pedido)
 	
+	def boolean esCancelado()
+	
+	def boolean esEntregado()
+	
 }

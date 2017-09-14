@@ -5,6 +5,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
 import java.util.Date
 import org.uqbar.commons.model.annotations.Observable
+import java.util.stream.Collectors
 
 @Accessors
 @Observable
@@ -23,7 +24,7 @@ class DominoPizza {
 		this.servicio = servicio
 		ServicioDeNotificacion.config(this.servicio)
 		
-		//realizarPedido(new Pedido(new Cliente('luca','l','lala','kasldka@a;fkas.com','5564'),new Date,'aclariacin', new RetiraPorElLocal))
+		historial.add(new Pedido(new Cliente('luca','l','lala','kasldka@a;fkas.com','5564'),new Date,'aclariacin', new RetiraPorElLocal))
 	}
 	
 	def agregarCliente(Cliente cliente) {
@@ -46,4 +47,10 @@ class DominoPizza {
 		pedido.cronometro.activar
 	}
 	
+	/*
+	 * Metodos para UI
+	 */
+	def getPedidosCerrados(){
+		historial.stream.filter([p | p.estado.esCancelado || p.estado.esEntregado]).collect(Collectors.toList)
+	}
 }

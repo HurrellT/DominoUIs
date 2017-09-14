@@ -11,5 +11,13 @@ class ListoParaRetirar implements EstadoPedido {
 		new Preparando
 	}
 	
+	override esCancelado() {
+		false
+	}
+	
+	override esEntregado() {
+		false
+	}
+	
 
 }

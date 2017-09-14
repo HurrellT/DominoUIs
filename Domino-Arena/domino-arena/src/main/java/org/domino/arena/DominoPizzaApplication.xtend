@@ -4,6 +4,7 @@ import org.uqbar.arena.Application
 import org.domino.dominio.DominoPizza
 import org.domino.dominio.ServicioDeNotificacion
 import org.domino.dominio.Menu
+import org.domino.arena.AppModel.DominoAppModel
 
 class DominoPizzaApplication extends Application {
 
@@ -12,7 +13,7 @@ class DominoPizzaApplication extends Application {
 	}
 	
 	override protected createMainWindow() {
-		new CrearDominoPizzaWindow(this, new DominoPizza(new Menu, new ServicioDeNotificacion("ciu.dominos.pizza@gmail.com", "interfaces2017")))
+		new CrearDominoPizzaWindow(this, new DominoAppModel())
 	}
 	
 }

@@ -2,9 +2,8 @@ package org.domino.dominio
 
 import java.util.Date
 import java.util.List
-import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.Observable
-import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
 @org.uqbar.commons.model.annotations.Observable

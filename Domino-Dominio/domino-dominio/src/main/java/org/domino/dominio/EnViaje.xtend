@@ -13,4 +13,12 @@ class EnViaje implements EstadoPedido {
 		new ListoParaEnviar
 	}
 	
+	override esCancelado() {
+		false
+	}
+	
+	override esEntregado() {
+		false
+	}
+	
 }

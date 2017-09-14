@@ -11,4 +11,13 @@ class ListoParaEnviar implements EstadoPedido {
 	override anteriorEstado(Pedido pedido) {
 		new Preparando
 	}
+	
+	override esCancelado() {
+		false
+	}
+	
+	override esEntregado() {
+		false
+	}
+	
 }

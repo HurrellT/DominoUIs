@@ -14,4 +14,12 @@ class Entregado implements EstadoPedido {
 		}
 	}
 	
+	override esCancelado() {
+		false
+	}
+	
+	override esEntregado() {
+		true
+	}
+	
 }

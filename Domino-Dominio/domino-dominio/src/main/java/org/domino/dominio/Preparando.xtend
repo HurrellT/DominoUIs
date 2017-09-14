@@ -13,5 +13,13 @@ class Preparando implements EstadoPedido {
 	override anteriorEstado(Pedido pedido) {
 		
 	}
+	
+	override esCancelado() {
+		false
+	}
+	
+	override esEntregado() {
+		false
+	}
 
 }
