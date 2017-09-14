@@ -11,7 +11,6 @@ import org.domino.dominio.Pedido
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
-import org.domino.arena.AppModel.DominoAppModel
 
 
 class CrearPedidosCerradosWindow extends TransactionalDialog<AppDominoAplicationModel> {

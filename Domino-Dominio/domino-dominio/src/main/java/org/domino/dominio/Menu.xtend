@@ -2,40 +2,80 @@ package org.domino.dominio
 
 import java.util.HashMap
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import java.util.List
 
+@TransactionalAndObservable
 @Accessors
 class Menu {
-	
-	HashMap<Ingrediente,Integer> ingredientesDisponibles
-	
-	HashMap<Pizza,Integer> promos
-		
+
+	List<Ingrediente> ingredientesDisponibles
+
+	List<Pizza> promos
+
 	new() {
-		this.ingredientesDisponibles = newHashMap
-		this.promos                  = newHashMap
+		this.ingredientesDisponibles = newArrayList
+		this.promos = newArrayList
 	}
-	
-	def actualizarPromo(Pizza pizza, Integer precio) {
-		this.promos.put(pizza,precio)
+
+	def actualizarPromo(Pizza pizza, Integer nuevoPrecio) {
+		if (!promos.contains(pizza)) {
+			pizza.precio = nuevoPrecio
+			this.promos.add(pizza)
+		} else {
+			for (Pizza p : promos) {
+				if (p.nombre == pizza.nombre) {
+					p.precio = nuevoPrecio
+				}
+			}
+		}
 	}
-	
-	def agregarIngrediente(Ingrediente ingrediente, Integer precio) {
-		this.ingredientesDisponibles.put(ingrediente,precio)
+
+	def actualizarIngrediente(Ingrediente ingrediente, Integer precio) {
+		if (!ingredientesDisponibles.contains(ingrediente)) {
+			this.ingredientesDisponibles.add(ingrediente)
+			if (ingrediente.precio != precio) {
+				for (Ingrediente i : ingredientesDisponibles) {
+					if (i.nombre == ingrediente.nombre) {
+						i.precio = precio
+					}
+				}
+			}
+		} else {
+			for (Ingrediente i : ingredientesDisponibles) {
+				if (i.nombre == ingrediente.nombre) {
+					i.precio = precio
+				}
+			}
+		}
 	}
-	
+
 	def precioPromo(Pizza pizza) {
-		promos.get(pizza)
+		for (Pizza p : promos) {
+			if (p.nombre == pizza.nombre) {
+				return p.precio
+			} else {
+				throw new RuntimeException("No se encuentra la pizza deseada")
+			}
+		}
 	}
-	
+
 	def precioIngrediente(Ingrediente ingrediente) {
-		ingredientesDisponibles.get(ingrediente)
+		for (Ingrediente i : ingredientesDisponibles) {
+			if (i.nombre == i.nombre) {
+				return i.precio
+			} else {
+				throw new RuntimeException("No se encuentra el ingrediente deseado")
+			}
+		}
 	}
-	
-	def eliminarPromoDelMenu(Pizza pizza){
+
+	def eliminarPromoDelMenu(Pizza pizza) {
 		promos.remove(pizza)
 	}
-	
-	def quitarIngredienteDeMenu(Ingrediente ingrediente){
+
+	def quitarIngredienteDeMenu(Ingrediente ingrediente) {
 		ingredientesDisponibles.remove(ingrediente)
 	}
+
 }

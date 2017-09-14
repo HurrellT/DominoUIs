@@ -1,8 +1,6 @@
 package org.domino.dominio
 
 import org.eclipse.xtend.lib.annotations.Accessors
-import java.util.Observer
-import java.util.Observable
 
 @Accessors
 class Cliente {
