@@ -108,6 +108,17 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoPizza> {
 
 			onClick [close]
 		]
+		
+		new Button(bottomButtonPanel) => [
+			caption = "Tester Button"
+			width = 150
+			
+			onClick [ this.crearPlatoWindow]
+		]
+	}
+	
+	def crearPlatoWindow() {
+		this.openDialog(new CrearPlatoWindow(this, modelObject))
 	}
 
 	/*

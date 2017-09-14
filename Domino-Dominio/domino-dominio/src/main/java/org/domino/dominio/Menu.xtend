@@ -3,34 +3,35 @@ package org.domino.dominio
 import java.util.HashMap
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import java.util.List
 
 @TransactionalAndObservable
 @Accessors 
 class Menu {
 	
-	HashMap<Ingrediente,Integer> ingredientesDisponibles
+	List<Ingrediente> ingredientesDisponibles
 	
-	HashMap<Pizza, Integer> promos
+	List<Pizza> promos
 		
 	new() {
-		this.ingredientesDisponibles = newHashMap
-		this.promos                  = newHashMap
+		this.ingredientesDisponibles = newArrayList
+		this.promos                  = newArrayList
 	}
 	
 	def actualizarPromo(Pizza pizza, Integer precio) {
-		this.promos.put(pizza,precio)
+		//this.promos.put(pizza,precio)
 	}
 	
 	def agregarIngrediente(Ingrediente ingrediente, Integer precio) {
-		this.ingredientesDisponibles.put(ingrediente,precio)
+		//this.ingredientesDisponibles.put(ingrediente,precio)
 	}
 	
 	def precioPromo(Pizza pizza) {
-		promos.get(pizza)
+		//promos.get(pizza)
 	}
 	
 	def precioIngrediente(Ingrediente ingrediente) {
-		ingredientesDisponibles.get(ingrediente)
+	//	ingredientesDisponibles.get(ingrediente)
 	}
 	
 	def eliminarPromoDelMenu(Pizza pizza){
