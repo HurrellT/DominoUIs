@@ -11,10 +11,7 @@ class Delivery implements FormaDeEnvio {
 	override recargo() {
 		15
 	}
-	
-	override esDelivery() {
-		true
-	}
+
 	
 	override siguienteEstado() {
 		new ListoParaEnviar()

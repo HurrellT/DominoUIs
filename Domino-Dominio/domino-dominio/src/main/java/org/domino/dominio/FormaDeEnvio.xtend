@@ -4,8 +4,6 @@ interface FormaDeEnvio {
 	
 	def int recargo()
 	
-	def boolean esDelivery()
-	
 	def EstadoPedido siguienteEstado()
 	
 	
