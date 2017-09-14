@@ -13,10 +13,11 @@ import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.bindings.PropertyAdapter
 import org.domino.dominio.Plato
 import org.domino.dominio.Ingrediente
+import org.domino.dominio.Menu
 
-class CrearIngredienteWindow extends TransactionalDialog<DominoPizza> {
+class CrearIngredienteWindow extends TransactionalDialog<Menu> {
 	
-	new(WindowOwner owner, DominoPizza model) {
+	new(WindowOwner owner, Menu model) {
 		super(owner, model)
 	}
 	

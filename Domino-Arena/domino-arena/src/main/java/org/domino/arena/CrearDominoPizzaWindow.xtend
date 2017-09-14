@@ -124,7 +124,7 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoPizza> {
 	 */
 	
 	def crearIngredienteWindow() {
-		this.openDialog(new CrearIngredienteWindow(this, modelObject))
+		this.openDialog(new CrearIngredienteWindow(this, modelObject.menu))
 	}
 	 
 	def crearPedidosCerradosWindow() {
