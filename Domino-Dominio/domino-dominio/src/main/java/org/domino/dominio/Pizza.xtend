@@ -1,9 +1,13 @@
 package org.domino.dominio
 
-import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.annotations.Transactional
 
 @Accessors
+@Transactional
+@Observable
 class Pizza {
 	String nombre
 	int precio

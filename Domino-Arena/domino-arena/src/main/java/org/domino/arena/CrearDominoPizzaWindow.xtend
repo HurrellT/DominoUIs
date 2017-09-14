@@ -3,19 +3,19 @@ package org.domino.arena
 import org.domino.dominio.DominoPizza
 import org.domino.dominio.Pedido
 import org.eclipse.swt.widgets.DateTime
+import org.uqbar.arena.layout.ColumnLayout
+import org.uqbar.arena.layout.HorizontalLayout
+import org.uqbar.arena.layout.VerticalLayout
+import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
+import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import org.uqbar.arena.layout.HorizontalLayout
-import org.uqbar.arena.layout.ColumnLayout
-import org.uqbar.arena.widgets.Button
-import org.uqbar.arena.layout.VerticalLayout
-import org.uqbar.arena.windows.Dialog
 
 class CrearDominoPizzaWindow extends SimpleWindow<DominoPizza> {
 
@@ -26,12 +26,11 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoPizza> {
 	override protected createFormPanel(Panel mainPanel) {
 
 		mainPanel.layout = new HorizontalLayout
-		
+
 		/*
 		 * Main Panel
 		 */
-		
-		val panel = new Panel(mainPanel) => [ 
+		val panel = new Panel(mainPanel) => [
 			layout = new VerticalLayout
 		]
 		title = "Domino Pizza"
@@ -41,85 +40,87 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoPizza> {
 		val table = new Table<Pedido>(panel, typeof(Pedido)) => [
 			items <=> "historial"
 		]
-		
+
 		this.describirPedidos(table)
 
 		/*
 		 * Panel principal para los botones
 		 */
-		
 		val buttonMainPanel = new Panel(mainPanel) => [
 			layout = new VerticalLayout
 		]
-		
+
 		/*
 		 * Paneles de los botones
 		 */
 		val buttonPanel = new Panel(buttonMainPanel) => [
 			layout = new ColumnLayout(2)
 		]
-		
+
 		new Button(buttonPanel) => [
 			caption = '<<'
 			width = 50
 		]
-		
+
 		new Button(buttonPanel) => [
 			caption = '>>'
 			width = 50
 		]
-		
-		
+
 		val buttonPanel2 = new Panel(buttonMainPanel) => [
-			layout = new VerticalLayout 
+			layout = new VerticalLayout
 		]
-		
+
 		new Button(buttonPanel2) => [
 			caption = 'Cancelar'
 			width = 110
 		]
-		
+
 		new Button(buttonPanel2) => [
 			caption = 'Editar'
 			width = 110
 		]
-		
+
 		/*
 		 * Panel para los botones de abajo
 		 */
-		
 		val bottomButtonPanel = new Panel(panel) => [
 			layout = new HorizontalLayout
 		]
-		
+
 		new Button(bottomButtonPanel) => [
 			caption = 'Menu'
 			width = 150
+
+			onClick[this.crearMenuWindow]
 		]
-		
+
 		new Button(bottomButtonPanel) => [
 			caption = 'Pedidos cerrados'
 			width = 150
-			
-			onClick [ this.crearPedidosCerradosWindow ]
+
+//			onClick [this.crearPedidosCerradosWindow]
 		]
-		
+
 		new Button(bottomButtonPanel) => [
 			caption = 'Salir'
 			width = 150
-			
+
 			onClick [close]
 		]
 	}
-	
+
 	/*
 	 * Acciones
 	 */
-	 
-	def crearPedidosCerradosWindow() {
-		this.openDialog(new CrearPedidosCerradosWindow(this, modelObject))
+//	def crearPedidosCerradosWindow() {
+//		this.openDialog(new CrearPedidosCerradosWindow(this, modelObject))
+//	}
+
+	def crearMenuWindow() {
+		this.openDialog(new CrearMenuWindow(this, modelObject.menu))
 	}
-	
+
 	def openDialog(Dialog<?> dialog) {
 		dialog.open
 	}
@@ -146,7 +147,7 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoPizza> {
 		new Column(table) => [
 			title = "Hora"
 			fixedSize = 200
-			bindContentsToProperty("fecha").transformer = [DateTime f |
+			bindContentsToProperty("fecha").transformer = [ DateTime f |
 				{
 					var horas = f.hours
 					var min = f.minutes
@@ -161,7 +162,6 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoPizza> {
 	}
 
 	override protected addActions(Panel actionsPanel) {
-
 	}
 
 }

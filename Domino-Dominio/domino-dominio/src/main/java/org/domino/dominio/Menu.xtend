@@ -2,13 +2,15 @@ package org.domino.dominio
 
 import java.util.HashMap
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
-@Accessors
+@TransactionalAndObservable
+@Accessors 
 class Menu {
 	
 	HashMap<Ingrediente,Integer> ingredientesDisponibles
 	
-	HashMap<Pizza,Integer> promos
+	HashMap<Pizza, Integer> promos
 		
 	new() {
 		this.ingredientesDisponibles = newHashMap

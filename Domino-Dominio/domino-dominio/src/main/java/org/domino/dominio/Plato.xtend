@@ -3,8 +3,10 @@ package org.domino.dominio
 import org.eclipse.xtend.lib.annotations.Accessors
 
 import java.util.List
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @Accessors
+@TransactionalAndObservable
 class Plato {
 
 	Pizza pizza
