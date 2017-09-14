@@ -14,4 +14,8 @@ class Entregado implements EstadoPedido {
 		}
 	}
 	
+	override toString(){
+		"Entregado"
+	}
+	
 }

@@ -6,4 +6,6 @@ interface EstadoPedido {
 	
 	def EstadoPedido anteriorEstado(Pedido pedido)
 	
+	override toString()
+	
 }

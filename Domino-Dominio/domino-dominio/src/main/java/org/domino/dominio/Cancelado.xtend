@@ -10,4 +10,8 @@ class Cancelado implements EstadoPedido {
 		
 	}
 	
+	override toString(){
+		"Cancelado"
+	}
+	
 }

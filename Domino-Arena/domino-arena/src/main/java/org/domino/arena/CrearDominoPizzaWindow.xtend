@@ -1,7 +1,7 @@
 package org.domino.arena
 
-import org.domino.dominio.DominoPizza
-import org.domino.dominio.Pedido
+
+import org.domino.dominio.*
 import org.eclipse.swt.widgets.DateTime
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
@@ -17,9 +17,10 @@ import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.windows.Dialog
 
-class CrearDominoPizzaWindow extends SimpleWindow<DominoPizza> {
 
-	new(WindowOwner owner, DominoPizza domPizza) {
+class CrearDominoPizzaWindow extends SimpleWindow<AppDominoAplicationModel> {
+
+	new(WindowOwner owner, AppDominoAplicationModel domPizza) {
 		super(owner, domPizza)
 	}
 
@@ -39,7 +40,7 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoPizza> {
 		new Label(panel).text = "Pedidos abiertos"
 
 		val table = new Table<Pedido>(panel, typeof(Pedido)) => [
-			items <=> "historial"
+			items <=> "domino.historial"
 		]
 		
 		this.describirPedidos(table)
@@ -95,6 +96,8 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoPizza> {
 		new Button(bottomButtonPanel) => [
 			caption = 'Menu'
 			width = 150
+			
+			onClick [ this.crearEditarPromoWindow ]  //BORRAR
 		]
 		
 		new Button(bottomButtonPanel) => [
@@ -118,6 +121,10 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoPizza> {
 	 
 	def crearPedidosCerradosWindow() {
 		this.openDialog(new CrearPedidosCerradosWindow(this, modelObject))
+	}
+	
+	def crearEditarPromoWindow() {  //BORRAR
+		this.openDialog(new CrearEditarPromoWindow(this, modelObject))
 	}
 	
 	def openDialog(Dialog<?> dialog) {
