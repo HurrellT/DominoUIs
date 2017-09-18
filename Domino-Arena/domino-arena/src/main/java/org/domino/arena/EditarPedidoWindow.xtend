@@ -19,6 +19,8 @@ import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.bindings.DateTransformer
+import org.uqbar.commons.model.annotations.Observable
+import java.time.LocalDateTime
 
 class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 
@@ -31,7 +33,7 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 		/*
 		 * Main Panel
 		 */
-		title = modelObject.pedido.nombre
+		title = "Pedido #" + modelObject.pedido.numeroDePedido
 
 		/*
 		 * Panel de estado
@@ -44,8 +46,8 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 
 		new Selector<Pedido>(panelEstado) => [
 			allowNull(false)
-			value <=> "estado"
-			bindItems(new ObservableProperty(repoEstados, "estados"))
+			value <=> "pedido.estado"
+			bindItems(new ObservableProperty(repoEstados, "estados")).adaptWith(typeof(EstadoPedido), "nombre")
 		]
 
 		/*
@@ -56,13 +58,13 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 
 		new Label(panelPlatos).text = "Platos"
 
-		val table = new Table<Plato>(panelPlatos, typeof(Plato)) => [
-			items <=> "platos"
-			value <=> "platoSeleccionado"
-		]
-
-		this.describirTablaDePlatos(table)
-
+//		val table = new Table<Plato>(panelPlatos, typeof(Plato)) => [
+//			items <=> "pedido.platos"
+//			value <=> "platoSeleccionado"
+//			numberVisibleRows = 12
+//		]
+//
+//		this.describirTablaDePlatos(table)
 		val buttonPanel = new Panel(panelPlatos)
 
 		this.crearBotones(buttonPanel)
@@ -96,7 +98,7 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 		panelBotones.layout = new HorizontalLayout
 		new Button(panelBotones) => [
 			caption = "Aceptar"
-			onClick[]  //????
+			onClick[] // ????
 		]
 
 		new Button(panelBotones) => [
@@ -121,20 +123,19 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 		]
 		new Label(panelDatos).text = "Fecha"
 		new Label(panelDatos) => [
-			(value <=> "fecha").transformer = new DateTransformer
-		]
+			value <=> 'fechaTransformada'
+			]
 	}
-
 	def crearBotones(Panel panel) {
 
 		new Button(panel) => [
 			caption = "Agregar"
-			onClick [new CrearPlatoWindow(new Plato())]
+			onClick [new CrearPlatoWindow(this, new Plato())]
 		]
 
 		new Button(panel) => [
 			caption = "Editar"
-			onClick [new CrearPlatoWindow(modelObject.platoSeleccionado)]
+			onClick [new CrearPlatoWindow(this, modelObject.platoSeleccionado)]
 		]
 
 		new Button(panel) => [
@@ -143,7 +144,7 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 		]
 	}
 
-	def describirTablaDePlatos(Table table) {
+	def describirTablaDePlatos(Table<Plato> table) {
 
 		new Column<Plato>(table) => [
 			title = "Nombre"
@@ -173,6 +174,7 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 }
 
 @Accessors
+@Observable
 class RepoEstados {
 
 	List<EstadoPedido> estados = #[new Cancelado, new Entregado, new EnViaje, new ListoParaEnviar, new ListoParaRetirar,

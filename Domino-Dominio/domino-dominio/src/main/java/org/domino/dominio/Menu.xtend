@@ -9,10 +9,8 @@ import java.util.List
 @TransactionalAndObservable
 @Accessors
 class Menu {
-
-
+	
 	List<Ingrediente> ingredientesDisponibles
-
 	List<Pizza> promos
 
 	new() {

@@ -10,7 +10,7 @@ class DominoPizzaApplication extends Application {
 	}
 	
 	override protected createMainWindow() {
-		new CrearDominoPizzaWindow(this, new AppDominoAplicationModel())
+		new CrearDominoPizzaWindow(this, new DominoApplicationModel())
 
 	}
 	

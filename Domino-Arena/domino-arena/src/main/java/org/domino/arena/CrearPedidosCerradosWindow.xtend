@@ -13,9 +13,9 @@ import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
 
 
-class CrearPedidosCerradosWindow extends TransactionalDialog<AppDominoAplicationModel> {
+class CrearPedidosCerradosWindow extends TransactionalDialog<DominoApplicationModel> {
 	
-	new(WindowOwner owner, AppDominoAplicationModel model) {
+	new(WindowOwner owner, DominoApplicationModel model) {
 		super(owner, model)
 	}
 
@@ -56,7 +56,7 @@ class CrearPedidosCerradosWindow extends TransactionalDialog<AppDominoAplication
 	def describirPedidosCerrados(Table<Pedido> table) {
 		new Column(table) => [
 			title = 'Pedido'
-			bindContentsToProperty('nombre')
+			bindContentsToProperty('numeroDePedido').transformer = [int n | 'Pedido #' + n]
 			fixedSize = 200
 		]
 

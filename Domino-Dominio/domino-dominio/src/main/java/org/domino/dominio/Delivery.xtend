@@ -1,5 +1,8 @@
 package org.domino.dominio
 
+import org.uqbar.commons.model.annotations.Observable
+
+@Observable
 class Delivery implements FormaDeEnvio {
 	
 	String direccion

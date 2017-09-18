@@ -17,8 +17,7 @@ class Pedido {
 	List<Plato> platos  
 	EstadoPedido estado
 	FormaDeEnvio envio
-	Cronometro cronometro
-	String nombre
+	Integer numeroDePedido
 	List<ServicioDeNotificacion> obs = newArrayList
 
 	new(Cliente cliente, LocalDateTime fecha, String aclaracion, FormaDeEnvio envio) {
@@ -28,7 +27,6 @@ class Pedido {
 		this.envio		= envio
 		this.estado = new Preparando
 		this.platos = newArrayList
-		this.cronometro = new Cronometro()
 	}
 	
 	new() {
@@ -68,10 +66,6 @@ class Pedido {
 	
 	def addObserver(ServicioDeNotificacion o){
 		this.obs.add(o)
-	}
-	def setNombre(Integer num){
-					  //TODO: Esto es responsabilidad de la vista
-		this.nombre = "Pedido #" + num
 	}
 	
 	def notifyObservers(String mail, String msj) {

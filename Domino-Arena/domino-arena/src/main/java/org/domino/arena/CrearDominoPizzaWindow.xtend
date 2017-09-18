@@ -16,10 +16,13 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import java.time.LocalDateTime
+import org.uqbar.arena.bindings.ObservableProperty
+import org.domino.dominio.EstadoPedido
 
-class CrearDominoPizzaWindow extends SimpleWindow<AppDominoAplicationModel> {
+class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 
-	new(WindowOwner owner, AppDominoAplicationModel domPizza) {
+	new(WindowOwner owner, DominoApplicationModel domPizza) {
 		super(owner, domPizza)
 	}
 
@@ -41,6 +44,7 @@ class CrearDominoPizzaWindow extends SimpleWindow<AppDominoAplicationModel> {
 		val table = new Table<Pedido>(panel, typeof(Pedido)) => [
 
 			items <=> "domino.historial"
+			value <=> "pedidoSeleccionado"
 		]
 		
 		this.describirPedidos(table)
@@ -83,6 +87,8 @@ class CrearDominoPizzaWindow extends SimpleWindow<AppDominoAplicationModel> {
 		new Button(buttonPanel2) => [
 			caption = 'Editar'
 			width = 110
+			
+			onClick [ this.crearEditarPedidoWindow ]
 		]
 		
 		/*
@@ -99,7 +105,6 @@ class CrearDominoPizzaWindow extends SimpleWindow<AppDominoAplicationModel> {
 			
 			onClick [ this.crearEditarPromoWindow ]  //BORRAR
 		]
-		
 		new Button(bottomButtonPanel) => [
 			caption = 'Pedidos cerrados'
 			width = 150
@@ -121,6 +126,10 @@ class CrearDominoPizzaWindow extends SimpleWindow<AppDominoAplicationModel> {
 //			
 //			onClick [ this.crearIngredienteWindow ]
 //		]
+	}
+	
+	def crearEditarPedidoWindow() {
+		this.openDialog(new EditarPedidoWindow(this, new AppPedidoAplicationModel(modelObject.pedidoSeleccionado)))
 	}
 	
 	/*
@@ -147,13 +156,15 @@ class CrearDominoPizzaWindow extends SimpleWindow<AppDominoAplicationModel> {
 		new Column(table) => [
 			title = "Pedido"
 			fixedSize = 200
-			bindContentsToProperty("nombre")
+			bindContentsToProperty("numeroDePedido").transformer = [ Integer i |
+				"Pedido #" + i
+			]
 		]
 
 		new Column(table) => [
 			title = "Estado"
 			fixedSize = 200
-			bindContentsToProperty("estado")
+			bindContentsToProperty("estado").transformer = [EstadoPedido e | e.nombre]
 		]
 
 		new Column(table) => [
@@ -165,12 +176,12 @@ class CrearDominoPizzaWindow extends SimpleWindow<AppDominoAplicationModel> {
 		new Column(table) => [
 			title = "Hora"
 			fixedSize = 200
-			bindContentsToProperty("fecha").transformer = [DateTime f |
+			bindContentsToProperty("fecha").transformer = [LocalDateTime f |
 				{
-					var horas = f.hours
-					var min = f.minutes
+					var horas = f.hour
+					var min = f.minute
 
-					var res = horas.toString() + min.toString()
+					var res = horas.toString() + ":" + min.toString()
 
 					res
 				}

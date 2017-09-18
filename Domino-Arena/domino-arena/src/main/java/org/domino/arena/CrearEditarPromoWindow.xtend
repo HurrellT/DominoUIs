@@ -1,24 +1,23 @@
 package org.domino.arena
 
-import org.uqbar.arena.aop.windows.TransactionalDialog
-import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.arena.layout.VerticalLayout
-import org.domino.dominio.DominoPizza
-import org.uqbar.arena.layout.HorizontalLayout
-import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.widgets.TextBox
-import org.uqbar.arena.layout.ColumnLayout
-import org.uqbar.arena.widgets.CheckBox
 import org.domino.dominio.Ingrediente
+import org.uqbar.arena.aop.windows.TransactionalDialog
+import org.uqbar.arena.layout.ColumnLayout
+import org.uqbar.arena.layout.HorizontalLayout
+import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
-import org.uqbar.arena.widgets.RadioSelector
-import org.uqbar.arena.bindings.ObservableProperty
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.widgets.TextBox
+import org.uqbar.arena.widgets.tables.Column
+import org.uqbar.arena.widgets.tables.Table
+import org.uqbar.arena.windows.WindowOwner
+
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
-class CrearEditarPromoWindow extends TransactionalDialog<AppDominoAplicationModel> {
+class CrearEditarPromoWindow extends TransactionalDialog<EdicionPlatoApplicationModel> {
 
-	new(WindowOwner owner, AppDominoAplicationModel model) {
+	new(WindowOwner owner, EdicionPlatoApplicationModel model) {
 		super(owner, model)
 	}
 
@@ -66,7 +65,12 @@ class CrearEditarPromoWindow extends TransactionalDialog<AppDominoAplicationMode
 			layout = new VerticalLayout
 		]
 
-		this.mostrarIngredientes(panelIngredientes, modelObject.domino)
+		val tabla = new Table<Ingrediente>(panelIngredientes, typeof(Ingrediente)) => [
+			items <=> "pizzaSeleccionada.ingredientes"
+			value <=> "ingredienteSeleccionado"
+		]
+
+		describirIngredientes(tabla)
 
 		/*
 		 * Panel para los botones de abajo
@@ -79,7 +83,7 @@ class CrearEditarPromoWindow extends TransactionalDialog<AppDominoAplicationMode
 			caption = 'Aceptar'
 			width = 150
 
-			onClick [this.actualizar]
+			onClick [this.accept]
 		]
 
 		new Button(bottomButtonPanel) => [
@@ -89,32 +93,22 @@ class CrearEditarPromoWindow extends TransactionalDialog<AppDominoAplicationMode
 			onClick [this.close]
 		]
 	}
-
-	def actualizar() {
-		modelObject.domino.menu.actualizarPromo(modelObject.pizzaSeleccionada, modelObject.pizzaSeleccionada.precio)
-		this.close
-	}
-
-	def mostrarIngredientes(Panel panel, DominoPizza model) {
-		for (Ingrediente ing : model.menu.ingredientesDisponibles.keySet()) {
-			modelObject.ingredienteSeleccionado = ing  //BORRAR
-			val miniPanel = new Panel(panel) => [
-				layout = new HorizontalLayout()
-			]
-
-			 //new CheckBox(miniPanel) => [
-			 //value <=> "..."
-			 //]
-			 
-			new Label(miniPanel).text = ing.nombre
-
-			new Label(miniPanel).text = "          "
-
-			//new RadioSelector(miniPanel) => [
-			//	bindItems(new ObservableProperty(this, "..."))
-			//	bindValueToProperty("...")
-			//]
-		}
+	
+	def describirIngredientes(Table<Ingrediente> table) {
+		new Column(table) => [
+			title = "Nombre"
+			bindContentsToProperty("nombre")
+		]
+		
+		new Column(table) => [
+			title = "Precio"
+			bindContentsToProperty("precio")
+		]
+		
+		new Column(table) => [
+			title = "Distribucion"
+			bindContentsToProperty("distribucionElegida")
+		]
 	}
 
 }

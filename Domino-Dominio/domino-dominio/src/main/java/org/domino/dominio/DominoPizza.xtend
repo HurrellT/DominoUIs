@@ -25,7 +25,9 @@ class DominoPizza {
 		this.servicio = servicio
 		ServicioDeNotificacion.config(this.servicio)
 		
-		historial.add(new Pedido(new Cliente('luca','l','lala','lhazuca@gmail.com','5564'),LocalDateTime.now,'aclariacin', new RetiraPorElLocal))
+		var p = new Pedido(new Cliente('luca','l','lala','lhazuca@gmail.com','5564'),LocalDateTime.now,'aclariacin', new RetiraPorElLocal)
+		p.agregarPlato(new Plato(new Pizza("Muzza",75),new Tamanio("Grande",1)))
+		realizarPedido(p)
 	}
 	
 	def agregarCliente(Cliente cliente) {
@@ -39,9 +41,8 @@ class DominoPizza {
 	}
 	
 	def realizarPedido(Pedido pedido) {
-		pedido.nombre =(this.historial.size + 1)
+		pedido.numeroDePedido =(this.historial.size + 1)
 		this.historial.add(pedido)
-		pedido.cronometro.activar
 		pedido.addObserver(servicio)
 	}
 	

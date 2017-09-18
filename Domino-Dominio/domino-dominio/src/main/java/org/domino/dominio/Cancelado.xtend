@@ -1,5 +1,8 @@
 package org.domino.dominio
 
+import org.uqbar.commons.model.annotations.Observable
+
+@Observable
 class Cancelado implements EstadoPedido {
 	
 	override siguienteEstado(Pedido pedido) {
@@ -18,7 +21,7 @@ class Cancelado implements EstadoPedido {
 	override esEntregado() {
 		false
 	}
-	override toString(){
+	override getNombre(){
 		"Cancelado"
 
 	}

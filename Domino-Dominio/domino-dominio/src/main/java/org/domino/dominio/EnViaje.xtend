@@ -1,9 +1,12 @@
 package org.domino.dominio
 
 import org.domino.dominio.EstadoPedido
+import org.uqbar.commons.model.annotations.Observable
 
+@Observable
 class EnViaje implements EstadoPedido {
-
+	
+	
 	override siguienteEstado(Pedido pedido) {
 		if(pedido.tiempoDelPedido > 30){
 			pedido.notifyObservers(pedido.cliente.email,"Su pedido tardo mas de 30 min :(")
@@ -23,7 +26,7 @@ class EnViaje implements EstadoPedido {
 		false
 	}
 	
-	override toString() {
+	override getNombre() {
 		"En Viaje"
 	}
 

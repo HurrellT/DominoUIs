@@ -16,9 +16,9 @@ import org.uqbar.arena.widgets.RadioSelector
 import org.uqbar.arena.bindings.ObservableProperty
 import org.uqbar.arena.widgets.Button
 
-class CrearPlatoWindow extends TransactionalDialog<DominoPizza> {
+class CrearPlatoWindow extends TransactionalDialog<Plato> {
 
-	new(WindowOwner owner, DominoPizza model) {
+	new(WindowOwner owner, Plato model) {
 		super(owner, model)
 	}
 

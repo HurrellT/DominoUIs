@@ -1,5 +1,8 @@
 package org.domino.dominio
 
+import org.uqbar.commons.model.annotations.Observable
+
+@Observable
 class Entregado implements EstadoPedido {
 
 	override siguienteEstado(Pedido pedido) {
@@ -16,7 +19,7 @@ class Entregado implements EstadoPedido {
 		true
 	}
 
-	override toString() {
+	override getNombre() {
 		"Entregado"
 	}
 

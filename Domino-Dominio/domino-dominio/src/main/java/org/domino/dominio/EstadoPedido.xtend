@@ -11,7 +11,7 @@ interface EstadoPedido {
 	
 	def boolean esEntregado()
 
-	override toString()
+	def String getNombre()
 
 	
 }

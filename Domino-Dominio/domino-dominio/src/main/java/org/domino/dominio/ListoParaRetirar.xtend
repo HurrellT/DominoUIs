@@ -1,9 +1,11 @@
 package org.domino.dominio
 
+import org.uqbar.commons.model.annotations.Observable
+
+@Observable
 class ListoParaRetirar implements EstadoPedido {
 
 	override siguienteEstado(Pedido pedido) {
-		pedido.cronometro.detener
 		new Entregado
 	}
 
@@ -22,7 +24,7 @@ class ListoParaRetirar implements EstadoPedido {
 	
 
 
-	override toString() {
+	override getNombre() {
 		"Listo Para Retirar"
 	}
 

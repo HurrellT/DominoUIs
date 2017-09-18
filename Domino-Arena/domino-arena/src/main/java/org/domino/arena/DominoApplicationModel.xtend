@@ -12,13 +12,10 @@ import org.uqbar.commons.model.annotations.Observable
 
 @Accessors
 @Observable
-class AppDominoAplicationModel {
+class DominoApplicationModel {
 	
 	DominoPizza domino
 	Pedido pedidoSeleccionado
-	Pizza pizzaSeleccionada
-	Plato platoSeleccionado
-	Ingrediente ingredienteSeleccionado 
 	
 	 new() {
 		
