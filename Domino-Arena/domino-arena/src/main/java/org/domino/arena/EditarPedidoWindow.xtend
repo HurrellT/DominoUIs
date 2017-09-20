@@ -88,7 +88,7 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 		 * Panel de datos
 		 */
 		val panelDatos = new Panel(mainPanel)
-		panelPlatos.layout = new ColumnLayout(2)
+		panelDatos.layout = new ColumnLayout(2)
 
 		this.crearPanelDeDatos(panelDatos)
 
