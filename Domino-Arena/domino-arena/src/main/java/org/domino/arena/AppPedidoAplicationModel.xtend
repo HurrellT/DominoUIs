@@ -10,7 +10,6 @@ import org.uqbar.commons.model.annotations.Observable
 class AppPedidoAplicationModel {
 	
 	Pedido pedido
-	
 	Plato platoSeleccionado
 	
 	new(Pedido pedido){

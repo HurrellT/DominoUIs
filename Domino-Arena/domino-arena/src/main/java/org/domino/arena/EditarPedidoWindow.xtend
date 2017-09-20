@@ -65,6 +65,7 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 //		]
 //
 //		this.describirTablaDePlatos(table)
+
 		val buttonPanel = new Panel(panelPlatos)
 
 		this.crearBotones(buttonPanel)
@@ -126,6 +127,7 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 			value <=> 'fechaTransformada'
 			]
 	}
+	
 	def crearBotones(Panel panel) {
 
 		new Button(panel) => [
