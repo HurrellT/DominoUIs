@@ -149,9 +149,10 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 		//this.openDialog(new EditarPedidoWindow(this, new AppPedidoAplicationModel(new Pedido())))
 	}
 	
-	def openDialog(Dialog<?> dialog) {
-		dialog.open
-	}
+		def openDialog(Dialog<?> dialog) {
+ 		dialog.onAccept[|modelObject.domino.historial]
+ 		dialog.open
+ 	}
 
 	def describirPedidos(Table<Pedido> table) {
 		new Column(table) => [

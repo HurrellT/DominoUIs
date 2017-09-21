@@ -7,7 +7,6 @@ import org.uqbar.commons.model.annotations.Observable
 @Observable
 class RepoPedidos extends CollectionBasedRepo<Pedido> {
 
-
 	override protected getCriterio(Pedido example) {
 		null
 	}

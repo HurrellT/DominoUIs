@@ -1,20 +1,17 @@
 package org.domino.arena
 
-import org.domino.dominio.DominoPizza
 import org.domino.dominio.Plato
 import org.uqbar.arena.aop.windows.TransactionalDialog
-import org.uqbar.arena.layout.VerticalLayout
-import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.layout.ColumnLayout
-import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.widgets.Selector
-import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.layout.HorizontalLayout
-import org.uqbar.arena.widgets.CheckBox
-import org.uqbar.arena.widgets.RadioSelector
-import org.uqbar.arena.bindings.ObservableProperty
+import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.CheckBox
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.widgets.RadioSelector
+import org.uqbar.arena.widgets.Selector
+import org.uqbar.arena.windows.WindowOwner
 
 class EditarPlatoWindow extends TransactionalDialog<Plato> {
 
@@ -138,6 +135,8 @@ class EditarPlatoWindow extends TransactionalDialog<Plato> {
 		]	
 		
 		}
+		
+	
 }
 
 //ACA FALTA UN REPO, Va a haber que hacer un repo para poder hacer esta ventana

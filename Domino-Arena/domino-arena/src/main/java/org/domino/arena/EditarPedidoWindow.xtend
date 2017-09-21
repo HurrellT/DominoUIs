@@ -1,27 +1,35 @@
 package org.domino.arena
 
-import org.uqbar.arena.aop.windows.TransactionalDialog
-import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.arena.layout.HorizontalLayout
-import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.widgets.Selector
-import org.domino.dominio.*
-import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import org.uqbar.arena.bindings.ObservableProperty
 import java.util.List
+import org.domino.dominio.Cancelado
+import org.domino.dominio.EnViaje
+import org.domino.dominio.Entregado
+import org.domino.dominio.EstadoPedido
+import org.domino.dominio.ListoParaEnviar
+import org.domino.dominio.ListoParaRetirar
+import org.domino.dominio.Pedido
+import org.domino.dominio.Pizza
+import org.domino.dominio.Plato
+import org.domino.dominio.Preparando
+import org.domino.repo.RepoPedidos
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.arena.bindings.PropertyAdapter
-import org.uqbar.arena.widgets.tables.Table
-import org.uqbar.arena.widgets.tables.Column
-import scala.xml.dtd.ContentModel.ElemName
-import org.uqbar.arena.widgets.Button
-import org.uqbar.arena.widgets.TextBox
+import org.uqbar.arena.aop.windows.TransactionalDialog
+import org.uqbar.arena.bindings.ObservableProperty
 import org.uqbar.arena.layout.ColumnLayout
-import org.uqbar.arena.bindings.DateTransformer
-import org.uqbar.commons.model.annotations.Observable
-import java.time.LocalDateTime
+import org.uqbar.arena.layout.HorizontalLayout
+import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.widgets.Selector
+import org.uqbar.arena.widgets.TextBox
+import org.uqbar.arena.widgets.tables.Column
+import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.Dialog
+import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.commons.applicationContext.ApplicationContext
+import org.uqbar.commons.model.annotations.Observable
+
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 
@@ -47,8 +55,7 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 
 		new Selector<EstadoPedido>(panelEstado) => [
 			allowNull(false)
-			
-			value <=> "estadoSeleccionado"
+			value <=> "pedido.estado"
 			bindItems(new ObservableProperty(repoEstados, "estados")).adaptWith(typeof(EstadoPedido), "nombre")
 		]
 
@@ -136,7 +143,7 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 		new Button(panel) => [
 			caption = "Agregar"
 			onClick [this.crearPlato]
-			//		modelObject.pedido.platos.add(new Plato())
+		 // modelObject.pedido.platos.add(new Plato())
 		]
 
 		new Button(panel) => [
@@ -192,6 +199,18 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 		repo
 	}
 
+	override executeTask() {
+		if (modelObject.pedido.isNew) {
+			repoPedidos.create(modelObject.pedido)
+		} else {
+			repoPedidos.update(modelObject.pedido)
+		}
+		super.executeTask()
+	}
+
+	def RepoPedidos getRepoPedidos() {
+		ApplicationContext.instance.getSingleton(typeof(Pedido))
+	}
 }
 
 @Accessors
@@ -200,5 +219,7 @@ class RepoEstados {
 
 	List<EstadoPedido> estados = #[new Cancelado, new Entregado, new EnViaje, new ListoParaEnviar, new ListoParaRetirar,
 		new Preparando]
+		
+		
 
 }
