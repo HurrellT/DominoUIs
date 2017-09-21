@@ -2,10 +2,11 @@ package org.domino.dominio
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.Entity
 
 @Observable
 @Accessors
-class Cliente {
+class Cliente extends Entity{
 	
 	String nombre
 	String nick
@@ -19,6 +20,10 @@ class Cliente {
 		this.password	= password
 		this.email		= email
 		this.direccion	= direccion
+	}
+	
+	new() {
+	
 	}
 	
 }

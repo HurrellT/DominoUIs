@@ -1,6 +1,7 @@
 package org.domino.dominio
 
 import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.Entity
 
 @Observable
 class Entregado implements EstadoPedido {

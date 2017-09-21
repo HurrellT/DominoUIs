@@ -54,12 +54,12 @@ class DominoPizza {
 	 * Metodos para UI
 	 */
 	def getPedidosCerrados(){
-		//historial.stream.filter([p | p.estado.esCancelado || p.estado.esEntregado]).collect(Collectors.toList)
+		historial.stream.filter([p | p.estado.esCancelado || p.estado.esEntregado]).collect(Collectors.toList)
 	}
 	
 	def getHistorial(){
 		var repoPedidos = ApplicationContext.instance.getSingleton(typeof(Pedido)) as RepoPedidos
 		
-	 	repoPedidos.objects.stream.filter[p | p.esAbierto].collect(Collectors.toList)
+	 	repoPedidos.allInstances.stream.filter[p | p.esAbierto].collect(Collectors.toList)
 	}
 }

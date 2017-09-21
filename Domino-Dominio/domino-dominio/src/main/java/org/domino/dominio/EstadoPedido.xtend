@@ -1,6 +1,6 @@
 package org.domino.dominio
 
-interface EstadoPedido {
+interface EstadoPedido{
 	
 	def EstadoPedido siguienteEstado(Pedido pedido)
 	

@@ -4,10 +4,11 @@ import org.eclipse.xtend.lib.annotations.Accessors
 
 import java.util.List
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import org.uqbar.commons.model.Entity
 
 @Accessors
 @TransactionalAndObservable
-class Plato {
+class Plato extends Entity{
 
 	Pizza pizza
 	Tamanio tamanio
