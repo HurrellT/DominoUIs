@@ -1,11 +1,12 @@
 package org.domino.dominio
 
+import java.time.LocalDateTime
 import java.util.List
+import java.util.stream.Collectors
+import org.domino.repo.RepoPedidos
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
-import java.util.stream.Collectors
-import java.util.Date
-import java.time.LocalDateTime
+import org.uqbar.commons.applicationContext.ApplicationContext
 
 @Accessors
 @Observable
@@ -17,7 +18,9 @@ class DominoPizza {
 	
 	List<Cliente> clientes = newArrayList
 	
-	List<Pedido> historial = newArrayList
+	//RepoPedidos repoPedidos =	ApplicationContext.instance.getSingleton(typeof(Pedido))
+	
+	//List<Pedido> historial = newArrayList
 	
 			
 	new(Menu menu, ServicioDeNotificacion servicio){
@@ -41,8 +44,9 @@ class DominoPizza {
 	}
 	
 	def realizarPedido(Pedido pedido) {
+		val repoPedidos = ApplicationContext.instance.getSingleton(typeof(Pedido)) as RepoPedidos
 		pedido.numeroDePedido =(this.historial.size + 1)
-		this.historial.add(pedido)
+		repoPedidos.create(pedido)
 		pedido.addObserver(servicio)
 	}
 	
@@ -50,6 +54,12 @@ class DominoPizza {
 	 * Metodos para UI
 	 */
 	def getPedidosCerrados(){
-		historial.stream.filter([p | p.estado.esCancelado || p.estado.esEntregado]).collect(Collectors.toList)
+		//historial.stream.filter([p | p.estado.esCancelado || p.estado.esEntregado]).collect(Collectors.toList)
+	}
+	
+	def getHistorial(){
+		var repoPedidos = ApplicationContext.instance.getSingleton(typeof(Pedido)) as RepoPedidos
+		
+	 	repoPedidos.objects.stream.filter[p | p.esAbierto].collect(Collectors.toList)
 	}
 }

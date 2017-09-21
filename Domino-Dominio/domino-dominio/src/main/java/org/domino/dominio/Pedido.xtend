@@ -1,15 +1,16 @@
 package org.domino.dominio
 
-import java.util.Date
-import java.util.List
-import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.model.annotations.Observable
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
+import java.util.List
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.Entity
+import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.utils.ObservableUtils
 
 @Accessors
 @Observable
-class Pedido {
+class Pedido extends Entity {
 	
 	Cliente cliente
 	LocalDateTime fecha
@@ -72,4 +73,7 @@ class Pedido {
 		obs.stream.forEach(s | s.sendMail(mail,"DominoPizza informa", msj))
 	}
 	
+	def esAbierto() {
+		!this.estado.esCancelado || this.estado.esEntregado
+	}
 }

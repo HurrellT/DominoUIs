@@ -21,6 +21,8 @@ import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.bindings.DateTransformer
 import org.uqbar.commons.model.annotations.Observable
 import java.time.LocalDateTime
+import org.uqbar.commons.applicationContext.ApplicationContext
+import org.domino.repo.RepoPedidos
 
 class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 
@@ -44,9 +46,10 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 
 		new Label(panelEstado).text = "Estado"
 
-		new Selector<Pedido>(panelEstado) => [
+		new Selector<EstadoPedido>(panelEstado) => [
 			allowNull(false)
-			value <=> "pedido.estado"
+			
+			value <=> "estadoSeleccionado"
 			bindItems(new ObservableProperty(repoEstados, "estados")).adaptWith(typeof(EstadoPedido), "nombre")
 		]
 
@@ -98,7 +101,7 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 		panelBotones.layout = new HorizontalLayout
 		new Button(panelBotones) => [
 			caption = "Aceptar"
-			onClick[] // ????
+			onClick[accept]
 		]
 
 		new Button(panelBotones) => [
@@ -124,8 +127,9 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 		new Label(panelDatos).text = "Fecha"
 		new Label(panelDatos) => [
 			value <=> 'fechaTransformada'
-			]
+		]
 	}
+
 	def crearBotones(Panel panel) {
 
 		new Button(panel) => [
@@ -169,6 +173,19 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 	def getRepoEstados() {
 		var repo = new RepoEstados()
 		repo
+	}
+
+	override executeTask() {
+		if (modelObject.pedido.isNew) {
+			repoPedidos.create(modelObject.pedido)
+		} else {
+			repoPedidos.update(modelObject.pedido)
+		}
+		super.executeTask()
+	}
+	
+	def RepoPedidos getRepoPedidos(){
+		ApplicationContext.instance.getSingleton(typeof(Pedido))
 	}
 
 }

@@ -44,9 +44,6 @@ class DominoPizzaTest {
 	@Test
 	def test002_UnDominoPizzaGuardaUnHistorialDeLosPedidosRealizados() {
 	
-		when(pedido1.cronometro).thenReturn(this.crono)
-		when(pedido2.cronometro).thenReturn(this.crono)
-		when(pedido3.cronometro).thenReturn(this.crono)
 		dominoPizza.realizarPedido(pedido1)
 		dominoPizza.realizarPedido(pedido2)
 		dominoPizza.realizarPedido(pedido3)

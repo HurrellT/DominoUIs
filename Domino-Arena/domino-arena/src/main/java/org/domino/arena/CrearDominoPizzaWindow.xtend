@@ -22,8 +22,8 @@ import org.domino.dominio.EstadoPedido
 
 class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 
-	new(WindowOwner owner, DominoApplicationModel domPizza) {
-		super(owner, domPizza)
+	new(WindowOwner owner) {
+		super(owner, new DominoApplicationModel)
 	}
 
 	override protected createFormPanel(Panel mainPanel) {
@@ -148,9 +148,6 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 		//this.openDialog(new EditarPedidoWindow(this, new AppPedidoAplicationModel(new Pedido())))
 	}
 	
-	def openDialog(Dialog<?> dialog) {
-		dialog.open
-	}
 
 	def describirPedidos(Table<Pedido> table) {
 		new Column(table) => [
@@ -192,6 +189,11 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 
 	override protected addActions(Panel actionsPanel) {
 
+	}
+	
+		def openDialog(Dialog<?> dialog) {
+		dialog.onAccept[|modelObject.domino.historial]
+		dialog.open
 	}
 
 }
