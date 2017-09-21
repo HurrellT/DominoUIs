@@ -1,4 +1,4 @@
-package org.domino.arena
+package org.domino.model
 
 import org.domino.dominio.Pedido
 import org.domino.dominio.Plato

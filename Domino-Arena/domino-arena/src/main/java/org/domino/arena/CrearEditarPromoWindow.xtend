@@ -14,6 +14,7 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.domino.model.EdicionPlatoApplicationModel
 
 class CrearEditarPromoWindow extends TransactionalDialog<EdicionPlatoApplicationModel> {
 

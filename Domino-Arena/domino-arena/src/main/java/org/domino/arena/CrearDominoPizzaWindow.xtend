@@ -18,6 +18,8 @@ import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import java.time.LocalDateTime
 import org.uqbar.arena.bindings.ObservableProperty
 import org.domino.dominio.EstadoPedido
+import org.domino.model.DominoApplicationModel
+import org.domino.model.AppPedidoAplicationModel
 
 class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 

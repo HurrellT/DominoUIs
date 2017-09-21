@@ -30,6 +30,7 @@ import org.uqbar.commons.applicationContext.ApplicationContext
 import org.uqbar.commons.model.annotations.Observable
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.domino.model.AppPedidoAplicationModel
 
 class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 
@@ -217,9 +218,6 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 @Observable
 class RepoEstados {
 
-	List<EstadoPedido> estados = #[new Cancelado, new Entregado, new EnViaje, new ListoParaEnviar, new ListoParaRetirar,
-		new Preparando]
-		
-		
+	List<EstadoPedido> estados = #[new Cancelado, new Entregado, new EnViaje, new ListoParaEnviar, new ListoParaRetirar, new Preparando]
 
 }
