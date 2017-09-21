@@ -1,4 +1,3 @@
-
 package org.domino.arena
 
 import org.domino.dominio.Pedido
@@ -37,12 +36,12 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 		val panel = new Panel(mainPanel) => [ 
 			layout = new VerticalLayout
 		]
+		
 		title = "Domino Pizza"
 
 		new Label(panel).text = "Pedidos abiertos"
 
 		val table = new Table<Pedido>(panel, typeof(Pedido)) => [
-
 			items <=> "domino.historial"
 			value <=> "pedidoSeleccionado"
 		]
@@ -88,6 +87,8 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 			caption = 'Editar'
 			width = 110
 			
+			enabled <=> "hayPedidoSeleccionado"
+			
 			onClick [ this.crearEditarPedidoWindow ]
 		]
 		
@@ -128,10 +129,6 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 //		]
 	}
 	
-	def crearEditarPedidoWindow() {
-		this.openDialog(new EditarPedidoWindow(this, new AppPedidoAplicationModel(modelObject.pedidoSeleccionado)))
-	}
-	
 	/*
 	 * Acciones
 	 */
@@ -139,6 +136,10 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 //	def crearIngredienteWindow() {
 //		this.openDialog(new CrearIngredienteWindow(this, modelObject.menu))
 //	}
+	
+	def crearEditarPedidoWindow() {
+		this.openDialog(new EditarPedidoWindow(this, new AppPedidoAplicationModel(modelObject.pedidoSeleccionado)))
+	}
 	 
 	def crearPedidosCerradosWindow() {
 		this.openDialog(new CrearPedidosCerradosWindow(this, modelObject))
@@ -148,6 +149,9 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 		//this.openDialog(new EditarPedidoWindow(this, new AppPedidoAplicationModel(new Pedido())))
 	}
 	
+	def openDialog(Dialog<?> dialog) {
+		dialog.open
+	}
 
 	def describirPedidos(Table<Pedido> table) {
 		new Column(table) => [
@@ -189,11 +193,6 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 
 	override protected addActions(Panel actionsPanel) {
 
-	}
-	
-		def openDialog(Dialog<?> dialog) {
-		dialog.onAccept[|modelObject.domino.historial]
-		dialog.open
 	}
 
 }
