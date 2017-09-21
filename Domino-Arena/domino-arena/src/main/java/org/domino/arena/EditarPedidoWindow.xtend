@@ -21,6 +21,7 @@ import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.bindings.DateTransformer
 import org.uqbar.commons.model.annotations.Observable
 import java.time.LocalDateTime
+import org.uqbar.arena.windows.Dialog
 
 class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 
@@ -58,13 +59,13 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 
 		new Label(panelPlatos).text = "Platos"
 
-//		val table = new Table<Plato>(panelPlatos, typeof(Plato)) => [
-//			items <=> "pedido.platos"
-//			value <=> "platoSeleccionado"
+		val table = new Table<Plato>(panelPlatos, typeof(Plato)) => [
+			items <=> "pedido.platos"
+			value <=> "platoSeleccionado"
 //			numberVisibleRows = 12
-//		]
-//
-//		this.describirTablaDePlatos(table)
+		]
+
+		this.describirTablaDePlatos(table)
 
 		val buttonPanel = new Panel(panelPlatos)
 
@@ -97,9 +98,10 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 		 */
 		val panelBotones = new Panel(mainPanel)
 		panelBotones.layout = new HorizontalLayout
+
 		new Button(panelBotones) => [
 			caption = "Aceptar"
-			onClick[] // ????
+			onClick[this.accept]
 		]
 
 		new Button(panelBotones) => [
@@ -125,19 +127,23 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 		new Label(panelDatos).text = "Fecha"
 		new Label(panelDatos) => [
 			value <=> 'fechaTransformada'
-			]
+		]
 	}
-	
+
 	def crearBotones(Panel panel) {
 
 		new Button(panel) => [
 			caption = "Agregar"
-			onClick [new CrearPlatoWindow(this, new Plato())]
+			onClick [this.crearPlato]
+			//		modelObject.pedido.platos.add(new Plato())
 		]
 
 		new Button(panel) => [
 			caption = "Editar"
-			onClick [new CrearPlatoWindow(this, modelObject.platoSeleccionado)]
+			onClick [this.editarPlato]
+
+			enabled <=> "hayPlatoSeleccionado"
+
 		]
 
 		new Button(panel) => [
@@ -149,23 +155,35 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 	def describirTablaDePlatos(Table<Plato> table) {
 
 		new Column<Plato>(table) => [
-			title = "Nombre"
+			title = "Pizza"
 			fixedSize = 200
-			bindContentsToProperty("nombre")
+			bindContentsToProperty("pizza").transformer = [ Pizza p |
+				p.nombre
+			]
 		]
 
-		new Column<Plato>(table) => [
-			title = "Tamanio"
-			fixedSize = 200
-			bindContentsToProperty("tamanio") // ADAPTER?
-		]
+//		new Column<Plato>(table) => [
+//			title = "Tamaño"
+//			fixedSize = 200
+//			bindContentsToProperty("tamanio") //ADAPTER?
+//		]
+//		new Column<Plato>(table) => [
+//			title = "Ingredientes"
+//			fixedSize = 200
+//			bindContentsToProperty("ingredientes")
+//		]
+	}
 
-		new Column<Plato>(table) => [
-			title = "Precio"
-			fixedSize = 200
-			bindContentsToProperty("precio")
-		]
+	def editarPlato() {
+		this.openDialog(new EditarPlatoWindow(this, modelObject.platoSeleccionado))
+	}
 
+	def crearPlato() {
+		this.openDialog(new CrearPlatoWindow(this))
+	}
+
+	def openDialog(Dialog<?> dialog) {
+		dialog.open
 	}
 
 	def getRepoEstados() {
