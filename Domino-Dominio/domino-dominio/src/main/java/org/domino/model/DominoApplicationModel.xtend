@@ -10,6 +10,8 @@ import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.applicationContext.ApplicationContext
 import org.domino.repo.RepoPedidos
 import java.util.stream.Collectors
+import java.util.List
+import org.uqbar.commons.model.utils.ObservableUtils
 
 @Accessors
 @Observable
@@ -18,7 +20,8 @@ class DominoApplicationModel extends ApplicationContext {
 	DominoPizza domino
 	Pedido pedidoSeleccionado
 	RepoPedidos pedidos 
-//	Boolean hayPedidoSeleccionado
+	List<Pedido> pedidosAbiertos
+	List<Pedido> pedidosCerrados
 	
 	 new() {
 		domino = new DominoPizza(new Menu, new ServicioDeNotificacion("ciu.dominos.pizza@gmail.com", "interfaces2017"))
@@ -33,18 +36,17 @@ class DominoApplicationModel extends ApplicationContext {
 		pedidoSeleccionado !== null
 	}
 	
+	
+	
 	/*
 	 * Metodos para UI
 	 */
-	 
-	def getPedidosCerrados() {
-		historial.stream.filter([p | p.estado.esCancelado || p.estado.esEntregado]).collect(Collectors.toList)
-	}
-	
-	def getHistorial() {
+		
+	def actualizar() {
 		var repoPedidos = ApplicationContext.instance.getSingleton(typeof(Pedido)) as RepoPedidos
 		
-	 	repoPedidos.allInstances.stream.filter[p | p.esAbierto].collect(Collectors.toList)
+	 	pedidosAbiertos = repoPedidos.allInstances.stream.filter[p | p.esAbierto].collect(Collectors.toList)
+	 	pedidosCerrados = repoPedidos.allInstances.stream.filter[p | !p.esAbierto].collect(Collectors.toList)
 	}
 
 }

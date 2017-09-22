@@ -16,19 +16,12 @@ class DominoPizza {
 	
 	List<Cliente> clientes = newArrayList
 	
-	//RepoPedidos repoPedidos =	ApplicationContext.instance.getSingleton(typeof(Pedido))
-	
-	//List<Pedido> historial = newArrayList
-	
 			
 	new(Menu menu, ServicioDeNotificacion servicio){
 		this.menu = menu
 		this.servicio = servicio
 		ServicioDeNotificacion.config(this.servicio)
 		
-//		var p = new Pedido(new Cliente('luca','l','lala','lhazuca@gmail.com','5564'),LocalDateTime.now,'aclariacin', new RetiraPorElLocal)
-//		p.agregarPlato(new Plato(new Pizza("Muzza",75),new Tamanio("Grande",1)))
-//		realizarPedido(p)
 	}
 	
 	def agregarCliente(Cliente cliente) {
@@ -43,7 +36,7 @@ class DominoPizza {
 	
 	def realizarPedido(Pedido pedido) {
 		val repoPedidos = ApplicationContext.instance.getSingleton(typeof(Pedido)) as RepoPedidos
-//		pedido.numeroDePedido =(this.historial.size + 1)
+		repoPedidos.allInstances.stream.forEach[p | p.numeroDePedido = repoPedidos.allInstances.indexOf(p) + 1 ]
 		repoPedidos.create(pedido)
 		pedido.addObserver(servicio)
 	}

@@ -14,13 +14,16 @@ class Plato extends Entity{
 	Tamanio tamanio
 	List<Ingrediente> ingredientes
 
-	new(){
-		this.ingredientes = newArrayList
-	}
-
 	new(Pizza pizza, Tamanio tamanio) {
 		this.pizza = pizza
 		this.tamanio = tamanio
+		this.ingredientes = newArrayList
+	}
+	
+	//Para CrearPlatoWindow
+	new() {
+		this.pizza = new Pizza
+		this.tamanio = new Tamanio("Grande",1)
 		this.ingredientes = newArrayList
 	}
 

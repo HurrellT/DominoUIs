@@ -16,7 +16,6 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 	new() {
 		ApplicationContext.instance.configureSingleton(typeof(Pedido), new RepoPedidos)
 		ApplicationContext.instance.configureSingleton(typeof(Cliente), new RepoClientes)
-		ApplicationContext.instance.configureSingleton(typeof(Plato) , new RepoPlatos)
 		ApplicationContext.instance.configureSingleton(typeof(Ingrediente), new RepoIngredientes)
 		ApplicationContext.instance.configureSingleton(typeof(Pizza), new RepoPizzas)
 	}
@@ -24,7 +23,6 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 	override run() {
 		val repoPedidos = ApplicationContext.instance.getSingleton(typeof(Pedido)) as RepoPedidos
 		val repoCliente = ApplicationContext.instance.getSingleton(typeof(Cliente)) as RepoClientes
-		val repoPlatos	= ApplicationContext.instance.getSingleton(typeof(Plato)) as RepoPlatos
 		val repoIngredientes = ApplicationContext.instance.getSingleton(typeof(Ingrediente)) as RepoIngredientes
 		val repoPizzas = ApplicationContext.instance.getSingleton(typeof(Pizza)) as RepoPizzas
 
@@ -48,12 +46,7 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 		
 		val tamanioMuzza = new Tamanio("Grande",1)
 		
-		
-		repoPlatos => [
-			create(pizzaMuzza,tamanioMuzza)
-		]
-		
-		val plato1 = repoPlatos.allInstances.get(0)
+		val plato1 = new Plato(pizzaMuzza,tamanioMuzza)
 		
 		repoIngredientes => [
 			create("Jamon",15,"Derecha")

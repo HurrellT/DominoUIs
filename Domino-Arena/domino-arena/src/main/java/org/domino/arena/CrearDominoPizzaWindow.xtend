@@ -25,7 +25,7 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 
 	new(WindowOwner owner) {
 		super(owner, new DominoApplicationModel)
-		modelObject.repoPedidos
+		modelObject.actualizar
 	}
 
 	override protected createFormPanel(Panel mainPanel) {
@@ -45,7 +45,7 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 		new Label(panel).text = "Pedidos abiertos"
 
 		val table = new Table<Pedido>(panel, typeof(Pedido)) => [
-			items <=> "historial"
+			items <=> "pedidosAbiertos"
 			value <=> "pedidoSeleccionado"
 		]
 		
@@ -124,12 +124,12 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 		]
 		
 		/* TESTER BUTTON */
-//		new Button(bottomButtonPanel) => [
-//			caption = "Tester Button"
-//			width = 150
-//			
-//			onClick [ this.crearIngredienteWindow ]
-//		]
+		new Button(bottomButtonPanel) => [
+			caption = "MAGIC REFRESH BUTTON X2000"
+			width = 300
+			
+			onClick [ modelObject.actualizar ]
+		]
 	}
 	
 	/*
@@ -152,8 +152,8 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 		//this.openDialog(new EditarPedidoWindow(this, new AppPedidoAplicationModel(new Pedido())))
 	}
 	
-		def openDialog(Dialog<?> dialog) {
- 		dialog.onAccept[modelObject.historial]
+	def openDialog(Dialog<?> dialog) {
+// 		dialog.onAccept[modelObject.actualizar]
  		dialog.open
  	}
 
@@ -191,6 +191,13 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 					res
 				}
 			]
+		]
+		
+		//DE PRUEBA
+		new Column(table) => [
+			title = "Aclaracion"
+			fixedSize = 200
+			bindContentsToProperty("aclaracion")
 		]
 
 	}

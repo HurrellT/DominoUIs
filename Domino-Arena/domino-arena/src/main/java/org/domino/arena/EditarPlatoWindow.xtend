@@ -37,9 +37,9 @@ class EditarPlatoWindow extends TransactionalDialog<Plato> {
 		new Label(superiorPanel).text = "Pizza"
 
 		new Selector(superiorPanel) => [
-//				items <=> "ingredientesDisponibles"
-//				value <=> "ingredienteSeleccionado"
-				width = 100
+//			items <=> "ingredientesDisponibles"
+//			value <=> "ingredienteSeleccionado"
+			width = 100
 		]
 
 		new Label(superiorPanel).text = "Tamanio"

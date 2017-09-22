@@ -31,7 +31,9 @@ import org.uqbar.commons.model.annotations.Observable
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.domino.model.AppPedidoAplicationModel
+import org.uqbar.commons.model.annotations.Transactional
 
+@Transactional
 class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 
 	new(WindowOwner owner, AppPedidoAplicationModel model) {
@@ -71,7 +73,6 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 		val table = new Table<Plato>(panelPlatos, typeof(Plato)) => [
 			items <=> "pedido.platos"
 			value <=> "platoSeleccionado"
-//			numberVisibleRows = 12
 		]
 
 		this.describirTablaDePlatos(table)
@@ -144,7 +145,6 @@ class EditarPedidoWindow extends TransactionalDialog<AppPedidoAplicationModel> {
 		new Button(panel) => [
 			caption = "Agregar"
 			onClick [this.crearPlato]
-		 // modelObject.pedido.platos.add(new Plato())
 		]
 
 		new Button(panel) => [
