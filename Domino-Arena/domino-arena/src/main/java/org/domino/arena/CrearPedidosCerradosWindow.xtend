@@ -12,6 +12,9 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
 import org.domino.model.DominoApplicationModel
+import org.domino.dominio.EstadoPedido
+import java.time.LocalDateTime
+import java.time.temporal.ChronoUnit
 
 class CrearPedidosCerradosWindow extends TransactionalDialog<DominoApplicationModel> {
 	
@@ -45,7 +48,7 @@ class CrearPedidosCerradosWindow extends TransactionalDialog<DominoApplicationMo
 
 	def crearTablaPedidosCerrados(Panel panel) {
 		val tabla = new Table<Pedido>(panel, typeof(Pedido)) => [
-			items <=> 'domino.pedidosCerrados'
+			items <=> 'pedidosCerrados'
 			value <=> "pedidoSeleccionado"
 		]
 
@@ -62,13 +65,19 @@ class CrearPedidosCerradosWindow extends TransactionalDialog<DominoApplicationMo
 
 		new Column(table) => [
 			title = 'Estado'
-			bindContentsToProperty('estado')
+			bindContentsToProperty("estado").transformer = [EstadoPedido e | e.nombre]
 			fixedSize = 200
 		]
 
 		new Column(table) => [
 			title = 'Fecha'
-			bindContentsToProperty('fecha')
+			bindContentsToProperty('fecha').transformer = [LocalDateTime f |
+				val dias =f.dayOfMonth
+				val meses =f.monthValue
+				val anios =f.year
+				val res =dias.toString + "/" + meses.toString + "/" + anios.toString
+				res
+			]
 			fixedSize = 200
 		]
 

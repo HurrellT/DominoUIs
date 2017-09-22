@@ -5,6 +5,8 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 import java.util.List
+import org.uqbar.commons.applicationContext.ApplicationContext
+import org.domino.repo.RepoPizzas
 
 @TransactionalAndObservable
 @Accessors
@@ -15,7 +17,6 @@ class Menu {
 
 	new() {
 		this.ingredientesDisponibles = newArrayList
-		this.promos = newArrayList
 	}
 
 	def actualizarPromo(Pizza pizza, Integer nuevoPrecio) {
@@ -79,5 +80,10 @@ class Menu {
 		ingredientesDisponibles.remove(ingrediente)
 
 	}
-
+	
+	def getPromos(){
+		val repoPromos = ApplicationContext.instance.getSingleton(typeof(Pizza)) as RepoPizzas
+		
+		repoPromos.allInstances
+	}
 }

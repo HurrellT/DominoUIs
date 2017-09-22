@@ -69,11 +69,13 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 		new Button(buttonPanel) => [
 			caption = '<<'
 			width = 50
+			onClick[modelObject.pedidoSeleccionado.anteriorEstado]
 		]
 		
 		new Button(buttonPanel) => [
 			caption = '>>'
 			width = 50
+			onClick[modelObject.pedidoSeleccionado.siguienteEstado]
 		]
 		
 		
@@ -84,6 +86,10 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 		new Button(buttonPanel2) => [
 			caption = 'Cancelar'
 			width = 110
+			enabled <=> 'hayPedidoSeleccionado'
+			onClick[modelObject.pedidoSeleccionado.cancelar
+				modelObject.actualizar
+			]
 		]
 		
 		new Button(buttonPanel2) => [
@@ -107,7 +113,7 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 			caption = 'Menu'
 			width = 150
 			
-			onClick [ this.crearEditarPromoWindow ]  //BORRAR
+			onClick [ this.crearMenuWindow ] 
 		]
 		new Button(bottomButtonPanel) => [
 			caption = 'Pedidos cerrados'
@@ -130,6 +136,10 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 			
 			onClick [ modelObject.actualizar ]
 		]
+	}
+	
+	def crearMenuWindow() {
+		this.openDialog(new CrearMenuWindow(this,modelObject.domino.menu))
 	}
 	
 	/*

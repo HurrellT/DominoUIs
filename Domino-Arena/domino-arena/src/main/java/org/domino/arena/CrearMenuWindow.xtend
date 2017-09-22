@@ -14,6 +14,8 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.arena.windows.Dialog
+import org.domino.model.PizzaAppModel
 
 class CrearMenuWindow extends TransactionalDialog<Menu> {
 
@@ -46,6 +48,7 @@ class CrearMenuWindow extends TransactionalDialog<Menu> {
 		new Button(buttonPanel) => [
 			caption = 'Crear'
 			width = 60
+			onClick [ crearPromoWindow(new Pizza())]
 		]
 
 		new Button(buttonPanel) => [
@@ -98,6 +101,14 @@ class CrearMenuWindow extends TransactionalDialog<Menu> {
 		]
 
 }
+	
+	def crearPromoWindow(Pizza pizza) {
+		this.openDialog(new CrearEditarPromoWindow(this,new PizzaAppModel(pizza)))
+	}
+	
+	def openDialog(Dialog<?> dialog) {
+		dialog.open
+	}
 	
 	def describirPromos(Table<Pizza> table) {
 		new Column(table) => [
