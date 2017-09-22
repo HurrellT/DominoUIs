@@ -25,6 +25,7 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 
 	new(WindowOwner owner) {
 		super(owner, new DominoApplicationModel)
+		modelObject.repoPedidos
 	}
 
 	override protected createFormPanel(Panel mainPanel) {
@@ -44,7 +45,7 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 		new Label(panel).text = "Pedidos abiertos"
 
 		val table = new Table<Pedido>(panel, typeof(Pedido)) => [
-			items <=> "domino.historial"
+			items <=> "historial"
 			value <=> "pedidoSeleccionado"
 		]
 		
@@ -152,7 +153,7 @@ class CrearDominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 	}
 	
 		def openDialog(Dialog<?> dialog) {
- 		dialog.onAccept[|modelObject.domino.historial]
+ 		dialog.onAccept[modelObject.historial]
  		dialog.open
  	}
 

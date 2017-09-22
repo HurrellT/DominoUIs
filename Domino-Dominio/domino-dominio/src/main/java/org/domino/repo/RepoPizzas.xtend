@@ -8,16 +8,17 @@ class RepoPizzas extends CollectionBasedRepo<Pizza>{
 	def void create(String nombreP, int precio){
 		this.create(new Pizza(nombreP,precio))
 	}
+	
 	override protected getCriterio(Pizza example) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		null
 	}
 	
 	override createExample() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		new Pizza
 	}
 	
 	override getEntityType() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		typeof(Pizza)
 	}
 	
 }

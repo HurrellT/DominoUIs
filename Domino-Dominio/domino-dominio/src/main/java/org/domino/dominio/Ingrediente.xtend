@@ -7,7 +7,7 @@ import org.uqbar.commons.model.Entity
 
 @Accessors
 @Observable
-class Ingrediente extends Entity{
+class Ingrediente extends Entity {
 
 	String nombre
 	int precio
@@ -24,6 +24,10 @@ class Ingrediente extends Entity{
 				this.distribucionElegida = distribucion
 			}
 		}
+	}
+	
+	new() {
+		
 	}
 
 		

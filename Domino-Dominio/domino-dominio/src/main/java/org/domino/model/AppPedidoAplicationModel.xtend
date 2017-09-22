@@ -13,7 +13,7 @@ class AppPedidoAplicationModel {
 	
 	Pedido pedido
 	Plato platoSeleccionado
-	Boolean hayPlatoSeleccionado
+//	Boolean hayPlatoSeleccionado
 	EstadoPedido estadoSeleccionado
 	
 	new(Pedido pedido){

@@ -30,6 +30,7 @@ class Pedido extends Entity {
 	}
 	
 	new() {
+		this.estado = new Preparando
 		this.platos = newArrayList
 	}
 	
@@ -48,7 +49,6 @@ class Pedido extends Entity {
 	
 	def montoTotal() {
 		platos.stream.mapToInt[p | p.montoTotal() as int].sum() + this.envio.recargo
-	
 	}
 	
 	def cancelar() {
@@ -75,4 +75,5 @@ class Pedido extends Entity {
 	def esAbierto() {
 		!this.estado.esCancelado || this.estado.esEntregado
 	}
+
 }

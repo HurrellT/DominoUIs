@@ -10,16 +10,17 @@ class RepoPlatos extends CollectionBasedRepo<Plato> {
 	def void create(Pizza pizza, Tamanio tamanio){
 		this.create(new Plato(pizza,tamanio))
 	}
+	
 	override protected getCriterio(Plato example) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		null
 	}
 	
 	override createExample() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		new Plato
 	}
 	
 	override getEntityType() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		typeof(Plato)
 	}
 	
 }

@@ -20,6 +20,10 @@ class Pizza extends Entity{
 		
 	}
 	
+	new() {
+		
+	}
+	
 	def agregar(Ingrediente ingrediente) {
 		ingredientes.add(ingrediente)
 	}
