@@ -8,7 +8,7 @@ import org.uqbar.commons.model.annotations.Observable
 
 @Accessors
 @Observable
-class EdicionPlatoApplicationModel {
+class PlatoApplicationModel {
 	
 	Ingrediente ingredienteSeleccionado
 	Pizza pizzaSeleccionada

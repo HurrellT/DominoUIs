@@ -7,7 +7,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 
 @Observable
 @Accessors
-class PizzaAppModel {
+class PizzaApplicationModel {
 	Pizza pizza
 	
 	Ingrediente ingredienteSeleccionado

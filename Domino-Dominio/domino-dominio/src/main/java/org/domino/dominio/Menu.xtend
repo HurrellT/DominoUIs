@@ -80,10 +80,4 @@ class Menu {
 		ingredientesDisponibles.remove(ingrediente)
 
 	}
-	
-	def getPromos(){
-		val repoPromos = ApplicationContext.instance.getSingleton(typeof(Pizza)) as RepoPizzas
-		
-		repoPromos.allInstances
-	}
 }

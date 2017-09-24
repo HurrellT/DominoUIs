@@ -1,7 +1,9 @@
-package org.domino.arena
+package org.domino.ui
 
 import org.domino.dominio.Ingrediente
 import org.domino.dominio.Pizza
+import org.domino.model.PizzaApplicationModel
+import org.domino.repo.RepoPizzas
 import org.uqbar.arena.aop.windows.TransactionalDialog
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
@@ -13,30 +15,25 @@ import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.commons.applicationContext.ApplicationContext
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import org.domino.model.PizzaAppModel
-import org.uqbar.commons.applicationContext.ApplicationContext
-import org.domino.repo.RepoPizzas
 
-class CrearEditarPromoWindow extends TransactionalDialog<PizzaAppModel> {
+class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel> {
 
-	new(WindowOwner owner, PizzaAppModel model) {
+	new(WindowOwner owner, PizzaApplicationModel model) {
 		super(owner, model)
 	}
 
+// ********************************************************
+// ** Creacion de paneles
+// ********************************************************
 	override protected createFormPanel(Panel mainPanel) {
 
-		/*
-		 * Main Panel
-		 */
 		title = 'Promo'
 
 		mainPanel.layout = new VerticalLayout
 
-		/*
-		 * Panel para el nombre
-		 */
 		val panelNombre = new Panel(mainPanel) => [
 			layout = new ColumnLayout(2)
 		]
@@ -48,9 +45,6 @@ class CrearEditarPromoWindow extends TransactionalDialog<PizzaAppModel> {
 			width = 200
 		]
 
-		/*
-		 * Panel para el precio
-		 */
 		val panelPrecio = new Panel(mainPanel) => [
 			layout = new ColumnLayout(2)
 		]
@@ -62,9 +56,6 @@ class CrearEditarPromoWindow extends TransactionalDialog<PizzaAppModel> {
 			width = 200
 		]
 
-		/*
-		 * Panel para los ingredientes
-		 */
 		val panelIngredientes = new Panel(mainPanel) => [
 			layout = new VerticalLayout
 		]
@@ -75,15 +66,42 @@ class CrearEditarPromoWindow extends TransactionalDialog<PizzaAppModel> {
 			minWidth = 500
 		]
 
-		describirIngredientes(tabla)
+		this.describirIngredientes(tabla)
 
-		/*
-		 * Panel para los botones de abajo
-		 */
 		val bottomButtonPanel = new Panel(mainPanel) => [
 			layout = new HorizontalLayout
 		]
 
+		this.crearPanelBotones(bottomButtonPanel)
+	}
+
+// ********************************************************
+// ** Creacion tabla de ingredientes
+// ********************************************************
+	def describirIngredientes(Table<Ingrediente> table) {
+		new Column(table) => [
+			title = "Nombre"
+			bindContentsToProperty("nombre")
+			fixedSize = 100
+		]
+
+		new Column(table) => [
+			title = "Precio"
+			bindContentsToProperty("precio")
+			fixedSize = 100
+		]
+
+		new Column(table) => [
+			title = "Distribucion"
+			bindContentsToProperty("distribucionElegida")
+			fixedSize = 100
+		]
+	}
+
+// ********************************************************
+// ** Creacion panel de botones
+// ********************************************************
+	def crearPanelBotones(Panel bottomButtonPanel) {
 		new Button(bottomButtonPanel) => [
 			caption = 'Aceptar'
 			width = 150
@@ -98,28 +116,11 @@ class CrearEditarPromoWindow extends TransactionalDialog<PizzaAppModel> {
 			onClick [this.close]
 		]
 	}
-	
-	def describirIngredientes(Table<Ingrediente> table) {
-		new Column(table) => [
-			title = "Nombre"
-			bindContentsToProperty("nombre")
-			fixedSize = 100
-		]
-		
-		new Column(table) => [
-			title = "Precio"
-			bindContentsToProperty("precio")
-			fixedSize = 100
-		]
-		
-		new Column(table) => [
-			title = "Distribucion"
-			bindContentsToProperty("distribucionElegida")
-			fixedSize = 100
-		]
-	}
-	
-		override executeTask() {
+
+// ********************************************************
+// ** Acciones
+// ********************************************************
+	override executeTask() {
 		if (modelObject.pizza.isNew) {
 			repoPizzas.create(modelObject.pizza)
 		} else {
@@ -127,7 +128,10 @@ class CrearEditarPromoWindow extends TransactionalDialog<PizzaAppModel> {
 		}
 		super.executeTask()
 	}
-	
+
+// ********************************************************
+// ** Repositorios
+// ********************************************************
 	def RepoPizzas getRepoPizzas() {
 		ApplicationContext.instance.getSingleton(typeof(Pizza))
 	}
