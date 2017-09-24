@@ -7,15 +7,34 @@ Colaboradores:
 - Henry Borda
 - Brian Goldman
 
-TODO:
-- Completar el Observer de Pedidos que notifica:
-  1) Cuando el Pedido esta EnViaje HECHO
-  2) Cuando tarda mas de 30 min en entregarse
-- Crear el historial de Pedidos HECHO
-- La clase DominoPizza no deberia tener el Menu? HECHO
-- El Observer de los pedidos es DominoPizza, no el Cliente 
-  1) Hasta ahora el ServicioDeNotificacion observa a Pedido. ¿Tendriamos que hacer que el DominoPizza tenga el servicio incorporado o que sea externo como es actualmente? HECHO
-- El tiempo del Pedido se calcula guardando las fechas de creacion y de llegada del pedido HECHO
-- Sacar todos los instance of
-- Verificar que le llega la notificacion al cliente HECHO
-- Sacar el if para el notifyObservers (si no me equivoco ya esta HECHO)
+DOMINO PIZZA WINDOW
+*) Tarda en actualizar los pedidos (hay que darle al Mega Refresh Button X2000)
+*) Al querer pasar al siguiente estado de Entregado (>>), al anterior estado de Entregado (<<) 
+o al anterior estado de Preparando (<<), tira NullPointer Exception 
+
+EDITAR PEDIDO WINDOW
+*) No se muestra el estado del pedido en el Selector al principio (aunque si cambia el estado)
+*) El monto total del pedido tarda en actualizarse
+
+CREAR PLATO WINDOW
+*) No agrega ningun plato (aunque funciona la ventana)
+
+EDITAR PLATO WINDOW
+*) No esta hecho el panel que muestra los ingredientes
+*) No se muestra el tamanio en el Selector (aunque funciona, si cambia el tamaño)
+
+EDITAR PROMO WINDOW
+*) No esta hecho el panel que muestra los ingredientes (lo mismo que en EDITAR PLATO WINDOW)
+
+MOSTRAR MENU WINDOW
+Funciona todo, pero hay que cerrar y volver a abrir la ventana para verlo. Ademas, los ingredientes 
+se eliminan al instante, mietras que las promos hay que cerrar y volver a entrar 
+(aunque estan hechas iguales!!!)
+
+PEDIDOS CERRADOS WINDOW
+Funciona todo, pero hay un bug de Arena: si estas en la EDITAR PEDIDO WINDOW con un pedido seleccionado
+y abris PEDIDOS CERRADOS WINDOW, te permite modificar el pedido abierto. Para solucionarlo, 
+agregue la linea 209 en DOMINO PIZZA WINDOW
+
+EDITAR INGREDIENTE WINDOW 
+Todo bien
