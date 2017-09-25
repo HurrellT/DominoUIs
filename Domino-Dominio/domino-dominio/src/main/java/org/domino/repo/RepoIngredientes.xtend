@@ -2,7 +2,9 @@ package org.domino.repo
 
 import org.uqbar.commons.model.CollectionBasedRepo
 import org.domino.dominio.Ingrediente
+import org.uqbar.commons.model.annotations.Observable
 
+@Observable
 class RepoIngredientes extends CollectionBasedRepo<Ingrediente>{
 	
 	def void create(String nombreI, int precioI, String distribucion){
@@ -21,4 +23,7 @@ class RepoIngredientes extends CollectionBasedRepo<Ingrediente>{
 		typeof(Ingrediente)
 	}
 	
+	def getIngredientes(){
+		allInstances
+	}
 }

@@ -25,6 +25,7 @@ import org.uqbar.commons.model.annotations.Transactional
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.domino.model.PedidoApplicationModel
+import org.domino.model.PlatoApplicationModel
 
 @Transactional
 class EditarPedidoWindow extends TransactionalDialog<PedidoApplicationModel> {
@@ -193,11 +194,11 @@ class EditarPedidoWindow extends TransactionalDialog<PedidoApplicationModel> {
 // ** Acciones
 // ********************************************************
 	def editarPlato() {
-		this.openDialog(new EditarPlatoWindow(this, modelObject.platoSeleccionado, modelObject))
+		this.openDialog(new EditarPlatoWindow(this,new PlatoApplicationModel(modelObject.platoSeleccionado),modelObject))
 	}
 
 	def crearPlato() {
-		this.openDialog(new CrearPlatoWindow(this, modelObject))
+		this.openDialog(new CrearPlatoWindow(this, new PlatoApplicationModel(new Plato),modelObject))
 	}
 
 	def openDialog(Dialog<?> dialog) {

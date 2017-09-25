@@ -21,12 +21,18 @@ import org.uqbar.commons.applicationContext.ApplicationContext
 import org.uqbar.commons.model.annotations.Observable
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.arena.windows.Dialog
+import org.uqbar.arena.widgets.tables.Table
+import org.domino.dominio.Ingrediente
+import org.uqbar.arena.widgets.tables.Column
+import org.domino.model.PlatoApplicationModel
+import org.domino.model.IngredienteApplicationModel
 
-class EditarPlatoWindow extends TransactionalDialog<Plato> {
+class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 
 	PedidoApplicationModel pedido
 
-	new(WindowOwner owner, Plato model, PedidoApplicationModel pedido) {
+	new(WindowOwner owner, PlatoApplicationModel model, PedidoApplicationModel pedido) {
 		super(owner, model)
 		title = defaultTitle
 		this.pedido = pedido
@@ -59,7 +65,7 @@ class EditarPlatoWindow extends TransactionalDialog<Plato> {
 
 		new Label(panelPrecio).text = "Precio: $"
 		new Label(panelPrecio) => [
-			value <=> "montoTotal"
+			value <=> "plato.montoTotal"
 		]
 
 		val panelFinal = new Panel(mainPanel).layout = new HorizontalLayout
@@ -76,7 +82,7 @@ class EditarPlatoWindow extends TransactionalDialog<Plato> {
 
 		new Selector<Pizza>(superiorPanel) => [
 			allowNull(false)
-			value <=> "pizza"
+			value <=> "pizzaSeleccionada"
 			bindItems(new ObservableProperty(repoPizzas, "pizzas")).adaptWith(typeof(Pizza), "nombre")
 			width = 100
 		]
@@ -85,17 +91,40 @@ class EditarPlatoWindow extends TransactionalDialog<Plato> {
 
 		new Selector<Tamanio>(superiorPanel) => [
 			allowNull(false)
-			value <=> "tamanio"
+			value <=> "plato.tamanio"
 			bindItems(new ObservableProperty(repoTamanios, "tamanios")).adaptWith(typeof(Tamanio), "nombre")
 			width = 100
 		]
 	}
 
-// ********************************************************
-// ** Creacion del panel de ingredientes
-// ********************************************************
+//// ********************************************************
+//// ** Creacion del panel de ingredientes
+//// ********************************************************
 	def crearPanelIngredientes(Panel ingredientesPanel) {
-		new Label(ingredientesPanel).text = "Agregados"
+      	val table = new Table<Ingrediente>(ingredientesPanel, typeof(Ingrediente)) => [
+			items <=> "ingredientesDelPlato"
+			value <=> "ingredienteSeleccionado"
+			
+		]
+		describirIngredientes(table)
+	}
+	
+	def describirIngredientes(Table<Ingrediente> table) {
+		new Column(table)=> [
+			title = "Ingrediente"
+			fixedSize = 100
+			bindContentsToProperty("nombre")
+			]
+		new Column(table)=>[
+			title = "Precio"
+			fixedSize = 100
+			bindContentsToProperty("precio")
+		]
+		new Column(table)=>[
+			title = "Distribucion"
+			fixedSize = 100
+			bindContentsToProperty("distribucionElegida")
+		]
 	}
 
 // ********************************************************
@@ -106,7 +135,9 @@ class EditarPlatoWindow extends TransactionalDialog<Plato> {
 			caption = 'Aceptar'
 			width = 60
 
-			onClick[this.accept]
+			onClick[
+				this.accept
+			]
 		]
 		new Button(panelFinal) => [
 			caption = 'Cancelar'
@@ -114,19 +145,34 @@ class EditarPlatoWindow extends TransactionalDialog<Plato> {
 
 			onClick[close]
 		]
+		new Button(panelFinal) => [
+			caption = 'Agregar Ingrediente'
+			width = 60
+
+			onClick[this.agregarIngrediente]
+		]
 	}
 	
+	def agregarIngrediente() {
+		this.openDialog(new AgregarIngredienteWindow(this, new IngredienteApplicationModel(modelObject.plato)))
+	}
+	
+		def openDialog(Dialog<?> dialog) {
+		dialog.onAccept[modelObject.actualizar]
+		dialog.open
+	}
+
 // ********************************************************
 // ** Acciones
 // ********************************************************	
-	
 	override executeTask() {
 		if (!pedido.pedido.platos.contains(modelObject)) {
-			this.pedido.pedido.agregarPlato(modelObject)
+			this.pedido.pedido.agregarPlato(modelObject.plato)
 		} else {
 			this.pedido.pedido.platos.remove(modelObject)
-			this.pedido.pedido.platos.add(modelObject)
+			this.pedido.pedido.platos.add(modelObject.plato)
 		}
+		pedido.pedido.montoTotal
 		super.executeTask()
 	}
 

@@ -30,7 +30,7 @@ class Plato extends Entity{
 	def agregarIngredienteExtra(Ingrediente ingred) {
 		this.ingredientes.add(ingred)
 	}
-
+	
 	def montoTotal() {
 		var monto = 0.0
 		val custom = 70.0

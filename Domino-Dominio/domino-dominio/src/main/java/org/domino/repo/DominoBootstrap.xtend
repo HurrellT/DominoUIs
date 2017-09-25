@@ -58,7 +58,7 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 		val pizza1 = repoPizzas.allInstances.get(0)
 		val pizza2 = repoPizzas.allInstances.get(1)
 		val pizza3 = repoPizzas.allInstances.get(2)
-
+		
 		val tamanioGrande = new Tamanio("Grande", 1)
 		val tamanioChico = new Tamanio("Chica", 0.5)
 		val tamanioFamiliar = new Tamanio("Familiar", 1.25)
@@ -75,6 +75,11 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 			create("Salchichas", 35, "Toda la Pizza")
 		]
 
+		pizza1.agregar(repoIngredientes.allInstances.get(1))
+		pizza1.agregar(repoIngredientes.allInstances.get(0))
+		pizza2.agregar(repoIngredientes.allInstances.get(3))
+		pizza3.agregar(repoIngredientes.allInstances.get(4))
+		pizza2.agregar(repoIngredientes.allInstances.get(2))
 		repoPedidos => [
 			create(cliente1, LocalDateTime.now, "Primer pedido", delivery)
 			create(cliente2, LocalDateTime.now, "Segundo pedido", delivery)

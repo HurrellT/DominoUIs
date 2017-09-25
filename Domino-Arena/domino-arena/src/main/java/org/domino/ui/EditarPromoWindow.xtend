@@ -63,7 +63,7 @@ class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel> {
 		val tabla = new Table<Ingrediente>(panelIngredientes, typeof(Ingrediente)) => [
 			items <=> "pizza.ingredientes"
 			value <=> "ingredienteSeleccionado"
-			minWidth = 500
+			width = 300
 		]
 
 		this.describirIngredientes(tabla)
@@ -82,19 +82,19 @@ class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel> {
 		new Column(table) => [
 			title = "Nombre"
 			bindContentsToProperty("nombre")
-			fixedSize = 100
+			fixedSize = 150
 		]
 
 		new Column(table) => [
 			title = "Precio"
 			bindContentsToProperty("precio")
-			fixedSize = 100
+			fixedSize = 150
 		]
 
 		new Column(table) => [
 			title = "Distribucion"
 			bindContentsToProperty("distribucionElegida")
-			fixedSize = 100
+			fixedSize = 150
 		]
 	}
 
