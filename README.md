@@ -26,7 +26,6 @@ CREAR PLATO WINDOW
 
 EDITAR PLATO WINDOW
 
-- No esta hecho el panel que muestra los ingredientes
 - No se muestra el tamanio en el Selector (aunque funciona, si cambia el tamaño)
 
 
@@ -52,3 +51,7 @@ agregue la linea 209 en DOMINO PIZZA WINDOW
 EDITAR INGREDIENTE WINDOW 
 
 - Todo bien
+
+AGREGAR INGREDIENTE WINDOW
+
+-Falta ordenar paneles, y que actualice.
