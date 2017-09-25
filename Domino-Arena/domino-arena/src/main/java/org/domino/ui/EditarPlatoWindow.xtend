@@ -30,12 +30,12 @@ import org.domino.model.IngredienteApplicationModel
 
 class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 
-	PedidoApplicationModel pedido
+	public PedidoApplicationModel pedidoApplication
 
 	new(WindowOwner owner, PlatoApplicationModel model, PedidoApplicationModel pedido) {
 		super(owner, model)
 		title = defaultTitle
-		this.pedido = pedido
+		this.pedidoApplication = pedido
 	}
 
 	def defaultTitle() {
@@ -82,8 +82,8 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 
 		new Selector<Pizza>(superiorPanel) => [
 			allowNull(false)
-			value <=> "pizzaSeleccionada"
 			bindItems(new ObservableProperty(repoPizzas, "pizzas")).adaptWith(typeof(Pizza), "nombre")
+			value <=> "plato.pizza"
 			width = 100
 		]
 
@@ -91,8 +91,8 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 
 		new Selector<Tamanio>(superiorPanel) => [
 			allowNull(false)
-			value <=> "plato.tamanio"
 			bindItems(new ObservableProperty(repoTamanios, "tamanios")).adaptWith(typeof(Tamanio), "nombre")
+			value <=> "plato.tamanio"
 			width = 100
 		]
 	}
@@ -101,26 +101,26 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 //// ** Creacion del panel de ingredientes
 //// ********************************************************
 	def crearPanelIngredientes(Panel ingredientesPanel) {
-      	val table = new Table<Ingrediente>(ingredientesPanel, typeof(Ingrediente)) => [
+		val table = new Table<Ingrediente>(ingredientesPanel, typeof(Ingrediente)) => [
 			items <=> "ingredientesDelPlato"
 			value <=> "ingredienteSeleccionado"
-			
+
 		]
-		describirIngredientes(table)
+		this.describirIngredientes(table)
 	}
-	
+
 	def describirIngredientes(Table<Ingrediente> table) {
-		new Column(table)=> [
+		new Column(table) => [
 			title = "Ingrediente"
 			fixedSize = 100
 			bindContentsToProperty("nombre")
-			]
-		new Column(table)=>[
+		]
+		new Column(table) => [
 			title = "Precio"
 			fixedSize = 100
 			bindContentsToProperty("precio")
 		]
-		new Column(table)=>[
+		new Column(table) => [
 			title = "Distribucion"
 			fixedSize = 100
 			bindContentsToProperty("distribucionElegida")
@@ -134,48 +134,44 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 		new Button(panelFinal) => [
 			caption = 'Aceptar'
 			width = 60
-
-			onClick[
-				this.accept
-			]
+			onClick[this.accept]
 		]
+
 		new Button(panelFinal) => [
 			caption = 'Cancelar'
 			width = 60
-
-			onClick[close]
+			onClick[this.close]
 		]
+
 		new Button(panelFinal) => [
 			caption = 'Agregar Ingrediente'
 			width = 60
-
 			onClick[this.agregarIngrediente]
 		]
-	}
-	
-	def agregarIngrediente() {
-		this.openDialog(new AgregarIngredienteWindow(this, new IngredienteApplicationModel(modelObject.plato)))
-	}
-	
-		def openDialog(Dialog<?> dialog) {
-		dialog.onAccept[modelObject.actualizar]
-		dialog.open
 	}
 
 // ********************************************************
 // ** Acciones
 // ********************************************************	
-	override executeTask() {
-		if (!pedido.pedido.platos.contains(modelObject)) {
-			this.pedido.pedido.agregarPlato(modelObject.plato)
-		} else {
-			this.pedido.pedido.platos.remove(modelObject)
-			this.pedido.pedido.platos.add(modelObject.plato)
-		}
-		pedido.pedido.montoTotal
-		super.executeTask()
+	def agregarIngrediente() {
+		this.openDialog(new AgregarIngredienteWindow(this, new IngredienteApplicationModel(modelObject.plato)))
 	}
 
+	def openDialog(Dialog<?> dialog) {
+		dialog.open
+		dialog.onAccept[modelObject.actualizar]
+	}
+
+//	override executeTask() {
+//		if (!pedidoApplication.pedido.platos.contains(modelObject.plato)) {
+//			this.pedidoApplication.pedido.agregarPlato(modelObject.plato)
+//		} else {
+//			this.pedidoApplication.pedido.platos.remove(modelObject)
+//			this.pedidoApplication.pedido.platos.add(modelObject.plato)
+//		}
+//		pedidoApplication.pedido.montoTotal
+//		super.executeTask()
+//	}
 // ********************************************************
 // ** Repositorios
 // ********************************************************

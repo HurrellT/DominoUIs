@@ -203,6 +203,7 @@ class EditarPedidoWindow extends TransactionalDialog<PedidoApplicationModel> {
 
 	def openDialog(Dialog<?> dialog) {
 		dialog.open
+		//dialog.onAccept[modelObject.actualizar]
 	}
 
 	override executeTask() {

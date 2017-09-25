@@ -20,11 +20,12 @@ import org.domino.repo.RepoIngredientes
 import org.uqbar.arena.widgets.Button
 
 class AgregarIngredienteWindow extends TransactionalDialog<IngredienteApplicationModel> {
-	PlatoApplicationModel plato
+	
+	PlatoApplicationModel platoApplication
 
 	new(WindowOwner owner, IngredienteApplicationModel model) {
 		super(owner, model)
-		this.plato = plato
+		this.platoApplication = platoApplication
 	}
 
 	override protected createFormPanel(Panel mainPanel) {
@@ -49,10 +50,8 @@ class AgregarIngredienteWindow extends TransactionalDialog<IngredienteApplicatio
 		new Panel(panelIngrediente) => [
 			layout = new HorizontalLayout
 			new List(it) => [
-				bindItems(new ObservableProperty(repoIngredientes, "ingredientes")).adaptWith(typeof(Ingrediente),
-					"nombre")
+				bindItems(new ObservableProperty(repoIngredientes, "ingredientes")).adaptWith(typeof(Ingrediente), "nombre")
 				value <=> "ingredienteSeleccionado"
-
 			]
 		]
 
@@ -62,9 +61,8 @@ class AgregarIngredienteWindow extends TransactionalDialog<IngredienteApplicatio
 	def crearBotones(Panel panel) {
 		new Button(panel) => [
 			caption = "Aceptar"
-			onClick [
-				this.accept
-			//modelObject.plato.agregarIngredienteExtra(modelObject.ingredienteSeleccionado)
+			onClick [this.accept
+			modelObject.actualizar
 			]
 		]
 		new Button(panel) => [
@@ -77,11 +75,11 @@ class AgregarIngredienteWindow extends TransactionalDialog<IngredienteApplicatio
 		ApplicationContext.instance.getSingleton(typeof(Ingrediente))
 	}
 
-	override executeTask() {
-		modelObject.actualizar()
-		
-		super.executeTask()
-	}
+//	override executeTask() {
+//		modelObject.actualizar()
+//		
+//		super.executeTask()
+//	}
 
 }
 

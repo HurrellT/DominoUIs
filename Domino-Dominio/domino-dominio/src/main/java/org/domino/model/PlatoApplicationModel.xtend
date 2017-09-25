@@ -11,11 +11,10 @@ import org.domino.dominio.Plato
 @Observable
 class PlatoApplicationModel {
 
-	Ingrediente ingredienteSeleccionado
-	Pizza pizzaSeleccionada
-	List<Ingrediente> ingredientesDisponibles
 	Plato plato
-
+	Pizza pizzaSeleccionada
+	Ingrediente ingredienteSeleccionado
+	List<Ingrediente> ingredientesDisponibles
 	List<Ingrediente> ingredientesDelPlato
 
 	new(Plato plato) {
