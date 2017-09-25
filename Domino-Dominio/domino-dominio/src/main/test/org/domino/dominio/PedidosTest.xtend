@@ -1,12 +1,11 @@
 package org.domino.dominio
 
-import java.text.SimpleDateFormat
-import java.util.Date
+import java.time.LocalDateTime
 import org.junit.Test
 
 import static org.junit.Assert.*
+import static org.mockito.Matchers.*
 import static org.mockito.Mockito.*
-import java.time.LocalDateTime
 
 class PedidosTest {
 
@@ -67,7 +66,7 @@ class PedidosTest {
 		pedido1.agregarPlato(plato1)
 		pedido1.agregarPlato(plato2)
 
-		assertEquals(35, pedido1.montoTotal())
+		assertEquals(35.0, pedido1.montoTotal,1)
 	}
 
 	@Test
@@ -80,7 +79,7 @@ class PedidosTest {
 		pedido2.agregarPlato(plato1)
 		pedido2.agregarPlato(plato2)
 		
-		assertEquals(50, pedido2.montoTotal())
+		assertEquals(50 as float, pedido2.montoTotal,1)
 	}
 	
 	@Test

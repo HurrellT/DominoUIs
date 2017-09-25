@@ -5,6 +5,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
 import org.uqbar.commons.model.Entity
+import org.uqbar.commons.model.exceptions.UserException
 
 @Accessors
 @TransactionalAndObservable
@@ -44,5 +45,14 @@ class Plato extends Entity{
 			monto += ing.precio
 		}
 		monto
+	}
+	
+	def getPizza() {
+		if (pizza == null) {
+			throw new UserException("Seleccione una Pizza")
+		}
+		else {
+			this.pizza
+		}
 	}
 }

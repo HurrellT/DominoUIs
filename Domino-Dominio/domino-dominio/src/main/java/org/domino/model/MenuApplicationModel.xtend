@@ -9,6 +9,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.applicationContext.ApplicationContext
 import org.uqbar.commons.model.annotations.Dependencies
 import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.utils.ObservableUtils
 
 @Accessors
 @Observable
@@ -55,6 +56,9 @@ class MenuApplicationModel extends ApplicationContext {
 		
 	 	promos = repoPromos.allInstances
 	 	ingredientes = repoIngredientes.allInstances
+	 	
+	 	ObservableUtils.firePropertyChanged(this,"promos",this.promos)
+	 	ObservableUtils.firePropertyChanged(this,"ingredientes",this.ingredientes)
 	}
 
 }

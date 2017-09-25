@@ -18,6 +18,7 @@ import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.commons.applicationContext.ApplicationContext
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.arena.widgets.NumericField
 
 class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel> {
 
@@ -30,7 +31,7 @@ class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel> {
 // ********************************************************
 	override protected createFormPanel(Panel mainPanel) {
 
-		title = 'Promo'
+		this.title = 'Promo'
 
 		mainPanel.layout = new VerticalLayout
 
@@ -51,7 +52,7 @@ class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel> {
 
 		new Label(panelPrecio).text = "Precio"
 
-		new TextBox(panelPrecio) => [
+		new NumericField(panelPrecio) => [
 			value <=> "pizza.precio"
 			width = 200
 		]

@@ -21,6 +21,7 @@ import org.uqbar.commons.applicationContext.ApplicationContext
 import org.uqbar.commons.model.annotations.Observable
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.commons.model.annotations.Dependencies
 
 class EditarPlatoWindow extends TransactionalDialog<Plato> {
 
