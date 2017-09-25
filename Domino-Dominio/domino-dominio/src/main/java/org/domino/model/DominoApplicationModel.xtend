@@ -45,7 +45,7 @@ class DominoApplicationModel extends ApplicationContext {
 		var repoPedidos = ApplicationContext.instance.getSingleton(typeof(Pedido)) as RepoPedidos
 		
 	 	pedidosAbiertos = repoPedidos.allInstances.stream.filter[p | p.esAbierto].collect(Collectors.toList)
-	 	pedidosCerrados = repoPedidos.allInstances.stream.filter[p | !p.esAbierto].collect(Collectors.toList)
+	 	pedidosCerrados = repoPedidos.allInstances.stream.filter[p | !(p.esAbierto)].collect(Collectors.toList)
 	}
 
 }
