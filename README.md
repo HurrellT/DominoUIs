@@ -21,7 +21,7 @@ EDITAR PEDIDO WINDOW
 
 CREAR PLATO WINDOW
 
-- No agrega ningun plato (aunque funciona la ventana)
+- Agregamos platos pero no muestra los precios (Hay problemas con montoTotal)
 
 
 EDITAR PLATO WINDOW
@@ -40,6 +40,7 @@ MOSTRAR MENU WINDOW
 - Funciona todo, pero hay que cerrar y volver a abrir la ventana para verlo. Ademas, los ingredientes 
 se eliminan al instante, mietras que las promos hay que cerrar y volver a entrar 
 (aunque estan hechas iguales!!!)
+- Al crear una pizza nueva, el precio no se refleja en Plato Window
 
 
 PEDIDOS CERRADOS WINDOW
