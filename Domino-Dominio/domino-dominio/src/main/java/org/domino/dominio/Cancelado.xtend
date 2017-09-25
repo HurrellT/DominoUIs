@@ -27,4 +27,8 @@ class Cancelado implements EstadoPedido {
 
 	}
 	
+	override esPreparando() {
+		false
+	}
+	
 }

@@ -16,9 +16,13 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.lacar.ui.model.bindings.Observable
+import org.uqbar.arena.bindings.NotNullObservable
 
 class PedidosCerradosWindow extends TransactionalDialog<DominoApplicationModel> {
 
+	val pedidoSeleccionado = new NotNullObservable("pedidoSeleccionado")
+	
 	new(WindowOwner owner, DominoApplicationModel model) {
 		super(owner, model)
 		modelObject.actualizar
@@ -93,7 +97,7 @@ class PedidosCerradosWindow extends TransactionalDialog<DominoApplicationModel> 
 		new Button(panel) => [
 			caption = 'Ver  '
 			alignRight
-			enabled <=> "hayPedidoSeleccionado"
+			bindEnabled(pedidoSeleccionado)
 			onClick [this.crearEditarPedidoWindow]
 		]
 

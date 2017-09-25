@@ -25,5 +25,9 @@ class Preparando implements EstadoPedido {
 	override esEntregado() {
 		false
 	}
+	
+	override esPreparando() {
+		true
+	}
 
 }

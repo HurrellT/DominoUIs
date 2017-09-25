@@ -12,6 +12,8 @@ interface EstadoPedido{
 	def boolean esEntregado()
 
 	def String getNombre()
+	
+	def boolean esPreparando()
 
 	
 }

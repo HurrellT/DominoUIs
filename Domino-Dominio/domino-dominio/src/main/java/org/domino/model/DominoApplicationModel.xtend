@@ -30,11 +30,25 @@ class DominoApplicationModel extends ApplicationContext {
 		pedidos = ApplicationContext.instance.getSingleton(typeof(Pedido))
 	}
 	
-	@Dependencies("pedidoSeleccionado")
-	def getHayPedidoSeleccionado() {
-		pedidoSeleccionado !== null
+	@Dependencies("pedidoSeleccionado.estado","pedidoSeleccionado")
+	def getTieneEstadoAnterior() {
+		if (pedidoSeleccionado !== null) {
+			!this.pedidoSeleccionado.estado.esPreparando()
+		}
+		else {
+			false
+		}
 	}
 	
+	@Dependencies("tieneEstadoAnterior")
+	def getPuedeTenerEstadoAnterior() {
+		if (pedidoSeleccionado !== null) {
+			this.tieneEstadoAnterior
+		}
+		else {
+			false
+		}
+	}
 	
 	
 	/*

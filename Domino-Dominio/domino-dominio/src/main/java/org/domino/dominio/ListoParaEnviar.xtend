@@ -22,7 +22,9 @@ class ListoParaEnviar implements EstadoPedido {
 		false
 	}
 	
-
+	override esPreparando() {
+		false
+	}
 
 	override getNombre() {
 		"Listo Para Enviar"

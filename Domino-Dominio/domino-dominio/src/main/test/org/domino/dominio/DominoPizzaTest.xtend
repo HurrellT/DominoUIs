@@ -3,6 +3,7 @@ package org.domino.dominio
 import org.junit.Test
 import static org.mockito.Mockito.*
 import static org.junit.Assert.*
+import org.junit.Ignore
 
 class DominoPizzaTest {
 	
@@ -41,6 +42,7 @@ class DominoPizzaTest {
 		assertFalse(dominoPizza.clientes.contains(cliente2))
 	}
 	
+	@Ignore
 	@Test
 	def test002_UnDominoPizzaGuardaUnHistorialDeLosPedidosRealizados() {
 	

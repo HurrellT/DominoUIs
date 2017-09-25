@@ -6,6 +6,7 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.Entity
 import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.utils.ObservableUtils
 
 @Accessors
 @Observable

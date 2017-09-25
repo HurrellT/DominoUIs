@@ -6,6 +6,7 @@ import org.domino.dominio.Pedido
 import org.domino.model.DominoApplicationModel
 import org.domino.model.MenuApplicationModel
 import org.domino.model.PedidoAplicationModel
+import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
@@ -17,10 +18,13 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.commons.model.utils.ObservableUtils
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 class DominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
+
+	val elementoSeleccionado = new NotNullObservable("pedidoSeleccionado")
 
 	new(WindowOwner owner) {
 		super(owner, new DominoApplicationModel)
@@ -128,10 +132,15 @@ class DominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 // ** Creacion del primer panel de botones
 // ********************************************************
 	def crearBotones1(Panel buttonPanel1) {
+		
+		
+		
 		new Button(buttonPanel1) => [
 			caption = '<<'
 			width = 50
+			enabled <=> "puedeTenerEstadoAnterior"
 			onClick[modelObject.pedidoSeleccionado.anteriorEstado
+				ObservableUtils.firePropertyChanged(this.modelObject,"pedidoSeleccionado.estado",this.modelObject.pedidoSeleccionado.estado)
 				modelObject.actualizar
 			]
 		]
@@ -139,7 +148,9 @@ class DominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 		new Button(buttonPanel1) => [
 			caption = '>>'
 			width = 50
+			bindEnabled(elementoSeleccionado)
 			onClick[modelObject.pedidoSeleccionado.siguienteEstado
+				ObservableUtils.firePropertyChanged(this.modelObject,"pedidoSeleccionado.estado",this.modelObject.pedidoSeleccionado.estado)
 				modelObject.actualizar
 			]
 		]
@@ -152,7 +163,7 @@ class DominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 		new Button(buttonPanel2) => [
 			caption = 'Cancelar'
 			width = 110
-			enabled <=> 'hayPedidoSeleccionado'
+			bindEnabled(elementoSeleccionado)
 			onClick[
 				modelObject.pedidoSeleccionado.cancelar
 				modelObject.actualizar
@@ -162,7 +173,7 @@ class DominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 		new Button(buttonPanel2) => [
 			caption = 'Editar'
 			width = 110
-			enabled <=> "hayPedidoSeleccionado"
+			bindEnabled(elementoSeleccionado)
 			onClick [this.crearEditarPedidoWindow]
 		]
 	}

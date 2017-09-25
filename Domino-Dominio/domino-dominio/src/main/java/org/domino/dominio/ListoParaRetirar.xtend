@@ -22,7 +22,9 @@ class ListoParaRetirar implements EstadoPedido {
 		false
 	}
 	
-
+	override esPreparando() {
+		false
+	}
 
 	override getNombre() {
 		"Listo Para Retirar"

@@ -24,4 +24,8 @@ class Entregado implements EstadoPedido {
 		"Entregado"
 	}
 
+	override esPreparando() {
+		false
+	}
+
 }

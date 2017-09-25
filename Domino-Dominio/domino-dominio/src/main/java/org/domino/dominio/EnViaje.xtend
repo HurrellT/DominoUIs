@@ -30,5 +30,8 @@ class EnViaje implements EstadoPedido {
 		"En Viaje"
 	}
 
+	override esPreparando() {
+		false
+	}
 }
 
