@@ -131,13 +131,17 @@ class DominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 		new Button(buttonPanel1) => [
 			caption = '<<'
 			width = 50
-			onClick[modelObject.pedidoSeleccionado.anteriorEstado]
+			onClick[modelObject.pedidoSeleccionado.anteriorEstado
+				modelObject.actualizar
+			]
 		]
 
 		new Button(buttonPanel1) => [
 			caption = '>>'
 			width = 50
-			onClick[modelObject.pedidoSeleccionado.siguienteEstado]
+			onClick[modelObject.pedidoSeleccionado.siguienteEstado
+				modelObject.actualizar
+			]
 		]
 	}
 

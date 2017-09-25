@@ -73,7 +73,7 @@ class Pedido extends Entity {
 	}
 	
 	def esAbierto() {
-		!this.estado.esCancelado || this.estado.esEntregado
+		!(this.estado.esCancelado || this.estado.esEntregado)
 	}
 
 }
