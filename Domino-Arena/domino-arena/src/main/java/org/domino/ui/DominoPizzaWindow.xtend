@@ -74,6 +74,7 @@ class DominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 		val table = new Table<Pedido>(panel, typeof(Pedido)) => [
 			items <=> "pedidosAbiertos"
 			value <=> "pedidoSeleccionado"
+			
 		]
 		describirPedidosAbiertos(table)
 	}
@@ -81,7 +82,7 @@ class DominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 	def describirPedidosAbiertos(Table<Pedido> table) {
 		new Column(table) => [
 			title = "Pedido"
-			fixedSize = 200
+			fixedSize = 100
 			bindContentsToProperty("numeroDePedido").transformer = [ Integer i |
 				"Pedido #" + i
 			]
@@ -89,19 +90,19 @@ class DominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 
 		new Column(table) => [
 			title = "Estado"
-			fixedSize = 200
+			fixedSize = 100
 			bindContentsToProperty("estado").transformer = [EstadoPedido e|e.nombre]
 		]
 
 		new Column(table) => [
 			title = "Monto"
-			fixedSize = 200
+			fixedSize = 100
 			bindContentsToProperty("montoTotal")
 		]
 
 		new Column(table) => [
 			title = "Hora"
-			fixedSize = 200
+			fixedSize = 100
 			bindContentsToProperty("fecha").transformer = [ LocalDateTime f |
 				{
 					var horas = f.hour
