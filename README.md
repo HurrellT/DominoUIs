@@ -11,8 +11,6 @@ Colaboradores:
 DOMINO PIZZA WINDOW
 
 - Tarda en actualizar los pedidos (hay que darle al Mega Refresh Button X2000)
-- Al querer pasar al siguiente estado de Entregado (>>), al anterior estado de Entregado (<<) 
-o al anterior estado de Preparando (<<), tira NullPointer Exception 
 
 
 EDITAR PEDIDO WINDOW
