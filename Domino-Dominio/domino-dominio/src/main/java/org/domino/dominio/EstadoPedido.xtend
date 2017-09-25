@@ -1,6 +1,8 @@
 package org.domino.dominio
 
-interface EstadoPedido{
+import org.uqbar.commons.model.Entity
+
+abstract class EstadoPedido extends Entity {
 	
 	def EstadoPedido siguienteEstado(Pedido pedido)
 	

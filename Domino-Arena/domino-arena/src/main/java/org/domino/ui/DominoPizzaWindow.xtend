@@ -5,7 +5,6 @@ import org.domino.dominio.EstadoPedido
 import org.domino.dominio.Pedido
 import org.domino.model.DominoApplicationModel
 import org.domino.model.MenuApplicationModel
-import org.domino.model.PedidoAplicationModel
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
@@ -21,6 +20,7 @@ import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.commons.model.utils.ObservableUtils
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.domino.model.PedidoApplicationModel
 
 class DominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 
@@ -214,7 +214,7 @@ class DominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 // ** Acciones
 // ********************************************************
 	def crearEditarPedidoWindow() {
-		this.openDialog(new EditarPedidoWindow(this, new PedidoAplicationModel(modelObject.pedidoSeleccionado)))
+		this.openDialog(new EditarPedidoWindow(this, new PedidoApplicationModel(modelObject.pedidoSeleccionado)))
 	}
 
 	def crearMostrarMenuWindow() {

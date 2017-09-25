@@ -4,7 +4,6 @@ import java.time.LocalDateTime
 import org.domino.dominio.EstadoPedido
 import org.domino.dominio.Pedido
 import org.domino.model.DominoApplicationModel
-import org.domino.model.PedidoAplicationModel
 import org.uqbar.arena.aop.windows.TransactionalDialog
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
@@ -18,6 +17,7 @@ import org.uqbar.arena.windows.WindowOwner
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.lacar.ui.model.bindings.Observable
 import org.uqbar.arena.bindings.NotNullObservable
+import org.domino.model.PedidoApplicationModel
 
 class PedidosCerradosWindow extends TransactionalDialog<DominoApplicationModel> {
 
@@ -112,7 +112,7 @@ class PedidosCerradosWindow extends TransactionalDialog<DominoApplicationModel> 
 // ** Acciones
 // ********************************************************
 	def crearEditarPedidoWindow() {
-		this.openDialog(new EditarPedidoWindow(this, new PedidoAplicationModel(modelObject.pedidoSeleccionado)))
+		this.openDialog(new EditarPedidoWindow(this, new PedidoApplicationModel(modelObject.pedidoSeleccionado)))
 	}
 
 	def openDialog(Dialog<?> dialog) {

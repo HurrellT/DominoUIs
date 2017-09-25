@@ -4,7 +4,7 @@ import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.Entity
 
 @Observable
-class Cancelado implements EstadoPedido {
+class Cancelado extends EstadoPedido {
 	
 	override siguienteEstado(Pedido pedido) {
 		

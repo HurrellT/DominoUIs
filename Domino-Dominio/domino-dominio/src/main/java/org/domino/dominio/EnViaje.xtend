@@ -1,10 +1,9 @@
 package org.domino.dominio
 
-import org.domino.dominio.EstadoPedido
 import org.uqbar.commons.model.annotations.Observable
 
 @Observable
-class EnViaje implements EstadoPedido {
+class EnViaje extends EstadoPedido {
 	
 	
 	override siguienteEstado(Pedido pedido) {

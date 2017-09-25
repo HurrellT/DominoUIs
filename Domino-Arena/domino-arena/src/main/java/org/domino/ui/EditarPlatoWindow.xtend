@@ -4,6 +4,7 @@ import java.util.List
 import org.domino.dominio.Pizza
 import org.domino.dominio.Plato
 import org.domino.dominio.Tamanio
+import org.domino.model.PedidoApplicationModel
 import org.domino.repo.RepoPizzas
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.arena.aop.windows.TransactionalDialog
@@ -23,9 +24,12 @@ import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 class EditarPlatoWindow extends TransactionalDialog<Plato> {
 
-	new(WindowOwner owner, Plato model) {
+	PedidoApplicationModel pedido
+
+	new(WindowOwner owner, Plato model, PedidoApplicationModel pedido) {
 		super(owner, model)
 		title = defaultTitle
+		this.pedido = pedido
 	}
 
 	def defaultTitle() {
@@ -71,12 +75,13 @@ class EditarPlatoWindow extends TransactionalDialog<Plato> {
 		new Label(superiorPanel).text = "Pizza"
 
 		new Selector<Pizza>(superiorPanel) => [
+			allowNull(false)
 			value <=> "pizza"
 			bindItems(new ObservableProperty(repoPizzas, "pizzas")).adaptWith(typeof(Pizza), "nombre")
 			width = 100
 		]
 
-		new Label(superiorPanel).text = "Tamanio"
+		new Label(superiorPanel).text = "Tamaño"
 
 		new Selector<Tamanio>(superiorPanel) => [
 			allowNull(false)
@@ -91,67 +96,6 @@ class EditarPlatoWindow extends TransactionalDialog<Plato> {
 // ********************************************************
 	def crearPanelIngredientes(Panel ingredientesPanel) {
 		new Label(ingredientesPanel).text = "Agregados"
-
-	// val table = new Table<Ingrediente>(ingredientesPanel, typeof(Ingrediente)) => [
-	// items <=> "pedido.platos"
-	// value <=> "platoSeleccionado"
-	// ]
-	// this.describirTablaDeIngredientes(table)
-//		val ingredientePanel1 = new Panel(checkBoxPanel).layout = new HorizontalLayout
-//
-//		new CheckBox(ingredientePanel1) => [
-////		 			enabled <=> "asdasd"
-////					value <=> "asd"
-//		]
-//
-//		new Label(ingredientePanel1).text = "Jamon"
-//
-//		new RadioSelector(ingredientePanel1) => [
-////		 			bindItems(new ObservableProperty(this,"distribuciones"))
-////					bindValueToProperty("distribucionElegida")
-//		]
-//
-//		val ingredientePanel2 = new Panel(checkBoxPanel).layout = new HorizontalLayout
-//
-//		new CheckBox(ingredientePanel2) => [
-////		 			enabled <=> "asdasd"
-////					value <=> "asd"
-//		]
-//
-//		new Label(ingredientePanel2).text = "Anana"
-//
-//		new RadioSelector(ingredientePanel2) => [
-////		 			bindItems(new ObservableProperty(this,"distribuciones"))
-////					bindValueToProperty("distribucionElegida")
-//		]
-//
-//		val ingredientePanel3 = new Panel(checkBoxPanel).layout = new HorizontalLayout
-//
-//		new CheckBox(ingredientePanel3) => [
-////		 			enabled <=> "asdasd"
-////					value <=> "asd"
-//		]
-//
-//		new Label(ingredientePanel3).text = "Morrones"
-//
-//		new RadioSelector(ingredientePanel3) => [
-////		 			bindItems(new ObservableProperty(this,"distribuciones"))
-////					bindValueToProperty("distribucionElegida")
-//		]
-//
-//		val ingredientePanel4 = new Panel(checkBoxPanel).layout = new HorizontalLayout
-//
-//		new CheckBox(ingredientePanel4) => [
-////		 			enabled <=> "asdasd"
-////					value <=> "asd"
-//		]
-//
-//		new Label(ingredientePanel4).text = "Queso"
-//
-//		new RadioSelector(ingredientePanel4) => [
-////		 			bindItems(new ObservableProperty(this,"distribuciones"))
-////					bindValueToProperty("distribucionElegida")
-//		]
 	}
 
 // ********************************************************
@@ -170,6 +114,20 @@ class EditarPlatoWindow extends TransactionalDialog<Plato> {
 
 			onClick[close]
 		]
+	}
+	
+// ********************************************************
+// ** Acciones
+// ********************************************************	
+	
+	override executeTask() {
+		if (!pedido.pedido.platos.contains(modelObject)) {
+			this.pedido.pedido.agregarPlato(modelObject)
+		} else {
+			this.pedido.pedido.platos.remove(modelObject)
+			this.pedido.pedido.platos.add(modelObject)
+		}
+		super.executeTask()
 	}
 
 // ********************************************************
@@ -201,7 +159,3 @@ class RepoTamanios {
 	]
 
 }
-//ACA FALTA UN REPO, Va a haber que hacer un repo para poder hacer esta ventana
-//reutilizable. Ademas para no tocar las cosas del dominio, que es donde estamos
-//guardando todo
-//		modelObject.pedido.platos.add(new Plato())

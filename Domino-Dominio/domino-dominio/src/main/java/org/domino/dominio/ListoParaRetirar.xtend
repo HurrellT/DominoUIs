@@ -3,7 +3,7 @@ package org.domino.dominio
 import org.uqbar.commons.model.annotations.Observable
 
 @Observable
-class ListoParaRetirar implements EstadoPedido {
+class ListoParaRetirar extends EstadoPedido {
 
 	override siguienteEstado(Pedido pedido) {
 		new Entregado

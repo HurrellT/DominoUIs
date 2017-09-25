@@ -6,10 +6,11 @@ import org.domino.dominio.Plato
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Dependencies
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import java.util.List
 
 @Accessors
 @TransactionalAndObservable
-class PedidoAplicationModel {
+class PedidoApplicationModel {
 
 	Pedido pedido
 	Plato platoSeleccionado
@@ -42,4 +43,5 @@ class PedidoAplicationModel {
 		this.estadoSeleccionado = estadoNuevo
 		pedido.estado = estadoNuevo
 	}
+	
 }

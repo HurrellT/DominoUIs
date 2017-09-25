@@ -3,7 +3,7 @@ package org.domino.dominio
 import org.uqbar.commons.model.annotations.Observable
 
 @Observable
-class ListoParaEnviar implements EstadoPedido {
+class ListoParaEnviar extends EstadoPedido {
 
 	override siguienteEstado(Pedido pedido) {
 		pedido.notifyObservers(pedido.cliente.email,"Su pedido esta en viaje")

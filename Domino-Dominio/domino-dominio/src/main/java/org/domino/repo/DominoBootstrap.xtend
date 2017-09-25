@@ -10,6 +10,13 @@ import org.domino.dominio.Plato
 import org.domino.dominio.Tamanio
 import org.uqbar.arena.bootstrap.CollectionBasedBootstrap
 import org.uqbar.commons.applicationContext.ApplicationContext
+import org.domino.dominio.EstadoPedido
+import org.domino.dominio.Preparando
+import org.domino.dominio.ListoParaRetirar
+import org.domino.dominio.ListoParaEnviar
+import org.domino.dominio.EnViaje
+import org.domino.dominio.Entregado
+import org.domino.dominio.Cancelado
 
 class DominoBootstrap extends CollectionBasedBootstrap {
 
@@ -18,6 +25,7 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 		ApplicationContext.instance.configureSingleton(typeof(Cliente), new RepoClientes)
 		ApplicationContext.instance.configureSingleton(typeof(Ingrediente), new RepoIngredientes)
 		ApplicationContext.instance.configureSingleton(typeof(Pizza), new RepoPizzas)
+		ApplicationContext.instance.configureSingleton(typeof(EstadoPedido), new RepoEstados)
 	}
 
 	override run() {
@@ -25,6 +33,7 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 		val repoCliente = ApplicationContext.instance.getSingleton(typeof(Cliente)) as RepoClientes
 		val repoIngredientes = ApplicationContext.instance.getSingleton(typeof(Ingrediente)) as RepoIngredientes
 		val repoPizzas = ApplicationContext.instance.getSingleton(typeof(Pizza)) as RepoPizzas
+		val repoEstados = ApplicationContext.instance.getSingleton(typeof(EstadoPedido)) as RepoEstados
 
 		repoCliente => [
 			create("Luca", "lucakapo", "alsjdnas", "luka@gmail.com", "calle 28")
@@ -71,10 +80,18 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 			create(cliente2, LocalDateTime.now, "Segundo pedido", delivery)
 			create(cliente3, LocalDateTime.now, "Tercer pedido", delivery)
 		]
+		
+		repoEstados => [
+			create(new Preparando)
+			create(new ListoParaRetirar)
+			create(new ListoParaEnviar)
+			create(new EnViaje)
+			create(new Entregado)
+			create(new Cancelado)
+		]
 
 		val pedidosList = repoPedidos.allInstances
 		pedidosList.stream.forEach[p|p.numeroDePedido = pedidosList.indexOf(p) + 1]
-		//pedidosList.stream.forEach[p|p.agregarPlato(plato1)]
 		pedidosList.get(0).agregarPlato(plato1)
 		pedidosList.get(1).agregarPlato(plato2)
 		pedidosList.get(2).agregarPlato(plato3)

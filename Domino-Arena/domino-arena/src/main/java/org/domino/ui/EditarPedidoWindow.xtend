@@ -1,20 +1,12 @@
 package org.domino.ui
 
-import java.util.List
-import org.domino.dominio.Cancelado
-import org.domino.dominio.EnViaje
-import org.domino.dominio.Entregado
 import org.domino.dominio.EstadoPedido
-import org.domino.dominio.ListoParaEnviar
-import org.domino.dominio.ListoParaRetirar
 import org.domino.dominio.Pedido
 import org.domino.dominio.Pizza
 import org.domino.dominio.Plato
-import org.domino.dominio.Preparando
 import org.domino.dominio.Tamanio
-import org.domino.model.PedidoAplicationModel
+import org.domino.repo.RepoEstados
 import org.domino.repo.RepoPedidos
-import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.arena.aop.windows.TransactionalDialog
 import org.uqbar.arena.bindings.ObservableProperty
 import org.uqbar.arena.layout.ColumnLayout
@@ -29,15 +21,15 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.commons.applicationContext.ApplicationContext
-import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.annotations.Transactional
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.domino.model.PedidoApplicationModel
 
 @Transactional
-class EditarPedidoWindow extends TransactionalDialog<PedidoAplicationModel> {
+class EditarPedidoWindow extends TransactionalDialog<PedidoApplicationModel> {
 
-	new(WindowOwner owner, PedidoAplicationModel model) {
+	new(WindowOwner owner, PedidoApplicationModel model) {
 		super(owner, model)
 	}
 
@@ -201,11 +193,11 @@ class EditarPedidoWindow extends TransactionalDialog<PedidoAplicationModel> {
 // ** Acciones
 // ********************************************************
 	def editarPlato() {
-		this.openDialog(new EditarPlatoWindow(this, modelObject.platoSeleccionado))
+		this.openDialog(new EditarPlatoWindow(this, modelObject.platoSeleccionado, modelObject))
 	}
 
 	def crearPlato() {
-		this.openDialog(new CrearPlatoWindow(this))
+		this.openDialog(new CrearPlatoWindow(this, modelObject))
 	}
 
 	def openDialog(Dialog<?> dialog) {
@@ -228,20 +220,8 @@ class EditarPedidoWindow extends TransactionalDialog<PedidoAplicationModel> {
 		ApplicationContext.instance.getSingleton(typeof(Pedido))
 	}
 
-	def getRepoEstados() {
-		var repo = new RepoEstados()
-		repo
+	def RepoEstados getRepoEstados() {
+		ApplicationContext.instance.getSingleton(typeof(EstadoPedido))
 	}
-}
-
-// ********************************************************
-// ** Definicion de RepoEstados
-// ********************************************************
-@Accessors
-@Observable
-class RepoEstados {
-
-	List<EstadoPedido> estados = #[new Preparando, new ListoParaRetirar, new ListoParaEnviar, new EnViaje,
-		new Entregado, new Cancelado]
-
+	
 }
