@@ -1,15 +1,11 @@
 package org.domino.ui
 
 import org.domino.dominio.Ingrediente
-import org.domino.dominio.Plato
 import org.domino.model.IngredienteApplicationModel
-import org.domino.model.PlatoApplicationModel
-import org.domino.repo.RepoIngredientes
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.arena.aop.windows.TransactionalDialog
 import org.uqbar.arena.bindings.ObservableProperty
 import org.uqbar.arena.layout.HorizontalLayout
-import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Panel
@@ -21,14 +17,14 @@ import org.uqbar.commons.model.annotations.Observable
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 class AgregarIngredienteWindow extends TransactionalDialog<IngredienteApplicationModel> {
-	
-	PlatoApplicationModel platoApplication
 
 	new(WindowOwner owner, IngredienteApplicationModel model) {
 		super(owner, model)
-		this.platoApplication = platoApplication
 	}
 
+// ********************************************************
+// ** Creacion de paneles
+// ********************************************************
 	override protected createFormPanel(Panel mainPanel) {
 		title = "Agregue un Ingrediente"
 
@@ -36,7 +32,33 @@ class AgregarIngredienteWindow extends TransactionalDialog<IngredienteApplicatio
 
 		this.crearListaDeIngredientes(panelIngrediente)
 
-		new Selector<String>(panelIngrediente) => [
+		val panelDistribuciones = new Panel(mainPanel)
+
+		this.crearListaDeDistribuciones(panelDistribuciones)
+
+		val panelBotones = new Panel(mainPanel)
+		panelBotones.layout = new HorizontalLayout
+
+		this.crearBotones(panelBotones)
+	}
+
+// ********************************************************
+// ** Creacion de la lista de ingredientes
+// ********************************************************
+	def crearListaDeIngredientes(Panel panelIngrediente) {
+
+		new List(panelIngrediente) => [
+			bindItems(new ObservableProperty(repoIngredientes, "ingredientes")).adaptWith(typeof(Ingrediente), "nombre")
+			value <=> "ingredienteSeleccionado"
+		]
+
+	}
+
+// ********************************************************
+// ** Creacion de la lista de distribuciones
+// ********************************************************
+	def crearListaDeDistribuciones(Panel panel) {
+		new Selector<String>(panel) => [
 			allowNull(false)
 			enabled <=> "hayIngredienteSeleccionado"
 			bindItems(new ObservableProperty(repoDistribuciones, "distribuciones"))
@@ -44,27 +66,15 @@ class AgregarIngredienteWindow extends TransactionalDialog<IngredienteApplicatio
 		]
 	}
 
-	def getRepoDistribuciones() {
-		new RepoDistribuciones
-	}
-
-	def crearListaDeIngredientes(Panel panelIngrediente) {
-		new Panel(panelIngrediente) => [
-			layout = new HorizontalLayout
-			new List(it) => [
-				bindItems(new ObservableProperty(repoIngredientes, "ingredientes")).adaptWith(typeof(Ingrediente), "nombre")
-				value <=> "ingredienteSeleccionado"
-			]
-		]
-
-		this.crearBotones(panelIngrediente)
-	}
-
+// ********************************************************
+// ** Creacion de los botones
+// ********************************************************
 	def crearBotones(Panel panel) {
 		new Button(panel) => [
 			caption = "Aceptar"
-			onClick [this.accept
-			modelObject.actualizar
+			onClick [
+				this.accept
+				modelObject.actualizar
 			]
 		]
 		new Button(panel) => [
@@ -73,12 +83,21 @@ class AgregarIngredienteWindow extends TransactionalDialog<IngredienteApplicatio
 		]
 	}
 
+// ********************************************************
+// ** Repositorios
+// ********************************************************
 	def getRepoIngredientes() {
 		ApplicationContext.instance.getSingleton(typeof(Ingrediente))
 	}
 
+	def getRepoDistribuciones() {
+		new RepoDistribuciones
+	}
 }
 
+// ********************************************************
+// ** Definicion de RepoDistribuciones
+// ********************************************************
 @Accessors
 @Observable
 class RepoDistribuciones {
