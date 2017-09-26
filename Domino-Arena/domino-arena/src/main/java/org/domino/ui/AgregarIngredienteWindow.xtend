@@ -1,23 +1,24 @@
 package org.domino.ui
 
-import org.uqbar.arena.aop.windows.TransactionalDialog
-import org.uqbar.arena.windows.WindowOwner
 import org.domino.dominio.Ingrediente
 import org.domino.dominio.Plato
-import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.layout.VerticalLayout
-import org.uqbar.arena.layout.HorizontalLayout
-import org.uqbar.arena.widgets.List
-import org.uqbar.arena.bindings.ObservableProperty
-import org.uqbar.commons.applicationContext.ApplicationContext
-import org.domino.model.PlatoApplicationModel
-import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.domino.model.IngredienteApplicationModel
-import org.uqbar.arena.widgets.Selector
-import org.uqbar.commons.model.annotations.Observable
-import org.eclipse.xtend.lib.annotations.Accessors
+import org.domino.model.PlatoApplicationModel
 import org.domino.repo.RepoIngredientes
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.arena.aop.windows.TransactionalDialog
+import org.uqbar.arena.bindings.ObservableProperty
+import org.uqbar.arena.layout.HorizontalLayout
+import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.List
+import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.widgets.Selector
+import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.commons.applicationContext.ApplicationContext
+import org.uqbar.commons.model.annotations.Observable
+
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 class AgregarIngredienteWindow extends TransactionalDialog<IngredienteApplicationModel> {
 	
@@ -39,6 +40,7 @@ class AgregarIngredienteWindow extends TransactionalDialog<IngredienteApplicatio
 			allowNull(false)
 			enabled <=> "hayIngredienteSeleccionado"
 			bindItems(new ObservableProperty(repoDistribuciones, "distribuciones"))
+			value <=> "distribucionSeleccionada"
 		]
 	}
 
@@ -74,12 +76,6 @@ class AgregarIngredienteWindow extends TransactionalDialog<IngredienteApplicatio
 	def getRepoIngredientes() {
 		ApplicationContext.instance.getSingleton(typeof(Ingrediente))
 	}
-
-//	override executeTask() {
-//		modelObject.actualizar()
-//		
-//		super.executeTask()
-//	}
 
 }
 

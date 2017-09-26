@@ -1,19 +1,19 @@
 package org.domino.model
 
-import org.uqbar.commons.applicationContext.ApplicationContext
 import org.domino.dominio.Ingrediente
 import org.domino.dominio.Plato
-import org.uqbar.commons.model.annotations.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Dependencies
+import org.uqbar.commons.model.annotations.Observable
 
 @Accessors 
 @Observable 
-class IngredienteApplicationModel extends ApplicationContext {
+class IngredienteApplicationModel{
 
 	Ingrediente ingredienteSeleccionado
 	Plato plato
 	Ingrediente ingredienteNuevo = new Ingrediente 	
+	String distribucionSeleccionada
 
 	new(Plato plato){
 		this.plato = plato
@@ -25,7 +25,7 @@ class IngredienteApplicationModel extends ApplicationContext {
 	}
 	
 	def actualizar() {
-		plato.agregarIngredienteExtra(ingredienteSeleccionado)
+		plato.agregarIngredienteExtra(new Ingrediente(ingredienteSeleccionado.nombre, ingredienteSeleccionado.precio,distribucionSeleccionada))
 	}
 	
 }
