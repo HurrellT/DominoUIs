@@ -9,50 +9,40 @@ Colaboradores:
 
 
 DOMINO PIZZA WINDOW
-
-- Tarda en actualizar los pedidos (hay que darle al Mega Refresh Button X2000)
+- Sigue tardando en actualizar los pedidos
 
 
 EDITAR PEDIDO WINDOW
-
-- No se muestra el estado del pedido en el Selector al principio (aunque si cambia el estado)
-- El monto total del pedido tarda en actualizarse
+- Si tocas bastante, a veces podes clickear Editar sin que haya pedido seleccionado y tira 
+un Null Pointer Exception (por ejemplo, si eliminas todos los platos de un pedido, salis y 
+volves a editarlo, y al toque presionas Editar)
 
 
 CREAR PLATO WINDOW
-
-- Agregamos platos pero no muestra los precios (Hay problemas con montoTotal)
+- Al crear un plato, podes no elegir ninguna promo y la crea igual
 
 
 EDITAR PLATO WINDOW
-
-- No se muestra el tamanio en el Selector (aunque funciona, si cambia el tamaño)
+- Todo bien
 
 
 EDITAR PROMO WINDOW
-
-- No esta hecho el panel que muestra los ingredientes (lo mismo que en EDITAR PLATO WINDOW)
+- Todo bien
 
 
 MOSTRAR MENU WINDOW
-
-- Funciona todo, pero hay que cerrar y volver a abrir la ventana para verlo. Ademas, los ingredientes 
-se eliminan al instante, mietras que las promos hay que cerrar y volver a entrar 
-(aunque estan hechas iguales!!!)
-- Al crear una pizza nueva, el precio no se refleja en Plato Window
+- A veces, en la ventana del Menu, no te deja Editar ni Eliminar ni las promos ni los Ingredientes,
+a pesar de estar seleccionando una promo o un ingrediente (solo me paso una vez despues de 
+probar durante cerca de 10 minutos)
 
 
 PEDIDOS CERRADOS WINDOW
-
-- Funciona todo, pero hay un bug de Arena: si estas en la EDITAR PEDIDO WINDOW con un pedido seleccionado
-y abris PEDIDOS CERRADOS WINDOW, te permite modificar el pedido abierto. Para solucionarlo, 
-agregue la linea 209 en DOMINO PIZZA WINDOW
+- Al cancelar o entregar un pedido, sigue contando el tiempo en Pedidos Cerrados!!!
 
 
 EDITAR INGREDIENTE WINDOW 
-
 - Todo bien
 
 AGREGAR INGREDIENTE WINDOW
-
--Falta ordenar paneles, y que actualice.
+- A veces, al agregar un Ingrediente a un plato, no te deja elegir una distribucion a pesar
+de estar seleccionando un Ingrediente (tambien me paso solo una vez despues de un rato)
