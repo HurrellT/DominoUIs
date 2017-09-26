@@ -7,7 +7,7 @@ import org.uqbar.commons.model.Entity
 
 @Accessors
 @Observable
-class Pizza extends Entity{
+class Pizza extends Entity implements ConIngredientes{
 	String nombre
 	int precio
 	List<Ingrediente> ingredientes
@@ -21,10 +21,10 @@ class Pizza extends Entity{
 	}
 	
 	new() {
-		
+		this.ingredientes = newArrayList
 	}
 	
-	def agregar(Ingrediente ingrediente) {
+	override agregarIngrediente(Ingrediente ingrediente) {
 		ingredientes.add(ingrediente)
 	}
 	

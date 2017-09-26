@@ -16,14 +16,21 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.commons.applicationContext.ApplicationContext
+import org.uqbar.arena.windows.Dialog
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.widgets.NumericField
+import org.domino.model.IngredienteApplicationModel
 
 class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel> {
 
 	new(WindowOwner owner, PizzaApplicationModel model) {
 		super(owner, model)
+		title = defaultTitle
+	}
+
+	def defaultTitle() {
+		"Editar Promo"
 	}
 
 // ********************************************************
@@ -116,11 +123,26 @@ class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel> {
 
 			onClick [this.close]
 		]
+
+		new Button(bottomButtonPanel) => [
+			caption = 'Agregar Ingrediente'
+			width = 150
+			onClick[this.agregarIngrediente]
+		]
 	}
 
 // ********************************************************
 // ** Acciones
 // ********************************************************
+	def agregarIngrediente() {
+		this.openDialog(new AgregarIngredienteWindow(this, new IngredienteApplicationModel(modelObject.pizza)))
+	}
+
+	def openDialog(Dialog<?> dialog) {
+		dialog.open
+	// dialog.onAccept[modelObject.actualizar]
+	}
+
 	override executeTask() {
 		if (modelObject.pizza.isNew) {
 			repoPizzas.create(modelObject.pizza)

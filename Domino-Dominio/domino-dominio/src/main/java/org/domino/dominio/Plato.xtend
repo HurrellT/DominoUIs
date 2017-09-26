@@ -9,7 +9,7 @@ import org.uqbar.commons.model.exceptions.UserException
 
 @Accessors
 @TransactionalAndObservable
-class Plato extends Entity{
+class Plato extends Entity implements ConIngredientes{
 
 	Pizza pizza
 	Tamanio tamanio
@@ -28,7 +28,7 @@ class Plato extends Entity{
 		this.ingredientes = newArrayList
 	}
 
-	def agregarIngredienteExtra(Ingrediente ingred) {
+	override agregarIngrediente(Ingrediente ingred) {
 		this.ingredientes.add(ingred)
 	}
 	

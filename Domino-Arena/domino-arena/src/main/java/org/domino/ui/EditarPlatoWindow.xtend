@@ -136,19 +136,19 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 	def crearPanelFinal(Panel panelFinal) {
 		new Button(panelFinal) => [
 			caption = 'Aceptar'
-			width = 60
+			width = 150
 			onClick[this.accept]
 		]
 
 		new Button(panelFinal) => [
 			caption = 'Cancelar'
-			width = 60
+			width = 150
 			onClick[this.close]
 		]
 
 		new Button(panelFinal) => [
 			caption = 'Agregar Ingrediente'
-			width = 60
+			width = 150
 			onClick[this.agregarIngrediente]
 		]
 	}

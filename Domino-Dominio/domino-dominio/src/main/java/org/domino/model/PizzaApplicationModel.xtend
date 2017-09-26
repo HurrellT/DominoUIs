@@ -8,8 +8,8 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Observable
 @Accessors
 class PizzaApplicationModel {
-	Pizza pizza
 	
+	Pizza pizza
 	Ingrediente ingredienteSeleccionado
 	
 	new(Pizza pizza){

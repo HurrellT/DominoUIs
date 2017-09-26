@@ -23,16 +23,16 @@ class PlatoTest {
 
 	@Test
 	def testUnPlatoPuedeTenerIngredientesExtras() {
-		plato1.agregarIngredienteExtra(ingred1)
-		plato1.agregarIngredienteExtra(ingred2)
+		plato1.agregarIngrediente(ingred1)
+		plato1.agregarIngrediente(ingred2)
 		assertTrue(plato1.ingredientes.contains(ingred1))
 		assertTrue(plato1.ingredientes.contains(ingred2))
 	}
 
 	@Test
 	def testUnPlatoConPizzaCustomizadaSabeDarSuMontoFinal() {
-		plato1.agregarIngredienteExtra(ingred1)
-		plato1.agregarIngredienteExtra(ingred2)
+		plato1.agregarIngrediente(ingred1)
+		plato1.agregarIngrediente(ingred2)
 		when(ingred1.precio).thenReturn(12)
 		when(ingred2.precio).thenReturn(6)
 		when(pizza.precio).thenReturn(90)
@@ -44,8 +44,8 @@ class PlatoTest {
 	
 	@Test
 	def testUnPlatoConPizzaComunSabeDarSuMontoFinal() {
-		plato1.agregarIngredienteExtra(ingred1)
-		plato1.agregarIngredienteExtra(ingred2)
+		plato1.agregarIngrediente(ingred1)
+		plato1.agregarIngrediente(ingred2)
 		when(ingred1.precio).thenReturn(12)
 		when(ingred2.precio).thenReturn(6)
 		when(pizza.precio).thenReturn(90)

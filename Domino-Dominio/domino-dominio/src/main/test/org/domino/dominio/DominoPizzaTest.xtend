@@ -19,8 +19,6 @@ class DominoPizzaTest {
 	val pedido2 = mock(Pedido)
 	val pedido3 = mock(Pedido)
 	
-	val crono = new Cronometro
-	
 	Pizza pizza = new Pizza("Muzza",70)
 	
 	@Test(expected = RuntimeException)
