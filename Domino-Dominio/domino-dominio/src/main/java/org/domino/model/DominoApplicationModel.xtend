@@ -11,6 +11,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.applicationContext.ApplicationContext
 import org.uqbar.commons.model.annotations.Dependencies
 import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.utils.ObservableUtils
 
 @Accessors
 @Observable
@@ -60,6 +61,9 @@ class DominoApplicationModel extends ApplicationContext {
 		
 	 	pedidosAbiertos = repoPedidos.allInstances.stream.filter[p | p.esAbierto].collect(Collectors.toList)
 	 	pedidosCerrados = repoPedidos.allInstances.stream.filter[p | !(p.esAbierto)].collect(Collectors.toList)
+	 	
+	 	ObservableUtils.firePropertyChanged(this, "pedidosAbiertos",this.pedidosAbiertos)
+	 	ObservableUtils.firePropertyChanged(this, "pedidosCerrados",this.pedidosCerrados)
 	}
 
 }

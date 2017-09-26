@@ -7,6 +7,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.Entity
 import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.utils.ObservableUtils
+import org.uqbar.commons.model.annotations.Dependencies
 
 @Accessors
 @Observable
@@ -20,6 +21,7 @@ class Pedido extends Entity {
 	FormaDeEnvio envio
 	Integer numeroDePedido
 	List<ServicioDeNotificacion> obs = newArrayList
+	public float montoTotal
 
 	new(Cliente cliente, LocalDateTime fecha, String aclaracion, FormaDeEnvio envio) {
 		this.cliente 	= cliente
@@ -47,8 +49,8 @@ class Pedido extends Entity {
 	def agregarPlato(Plato plato) {
 		this.platos.add(plato)
 	}
-	
-	def montoTotal() {
+	@Dependencies("platos")
+	def getMontoTotal() {
 		platos.stream.mapToInt[p | p.montoTotal() as int].sum() + this.envio.recargo
 	}
 	

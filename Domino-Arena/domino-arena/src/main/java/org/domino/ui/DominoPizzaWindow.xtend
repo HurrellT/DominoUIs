@@ -202,12 +202,12 @@ class DominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 			onClick [close]
 		]
 
-		/* TESTER BUTTON */
-		new Button(bottomButtonPanel) => [
-			caption = "MAGIC REFRESH BUTTON X2000"
-			width = 300
-			onClick [modelObject.actualizar]
-		]
+//		/* TESTER BUTTON */
+//		new Button(bottomButtonPanel) => [
+//			caption = "MAGIC REFRESH BUTTON X2000"
+//			width = 300
+//			onClick [modelObject.actualizar]
+//		]
 	}
 
 // ********************************************************
@@ -227,8 +227,8 @@ class DominoPizzaWindow extends SimpleWindow<DominoApplicationModel> {
 	}
 
 	def openDialog(Dialog<?> dialog) {
-		dialog.open
 		dialog.onAccept[modelObject.actualizar]
+		dialog.open
 	}
 
 // ********************************************************

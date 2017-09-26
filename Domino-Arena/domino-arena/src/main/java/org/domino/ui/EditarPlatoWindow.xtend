@@ -21,12 +21,15 @@ import org.uqbar.commons.applicationContext.ApplicationContext
 import org.uqbar.commons.model.annotations.Observable
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.widgets.tables.Table
 import org.domino.dominio.Ingrediente
 import org.uqbar.arena.widgets.tables.Column
 import org.domino.model.PlatoApplicationModel
 import org.domino.model.IngredienteApplicationModel
+import org.uqbar.commons.model.annotations.Dependencies
+
 
 class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 

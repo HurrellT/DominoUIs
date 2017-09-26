@@ -170,6 +170,7 @@ class MostrarMenuWindow extends TransactionalDialog<MenuApplicationModel> {
 	}
 
 	def openDialog(Dialog<?> dialog) {
+		dialog.onAccept[modelObject.actualizar]
 		dialog.open
 	}
 }

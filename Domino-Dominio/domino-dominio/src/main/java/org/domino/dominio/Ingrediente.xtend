@@ -4,19 +4,21 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
 import java.util.List
 import org.uqbar.commons.model.Entity
+import org.uqbar.commons.model.exceptions.UserException
+import org.uqbar.commons.model.utils.ObservableUtils
 
 @Accessors
 @Observable
 class Ingrediente extends Entity {
 
 	String nombre
-	int precio
+	Integer precio
 
 	List<String> distribuciones = #["Izquierda","Derecha","Toda"]
 	String distribucionElegida
 
 
-	new(String nombre, int precio, String distribucion) {
+	new(String nombre, Integer precio, String distribucion) {
 		this.nombre = nombre
 		this.precio = precio
 		for (String s : distribuciones) {
@@ -42,4 +44,12 @@ class Ingrediente extends Entity {
 	 def getPrecioIngrediente() {
 	 	this.precio
 	 }
+	 
+//	 def setPrecioIngrediente(Integer precio) {
+//	 	if(precio == null || precio < 0) {
+//	 		throw new UserException("Introduzca un precio valido")
+//	 	}
+//	 	this.precioIngrediente = precio
+//	 	ObservableUtils.firePropertyChanged(this, "precioIngrediente", this.precioIngrediente)
+//	 }
 }
