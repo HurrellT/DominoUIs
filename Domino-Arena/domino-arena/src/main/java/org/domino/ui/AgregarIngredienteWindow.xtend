@@ -73,8 +73,8 @@ class AgregarIngredienteWindow extends TransactionalDialog<IngredienteApplicatio
 		new Button(panel) => [
 			caption = "Aceptar"
 			onClick [
-				this.accept
 				modelObject.actualizar
+				this.accept
 			]
 		]
 		new Button(panel) => [

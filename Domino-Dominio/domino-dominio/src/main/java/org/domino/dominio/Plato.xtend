@@ -6,6 +6,7 @@ import java.util.List
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
 import org.uqbar.commons.model.Entity
 import org.uqbar.commons.model.exceptions.UserException
+import org.uqbar.commons.model.utils.ObservableUtils
 
 @Accessors
 @TransactionalAndObservable
@@ -30,12 +31,15 @@ class Plato extends Entity implements ConIngredientes{
 
 	override agregarIngrediente(Ingrediente ingred) {
 		this.ingredientes.add(ingred)
+		this.montoTotal
+		ObservableUtils.firePropertyChanged(this,"ingredientes")
+		ObservableUtils.firePropertyChanged(pizza,"precio")
 	}
 	
 	def montoTotal() {
 		var monto = 0.0
 		val custom = 70.0
-		if(pizza.ingredientes.isEmpty()){
+		if(!pizza.ingredientes.isEmpty()){
 			monto = custom * (tamanio.factor)
 		}
 		else {

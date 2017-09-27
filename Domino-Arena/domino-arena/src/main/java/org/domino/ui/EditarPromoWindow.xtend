@@ -129,6 +129,13 @@ class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel> {
 			width = 150
 			onClick[this.agregarIngrediente]
 		]
+		
+		new Button(bottomButtonPanel) => [
+			caption = 'Eliminar Ingrediente'
+			width = 150
+			enabled <=> "hayIngredienteSeleccionado"
+			onClick[modelObject.eliminarIngrediente(modelObject.ingredienteSeleccionado)]
+		]		
 	}
 
 // ********************************************************
@@ -139,8 +146,8 @@ class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel> {
 	}
 
 	def openDialog(Dialog<?> dialog) {
+		dialog.onAccept[modelObject.actualizar]
 		dialog.open
-	// dialog.onAccept[modelObject.actualizar]
 	}
 
 	override executeTask() {
@@ -149,6 +156,7 @@ class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel> {
 		} else {
 			repoPizzas.update(modelObject.pizza)
 		}
+		modelObject.actualizar
 		super.executeTask()
 	}
 

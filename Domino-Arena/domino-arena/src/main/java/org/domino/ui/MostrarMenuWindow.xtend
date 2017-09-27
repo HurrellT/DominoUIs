@@ -79,7 +79,7 @@ class MostrarMenuWindow extends TransactionalDialog<MenuApplicationModel> {
 		new Column(table) => [
 			title = "Precio"
 			fixedSize = 200
-			bindContentsToProperty("precio")
+			bindContentsToProperty("precioConIngredientes")
 		]
 	}
 
