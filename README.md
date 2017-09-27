@@ -26,23 +26,20 @@ CREAR PLATO WINDOW
 - PRECIO (influido por tamanio) esta MAL
 
 EDITAR PLATO WINDOW
-- Al agregar ingrediente, no se acutaliza el precio
-- IMPLEMENTAR eliminarIngrediente (Usar el mismo que de Crear/Editar Promo)
+- Al agregar ingrediente, no se actualiza el precio (ESTO ES POR COMO ESTA IMPLEMENTADO MONTO TOTAL DEL PLATO!!!)
 
 EDITAR PROMO WINDOW
-- No aparece la distribucion en la primer fila de la tabla
+- No aparece la distribucion solo cuando es "Toda la pizza" (problema con el String?)
 - No se actualiza el precio al editar los ingredientes
 
 MOSTRAR MENU WINDOW
-- A veces, en la ventana del Menu, no te deja Editar ni Eliminar ni las promos ni los Ingredientes, a pesar de estar seleccionando una promo o un ingrediente (solo me paso una vez despues de probar durante cerca de 10 minutos)
 - Bug retardado
 
 PEDIDOS CERRADOS WINDOW
-- El Boton "ver" no funciona (Arreglado)
+
 
 EDITAR INGREDIENTE WINDOW
 - Bug retardado
 
 AGREGAR INGREDIENTE WINDOW
-- A veces, al agregar un Ingrediente a un plato, no te deja elegir una distribucion a pesar de estar seleccionando un Ingrediente (tambien me paso solo una vez despues de un rato)
 - Bug retardado
