@@ -16,6 +16,7 @@ DOMINO PIZZA WINDOW
 
 EDITAR PEDIDO WINDOW
 - No se actualizan los precios hasta aceptar la edicion de otro pedido
+- Los enabled de los botones Editar y Eliminar un plato se anulan entre si: si solo dejas pedido.esAbierto, funciona solo para los  pedidos cerrados; si pones los tres enabled, funciona solo cuando el pedido es abierto 
 
 CREAR PLATO WINDOW
 - Bug retardado
@@ -37,7 +38,7 @@ MOSTRAR MENU WINDOW
 - Bug retardado
 
 PEDIDOS CERRADOS WINDOW
-- El Boton "ver" no funciona
+- El Boton "ver" no funciona (Arreglado)
 
 EDITAR INGREDIENTE WINDOW
 - Bug retardado
