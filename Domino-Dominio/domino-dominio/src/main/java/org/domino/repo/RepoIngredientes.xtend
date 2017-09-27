@@ -3,8 +3,9 @@ package org.domino.repo
 import org.uqbar.commons.model.CollectionBasedRepo
 import org.domino.dominio.Ingrediente
 import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
-@Observable
+@TransactionalAndObservable
 class RepoIngredientes extends CollectionBasedRepo<Ingrediente>{
 	
 	def void create(String nombreI, int precioI, String distribucion){

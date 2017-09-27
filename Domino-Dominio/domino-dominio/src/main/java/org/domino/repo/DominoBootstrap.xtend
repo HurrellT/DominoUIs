@@ -17,6 +17,7 @@ import org.domino.dominio.ListoParaEnviar
 import org.domino.dominio.EnViaje
 import org.domino.dominio.Entregado
 import org.domino.dominio.Cancelado
+import org.domino.dominio.RetiraPorElLocal
 
 class DominoBootstrap extends CollectionBasedBootstrap {
 
@@ -26,6 +27,7 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 		ApplicationContext.instance.configureSingleton(typeof(Ingrediente), new RepoIngredientes)
 		ApplicationContext.instance.configureSingleton(typeof(Pizza), new RepoPizzas)
 		ApplicationContext.instance.configureSingleton(typeof(EstadoPedido), new RepoEstados)
+		ApplicationContext.instance.configureSingleton(typeof(Tamanio), new RepoTamanios)
 	}
 
 	override run() {
@@ -34,6 +36,7 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 		val repoIngredientes = ApplicationContext.instance.getSingleton(typeof(Ingrediente)) as RepoIngredientes
 		val repoPizzas = ApplicationContext.instance.getSingleton(typeof(Pizza)) as RepoPizzas
 		val repoEstados = ApplicationContext.instance.getSingleton(typeof(EstadoPedido)) as RepoEstados
+		val repoTamanios = ApplicationContext.instance.getSingleton(typeof(Tamanio)) as RepoTamanios
 
 		repoCliente => [
 			create("Luca", "lucakapo", "alsjdnas", "luka@gmail.com", "calle 28")
@@ -46,6 +49,7 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 		val cliente3 = repoCliente.allInstances.get(2)
 
 		val delivery = new Delivery("calle 28")
+		val retiroLocal = new RetiraPorElLocal
 
 		repoPizzas => [
 			create("Muzzarella", 125)
@@ -58,11 +62,19 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 		val pizza1 = repoPizzas.allInstances.get(0)
 		val pizza2 = repoPizzas.allInstances.get(1)
 		val pizza3 = repoPizzas.allInstances.get(2)
-		
-		val tamanioGrande = new Tamanio("Grande", 1)
-		val tamanioChico = new Tamanio("Chica", 0.5)
-		val tamanioFamiliar = new Tamanio("Familiar", 1.25)
 
+		repoTamanios => [
+			create("Familiar", 1.25)
+			create("Grande", 1)
+			create("Chica", 0.5)
+			create("Porcion", 0.125)
+		
+		]
+		
+		val tamanioFamiliar= repoTamanios.allInstances.get(0)
+		val tamanioGrande = repoTamanios.allInstances.get(1)
+		val tamanioChico = repoTamanios.allInstances.get(2)
+		
 		val plato1 = new Plato(pizza1, tamanioGrande)
 		val plato2 = new Plato(pizza2, tamanioChico)
 		val plato3 = new Plato(pizza3, tamanioFamiliar)
@@ -75,14 +87,14 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 			create("Salchichas", 35, "Toda la Pizza")
 		]
 
-		pizza1.agregarIngrediente(repoIngredientes.allInstances.get(1))
-		pizza1.agregarIngrediente(repoIngredientes.allInstances.get(0))
-		pizza2.agregarIngrediente(repoIngredientes.allInstances.get(3))
-		pizza3.agregarIngrediente(repoIngredientes.allInstances.get(4))
-		pizza2.agregarIngrediente(repoIngredientes.allInstances.get(2))
+//		pizza1.agregarIngrediente(repoIngredientes.allInstances.get(1))
+//		pizza1.agregarIngrediente(repoIngredientes.allInstances.get(0))
+//		pizza2.agregarIngrediente(repoIngredientes.allInstances.get(3))
+//		pizza3.agregarIngrediente(repoIngredientes.allInstances.get(4))
+//		pizza2.agregarIngrediente(repoIngredientes.allInstances.get(2))
 		repoPedidos => [
 			create(cliente1, LocalDateTime.now, "Primer pedido", delivery)
-			create(cliente2, LocalDateTime.now, "Segundo pedido", delivery)
+			create(cliente2, LocalDateTime.now, "Segundo pedido", retiroLocal)
 			create(cliente3, LocalDateTime.now, "Tercer pedido", delivery)
 		]
 		

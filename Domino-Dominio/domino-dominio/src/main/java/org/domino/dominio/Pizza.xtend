@@ -1,18 +1,17 @@
 package org.domino.dominio
 
 import java.util.List
-import org.uqbar.commons.model.annotations.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.Entity
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @Accessors
-@Observable
-class Pizza extends Entity implements ConIngredientes{
+@TransactionalAndObservable
+class Pizza extends Entity {
 	String nombre
 	int precio
 	List<Ingrediente> ingredientes
-	
-	
+		
 	new(String nombre, int precio) {
 		this.nombre = nombre
 		this.precio = precio
@@ -24,9 +23,11 @@ class Pizza extends Entity implements ConIngredientes{
 		this.ingredientes = newArrayList
 	}
 	
-	override agregarIngrediente(Ingrediente ingrediente) {
-		ingredientes.add(ingrediente)
+	def agregarIngrediente(Ingrediente ingred){
+		ingredientes.add(ingred)
 	}
 	
-	
+	def eliminarIngrediente(Ingrediente ingred){
+		ingredientes.remove(ingred)
+	}
 }

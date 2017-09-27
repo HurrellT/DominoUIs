@@ -2,28 +2,51 @@ package org.domino.model
 
 import org.domino.dominio.Ingrediente
 import org.domino.dominio.Pizza
-import java.util.List
-import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.model.annotations.Observable
 import org.domino.dominio.Plato
+import org.domino.dominio.Tamanio
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.annotations.Dependencies
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import org.uqbar.commons.model.utils.ObservableUtils
 
 @Accessors
-@Observable
+@TransactionalAndObservable
 class PlatoApplicationModel {
 
 	Plato plato
 	Pizza pizzaSeleccionada
 	Ingrediente ingredienteSeleccionado
-	List<Ingrediente> ingredientesDisponibles
-	List<Ingrediente> ingredientesDelPlato
+	
+	Tamanio tamanioSeleccionado
 
 	new(Plato plato) {
 		this.plato = plato
-		ingredientesDelPlato = plato.ingredientes 
+		this.tamanioSeleccionado = plato.tamanio
 	}
 
+	@Dependencies("pizzaSeleccionada")
+	def getHayPizzaSeleccionada() {
+		pizzaSeleccionada !== null
+	}
+
+	@Dependencies("ingredienteSeleccionado")
+	def getHayIngredienteSeleccionado() {
+		ingredienteSeleccionado !== null
+
+	}
+	
+	def eliminarIngrediente(Ingrediente ingrediente) {
+		plato.pizza.eliminarIngrediente(ingredienteSeleccionado)
+		ObservableUtils.firePropertyChanged(plato.pizza, "ingredientes")
+	}
+	
 	def actualizar() {
-		ingredientesDelPlato = plato.ingredientes
+		ObservableUtils.firePropertyChanged(plato, "monto")
 	}
-
+	
+	def setTamanioPlato() {
+		plato.tamanio = tamanioSeleccionado
+		this.actualizar
+	}
+	
 }

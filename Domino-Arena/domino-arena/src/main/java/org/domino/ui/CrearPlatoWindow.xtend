@@ -1,10 +1,8 @@
 package org.domino.ui
 
-import org.domino.dominio.Plato
 import org.domino.model.PedidoApplicationModel
 import org.domino.model.PlatoApplicationModel
 import org.uqbar.arena.windows.WindowOwner
-
 
 class CrearPlatoWindow extends EditarPlatoWindow {
 

@@ -2,7 +2,9 @@ package org.domino.repo
 
 import org.uqbar.commons.model.CollectionBasedRepo
 import org.domino.dominio.Cliente
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
+@TransactionalAndObservable
 class RepoClientes extends CollectionBasedRepo<Cliente>{
 	
 	def void create(String nombreR, String usernameR, String pass, String emailR, String dom){

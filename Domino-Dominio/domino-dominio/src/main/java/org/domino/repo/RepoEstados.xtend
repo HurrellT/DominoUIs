@@ -4,8 +4,9 @@ import org.domino.dominio.EstadoPedido
 import org.uqbar.commons.model.CollectionBasedRepo
 import org.domino.dominio.Preparando
 import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
-@Observable
+@TransactionalAndObservable
 class RepoEstados extends CollectionBasedRepo<EstadoPedido> { 
 	
 	override protected getCriterio(EstadoPedido example) {

@@ -146,7 +146,7 @@ class EditarPedidoWindow extends TransactionalDialog<PedidoApplicationModel> {
 		new Column<Plato>(table) => [
 			title = "Precio"
 			fixedSize = 200
-			bindContentsToProperty("montoTotal")
+			bindContentsToProperty("monto")
 		]
 	}
 
@@ -165,6 +165,7 @@ class EditarPedidoWindow extends TransactionalDialog<PedidoApplicationModel> {
 			caption = "Editar"
 			enabled <=> "hayPlatoSeleccionado"
 			enabled <=> "pedido.esAbierto"
+			enabled <=> "hayPlatosEnPedido"
 			onClick [this.editarPlato]
 		]
 
@@ -172,6 +173,7 @@ class EditarPedidoWindow extends TransactionalDialog<PedidoApplicationModel> {
 			caption = "Eliminar"
 			enabled <=> "hayPlatoSeleccionado"
 			enabled <=> "pedido.esAbierto"
+			enabled <=> "hayPlatosEnPedido"
 			onClick [modelObject.pedido.platos.remove(modelObject.platoSeleccionado)]
 		]
 	}
@@ -202,17 +204,17 @@ class EditarPedidoWindow extends TransactionalDialog<PedidoApplicationModel> {
 // ** Acciones
 // ********************************************************
 	def editarPlato() {
-		this.openDialog(new EditarPlatoWindow(this,new PlatoApplicationModel(modelObject.platoSeleccionado),modelObject))
+		this.openDialog(
+			new EditarPlatoWindow(this, new PlatoApplicationModel(modelObject.platoSeleccionado), modelObject))
 	}
 
 	def crearPlato() {
-		this.openDialog(new CrearPlatoWindow(this, new PlatoApplicationModel(new Plato),modelObject))
+		this.openDialog(new CrearPlatoWindow(this, new PlatoApplicationModel(new Plato), modelObject))
 	}
 
 	def openDialog(Dialog<?> dialog) {
-		
+		dialog.onAccept[modelObject.actualizar]
 		dialog.open
-		//dialog.onAccept[modelObject.actualizar]
 	}
 
 	override executeTask() {

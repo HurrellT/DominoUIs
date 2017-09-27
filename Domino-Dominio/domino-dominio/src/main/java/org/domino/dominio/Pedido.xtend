@@ -7,9 +7,10 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.Entity
 import org.uqbar.commons.model.annotations.Dependencies
 import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @Accessors
-@Observable
+@TransactionalAndObservable
 class Pedido extends Entity {
 	
 	Cliente cliente
@@ -50,7 +51,7 @@ class Pedido extends Entity {
 	}
 	@Dependencies("platos")
 	def getMontoTotal() {
-		platos.stream.mapToInt[p | p.montoTotal() as int].sum() + this.envio.recargo
+		platos.stream.mapToInt[p | p.monto as int].sum() + this.envio.recargo
 	}
 	
 	def cancelar() {

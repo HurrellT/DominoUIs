@@ -1,12 +1,13 @@
 package org.domino.ui
 
-import java.util.List
+import org.domino.dominio.Ingrediente
 import org.domino.dominio.Pizza
-import org.domino.dominio.Plato
 import org.domino.dominio.Tamanio
+import org.domino.model.IngredienteApplicationModel
 import org.domino.model.PedidoApplicationModel
+import org.domino.model.PlatoApplicationModel
 import org.domino.repo.RepoPizzas
-import org.eclipse.xtend.lib.annotations.Accessors
+import org.domino.repo.RepoTamanios
 import org.uqbar.arena.aop.windows.TransactionalDialog
 import org.uqbar.arena.bindings.ObservableProperty
 import org.uqbar.arena.layout.ColumnLayout
@@ -16,20 +17,14 @@ import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Selector
+import org.uqbar.arena.widgets.tables.Column
+import org.uqbar.arena.widgets.tables.Table
+import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.commons.applicationContext.ApplicationContext
-import org.uqbar.commons.model.annotations.Observable
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-
-import org.uqbar.arena.windows.Dialog
-import org.uqbar.arena.widgets.tables.Table
-import org.domino.dominio.Ingrediente
-import org.uqbar.arena.widgets.tables.Column
-import org.domino.model.PlatoApplicationModel
-import org.domino.model.IngredienteApplicationModel
-import org.uqbar.commons.model.annotations.Dependencies
-
+import java.util.List
 
 class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 
@@ -68,7 +63,7 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 
 		new Label(panelPrecio).text = "Precio: $"
 		new Label(panelPrecio) => [
-			value <=> "plato.montoTotal"
+			value <=> "plato.monto"
 		]
 
 		val panelFinal = new Panel(mainPanel).layout = new HorizontalLayout
@@ -94,8 +89,9 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 
 		new Selector<Tamanio>(superiorPanel) => [
 			allowNull(false)
-			bindItems(new ObservableProperty(repoTamanios, "tamanios")).adaptWith(typeof(Tamanio), "nombre")
-			value <=> "plato.tamanio"
+			bindItems(new ObservableProperty(repoTamanios, "repoTamanios")).adaptWith(typeof(Tamanio), "nombre")
+			value <=> "tamanioSeleccionado"
+			onSelection[modelObject.setTamanioPlato]
 			width = 100
 		]
 	}
@@ -105,7 +101,7 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 //// ********************************************************
 	def crearPanelIngredientes(Panel ingredientesPanel) {
 		val table = new Table<Ingrediente>(ingredientesPanel, typeof(Ingrediente)) => [
-			items <=> "ingredientesDelPlato"
+			items <=> "plato.pizza.ingredientes"
 			value <=> "ingredienteSeleccionado"
 
 		]
@@ -137,6 +133,7 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 		new Button(panelFinal) => [
 			caption = 'Aceptar'
 			width = 150
+			// enabled <=> "hayPizzaSeleccionada"
 			onClick[this.accept]
 		]
 
@@ -150,6 +147,14 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 			caption = 'Agregar Ingrediente'
 			width = 150
 			onClick[this.agregarIngrediente]
+
+		]
+		new Button(panelFinal) => [
+			caption = 'Eliminar Ingrediente'
+			width = 150
+			enabled <=> "hayIngredienteSeleccionado"
+			onClick[modelObject.eliminarIngrediente(modelObject.ingredienteSeleccionado)]
+
 		]
 	}
 
@@ -161,8 +166,8 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 	}
 
 	def openDialog(Dialog<?> dialog) {
-		dialog.open
 		dialog.onAccept[modelObject.actualizar]
+		dialog.open
 	}
 
 //	override executeTask() {
@@ -183,24 +188,7 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 	}
 
 	def getRepoTamanios() {
-		var repo = new RepoTamanios()
-		repo
+		ApplicationContext.instance.getSingleton(typeof(Tamanio)) as RepoTamanios
 	}
-
-}
-
-// ********************************************************
-// ** Definicion de RepoTamanios
-// ********************************************************
-@Accessors
-@Observable
-class RepoTamanios {
-
-	List<Tamanio> tamanios = #[
-		new Tamanio("Familiar", 1.25),
-		new Tamanio("Grande", 1.0),
-		new Tamanio("Chica", 0.5),
-		new Tamanio("Porcion", 0.125)
-	]
 
 }

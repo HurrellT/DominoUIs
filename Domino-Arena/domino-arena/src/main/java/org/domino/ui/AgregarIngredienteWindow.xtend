@@ -72,10 +72,7 @@ class AgregarIngredienteWindow extends TransactionalDialog<IngredienteApplicatio
 	def crearBotones(Panel panel) {
 		new Button(panel) => [
 			caption = "Aceptar"
-			onClick [
-				this.accept
-				modelObject.actualizar
-			]
+			onClick [modelObject.actualizar this.accept]
 		]
 		new Button(panel) => [
 			caption = "Cancelar"

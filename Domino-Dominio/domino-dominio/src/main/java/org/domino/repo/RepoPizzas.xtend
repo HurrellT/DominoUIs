@@ -1,11 +1,11 @@
 package org.domino.repo
 
-import org.uqbar.commons.model.CollectionBasedRepo
-import org.domino.dominio.Pizza
 import java.util.List
-import org.uqbar.commons.model.annotations.Observable
+import org.domino.dominio.Pizza
+import org.uqbar.commons.model.CollectionBasedRepo
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
-@Observable
+@TransactionalAndObservable
 class RepoPizzas extends CollectionBasedRepo<Pizza>{
 	
 	def void create(String nombreP, int precio){

@@ -5,9 +5,10 @@ import org.domino.repo.RepoPedidos
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.applicationContext.ApplicationContext
 import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @Accessors
-@Observable
+@TransactionalAndObservable 
 class DominoPizza {
 	
 	Menu menu

@@ -7,6 +7,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Dependencies
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
 import java.util.List
+import org.uqbar.commons.model.utils.ObservableUtils
 
 @Accessors
 @TransactionalAndObservable
@@ -44,6 +45,14 @@ class PedidoApplicationModel {
 		pedido.estado = estadoNuevo
 	}
 	
+	@Dependencies("pedido")
+	def getHayPlatosEnPedido(){
+		!this.pedido.platos.isEmpty
+	}
+	
+	def actualizar() {
+		ObservableUtils.firePropertyChanged(this, "pedido",this.pedido)
+	}
 	
 	
 }

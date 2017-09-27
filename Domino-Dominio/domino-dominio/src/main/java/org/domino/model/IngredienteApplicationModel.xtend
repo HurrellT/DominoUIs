@@ -1,22 +1,31 @@
 package org.domino.model
 
-import org.domino.dominio.ConIngredientes
 import org.domino.dominio.Ingrediente
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Dependencies
 import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.utils.ObservableUtils
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import org.domino.dominio.Plato
+import org.domino.dominio.Pizza
 
 @Accessors
-@Observable
+@TransactionalAndObservable
 class IngredienteApplicationModel {
 
 	Ingrediente ingredienteSeleccionado
-	ConIngredientes objeto
-	Ingrediente ingredienteNuevo = new Ingrediente
 	String distribucionSeleccionada
 
-	new(ConIngredientes objeto) {
-		this.objeto = objeto
+	Plato plato
+	Pizza pizzaModel
+
+	new(Plato plato) {
+		this.plato = plato
+		this.pizzaModel = plato.pizza
+	}
+
+	new(Pizza pizza) {
+		this.pizzaModel = pizza
 	}
 
 	@Dependencies("ingredienteSeleccionado")
@@ -26,9 +35,10 @@ class IngredienteApplicationModel {
 
 	def actualizar() {
 
-		objeto.agregarIngrediente(
+		pizzaModel.agregarIngrediente(
 			new Ingrediente(ingredienteSeleccionado.nombre, ingredienteSeleccionado.precio, distribucionSeleccionada))
 
+		ObservableUtils.firePropertyChanged(pizzaModel, "ingredientes")
 	}
 
 }

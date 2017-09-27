@@ -12,13 +12,14 @@ import org.uqbar.commons.applicationContext.ApplicationContext
 import org.uqbar.commons.model.annotations.Dependencies
 import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.utils.ObservableUtils
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @Accessors
-@Observable
+@TransactionalAndObservable
 class DominoApplicationModel extends ApplicationContext {
 	
 	DominoPizza domino
-	Pedido pedidoSeleccionado
+	public Pedido pedidoSeleccionado
 	RepoPedidos pedidos 
 	List<Pedido> pedidosAbiertos
 	List<Pedido> pedidosCerrados

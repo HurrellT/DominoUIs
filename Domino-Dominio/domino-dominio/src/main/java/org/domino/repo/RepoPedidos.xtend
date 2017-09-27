@@ -5,9 +5,9 @@ import org.domino.dominio.Cliente
 import org.domino.dominio.FormaDeEnvio
 import org.domino.dominio.Pedido
 import org.uqbar.commons.model.CollectionBasedRepo
-import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
-@Observable
+@TransactionalAndObservable
 class RepoPedidos extends CollectionBasedRepo<Pedido> {
 
 	def void create (Cliente cliente1, LocalDateTime fecha1 , String aclaracion1 ,FormaDeEnvio formaEnvio){
