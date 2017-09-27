@@ -25,6 +25,7 @@ import org.uqbar.commons.applicationContext.ApplicationContext
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import java.util.List
+import org.uqbar.commons.model.utils.ObservableUtils
 
 class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 
@@ -82,16 +83,17 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 			allowNull(false)
 			bindItems(new ObservableProperty(repoPizzas, "pizzas")).adaptWith(typeof(Pizza), "nombre")
 			value <=> "plato.pizza"
+
 			width = 100
 		]
 
-		new Label(superiorPanel).text = "TamaÃ±o"
+		new Label(superiorPanel).text = "Tamaño"
 
 		new Selector<Tamanio>(superiorPanel) => [
 			allowNull(false)
 			bindItems(new ObservableProperty(repoTamanios, "repoTamanios")).adaptWith(typeof(Tamanio), "nombre")
-			value <=> "tamanioSeleccionado"
-			onSelection[modelObject.setTamanioPlato]
+			value <=> "plato.tamanio"
+			onSelection[modelObject.actualizar]
 			width = 100
 		]
 	}
@@ -101,7 +103,7 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 //// ********************************************************
 	def crearPanelIngredientes(Panel ingredientesPanel) {
 		val table = new Table<Ingrediente>(ingredientesPanel, typeof(Ingrediente)) => [
-			items <=> "plato.pizza.ingredientes"
+			items <=> "plato.ingredientes"
 			value <=> "ingredienteSeleccionado"
 
 		]
@@ -134,7 +136,9 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 			caption = 'Aceptar'
 			width = 150
 			// enabled <=> "hayPizzaSeleccionada"
-			onClick[this.accept]
+			onClick[this.accept
+				ObservableUtils.firePropertyChanged(pedidoApplication.pedido, "platos")
+			]
 		]
 
 		new Button(panelFinal) => [

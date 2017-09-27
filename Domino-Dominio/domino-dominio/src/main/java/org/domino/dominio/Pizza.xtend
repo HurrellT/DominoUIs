@@ -4,10 +4,11 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.Entity
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import org.uqbar.commons.model.utils.ObservableUtils
 
 @Accessors
 @TransactionalAndObservable
-class Pizza extends Entity {
+class Pizza extends Entity implements ConIngrediente {
 	String nombre
 	int precio
 	List<Ingrediente> ingredientes
@@ -20,11 +21,14 @@ class Pizza extends Entity {
 	}
 	
 	new() {
+		nombre =""
+		precio = 0
 		this.ingredientes = newArrayList
 	}
 	
-	def agregarIngrediente(Ingrediente ingred){
+	override agregarIngrediente(Ingrediente ingred){
 		ingredientes.add(ingred)
+		ObservableUtils.firePropertyChanged(this, "ingredientes")
 	}
 	
 	def eliminarIngrediente(Ingrediente ingred){

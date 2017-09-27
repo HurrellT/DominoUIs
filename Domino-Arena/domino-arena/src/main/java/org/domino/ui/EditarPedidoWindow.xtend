@@ -136,7 +136,7 @@ class EditarPedidoWindow extends TransactionalDialog<PedidoApplicationModel> {
 		]
 
 		new Column<Plato>(table) => [
-			title = "TamaÃ±o"
+			title = "Tamaño"
 			fixedSize = 200
 			bindContentsToProperty("tamanio").transformer = [ Tamanio t |
 				t.nombre

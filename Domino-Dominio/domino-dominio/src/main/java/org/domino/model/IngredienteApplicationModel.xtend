@@ -8,6 +8,7 @@ import org.uqbar.commons.model.utils.ObservableUtils
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
 import org.domino.dominio.Plato
 import org.domino.dominio.Pizza
+import org.domino.dominio.ConIngrediente
 
 @Accessors
 @TransactionalAndObservable
@@ -18,14 +19,11 @@ class IngredienteApplicationModel {
 
 	Plato plato
 	Pizza pizzaModel
+	
+	ConIngrediente objeto
 
-	new(Plato plato) {
-		this.plato = plato
-		this.pizzaModel = plato.pizza
-	}
-
-	new(Pizza pizza) {
-		this.pizzaModel = pizza
+	new(ConIngrediente objeto) {
+		this.objeto = objeto
 	}
 
 	@Dependencies("ingredienteSeleccionado")
@@ -34,11 +32,8 @@ class IngredienteApplicationModel {
 	}
 
 	def actualizar() {
-
-		pizzaModel.agregarIngrediente(
-			new Ingrediente(ingredienteSeleccionado.nombre, ingredienteSeleccionado.precio, distribucionSeleccionada))
-
-		ObservableUtils.firePropertyChanged(pizzaModel, "ingredientes")
+		objeto.agregarIngrediente(
+			new Ingrediente(ingredienteSeleccionado.nombre, ingredienteSeleccionado.precio, distribucionSeleccionada)
+		)
 	}
-
 }
