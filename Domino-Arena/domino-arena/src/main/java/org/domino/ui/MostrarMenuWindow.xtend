@@ -120,7 +120,10 @@ class MostrarMenuWindow extends TransactionalDialog<MenuApplicationModel> {
 			caption = 'Eliminar'
 			width = 60
 			enabled <=> "hayPromoSeleccionada"
-			onClick [modelObject.repoPizzas.delete((modelObject.promoSeleccionada)) modelObject.actualizar]
+			onClick [
+				modelObject.repoPizzas.delete((modelObject.promoSeleccionada))
+				modelObject.actualizar
+			]
 		]
 	}
 
@@ -145,15 +148,20 @@ class MostrarMenuWindow extends TransactionalDialog<MenuApplicationModel> {
 			caption = 'Eliminar'
 			width = 60
 			enabled <=> "hayIngredienteSeleccionado"
-			onClick [modelObject.repoIngredientes.delete((modelObject.ingredienteSeleccionado)) modelObject.actualizar]
+			onClick [
+				modelObject.repoIngredientes.delete((modelObject.ingredienteSeleccionado))
+				modelObject.actualizar
+			]
 		]
 
 		new Button(buttonPanel2) => [
 			caption = 'Cerrar'
 			alignCenter
 			width = 50
-
-			onClick[close]
+			onClick[
+				this.accept
+				close
+			]
 		]
 
 	}

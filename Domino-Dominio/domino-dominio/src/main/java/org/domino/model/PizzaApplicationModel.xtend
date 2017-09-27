@@ -18,18 +18,12 @@ class PizzaApplicationModel {
 		this.pizza = pizza
 	}
 	
-	def eliminarIngrediente(Ingrediente ingrediente) {
-		pizza.ingredientes.remove(ingrediente)
-		ObservableUtils.firePropertyChanged(pizza, "ingredientes")
-	}
-	
 	@Dependencies("ingredienteSeleccionado")
 	def getHayIngredienteSeleccionado() {
 		ingredienteSeleccionado !== null
 
 	}
 
-	
 	def actualizar() {
 		ObservableUtils.firePropertyChanged(pizza, "precio")
 		ObservableUtils.firePropertyChanged(pizza, "ingredientes")

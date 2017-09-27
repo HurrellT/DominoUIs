@@ -16,7 +16,6 @@ import org.uqbar.commons.model.annotations.TransactionalAndObservable
 @TransactionalAndObservable
 class MenuApplicationModel extends ApplicationContext {
 
-	//Menu menu
 	RepoPizzas repoPromos
 	List<Pizza> promos
 	RepoIngredientes repoIngredientes
@@ -45,11 +44,6 @@ class MenuApplicationModel extends ApplicationContext {
 	def getHayIngredienteSeleccionado() {
 		ingredienteSeleccionado !== null
 	}
-	
-		
-	/*
-	 * Metodos para UI
-	 */
 	
 	def actualizar() {
 		var repoPromos = ApplicationContext.instance.getSingleton(typeof(Pizza)) as RepoPizzas

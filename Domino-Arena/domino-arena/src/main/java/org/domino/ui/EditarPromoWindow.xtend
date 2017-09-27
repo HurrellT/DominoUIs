@@ -134,7 +134,7 @@ class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel> {
 			caption = 'Eliminar Ingrediente'
 			width = 150
 			enabled <=> "hayIngredienteSeleccionado"
-			onClick[modelObject.eliminarIngrediente(modelObject.ingredienteSeleccionado)]
+			onClick[modelObject.pizza.eliminarIngrediente(modelObject.ingredienteSeleccionado)]
 		]		
 
 	}
