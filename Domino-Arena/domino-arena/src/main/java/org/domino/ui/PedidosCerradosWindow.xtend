@@ -21,7 +21,6 @@ import org.domino.model.PedidoApplicationModel
 
 class PedidosCerradosWindow extends TransactionalDialog<DominoApplicationModel> {
 
-	val pedidoSeleccionado = new NotNullObservable("pedidoSeleccionado")
 	
 	new(WindowOwner owner, DominoApplicationModel model) {
 		super(owner, model)
@@ -85,7 +84,7 @@ class PedidosCerradosWindow extends TransactionalDialog<DominoApplicationModel> 
 
 		new Column(table) => [
 			title = 'Tiempo de Espera'
-			bindContentsToProperty('tiempoDelPedido')
+			bindContentsToProperty('tiempoDeCierre')
 			fixedSize = 200
 		]
 	}
@@ -94,6 +93,7 @@ class PedidosCerradosWindow extends TransactionalDialog<DominoApplicationModel> 
 // ** Creacion de los botones
 // ********************************************************
 	def crearBotones(Panel panel) {
+		val pedidoSeleccionado = new NotNullObservable("pedidoSeleccionado")
 		new Button(panel) => [
 			caption = 'Ver  '
 			alignRight

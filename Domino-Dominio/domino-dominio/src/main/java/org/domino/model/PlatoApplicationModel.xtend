@@ -28,6 +28,16 @@ class PlatoApplicationModel {
 	def getHayPizzaSeleccionada() {
 		pizzaSeleccionada !== null
 	}
+	
+	@Dependencies("pizzaSeleccionada", "tamanioSeleccionado")
+	def getPuedeAceptar(){
+		hayPizzaSeleccionada && hayTamanioSeleccionado()
+	}
+	
+	@Dependencies("tamanioSeleccionado")
+	protected def boolean hayTamanioSeleccionado() {
+		this.tamanioSeleccionado !== null
+	}
 
 	@Dependencies("ingredienteSeleccionado")
 	def getHayIngredienteSeleccionado() {

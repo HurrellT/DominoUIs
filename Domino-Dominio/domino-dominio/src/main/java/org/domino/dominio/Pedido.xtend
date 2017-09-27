@@ -20,6 +20,7 @@ class Pedido extends Entity {
 	EstadoPedido estado
 	FormaDeEnvio envio
 	Integer numeroDePedido
+	long tiempoDeCierre
 	List<ServicioDeNotificacion> obs = newArrayList
 	//public float montoTotal
 
@@ -56,6 +57,7 @@ class Pedido extends Entity {
 	
 	def cancelar() {
 		this.estado = new Cancelado
+		this.tiempoDeCierre = tiempoDelPedido
 	}
 	
 	

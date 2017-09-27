@@ -28,7 +28,6 @@ class Plato extends Entity implements ConIngrediente {
 	// Para CrearPlatoWindow
 	new() {
 		this.pizza = new Pizza
-		this.tamanio = new Tamanio("Grande", 1)
 		this.ingredientes = newArrayList
 	}
 	
@@ -63,6 +62,7 @@ class Plato extends Entity implements ConIngrediente {
 		this.tamanio = tamanio
 		this.montoTotal
 		ObservableUtils.firePropertyChanged(this, "monto")
+		ObservableUtils.firePropertyChanged(this,"tamanio")
 	}
 		
 }

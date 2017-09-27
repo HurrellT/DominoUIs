@@ -10,6 +10,7 @@ class EnViaje extends EstadoPedido {
 		if(pedido.tiempoDelPedido > 30){
 			pedido.notifyObservers(pedido.cliente.email,"Su pedido tardo mas de 30 min :(")
 		}
+		pedido.tiempoDeCierre = pedido.tiempoDelPedido
 		new Entregado
 	}
 
