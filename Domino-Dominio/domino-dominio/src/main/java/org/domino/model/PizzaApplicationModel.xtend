@@ -2,14 +2,10 @@ package org.domino.model
 
 import org.domino.dominio.Pizza
 import org.domino.dominio.Ingrediente
-import org.uqbar.commons.model.annotations.Observable
-import org.eclipse.xtend.lib.annotations.Accessors
-<<<<<<< HEAD
-import org.uqbar.commons.model.annotations.TransactionalAndObservable
-=======
->>>>>>> ingrediente
 import org.uqbar.commons.model.utils.ObservableUtils
 import org.uqbar.commons.model.annotations.Dependencies
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @TransactionalAndObservable
 @Accessors

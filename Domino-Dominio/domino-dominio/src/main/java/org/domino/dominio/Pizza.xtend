@@ -2,12 +2,9 @@ package org.domino.dominio
 
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.model.Entity
-<<<<<<< HEAD
-import org.uqbar.commons.model.annotations.TransactionalAndObservable
-=======
->>>>>>> ingrediente
 import org.uqbar.commons.model.utils.ObservableUtils
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import org.uqbar.commons.model.Entity
 
 @Accessors
 @TransactionalAndObservable
