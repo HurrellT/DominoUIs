@@ -31,10 +31,17 @@ class Plato extends Entity implements ConIngrediente {
 		this.tamanio = new Tamanio("Grande", 1)
 		this.ingredientes = newArrayList
 	}
-
+	
+	override agregarIngrediente(Ingrediente ingred) {
+		this.ingredientes.add(ingred)
+		this.montoTotal
+		ObservableUtils.firePropertyChanged(this,"ingredientes")
+		ObservableUtils.firePropertyChanged(pizza,"precio")
+	}
+	
 	def montoTotal() {
 		val custom = 70.0
-		if (!pizza.ingredientes.isEmpty()) {
+		if(!pizza.ingredientes.isEmpty()){
 			monto = custom * (tamanio.factor)
 		} else {
 			monto = pizza.precio * (tamanio.factor)
@@ -57,10 +64,5 @@ class Plato extends Entity implements ConIngrediente {
 		this.montoTotal
 		ObservableUtils.firePropertyChanged(this, "monto")
 	}
-	
-	override agregarIngrediente(Ingrediente i) {
-		ingredientes.add(i)
-		ObservableUtils.firePropertyChanged(this, "ingredientes", this.ingredientes)
-	}
-	
+		
 }

@@ -15,7 +15,6 @@ import org.uqbar.commons.applicationContext.ApplicationContext
 import org.uqbar.commons.model.annotations.Observable
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import org.uqbar.commons.model.utils.ObservableUtils
 
 class AgregarIngredienteWindow extends TransactionalDialog<IngredienteApplicationModel> {
 
@@ -74,7 +73,8 @@ class AgregarIngredienteWindow extends TransactionalDialog<IngredienteApplicatio
 		new Button(panel) => [
 			caption = "Aceptar"
 			onClick [
-					this.accept
+				modelObject.actualizar
+				this.accept
 			]
 		]
 		new Button(panel) => [

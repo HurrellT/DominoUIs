@@ -2,10 +2,8 @@ package org.domino.ui;
 
 import org.domino.dominio.Ingrediente;
 import org.domino.dominio.Pizza;
-import org.domino.model.IngredienteApplicationModel;
 import org.domino.model.PizzaApplicationModel;
 import org.domino.repo.RepoPizzas;
-import org.domino.ui.AgregarIngredienteWindow;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.uqbar.arena.aop.windows.TransactionalDialog;
@@ -130,74 +128,30 @@ public class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel
   }
   
   public Button crearPanelBotones(final Panel bottomButtonPanel) {
-    Button _xblockexpression = null;
-    {
-      Button _button = new Button(bottomButtonPanel);
-      final Procedure1<Button> _function = (Button it) -> {
-        it.setCaption("Aceptar");
-        it.setWidth(150);
-        final Action _function_1 = () -> {
-          this.accept();
-        };
-        it.onClick(_function_1);
-      };
-      ObjectExtensions.<Button>operator_doubleArrow(_button, _function);
-      Button _button_1 = new Button(bottomButtonPanel);
-      final Procedure1<Button> _function_1 = (Button it) -> {
-        it.setCaption("Cancelar");
-        it.setWidth(150);
-        final Action _function_2 = () -> {
-          this.close();
-        };
-        it.onClick(_function_2);
-      };
-      ObjectExtensions.<Button>operator_doubleArrow(_button_1, _function_1);
-      Button _button_2 = new Button(bottomButtonPanel);
-      final Procedure1<Button> _function_2 = (Button it) -> {
-        it.setCaption("Agregar Ingrediente");
-        it.setWidth(150);
-        final Action _function_3 = () -> {
-          this.agregarIngrediente();
-        };
-        it.onClick(_function_3);
-      };
-      ObjectExtensions.<Button>operator_doubleArrow(_button_2, _function_2);
-      Button _button_3 = new Button(bottomButtonPanel);
-      final Procedure1<Button> _function_3 = (Button it) -> {
-        it.setCaption("Eliminar Ingrediente");
-        it.setWidth(150);
-        ViewObservable<Control, ControlBuilder> _enabled = it.<ControlBuilder>enabled();
-        ArenaXtendExtensions.operator_spaceship(_enabled, "hayIngredienteSeleccionado");
-        final Action _function_4 = () -> {
-          this.getModelObject().eliminarIngrediente(this.getModelObject().getIngredienteSeleccionado());
-        };
-        it.onClick(_function_4);
-      };
-      _xblockexpression = ObjectExtensions.<Button>operator_doubleArrow(_button_3, _function_3);
-    }
-    return _xblockexpression;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe field ingredienteSeleccionado is not visible");
   }
   
   public void agregarIngrediente() {
-    Pizza _pizza = this.getModelObject().getPizza();
-    IngredienteApplicationModel _ingredienteApplicationModel = new IngredienteApplicationModel(_pizza);
-    AgregarIngredienteWindow _agregarIngredienteWindow = new AgregarIngredienteWindow(this, _ingredienteApplicationModel);
-    this.openDialog(_agregarIngredienteWindow);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe field pizza is not visible");
   }
   
   public void openDialog(final Dialog<?> dialog) {
+    final Action _function = () -> {
+      this.getModelObject().actualizar();
+    };
+    dialog.onAccept(_function);
     dialog.open();
   }
   
   @Override
   public void executeTask() {
-    boolean _isNew = this.getModelObject().getPizza().isNew();
-    if (_isNew) {
-      this.getRepoPizzas().create(this.getModelObject().getPizza());
-    } else {
-      this.getRepoPizzas().update(this.getModelObject().getPizza());
-    }
-    super.executeTask();
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field isNew is undefined for the type Pizza"
+      + "\nThe field pizza is not visible"
+      + "\nThe field pizza is not visible"
+      + "\nThe field pizza is not visible");
   }
   
   public RepoPizzas getRepoPizzas() {

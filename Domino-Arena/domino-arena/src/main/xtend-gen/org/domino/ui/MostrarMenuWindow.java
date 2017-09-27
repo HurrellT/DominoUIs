@@ -96,7 +96,7 @@ public class MostrarMenuWindow extends TransactionalDialog<MenuApplicationModel>
       final Procedure1<Column<Pizza>> _function_1 = (Column<Pizza> it) -> {
         it.setTitle("Precio");
         it.setFixedSize(200);
-        it.bindContentsToProperty("precio");
+        it.bindContentsToProperty("precioConIngredientes");
       };
       _xblockexpression = ObjectExtensions.<Column<Pizza>>operator_doubleArrow(_column_1, _function_1);
     }

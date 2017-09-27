@@ -74,6 +74,7 @@ public class AgregarIngredienteWindow extends TransactionalDialog<IngredienteApp
       final Procedure1<Button> _function = (Button it) -> {
         it.setCaption("Aceptar");
         final Action _function_1 = () -> {
+          this.getModelObject().actualizar();
           this.accept();
         };
         it.onClick(_function_1);

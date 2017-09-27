@@ -4,7 +4,10 @@ import org.domino.dominio.Pizza
 import org.domino.dominio.Ingrediente
 import org.uqbar.commons.model.annotations.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
+<<<<<<< HEAD
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
+=======
+>>>>>>> ingrediente
 import org.uqbar.commons.model.utils.ObservableUtils
 import org.uqbar.commons.model.annotations.Dependencies
 
@@ -29,4 +32,13 @@ class PizzaApplicationModel {
 		ingredienteSeleccionado !== null
 
 	}
+
+	
+	def actualizar() {
+		ObservableUtils.firePropertyChanged(pizza, "precio")
+		ObservableUtils.firePropertyChanged(pizza, "ingredientes")
+		ObservableUtils.firePropertyChanged(pizza, "nombre")
+	}
+	
+
 }
