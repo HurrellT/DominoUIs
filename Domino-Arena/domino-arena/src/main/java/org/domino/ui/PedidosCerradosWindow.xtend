@@ -52,7 +52,7 @@ class PedidosCerradosWindow extends TransactionalDialog<DominoApplicationModel> 
 	def crearTablaPedidosCerrados(Panel panel) {
 		val tabla = new Table<Pedido>(panel, typeof(Pedido)) => [
 			items <=> 'pedidosCerrados'
-			value <=> "pedidoSeleccionado"
+			value <=> 'pedidoSeleccionado'
 		]
 		describirPedidosCerrados(tabla)
 	}

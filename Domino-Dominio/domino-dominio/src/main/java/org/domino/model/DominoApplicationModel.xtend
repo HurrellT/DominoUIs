@@ -19,7 +19,7 @@ import org.uqbar.commons.model.annotations.TransactionalAndObservable
 class DominoApplicationModel extends ApplicationContext {
 	
 	DominoPizza domino
-	public Pedido pedidoSeleccionado
+	Pedido pedidoSeleccionado
 	RepoPedidos pedidos 
 	List<Pedido> pedidosAbiertos
 	List<Pedido> pedidosCerrados
