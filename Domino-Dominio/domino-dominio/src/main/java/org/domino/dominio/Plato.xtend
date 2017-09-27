@@ -45,7 +45,7 @@ class Plato extends Entity implements ConIngrediente {
 		} else {
 			monto = pizza.precio * (tamanio.factor)
 		}
-		for (Ingrediente ing : pizza.ingredientes) {
+		for (Ingrediente ing : pizza.ingredientes) {  //ACA NO SERIA this.ingredientes???
 			monto += ing.precio
 		}
 	}
@@ -63,6 +63,13 @@ class Plato extends Entity implements ConIngrediente {
 		this.montoTotal
 		ObservableUtils.firePropertyChanged(this, "monto")
 		ObservableUtils.firePropertyChanged(this,"tamanio")
+	}
+	
+	def eliminarIngrediente(Ingrediente ingred){
+		ingredientes.remove(ingred)
+		//this.monto = monto - ingred.precio
+		ObservableUtils.firePropertyChanged(this,"ingredientes")
+		//ObservableUtils.firePropertyChanged(this,"monto")
 	}
 		
 }

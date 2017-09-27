@@ -164,7 +164,7 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 			caption = 'Eliminar Ingrediente'
 			width = 150
 			enabled <=> "hayIngredienteSeleccionado"
-			onClick[modelObject.eliminarIngrediente(modelObject.ingredienteSeleccionado)]
+			onClick[modelObject.plato.eliminarIngrediente(modelObject.ingredienteSeleccionado)]
 
 		]
 	}
