@@ -157,6 +157,7 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 			caption = 'Agregar Ingrediente'
 			width = 150
 			onClick[this.agregarIngrediente]
+			enabled <=> "puedeAceptar"
 
 		]
 		new Button(panelFinal) => [
