@@ -19,9 +19,10 @@ class CrearPlatoWindow extends EditarPlatoWindow {
 		if (!pedidoApplication.pedido.platos.contains(modelObject.plato)) {
 			this.pedidoApplication.pedido.agregarPlato(modelObject.plato)
 		} else {
-			this.pedidoApplication.pedido.platos.remove(modelObject)
+			this.pedidoApplication.pedido.platos.remove(modelObject.plato)
 			this.pedidoApplication.pedido.platos.add(modelObject.plato)
 		}
+		
 		pedidoApplication.pedido.montoTotal
 		super.executeTask()
 	}

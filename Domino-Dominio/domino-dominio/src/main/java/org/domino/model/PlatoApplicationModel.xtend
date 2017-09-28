@@ -24,9 +24,9 @@ class PlatoApplicationModel {
 		this.tamanioSeleccionado = plato.tamanio
 	}
 
-	@Dependencies("pizzaSeleccionada")
+	@Dependencies("plato")
 	def getHayPizzaSeleccionada() {
-		pizzaSeleccionada !== null
+		plato.pizza !== null
 	}
 	
 	@Dependencies("pizzaSeleccionada", "tamanioSeleccionado")
@@ -34,9 +34,9 @@ class PlatoApplicationModel {
 		hayPizzaSeleccionada && hayTamanioSeleccionado()
 	}
 	
-	@Dependencies("tamanioSeleccionado")
+	@Dependencies("plato")
 	protected def boolean hayTamanioSeleccionado() {
-		this.tamanioSeleccionado !== null
+		plato.tamanio !== null
 	}
 
 	@Dependencies("ingredienteSeleccionado")
@@ -52,11 +52,6 @@ class PlatoApplicationModel {
 	
 	def actualizar() {
 		ObservableUtils.firePropertyChanged(plato, "monto")
-	}
-	
-	def setTamanioPlato() {
-		plato.tamanio = tamanioSeleccionado
-		this.actualizar
 	}
 	
 }

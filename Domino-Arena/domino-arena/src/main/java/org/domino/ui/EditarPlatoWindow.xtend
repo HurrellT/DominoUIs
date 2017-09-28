@@ -137,9 +137,8 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 // ** Creacion de panel final
 // ********************************************************
 	def crearPanelFinal(Panel panelFinal) {
-		//val haySeleccionDePizza = new NotNullObservable("pizzaSeleccionada")
+
 		new Button(panelFinal) => [
-			//bindEnabled(haySeleccionDePizza)
 			caption = 'Aceptar'
 			width = 150
 			enabled <=> "puedeAceptar"
@@ -151,7 +150,7 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 		new Button(panelFinal) => [
 			caption = 'Cancelar'
 			width = 150
-			onClick[this.close]
+			onClick[this.cancel]
 		]
 
 		new Button(panelFinal) => [
@@ -180,17 +179,14 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 		dialog.onAccept[modelObject.actualizar]
 		dialog.open
 	}
-
-//	override executeTask() {
-//		if (!pedidoApplication.pedido.platos.contains(modelObject.plato)) {
-//			this.pedidoApplication.pedido.agregarPlato(modelObject.plato)
-//		} else {
-//			this.pedidoApplication.pedido.platos.remove(modelObject)
-//			this.pedidoApplication.pedido.platos.add(modelObject.plato)
-//		}
-//		pedidoApplication.pedido.montoTotal
-//		super.executeTask()
+	
+//	def override cancel() {
+//		super.
+//		this.rollback()
+//		super.cancel()
+//		this.pedidoApplication.pedido.platos.remove(modelObject.plato)
 //	}
+
 // ********************************************************
 // ** Repositorios
 // ********************************************************

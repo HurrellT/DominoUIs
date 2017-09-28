@@ -89,7 +89,7 @@ class EditarPedidoWindow extends TransactionalDialog<PedidoApplicationModel> {
 
 		new Button(panelBotones) => [
 			caption = "Cancelar"
-			onClick[this.close]
+			onClick[this.cancel]
 		]
 
 	}
@@ -163,18 +163,12 @@ class EditarPedidoWindow extends TransactionalDialog<PedidoApplicationModel> {
 
 		new Button(panel) => [
 			caption = "Editar"
-//			enabled <=> "pedido.esAbierto"
-//			enabled <=> "hayPlatoSeleccionado"
-//			enabled <=> "hayPlatosEnPedido"
 			enabled <=> "sePuedeSeleccionar"
 			onClick [this.editarPlato]
 		]
 
 		new Button(panel) => [
 			caption = "Eliminar"
-//			enabled <=> "hayPlatoSeleccionado"
-//			enabled <=> "pedido.esAbierto"
-//			enabled <=> "hayPlatosEnPedido"
 			enabled <=> "sePuedeSeleccionar"
 			onClick [modelObject.pedido.platos.remove(modelObject.platoSeleccionado)
 					modelObject.setHayPlatoSeleccionado
@@ -208,8 +202,7 @@ class EditarPedidoWindow extends TransactionalDialog<PedidoApplicationModel> {
 // ** Acciones
 // ********************************************************
 	def editarPlato() {
-		this.openDialog(
-			new EditarPlatoWindow(this, new PlatoApplicationModel(modelObject.platoSeleccionado), modelObject))
+		this.openDialog(new EditarPlatoWindow(this, new PlatoApplicationModel(modelObject.platoSeleccionado), modelObject))
 	}
 
 	def crearPlato() {
