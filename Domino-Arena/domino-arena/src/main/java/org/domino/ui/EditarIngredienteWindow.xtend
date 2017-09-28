@@ -12,6 +12,8 @@ import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.commons.applicationContext.ApplicationContext
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.arena.widgets.NumericField
+import org.uqbar.arena.bindings.NotNullObservable
 
 class EditarIngredienteWindow extends TransactionalDialog<Ingrediente> {
 
@@ -37,15 +39,20 @@ class EditarIngredienteWindow extends TransactionalDialog<Ingrediente> {
 
 		new Label(mainPanel).text = "Precio"
 
-		new TextBox(mainPanel) => [
+		new NumericField(mainPanel) => [
+			val tieneNombre = new NotNullObservable("nombre")
+			bindEnabled(tieneNombre)
+			
 			value <=> "precio"
 		]
 
 		new Button(mainPanel) => [
+			val tienePrecio = new NotNullObservable("precio")
+			bindEnabled(tienePrecio)
+			
 			caption = "Aceptar"
 			onClick [this.accept]
 			setAsDefault
-			disableOnError
 		]
 
 		new Button(mainPanel) => [

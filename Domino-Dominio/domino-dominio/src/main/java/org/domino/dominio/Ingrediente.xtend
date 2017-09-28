@@ -45,11 +45,4 @@ class Ingrediente extends Entity {
 	 	this.precio
 	 }
 	 
-//	 def setPrecioIngrediente(Integer precio) {
-//	 	if(precio == null || precio < 0) {
-//	 		throw new UserException("Introduzca un precio valido")
-//	 	}
-//	 	this.precioIngrediente = precio
-//	 	ObservableUtils.firePropertyChanged(this, "precioIngrediente", this.precioIngrediente)
-//	 }
 }

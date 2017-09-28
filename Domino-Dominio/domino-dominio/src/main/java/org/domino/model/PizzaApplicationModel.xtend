@@ -23,16 +23,6 @@ class PizzaApplicationModel {
 		ingredienteSeleccionado !== null
 	}
 
-	@Dependencies("pizza")
-	def getPizzaTieneNombre() {
-		pizza.nombre !== null
-	}
-	
-	@Dependencies("pizza")
-	def getPizzaTienePrecio() {
-	 	pizza.precio > 0
-	}
-
 	def actualizar() {
 		ObservableUtils.firePropertyChanged(pizza, "precio")
 		ObservableUtils.firePropertyChanged(pizza, "ingredientes")

@@ -114,11 +114,13 @@ class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel> {
 	def crearPanelBotones(Panel bottomButtonPanel) {
 		new Button(bottomButtonPanel) => [
 			val hayNombre = new NotNullObservable("pizza.nombre")
-			bindEnabled(hayNombre)
+			bindEnabled(hayNombre)			
+			
 			caption = 'Aceptar'
 			width = 150
 
 			onClick [this.accept]
+			setAsDefault
 		]
 
 		new Button(bottomButtonPanel) => [
