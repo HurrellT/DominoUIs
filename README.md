@@ -20,7 +20,6 @@ EDITAR PEDIDO WINDOW
 
 CREAR PLATO WINDOW
 - Bug retardo
-- El precio mostrado no se actualiza (el precio de la pizza sumado al de los ingredientes) hasta cerrar la ventana y volver a abrirla
 - Al agregar, se muestra un precio que no corresponde, ademas de que no se actualiza
 - Si agregaste y cancelas, la pizza aparece igual, pero sin nombre
 - PRECIO (influido por tamanio) esta MAL
