@@ -63,6 +63,8 @@ class DominoApplicationModel extends ApplicationContext {
 	 	pedidosAbiertos = repoPedidos.allInstances.stream.filter[p | p.esAbierto].collect(Collectors.toList)
 	 	pedidosCerrados = repoPedidos.allInstances.stream.filter[p | !(p.esAbierto)].collect(Collectors.toList)
 	 	
+	 	pedidosAbiertos.forEach[p | p.platos.forEach[pl | pl.montoTotal]]
+	 	
 	 	ObservableUtils.firePropertyChanged(this, "pedidosAbiertos",this.pedidosAbiertos)
 	 	ObservableUtils.firePropertyChanged(this, "pedidosCerrados",this.pedidosCerrados)
 	}

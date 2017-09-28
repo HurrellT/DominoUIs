@@ -13,7 +13,7 @@ import org.uqbar.commons.model.annotations.Dependencies
 class Plato extends Entity implements ConIngrediente {
 
 	Pizza pizza
-	Tamanio tamanio
+	public Tamanio tamanio
 	double monto
 	List<Ingrediente> ingredientes
 
@@ -21,7 +21,7 @@ class Plato extends Entity implements ConIngrediente {
 		this.pizza = pizza
 		this.tamanio = tamanio
 		this.ingredientes = newArrayList
-		this.monto = pizza.precio
+		this.monto = pizza.precioConIngredientes
 	}
 
 	// Para CrearPlatoWindow
@@ -32,15 +32,7 @@ class Plato extends Entity implements ConIngrediente {
 	
 	@Dependencies("ingredientes","tamanio","pizza.ingredientes")
 	def montoTotal() {
-		val custom = 70.0
-		if(!pizza.ingredientes.isEmpty()){
-			monto = custom * (tamanio.factor)
-		} else {
-			monto = pizza.precio * (tamanio.factor)
-		}
-		for (Ingrediente ing : pizza.ingredientes) {
-			monto += ing.precio
-		}
+		monto = pizza.precioConIngredientes * (tamanio.factor)
 		for (Ingrediente ing : this.ingredientes) {
 			monto += ing.precio
 		}
