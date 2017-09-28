@@ -17,6 +17,7 @@ class Menu {
 
 	new() {
 		this.ingredientesDisponibles = newArrayList
+		this.promos = newArrayList
 	}
 
 	def actualizarPromo(Pizza pizza, Integer nuevoPrecio) {

@@ -6,9 +6,13 @@ import org.junit.Test
 import static org.junit.Assert.*
 import static org.mockito.Matchers.*
 import static org.mockito.Mockito.*
+import org.domino.repo.RepoPedidos
+import org.uqbar.commons.applicationContext.ApplicationContext
+import org.junit.Before
+import org.junit.Ignore
 
 class PedidosTest {
-
+	
 	Cliente cliente = mock(Cliente)
 	Cliente cl1 = new Cliente("Honer", "henborda", "123456", "ranidalf@gmail.com" ,"Calle 28")
 	String aclaracion = "Esto es una aclaracion"
@@ -20,6 +24,11 @@ class PedidosTest {
 	ServicioDeNotificacion servicio = mock(ServicioDeNotificacion)
 	DominoPizza dominoPizza = new DominoPizza(menu, servicio)
 
+	@Before
+	def setUp(){
+			ApplicationContext.instance.configureSingleton(typeof(Pedido), new RepoPedidos)	
+	}
+	@Ignore
 	@Test
 	def testUnPedidoTieneUnClienteUnaFechaUnaAclaracion() {
 		when(cliente.nombre).thenReturn("Honer")
@@ -59,9 +68,9 @@ class PedidosTest {
 	@Test
 	def unPedidoParaRetirarEnElLocalTieneComoMontoFinalLaSumaDelMontoDeSusPlatos() {
 		var plato1 = mock(Plato)
-		when(plato1.montoTotal()).thenReturn(10.0)
+		when(plato1.monto).thenReturn(10.0)
 		var plato2 = mock(Plato)
-		when(plato2.montoTotal()).thenReturn(25.0)
+		when(plato2.monto).thenReturn(25.0)
 
 		pedido1.agregarPlato(plato1)
 		pedido1.agregarPlato(plato2)
@@ -72,9 +81,9 @@ class PedidosTest {
 	@Test
 	def unPedidoParaDeliveryTieneComoMontoFinalLaSumaDelMontoDeSusPlatosMasUnRecargo() {
 		var plato1 = mock(Plato)
-		when(plato1.montoTotal()).thenReturn(10.0)
+		when(plato1.monto).thenReturn(10.0)
 		var plato2 = mock(Plato)
-		when(plato2.montoTotal()).thenReturn(25.0)
+		when(plato2.monto).thenReturn(25.0)
 
 		pedido2.agregarPlato(plato1)
 		pedido2.agregarPlato(plato2)
