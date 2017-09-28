@@ -37,14 +37,15 @@ class PlatoTest {
 		plato1.agregarIngrediente(ingred2)
 		when(ingred1.precio).thenReturn(12)
 		when(ingred2.precio).thenReturn(6)
-		when(pizza.precio).thenReturn(90)
+		when(pizza.precio).thenReturn(50)
+		when(pizza.precioConIngredientes).thenReturn(15)
 		ingredientes.add(ingred1)
 		ingredientes.add(ingred2)
 		when(pizza.ingredientes).thenReturn(ingredientes)
 		when(tamanio.factor).thenReturn(0.5)
-		val monto = (70 * 0.5) + (12 + 6)
+		val monto = (pizza.precio * 0.5)
 		plato1.montoTotal()
-		assertTrue(monto == plato1.monto)
+		assertEquals(monto, plato1.monto, 1)
 	}
 	
 	@Ignore

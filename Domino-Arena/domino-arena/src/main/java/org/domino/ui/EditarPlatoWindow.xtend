@@ -99,6 +99,7 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 				modelObject.tamanioSeleccionado = modelObject.plato.tamanio
 				modelObject.actualizar
 			]
+			enabled <=> "hayPizzaSeleccionada"
 			width = 100
 		]
 	}

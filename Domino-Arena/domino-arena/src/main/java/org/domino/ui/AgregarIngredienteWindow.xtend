@@ -108,5 +108,4 @@ class RepoDistribuciones {
 	new() {
 		this.distribuciones = #["Izquierda", "Derecha", "Toda"]
 	}
-
 }
