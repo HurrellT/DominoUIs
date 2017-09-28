@@ -13,14 +13,4 @@ class CrearPromoWindow extends EditarPromoWindow {
 		"Agregar una nueva Promo"
 	}
 
-//	override executeTask() {
-//
-//		if (modelObject.pizza.isNew) {
-//			repoPizzas.create(modelObject.pizza)
-//		} else {
-//			repoPizzas.update(modelObject.pizza)
-//		}
-//		super.executeTask()
-//	}
-
 }

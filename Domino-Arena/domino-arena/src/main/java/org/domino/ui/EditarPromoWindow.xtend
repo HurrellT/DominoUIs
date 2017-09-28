@@ -21,6 +21,8 @@ import org.uqbar.arena.windows.Dialog
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.widgets.NumericField
 import org.domino.model.IngredienteApplicationModel
+import org.uqbar.commons.model.utils.ObservableUtils
+import org.uqbar.arena.bindings.NotNullObservable
 
 class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel> {
 
@@ -58,7 +60,7 @@ class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel> {
 		]
 
 		new Label(panelPrecio).text = "Precio"
-
+		
 		new NumericField(panelPrecio) => [
 			value <=> "pizza.precio"
 			width = 200
@@ -111,6 +113,8 @@ class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel> {
 // ********************************************************
 	def crearPanelBotones(Panel bottomButtonPanel) {
 		new Button(bottomButtonPanel) => [
+			val hayNombre = new NotNullObservable("pizza.nombre")
+			bindEnabled(hayNombre)
 			caption = 'Aceptar'
 			width = 150
 
@@ -127,6 +131,7 @@ class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel> {
 		new Button(bottomButtonPanel) => [
 			caption = 'Agregar Ingrediente'
 			width = 150
+			
 			onClick[this.agregarIngrediente]
 		]
 
@@ -134,6 +139,7 @@ class EditarPromoWindow extends TransactionalDialog<PizzaApplicationModel> {
 			caption = 'Eliminar Ingrediente'
 			width = 150
 			enabled <=> "hayIngredienteSeleccionado"
+			
 			onClick[modelObject.pizza.eliminarIngrediente(modelObject.ingredienteSeleccionado)]
 		]		
 

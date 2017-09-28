@@ -21,7 +21,16 @@ class PizzaApplicationModel {
 	@Dependencies("ingredienteSeleccionado")
 	def getHayIngredienteSeleccionado() {
 		ingredienteSeleccionado !== null
+	}
 
+	@Dependencies("pizza")
+	def getPizzaTieneNombre() {
+		pizza.nombre !== null
+	}
+	
+	@Dependencies("pizza")
+	def getPizzaTienePrecio() {
+	 	pizza.precio > 0
 	}
 
 	def actualizar() {

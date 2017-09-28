@@ -24,8 +24,6 @@ class Pizza extends Entity implements ConIngrediente {
 	}
 	
 	new() {
-		nombre =""
-		precio = 0
 		this.ingredientes = newArrayList
 	}
 	
@@ -63,5 +61,4 @@ class Pizza extends Entity implements ConIngrediente {
 		ObservableUtils.firePropertyChanged(this,"ingredientes")
 		ObservableUtils.firePropertyChanged(this,"precioConIngredientes")
 	}
-	
 }
