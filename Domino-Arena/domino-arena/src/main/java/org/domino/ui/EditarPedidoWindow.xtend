@@ -89,7 +89,10 @@ class EditarPedidoWindow extends TransactionalDialog<PedidoApplicationModel> {
 
 		new Button(panelBotones) => [
 			caption = "Cancelar"
-			onClick[this.cancel]
+			onClick[
+				modelObject.cancelarAdicionDePlatos
+				this.cancel			
+			]
 		]
 
 	}

@@ -6,7 +6,6 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.Entity
 import org.uqbar.commons.model.annotations.Dependencies
-import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @Accessors
@@ -22,7 +21,6 @@ class Pedido extends Entity {
 	Integer numeroDePedido
 	long tiempoDeCierre
 	List<ServicioDeNotificacion> obs = newArrayList
-	//public float montoTotal
 
 	new(Cliente cliente, LocalDateTime fecha, String aclaracion, FormaDeEnvio envio) {
 		this.cliente 	= cliente

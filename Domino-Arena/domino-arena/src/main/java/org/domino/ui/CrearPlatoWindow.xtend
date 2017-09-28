@@ -16,13 +16,13 @@ class CrearPlatoWindow extends EditarPlatoWindow {
 	}
 
 	override executeTask() {
-		if (!pedidoApplication.pedido.platos.contains(modelObject.plato)) {
-			this.pedidoApplication.pedido.agregarPlato(modelObject.plato)
+		if (!pedidoApplication.platosAAgregar.contains(modelObject.plato)) {
+			this.pedidoApplication.platosAAgregar.add(modelObject.plato)
 		} else {
-			this.pedidoApplication.pedido.platos.remove(modelObject.plato)
-			this.pedidoApplication.pedido.platos.add(modelObject.plato)
+			this.pedidoApplication.platosAAgregar.remove(modelObject.plato)
+			this.pedidoApplication.platosAAgregar.add(modelObject.plato)
 		}
-		
+		pedidoApplication.confirmarAdicionDePlatos
 		pedidoApplication.pedido.montoTotal
 		super.executeTask()
 	}
