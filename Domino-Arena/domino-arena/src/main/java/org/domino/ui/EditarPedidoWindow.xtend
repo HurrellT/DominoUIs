@@ -136,7 +136,7 @@ class EditarPedidoWindow extends TransactionalDialog<PedidoApplicationModel> {
 		]
 
 		new Column<Plato>(table) => [
-			title = "Tama�o"
+			title = "Tamaño"
 			fixedSize = 200
 			bindContentsToProperty("tamanio").transformer = [ Tamanio t |
 				t.nombre
@@ -163,18 +163,22 @@ class EditarPedidoWindow extends TransactionalDialog<PedidoApplicationModel> {
 
 		new Button(panel) => [
 			caption = "Editar"
-			enabled <=> "hayPlatoSeleccionado"
-			enabled <=> "pedido.esAbierto"
-			enabled <=> "hayPlatosEnPedido"
+//			enabled <=> "pedido.esAbierto"
+//			enabled <=> "hayPlatoSeleccionado"
+//			enabled <=> "hayPlatosEnPedido"
+			enabled <=> "sePuedeSeleccionar"
 			onClick [this.editarPlato]
 		]
 
 		new Button(panel) => [
 			caption = "Eliminar"
-			enabled <=> "hayPlatoSeleccionado"
-			enabled <=> "pedido.esAbierto"
-			enabled <=> "hayPlatosEnPedido"
-			onClick [modelObject.pedido.platos.remove(modelObject.platoSeleccionado)]
+//			enabled <=> "hayPlatoSeleccionado"
+//			enabled <=> "pedido.esAbierto"
+//			enabled <=> "hayPlatosEnPedido"
+			enabled <=> "sePuedeSeleccionar"
+			onClick [modelObject.pedido.platos.remove(modelObject.platoSeleccionado)
+					modelObject.setHayPlatoSeleccionado
+			]
 		]
 	}
 

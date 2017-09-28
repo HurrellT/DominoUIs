@@ -39,6 +39,11 @@ class PedidoApplicationModel {
 	def getHayPlatoSeleccionado() {
 		platoSeleccionado !== null
 	}
+	
+	@Dependencies("platoSeleccionado")
+	def setHayPlatoSeleccionado() {
+		platoSeleccionado = null
+	}
 
 	def setEstadoSeleccionado(EstadoPedido estadoNuevo) {
 		this.estadoSeleccionado = estadoNuevo
@@ -48,6 +53,11 @@ class PedidoApplicationModel {
 	@Dependencies("pedido")
 	def getHayPlatosEnPedido(){
 		!this.pedido.platos.isEmpty
+	}
+	
+	@Dependencies("pedido", "hayPlatoSeleccionado", "hayPlatosEnPedido")
+	def getSePuedeSeleccionar(){
+		this.pedido.esAbierto && this.hayPlatoSeleccionado && this.hayPlatosEnPedido
 	}
 	
 	def actualizar() {
