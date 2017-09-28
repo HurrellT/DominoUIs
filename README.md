@@ -12,10 +12,10 @@ Repositorio para los proyectos de Construccion de Interfaces de Usuario - UNQ
 ## Bugs
 
 DOMINO PIZZA WINDOW
-- Sigue tardando en actualizar los pedidos
+- Bug retardo
 
 EDITAR PEDIDO WINDOW
-- No se actualizan los precios hasta aceptar la edicion de otro pedido
+- Bug retardo
 
 CREAR PLATO WINDOW
 - Bug retardo
@@ -23,7 +23,7 @@ CREAR PLATO WINDOW
 
 EDITAR PROMO WINDOW
 - No aparece la distribucion solo cuando es "Toda la pizza" (problema con el String?)
-- No se actualiza el precio al editar los ingredientes
+- Bug retardo
 
 MOSTRAR MENU WINDOW
 - Bug retardo
