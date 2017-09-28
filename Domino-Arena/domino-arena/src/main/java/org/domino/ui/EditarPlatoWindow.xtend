@@ -180,13 +180,6 @@ class EditarPlatoWindow extends TransactionalDialog<PlatoApplicationModel> {
 		dialog.open
 	}
 	
-//	def override cancel() {
-//		super.
-//		this.rollback()
-//		super.cancel()
-//		this.pedidoApplication.pedido.platos.remove(modelObject.plato)
-//	}
-
 // ********************************************************
 // ** Repositorios
 // ********************************************************

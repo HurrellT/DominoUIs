@@ -29,6 +29,11 @@ class IngredienteApplicationModel {
 	def getHayIngredienteSeleccionado() {
 		ingredienteSeleccionado !== null
 	}
+	
+	@Dependencies("distribucionSeleccionada")
+	def getHayDistribucionSeleccionada() {
+		distribucionSeleccionada !== null
+	}
 
 	def actualizar() {
 		objeto.agregarIngrediente(

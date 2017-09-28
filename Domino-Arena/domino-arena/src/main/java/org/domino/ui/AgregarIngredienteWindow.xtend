@@ -72,6 +72,7 @@ class AgregarIngredienteWindow extends TransactionalDialog<IngredienteApplicatio
 	def crearBotones(Panel panel) {
 		new Button(panel) => [
 			caption = "Aceptar"
+			enabled <=> "hayDistribucionSeleccionada"
 			onClick [
 				modelObject.actualizar
 				this.accept
@@ -105,7 +106,7 @@ class RepoDistribuciones {
 	java.util.List<String> distribuciones
 
 	new() {
-		this.distribuciones = #["Izquierda", "Derecha", "Toda la pizza"]
+		this.distribuciones = #["Izquierda", "Derecha", "Toda"]
 	}
 
 }
