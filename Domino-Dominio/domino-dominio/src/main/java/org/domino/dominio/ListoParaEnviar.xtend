@@ -29,5 +29,6 @@ class ListoParaEnviar extends EstadoPedido {
 	override getNombre() {
 		"Listo Para Enviar"
 	}
+	
 }
 

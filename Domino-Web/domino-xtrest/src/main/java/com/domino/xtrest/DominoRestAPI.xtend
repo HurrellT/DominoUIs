@@ -12,6 +12,7 @@ import org.uqbar.commons.model.exceptions.UserException
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException
 import org.domino.json.JSONAdapterPedido
 import java.time.LocalDateTime
+import org.domino.json.JSONViewerPedido
 
 @Controller
 class DominoRestAPI {
