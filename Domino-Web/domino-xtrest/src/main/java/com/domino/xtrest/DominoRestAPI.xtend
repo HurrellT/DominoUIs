@@ -10,6 +10,8 @@ import org.uqbar.xtrest.api.annotation.Body
 import org.domino.dominio.Pedido
 import org.uqbar.commons.model.exceptions.UserException
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException
+import org.domino.json.JSONAdapterPedido
+import java.time.LocalDateTime
 
 @Controller
 class DominoRestAPI {
@@ -44,8 +46,14 @@ class DominoRestAPI {
     def createLibro(@Body String body) {
         response.contentType = ContentType.APPLICATION_JSON
         try {
-            val pedido = body.fromJson(Pedido)
+            val pedidoJSON = body.fromJson(JSONAdapterPedido)
             try {
+            	
+            	val platos = pedidoJSON.platos
+            	val cliente = this.dominoPizza.clientes.findFirst[c | c.id == pedidoJSON.id_usuario]
+            	val envio = pedidoJSON.entrega.toInstance
+            	val pedido = new Pedido(cliente, LocalDateTime.now,pedidoJSON.aclaraciones,envio);
+            	platos.forEach[p | pedido.agregarPlato(p)]
                 this.dominoPizza.realizarPedido(pedido)
                 return ok()
             } catch (UserException exception) {
