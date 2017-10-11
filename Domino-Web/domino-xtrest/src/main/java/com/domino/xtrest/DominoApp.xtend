@@ -1,23 +1,18 @@
 package com.domino.xtrest
 
 import org.domino.dominio.DominoPizza
-import org.uqbar.xtrest.api.XTRest
 import org.domino.dominio.Menu
-import org.domino.dominio.Pizza
-import org.domino.dominio.Ingrediente
+import org.domino.repo.DominoBootstrap
+import org.uqbar.xtrest.api.XTRest
 
 class DominoApp {
 	def static void main(String[] args) {
-		val ingrediente = new Ingrediente('Henry',5,'Toda la Pizza')
-		val promo = new Pizza('La pizza', 1200)
-		promo.agregarIngrediente(ingrediente)
-		val promo2 = new Pizza('La pizza2', 5500)
-		val servicio = null
-		val menu = new Menu() => [actualizarPromo(promo, 120)
-			actualizarPromo(promo2,5000)
-			actualizarIngrediente(ingrediente,5410)
-		]
-		val biblioteca = new DominoPizza(menu, servicio);
+		val menu = new Menu()
+		
+		val biblioteca = new DominoPizza(menu, null);
+		
+		val bootstrap = new DominoBootstrap
+		bootstrap.run
 
    		XTRest.startInstance(9000, new DominoRestAPI(biblioteca))
 	}
