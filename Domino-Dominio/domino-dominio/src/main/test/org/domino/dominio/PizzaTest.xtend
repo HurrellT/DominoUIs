@@ -20,7 +20,7 @@ class PizzaTest {
 	@Test
 	def testAUnaPizzaSeLePuedeAgregarUnIngrediente() {
 		val ingrediente = mock(Ingrediente)
-		pizzaBase.agregar(ingrediente)
+		pizzaBase.agregarIngrediente(ingrediente)
 		assertTrue(pizzaBase.ingredientes.contains(ingrediente))
 	}
 

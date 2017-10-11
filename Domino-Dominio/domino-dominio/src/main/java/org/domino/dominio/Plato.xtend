@@ -1,38 +1,72 @@
 package org.domino.dominio
 
-import org.eclipse.xtend.lib.annotations.Accessors
-
 import java.util.List
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.Entity
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import org.uqbar.commons.model.exceptions.UserException
+import org.uqbar.commons.model.utils.ObservableUtils
+import org.uqbar.commons.model.annotations.Dependencies
 
 @Accessors
-class Plato {
+@TransactionalAndObservable
+class Plato extends Entity implements ConIngrediente {
 
 	Pizza pizza
-	Tamanio tamanio
+	public Tamanio tamanio
+	double monto
 	List<Ingrediente> ingredientes
 
 	new(Pizza pizza, Tamanio tamanio) {
 		this.pizza = pizza
 		this.tamanio = tamanio
 		this.ingredientes = newArrayList
+		this.monto = pizza.precioConIngredientes
 	}
 
-	def agregarIngredienteExtra(Ingrediente ingred) {
-		this.ingredientes.add(ingred)
+	// Para CrearPlatoWindow
+	new() {
+		this.pizza = new Pizza
+		this.ingredientes = newArrayList
 	}
-
+	
+	@Dependencies("ingredientes","tamanio","pizza.ingredientes")
 	def montoTotal() {
-		var monto = 0.0
-		val custom = 70.0
-		if(pizza.ingredientes.isEmpty()){
-			monto = custom * (tamanio.factor)
-		}
-		else {
-			monto = pizza.precio * (tamanio.factor)
-		}
-		for(Ingrediente ing : ingredientes){
+		monto = pizza.precioConIngredientes * (tamanio.factor)
+		for (Ingrediente ing : this.ingredientes) {
 			monto += ing.precio
 		}
-		monto
 	}
+
+	def getPizza() {
+		if (pizza == null) {
+			throw new UserException("Seleccione una Pizza")
+		} else {
+			this.pizza
+		}
+	}
+
+	def setTamanio(Tamanio tamanio) {
+		this.tamanio = tamanio
+		this.montoTotal
+		ObservableUtils.firePropertyChanged(this, "monto")
+		ObservableUtils.firePropertyChanged(this,"tamanio")
+	}
+	
+	override agregarIngrediente(Ingrediente ingred) {
+		this.ingredientes.add(ingred)
+		this.montoTotal
+		ObservableUtils.firePropertyChanged(this,"ingredientes")
+		ObservableUtils.firePropertyChanged(pizza,"precio")
+		ObservableUtils.firePropertyChanged(this,"monto")
+	}
+	
+	def eliminarIngrediente(Ingrediente ingred){
+		ingredientes.remove(ingred)
+		this.monto = monto - ingred.precio
+		ObservableUtils.firePropertyChanged(this,"ingredientes")
+		ObservableUtils.firePropertyChanged(pizza,"precio")
+		ObservableUtils.firePropertyChanged(this,"monto")
+	}
+		
 }
