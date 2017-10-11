@@ -20,6 +20,7 @@
 		<version>2.9.1</version>
 	</parent>
 	<dependencies>
+	
 		<dependency>
 			<groupId>domino-dominio</groupId>
 			<artifactId>domino-dominio</artifactId>
