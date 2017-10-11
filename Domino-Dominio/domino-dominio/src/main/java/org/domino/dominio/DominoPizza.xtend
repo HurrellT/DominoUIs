@@ -42,5 +42,10 @@ class DominoPizza {
 		pedido.addObserver(servicio)
 	}
 	
+	def getPedidos(){
+		val repoPedidos = ApplicationContext.instance.getSingleton(typeof(Pedido)) as RepoPedidos
+		repoPedidos.allInstances
+	}
+	
 	
 }

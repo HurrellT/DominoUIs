@@ -15,6 +15,13 @@ class JSONAdapterPlato {
 	int id_tamanio
 	List<JSONAdapterIngrediente> extras
 	
+	new(Plato plato) {
+		this.id_promo = plato.pizza.id
+		this.id_tamanio= plato.tamanio.id
+		this.extras = newArrayList
+		plato.ingredientes.forEach[i | extras.add(new JSONAdapterIngrediente(i))]
+	}
+	
 	def crearPlato() {
 		val promo = promos.findFirst[p| p.id == this.id_promo]
 		val tamanio = tamanios.findFirst[t | t.id == this.id_tamanio]

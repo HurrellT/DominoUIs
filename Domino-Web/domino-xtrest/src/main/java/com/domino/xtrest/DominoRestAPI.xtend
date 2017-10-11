@@ -43,7 +43,7 @@ class DominoRestAPI {
 	}
 	
 	@Post("/pedidos")
-    def createLibro(@Body String body) {
+    def createPedido(@Body String body) {
         response.contentType = ContentType.APPLICATION_JSON
         try {
             val pedidoJSON = body.fromJson(JSONAdapterPedido)
@@ -62,6 +62,13 @@ class DominoRestAPI {
         } catch (UnrecognizedPropertyException exception) {
             return badRequest(getErrorJson("El body debe ser un Pedido"))
         }
+    }
+     
+    @Get("/pedidos/:id")
+    def getPedidoById(){
+    	response.contentType = ContentType.APPLICATION_JSON
+    	val res = new JSONViewerPedido(this.dominoPizza.pedidos.findFirst[c | c.id ==Integer.valueOf(id)])//TODO: implementar usa EL constructor de JSONAdapaterPedido
+    	return ok(res.toJson)
     }
     
     private def getErrorJson(String message) {
