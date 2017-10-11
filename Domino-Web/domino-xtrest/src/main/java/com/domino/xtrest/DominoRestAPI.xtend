@@ -68,7 +68,15 @@ class DominoRestAPI {
     @Get("/pedidos/:id")
     def getPedidoById(){
     	response.contentType = ContentType.APPLICATION_JSON
-    	val res = new JSONViewerPedido(this.dominoPizza.pedidos.findFirst[c | c.id ==Integer.valueOf(id)])//TODO: implementar usa EL constructor de JSONAdapaterPedido
+    	val res = new JSONViewerPedido(this.dominoPizza.pedidos.findFirst[c | c.id == Integer.valueOf(id)])
+    	return ok(res.toJson)
+    }
+    
+    @Get("/pedidos[?]estado[=]:estado") //TODO: no encuentro la forma de hacer el URL correcto
+    def getPedidoByState(){
+    	response.contentType = ContentType.APPLICATION_JSON
+    	val matchedPedidos = this.dominoPizza.pedidos.filter[c | c.estado.nombre.replaceAll("[^A-Za-z]+", "").toLowerCase == estado].toList
+    	val res = matchedPedidos.map[p | new JSONViewerPedido(p)].toList
     	return ok(res.toJson)
     }
     

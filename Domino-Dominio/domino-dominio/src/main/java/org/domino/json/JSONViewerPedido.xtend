@@ -17,7 +17,7 @@ class JSONViewerPedido {
 	
 	new(Pedido pedido) {
 		this.id = pedido.id
-		this.estado = pedido.estado.getNombre
+		this.estado = pedido.estado.getNombre.replaceAll("[^A-Za-z]+", "").toLowerCase
 		this.monto = pedido.montoTotal
 		this.id_usuario = pedido.cliente.id
 		this.aclaraciones = pedido.aclaracion
