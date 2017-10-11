@@ -1,16 +1,37 @@
 package org.domino.dominio
 
-import org.domino.dominio.EstadoPedido
+import org.uqbar.commons.model.annotations.Observable
 
-class EnViaje implements EstadoPedido {
+@Observable
+class EnViaje extends EstadoPedido {
+	
 	
 	override siguienteEstado(Pedido pedido) {
-		pedido.cronometro.detener
+		if(pedido.tiempoDelPedido > 30){
+			pedido.notifyObservers(pedido.cliente.email,"Su pedido tardo mas de 30 min :(")
+		}
+		pedido.tiempoDeCierre = pedido.tiempoDelPedido
 		new Entregado
 	}
-	
+
 	override anteriorEstado(Pedido pedido) {
 		new ListoParaEnviar
 	}
 	
+	override esCancelado() {
+		false
+	}
+	
+	override esEntregado() {
+		false
+	}
+	
+	override getNombre() {
+		"En Viaje"
+	}
+
+	override esPreparando() {
+		false
+	}
 }
+

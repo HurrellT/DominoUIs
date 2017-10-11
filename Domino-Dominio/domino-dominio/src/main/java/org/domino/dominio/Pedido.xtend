@@ -1,29 +1,39 @@
 package org.domino.dominio
 
-import java.util.Date
+import java.time.LocalDateTime
+import java.time.temporal.ChronoUnit
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import java.util.Observable
+import org.uqbar.commons.model.Entity
+import org.uqbar.commons.model.annotations.Dependencies
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @Accessors
-class Pedido extends Observable {
+@TransactionalAndObservable
+class Pedido extends Entity {
 	
 	Cliente cliente
-	Date fecha
+	LocalDateTime fecha
 	String aclaracion
 	List<Plato> platos  
 	EstadoPedido estado
 	FormaDeEnvio envio
-	Cronometro cronometro
+	Integer numeroDePedido
+	long tiempoDeCierre
+	List<ServicioDeNotificacion> obs = newArrayList
 
-	new(Cliente cliente, Date fecha, String aclaracion, FormaDeEnvio envio) {
+	new(Cliente cliente, LocalDateTime fecha, String aclaracion, FormaDeEnvio envio) {
 		this.cliente 	= cliente
 		this.fecha		= fecha
 		this.aclaracion	= aclaracion
 		this.envio		= envio
 		this.estado = new Preparando
 		this.platos = newArrayList
-		this.cronometro = new Cronometro()
+	}
+	
+	new() {
+		this.estado = new Preparando
+		this.platos = newArrayList
 	}
 	
 	def siguienteEstado(){
@@ -38,22 +48,35 @@ class Pedido extends Observable {
 	def agregarPlato(Plato plato) {
 		this.platos.add(plato)
 	}
-	
-	def montoTotal() {
-		platos.stream.mapToInt[p | p.montoTotal() as int].sum() + this.envio.recargo
-	
+	@Dependencies("platos")
+	def getMontoTotal() {
+		platos.stream.mapToInt[p | p.monto as int].sum() + this.envio.recargo
 	}
 	
 	def cancelar() {
 		this.estado = new Cancelado
+		this.tiempoDeCierre = tiempoDelPedido
 	}
 	
-	def cambio() {
-		setChanged
-	}
 	
 	def tiempoDelPedido() {
-		this.cronometro.tiempoEnMinutos()
+		val diferenciaDeHoras= ChronoUnit.HOURS.between(fecha, LocalDateTime.now)
+		val diferenciaDeMinutos= ChronoUnit.MINUTES.between(fecha, LocalDateTime.now)
+		
+		diferenciaDeHoras * 60 + diferenciaDeMinutos
 	}
 	
+	
+	def addObserver(ServicioDeNotificacion o){
+		this.obs.add(o)
+	}
+	
+	def notifyObservers(String mail, String msj) {
+		obs.stream.forEach(s | s.sendMail(mail,"DominoPizza informa", msj))
+	}
+	
+	def esAbierto() {
+		!(this.estado.esCancelado || this.estado.esEntregado)
+	}
+
 }

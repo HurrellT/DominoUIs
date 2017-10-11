@@ -1,15 +1,33 @@
 package org.domino.dominio
 
-class ListoParaRetirar implements EstadoPedido {
-	
+import org.uqbar.commons.model.annotations.Observable
+
+@Observable
+class ListoParaRetirar extends EstadoPedido {
+
 	override siguienteEstado(Pedido pedido) {
-		pedido.cronometro.detener
 		new Entregado
 	}
-	
+
 	override anteriorEstado(Pedido pedido) {
 		new Preparando
 	}
+
 	
+	override esCancelado() {
+		false
+	}
+	
+	override esEntregado() {
+		false
+	}
+	
+	override esPreparando() {
+		false
+	}
+
+	override getNombre() {
+		"Listo Para Retirar"
+	}
 
 }

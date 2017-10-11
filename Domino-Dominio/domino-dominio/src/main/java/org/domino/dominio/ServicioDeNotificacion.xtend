@@ -14,7 +14,7 @@ import java.util.Observer
 import java.util.Observable
 
 @Accessors
-class ServicioDeNotificacion implements Observer {
+class ServicioDeNotificacion{
 
 	UserPasswordAuthentication authentication
 	boolean comprobanteDeMailEnviado
@@ -68,13 +68,6 @@ class ServicioDeNotificacion implements Observer {
 		Session.getInstance(props, authentication)
 		
 	}
-	
-	override update(Observable o, Object arg) {
-		val pedido = o as Pedido
-		
-		ServicioDeNotificacion.instance.sendMail(pedido.cliente.email,"Test", "Test")
-	}
-	
 }
 
 class UserPasswordAuthentication extends Authenticator {

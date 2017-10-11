@@ -1,14 +1,33 @@
 package org.domino.dominio
 
-class ListoParaEnviar implements EstadoPedido {
-	
+import org.uqbar.commons.model.annotations.Observable
+
+@Observable
+class ListoParaEnviar extends EstadoPedido {
+
 	override siguienteEstado(Pedido pedido) {
-		pedido.cambio()
-		pedido.notifyObservers()
+		pedido.notifyObservers(pedido.cliente.email,"Su pedido esta en viaje")
 		new EnViaje
 	}
-	
+
 	override anteriorEstado(Pedido pedido) {
 		new Preparando
 	}
+
+	override esCancelado() {
+		false
+	}
+	
+	override esEntregado() {
+		false
+	}
+	
+	override esPreparando() {
+		false
+	}
+
+	override getNombre() {
+		"Listo Para Enviar"
+	}
 }
+

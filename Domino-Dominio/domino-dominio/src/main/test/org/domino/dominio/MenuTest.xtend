@@ -1,15 +1,14 @@
 package org.domino.dominio
 
 import org.junit.Test
+
 import static org.junit.Assert.*
-import static org.mockito.Mockito.*
 
 class MenuTest {
 
 	Menu menu = new Menu
-	Pizza dummyPizza = mock(Pizza)
-	Integer precio = new Integer(15)
-	Ingrediente dummyIngrediente = mock(Ingrediente)
+	Pizza pizza = new Pizza("Muzza", 55)
+	Ingrediente ingredienteJamon = new Ingrediente("Jamon", 55, "Izquierda")
 
 	@Test
 	def testUnMenuEstaCompuestoPorPromosYIngredientes() {
@@ -20,35 +19,38 @@ class MenuTest {
 	@Test
 	def testAUnMenuSeLePuedenAgregarPromosEIngredientes() {
 
-		menu.actualizarPromo(dummyPizza, precio)
-		menu.agregarIngrediente(dummyIngrediente, precio)
+		menu.actualizarPromo(pizza, 25)
+		menu.actualizarIngrediente(ingredienteJamon,35)
 
-		assertTrue(menu.promos.containsKey(dummyPizza))
-		assertTrue(menu.ingredientesDisponibles.containsKey(dummyIngrediente))
+		assertTrue(menu.promos.contains(pizza))
+		assertTrue(menu.ingredientesDisponibles.contains(ingredienteJamon))
 	}
 
 	@Test
 	def testElMenuSabeDecirQuePrecioTieneCadaIngredienteYCadaPromo() {
 
-		menu.actualizarPromo(dummyPizza, precio)
-		menu.agregarIngrediente(dummyIngrediente, precio)
+		menu.actualizarPromo(pizza, 25)
+		menu.actualizarIngrediente(ingredienteJamon, 55)
 
-		assertEquals(precio, menu.precioPromo(dummyPizza))
-		assertEquals(precio, menu.precioIngrediente(dummyIngrediente))
+		assertEquals(25, menu.precioPromo(pizza))
+		assertEquals(55, menu.precioIngrediente(ingredienteJamon))
 	}
 	
 	@Test
 	def testSePuedenModificarLosPreciosDeUnMenu(){
-		var nuevoPrecio2 = new Integer(13)
 		var nuevoPrecio =  new Integer(50)
 		
-		menu.agregarIngrediente(dummyIngrediente, precio)
-		menu.actualizarPromo(dummyPizza,precio)
+		menu.actualizarIngrediente(ingredienteJamon,nuevoPrecio)
+		menu.actualizarPromo(pizza,nuevoPrecio)
 		
-		menu.actualizarPromo(dummyPizza,nuevoPrecio)
-		menu.agregarIngrediente(dummyIngrediente, nuevoPrecio2)
+		assertEquals(nuevoPrecio, menu.precioIngrediente(ingredienteJamon))
+		assertEquals(nuevoPrecio, menu.precioPromo(pizza))
+	}
+	
+	@Test
+	def testUnJamonDelMenuQueCuesta55PasaACostar30() {
+		menu.actualizarIngrediente(ingredienteJamon,30)
 		
-		assertEquals(nuevoPrecio2, menu.precioIngrediente(dummyIngrediente))
-		assertEquals(nuevoPrecio, menu.precioPromo(dummyPizza))
+		assertEquals(30,ingredienteJamon.precio)
 	}
 }
