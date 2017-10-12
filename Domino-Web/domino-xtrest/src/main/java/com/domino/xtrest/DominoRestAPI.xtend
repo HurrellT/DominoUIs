@@ -73,7 +73,7 @@ class DominoRestAPI {
     	return ok(res.toJson)
     }
     
-    @Get("/pedidos/estado")
+    @Get("/pedidos")
     def getPedidoByState(String estado){
     	response.contentType = ContentType.APPLICATION_JSON
     	val matchedPedidos = this.dominoPizza.pedidos.filter[p | p.estado.nombre.replaceAll("[^A-Za-z]+", "").toLowerCase == estado].toList
