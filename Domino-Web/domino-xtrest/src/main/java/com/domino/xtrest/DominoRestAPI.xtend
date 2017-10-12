@@ -105,7 +105,6 @@ class DominoRestAPI {
 				val pedido = this.dominoPizza.pedidos.findFirst[p | p.id == Integer.valueOf(id)]
 				val estado = estadoJSON.toInstance
 				pedido.estado = estado
-				repoPedido.update(pedido)
 				return ok()
 			} catch (UserException exception) {
 				return badRequest(getErrorJson(exception.message))
@@ -123,9 +122,6 @@ class DominoRestAPI {
     	return ok(res.toJson)
     }
 	
-	def getRepoPedido() {
-		ApplicationContext.instance.getSingleton(typeof(Pedido)) as RepoPedidos
-	}
 
 	private def getErrorJson(String message) {
 		'{ "error": "' + message + '" }'
