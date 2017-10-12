@@ -17,6 +17,9 @@ import org.uqbar.xtrest.http.ContentType
 import org.uqbar.xtrest.json.JSONUtils
 import org.domino.json.JSONAdapterEstado
 import org.domino.json.JSONAdapterUsuario
+import org.uqbar.commons.applicationContext.ApplicationContext
+import org.domino.repo.RepoClientes
+import org.domino.dominio.Cliente
 
 @Controller
 class DominoRestAPI {
@@ -55,7 +58,7 @@ class DominoRestAPI {
 			try {
 
 				val platos = pedidoJSON.platos
-				val cliente = this.dominoPizza.clientes.findFirst[c|c.id == pedidoJSON.id_usuario]
+				val cliente = repoClientes.usuarioConId(pedidoJSON.id_usuario)
 				val envio = pedidoJSON.entrega.toInstance
 				val pedido = new Pedido(cliente, pedidoJSON.aclaraciones, envio);
 				platos.forEach[p|pedido.agregarPlato(p)]
@@ -67,6 +70,10 @@ class DominoRestAPI {
 		} catch (UnrecognizedPropertyException exception) {
 			return badRequest(getErrorJson("El body debe ser un Pedido"))
 		}
+	}
+	
+	def getRepoClientes() {
+		ApplicationContext.instance.getSingleton(typeof(Cliente)) as RepoClientes
 	}
 
 	@Get("/pedidos/:id")
@@ -128,7 +135,7 @@ class DominoRestAPI {
         response.contentType = ContentType.APPLICATION_JSON
         try {
             var userJSON = body.fromJson(JSONAdapterUsuario)
-        	var usuario = this.dominoPizza.clientes.findFirst[c | c.id == Integer.valueOf(id)]
+        	var usuario = repoClientes.usuarioConId(Integer.valueOf(id))
             try {
                 userJSON.actualizar(usuario)
                 return ok()
