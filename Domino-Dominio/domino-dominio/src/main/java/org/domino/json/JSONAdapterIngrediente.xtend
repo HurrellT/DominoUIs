@@ -16,6 +16,10 @@ class JSONAdapterIngrediente {
 		this.posicion = ingrediente.distribucionElegida
 	}
 	
+	new() {
+		
+	}
+	
 	def toInstance() {
 		var ing = ingredientes.findFirst[i | i.id.intValue == id_ingrediente.intValue]
 		

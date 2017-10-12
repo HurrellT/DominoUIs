@@ -3,27 +3,20 @@ package com.domino.xtrest
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException
 import java.time.LocalDateTime
 import org.domino.dominio.DominoPizza
-import org.uqbar.xtrest.json.JSONUtils
-import org.uqbar.xtrest.api.annotation.Controller
-import org.uqbar.xtrest.api.annotation.Get
-import org.uqbar.xtrest.http.ContentType
-import org.uqbar.xtrest.api.annotation.Post
-import org.uqbar.xtrest.api.annotation.Body
 import org.domino.dominio.Pedido
-import org.domino.json.JSONAdapterEstado
 import org.domino.json.JSONAdapterPedido
-import java.time.LocalDateTime
+import org.domino.json.JSONAdapterUsuario
 import org.domino.json.JSONViewerPedido
 import org.domino.json.JSONViewerUsuario
-import org.domino.repo.RepoPedidos
-import org.uqbar.commons.applicationContext.ApplicationContext
 import org.uqbar.commons.model.exceptions.UserException
 import org.uqbar.xtrest.api.annotation.Body
 import org.uqbar.xtrest.api.annotation.Controller
 import org.uqbar.xtrest.api.annotation.Get
 import org.uqbar.xtrest.api.annotation.Post
+import org.uqbar.xtrest.api.annotation.Put
 import org.uqbar.xtrest.http.ContentType
 import org.uqbar.xtrest.json.JSONUtils
+import org.domino.json.JSONAdapterEstado
 
 @Controller
 class DominoRestAPI {
@@ -83,7 +76,7 @@ class DominoRestAPI {
 		return ok(res.toJson)
 	}
 
-	@Get("/pedidos/estado")
+	@Get("/pedidos/estados")
 	def getPedidoByState(String estado) {
 		response.contentType = ContentType.APPLICATION_JSON
 		val matchedPedidos = this.dominoPizza.pedidos.filter [ p |
