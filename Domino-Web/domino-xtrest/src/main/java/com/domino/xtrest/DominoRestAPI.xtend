@@ -5,7 +5,6 @@ import java.time.LocalDateTime
 import org.domino.dominio.DominoPizza
 import org.domino.dominio.Pedido
 import org.domino.json.JSONAdapterPedido
-import org.domino.json.JSONAdapterUsuario
 import org.domino.json.JSONViewerPedido
 import org.domino.json.JSONViewerUsuario
 import org.uqbar.commons.model.exceptions.UserException
@@ -17,6 +16,7 @@ import org.uqbar.xtrest.api.annotation.Put
 import org.uqbar.xtrest.http.ContentType
 import org.uqbar.xtrest.json.JSONUtils
 import org.domino.json.JSONAdapterEstado
+import org.domino.json.JSONAdapterUsuario
 
 @Controller
 class DominoRestAPI {
@@ -100,7 +100,8 @@ class DominoRestAPI {
 	def changePedidoState(@Body String body) {
 		response.contentType = ContentType.APPLICATION_JSON
 		try {
-			val estadoJSON = body.fromJson(JSONAdapterEstado)
+			val estadoJSON = body.fromJson(JSONAdapterEstado
+			)
 			try {
 				val pedido = this.dominoPizza.pedidos.findFirst[p | p.id == Integer.valueOf(id)]
 				val estado = estadoJSON.toInstance
@@ -155,7 +156,14 @@ class DominoRestAPI {
     
     @Post("/login")
     def loginUsuario(@Body String body) {
-        return ok()
+    	 response.contentType = ContentType.APPLICATION_JSON
+         var userJSON = body.fromJson(JSONAdapterUsuario)
+        try {
+			userJSON.validarSesionDeUsuario()
+                return ok()           
+            }catch (UnrecognizedPropertyException exception) {
+          return badRequest(getErrorJson("La contraseña o usuario no coiniciden con nuestros registros, por favor, revise los datos"))
+    	}
     }
     
     private def getErrorJson(String message) {
