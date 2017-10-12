@@ -10,10 +10,9 @@ import org.uqbar.commons.model.annotations.TransactionalAndObservable
 @TransactionalAndObservable
 class RepoPedidos extends CollectionBasedRepo<Pedido> {
 
-	def void create (Cliente cliente1, LocalDateTime fecha1 , String aclaracion1 ,FormaDeEnvio formaEnvio){
+	def void create (Cliente cliente1, String aclaracion1 ,FormaDeEnvio formaEnvio){
 		this.create(new Pedido => [
 			cliente = cliente1
-			fecha = fecha1
 			aclaracion = aclaracion1
 			envio= formaEnvio
 		])

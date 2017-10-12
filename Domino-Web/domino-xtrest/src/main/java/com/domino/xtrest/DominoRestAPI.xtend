@@ -57,7 +57,7 @@ class DominoRestAPI {
 				val platos = pedidoJSON.platos
 				val cliente = this.dominoPizza.clientes.findFirst[c|c.id == pedidoJSON.id_usuario]
 				val envio = pedidoJSON.entrega.toInstance
-				val pedido = new Pedido(cliente, LocalDateTime.now, pedidoJSON.aclaraciones, envio);
+				val pedido = new Pedido(cliente, pedidoJSON.aclaraciones, envio);
 				platos.forEach[p|pedido.agregarPlato(p)]
 				this.dominoPizza.realizarPedido(pedido)
 				return ok()

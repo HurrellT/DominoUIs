@@ -14,7 +14,7 @@ class DominoApp {
 		val bootstrap = new DominoBootstrap
 		bootstrap.run
 
-   		XTRest.startInstance(9000, new DominoRestAPI(biblioteca))
+   		XTRest.startInstance(9000	, new DominoRestAPI(biblioteca))
 	}
 	
 }
