@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException
 import org.domino.json.JSONAdapterPedido
 import java.time.LocalDateTime
 import org.domino.json.JSONViewerPedido
+import org.domino.json.JSONViewerUsuario
 
 @Controller
 class DominoRestAPI {
@@ -68,15 +69,22 @@ class DominoRestAPI {
     @Get("/pedidos/:id")
     def getPedidoById(){
     	response.contentType = ContentType.APPLICATION_JSON
-    	val res = new JSONViewerPedido(this.dominoPizza.pedidos.findFirst[c | c.id == Integer.valueOf(id)])
+    	val res = new JSONViewerPedido(this.dominoPizza.pedidos.findFirst[p | p.id == Integer.valueOf(id)])
     	return ok(res.toJson)
     }
     
-    @Get("/pedidos[?]estado[=]:estado") //TODO: no encuentro la forma de hacer el URL correcto
-    def getPedidoByState(){
+    @Get("/pedidos/estado")
+    def getPedidoByState(String estado){
     	response.contentType = ContentType.APPLICATION_JSON
-    	val matchedPedidos = this.dominoPizza.pedidos.filter[c | c.estado.nombre.replaceAll("[^A-Za-z]+", "").toLowerCase == estado].toList
+    	val matchedPedidos = this.dominoPizza.pedidos.filter[p | p.estado.nombre.replaceAll("[^A-Za-z]+", "").toLowerCase == estado].toList
     	val res = matchedPedidos.map[p | new JSONViewerPedido(p)].toList
+    	return ok(res.toJson)
+    }
+    
+    @Get("/usuarios/:id")
+    def getUsuarioById() {
+    	response.contentType = ContentType.APPLICATION_JSON
+    	val res = new JSONViewerUsuario(this.dominoPizza.repoClientes.findFirst[c | c.id == Integer.valueOf(id)])
     	return ok(res.toJson)
     }
     

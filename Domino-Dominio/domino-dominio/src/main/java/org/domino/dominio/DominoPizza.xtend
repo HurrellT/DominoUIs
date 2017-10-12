@@ -1,10 +1,10 @@
 package org.domino.dominio
 
 import java.util.List
+import org.domino.repo.RepoClientes
 import org.domino.repo.RepoPedidos
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.applicationContext.ApplicationContext
-import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @Accessors
@@ -46,6 +46,11 @@ class DominoPizza {
 		val repoPedidos = ApplicationContext.instance.getSingleton(typeof(Pedido)) as RepoPedidos
 		repoPedidos.allInstances
 	}
+	
+	def getRepoClientes() {
+		val repoClientes = ApplicationContext.instance.getSingleton(typeof(Cliente)) as RepoClientes
+		repoClientes.allInstances
+	} 
 	
 	
 }
