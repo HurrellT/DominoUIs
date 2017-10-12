@@ -11,6 +11,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
 class JSONAdapterPlato {
+	
 	int id_promo
 	int id_tamanio
 	List<JSONAdapterIngrediente> extras
@@ -24,7 +25,6 @@ class JSONAdapterPlato {
 		plato.pizza = promo
 		ponerIngredientes(plato)
 		plato
-		
 	}
 	
 	def ponerIngredientes(Plato plato) {

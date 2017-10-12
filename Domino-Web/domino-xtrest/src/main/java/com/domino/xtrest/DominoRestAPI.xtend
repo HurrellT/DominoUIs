@@ -14,6 +14,8 @@ import org.domino.json.JSONAdapterPedido
 import java.time.LocalDateTime
 import org.domino.json.JSONViewerPedido
 import org.domino.json.JSONViewerUsuario
+import org.uqbar.xtrest.api.annotation.Put
+import org.domino.json.JSONAdapterUsuario
 
 @Controller
 class DominoRestAPI {
@@ -86,6 +88,23 @@ class DominoRestAPI {
     	response.contentType = ContentType.APPLICATION_JSON
     	val res = new JSONViewerUsuario(this.dominoPizza.repoClientes.findFirst[c | c.id == Integer.valueOf(id)])
     	return ok(res.toJson)
+    }
+    
+    @Put("/usuarios/:id")
+    def editUsuario(@Body String body) {
+        response.contentType = ContentType.APPLICATION_JSON
+        try {
+            var userJSON = body.fromJson(JSONAdapterUsuario)
+        	var usuario = this.dominoPizza.repoClientes.findFirst[c | c.id == Integer.valueOf(id)]
+            try {
+                userJSON.actualizar(usuario)
+                return ok()
+            } catch (UserException exception) {
+                return badRequest(getErrorJson(exception.message))
+            }
+        } catch (UnrecognizedPropertyException exception) {
+            return badRequest(getErrorJson("El body debe contener campos validos para un Usuario"))
+        }
     }
     
     private def getErrorJson(String message) {
