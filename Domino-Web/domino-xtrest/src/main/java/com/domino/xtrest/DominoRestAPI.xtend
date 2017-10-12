@@ -118,7 +118,7 @@ class DominoRestAPI {
     @Get("/usuarios/:id")
     def getUsuarioById() {
     	response.contentType = ContentType.APPLICATION_JSON
-    	val res = new JSONViewerUsuario(this.dominoPizza.repoClientes.findFirst[c | c.id == Integer.valueOf(id)])
+    	val res = new JSONViewerUsuario(this.dominoPizza.clientes.findFirst[c | c.id == Integer.valueOf(id)])
     	return ok(res.toJson)
     }
     
@@ -127,7 +127,7 @@ class DominoRestAPI {
         response.contentType = ContentType.APPLICATION_JSON
         try {
             var userJSON = body.fromJson(JSONAdapterUsuario)
-        	var usuario = this.dominoPizza.repoClientes.findFirst[c | c.id == Integer.valueOf(id)]
+        	var usuario = this.dominoPizza.clientes.findFirst[c | c.id == Integer.valueOf(id)]
             try {
                 userJSON.actualizar(usuario)
                 return ok()
@@ -137,6 +137,25 @@ class DominoRestAPI {
         } catch (UnrecognizedPropertyException exception) {
             return badRequest(getErrorJson("El body debe contener campos validos para un Usuario"))
         }
+    }
+    
+    @Post("/usuarios")
+    def createUsuario(@Body String body) {
+    	response.contentType = ContentType.APPLICATION_JSON
+    	try {
+    		var userJSON = body.fromJson(JSONAdapterUsuario)
+    		val usuario = userJSON.toInstance
+    		this.dominoPizza.agregarCliente(usuario)
+    		return ok()
+    	} catch (UnrecognizedPropertyException exception) {
+    		return badRequest(getErrorJson("El body debe contener campos validos para un Usuario"))
+    	}
+    	
+    }
+    
+    @Post("/login")
+    def loginUsuario(@Body String body) {
+        return ok()
     }
     
     private def getErrorJson(String message) {

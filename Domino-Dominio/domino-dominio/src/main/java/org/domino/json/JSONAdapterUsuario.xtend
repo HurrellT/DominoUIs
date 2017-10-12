@@ -42,4 +42,9 @@ class JSONAdapterUsuario {
 		}
 	}
 	
+	def toInstance() {
+		var usuario = new Cliente(nombre, usuario, password, email, direccion)
+		usuario
+	}
+	
 }

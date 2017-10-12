@@ -26,13 +26,21 @@ class DominoPizza {
 	}
 	
 	def agregarCliente(Cliente cliente) {
-		if (!clientes.stream.anyMatch [c | c.email == cliente.email] &&
+//		if (!clientes.stream.anyMatch [c | c.email == cliente.email] &&
+//			!clientes.stream.anyMatch [c | c.nick == cliente.nick]) {
+//				clientes.add(cliente)				
+//			}
+//			else {
+//				throw new RuntimeException("El nick "+cliente.nick+" que quiere usar ya se encuentra registrado. Por favor elija otro.")
+//			}
+		val repoClientes = ApplicationContext.instance.getSingleton(typeof(Cliente)) as RepoClientes
+		if(!clientes.stream.anyMatch [c | c.email == cliente.email] &&
 			!clientes.stream.anyMatch [c | c.nick == cliente.nick]) {
-				clientes.add(cliente)				
+				repoClientes.create(cliente)
 			}
-			else {
-				throw new RuntimeException("El nick "+cliente.nick+" que quiere usar ya se encuentra registrado. Por favor elija otro.")
-			}
+		else {
+			throw new RuntimeException("El nick "+cliente.nick+" que quiere usar ya se encuentra registrado. Por favor elija otro.")
+		}
 	}
 	
 	def realizarPedido(Pedido pedido) {
@@ -47,7 +55,7 @@ class DominoPizza {
 		repoPedidos.allInstances
 	}
 	
-	def getRepoClientes() {
+	def getClientes() {
 		val repoClientes = ApplicationContext.instance.getSingleton(typeof(Cliente)) as RepoClientes
 		repoClientes.allInstances
 	} 
