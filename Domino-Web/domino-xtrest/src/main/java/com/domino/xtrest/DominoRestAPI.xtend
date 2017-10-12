@@ -20,6 +20,7 @@ import org.domino.json.JSONAdapterUsuario
 import org.uqbar.commons.applicationContext.ApplicationContext
 import org.domino.repo.RepoClientes
 import org.domino.dominio.Cliente
+import org.domino.repo.RepoPedidos
 
 @Controller
 class DominoRestAPI {
@@ -79,8 +80,12 @@ class DominoRestAPI {
 	@Get("/pedidos/:id")
 	def getPedidoById() {
 		response.contentType = ContentType.APPLICATION_JSON
-		val res = new JSONViewerPedido(this.dominoPizza.pedidos.findFirst[p | p.id == Integer.valueOf(id)])
+		val res = new JSONViewerPedido(repoPedidos.getPedidoConId(Integer.valueOf(id)))
 		return ok(res.toJson)
+	}
+	
+	def getRepoPedidos() {
+		ApplicationContext.instance.getSingleton(typeof(Pedido)) as RepoPedidos
 	}
 
 	@Get("/pedidos/estados")
@@ -110,7 +115,7 @@ class DominoRestAPI {
 			val estadoJSON = body.fromJson(JSONAdapterEstado
 			)
 			try {
-				val pedido = this.dominoPizza.pedidos.findFirst[p | p.id == Integer.valueOf(id)]
+				val pedido = repoPedidos.getPedidoConId(Integer.valueOf(id))
 				val estado = estadoJSON.toInstance
 				pedido.estado = estado
 				return ok()
@@ -126,7 +131,7 @@ class DominoRestAPI {
     @Get("/usuarios/:id")
     def getUsuarioById() {
     	response.contentType = ContentType.APPLICATION_JSON
-    	val res = new JSONViewerUsuario(this.dominoPizza.clientes.findFirst[c | c.id == Integer.valueOf(id)])
+    	val res = new JSONViewerUsuario(repoClientes.usuarioConId(Integer.valueOf(id)))
     	return ok(res.toJson)
     }
     

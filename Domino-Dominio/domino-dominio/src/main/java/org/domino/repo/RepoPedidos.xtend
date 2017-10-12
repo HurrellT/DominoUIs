@@ -29,4 +29,9 @@ class RepoPedidos extends CollectionBasedRepo<Pedido> {
 	override getEntityType() {
 		typeof(Pedido)
 	}
+	
+	def getPedidoConId(Integer id) {
+		allInstances.findFirst[p | p.id == id]
+	}
+	
 }
