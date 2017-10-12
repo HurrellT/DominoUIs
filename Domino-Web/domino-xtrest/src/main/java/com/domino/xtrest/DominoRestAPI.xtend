@@ -72,8 +72,8 @@ class DominoRestAPI {
     	return ok(res.toJson)
     }
     
-    @Get("/pedidos[?]estado[=]:estado") //TODO: no encuentro la forma de hacer el URL correcto
-    def getPedidoByState(){
+    @Get("/pedidos") //TODO: no encuentro la forma de hacer el URL correcto
+    def getPedidoByState(String estado){
     	response.contentType = ContentType.APPLICATION_JSON
     	val matchedPedidos = this.dominoPizza.pedidos.filter[c | c.estado.nombre.replaceAll("[^A-Za-z]+", "").toLowerCase == estado].toList
     	val res = matchedPedidos.map[p | new JSONViewerPedido(p)].toList
