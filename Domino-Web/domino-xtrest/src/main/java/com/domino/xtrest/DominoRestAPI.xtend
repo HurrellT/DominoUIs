@@ -21,6 +21,7 @@ import org.uqbar.commons.applicationContext.ApplicationContext
 import org.domino.repo.RepoClientes
 import org.domino.dominio.Cliente
 import org.domino.repo.RepoPedidos
+import org.domino.json.JSONViewerIngrediente
 
 @Controller
 class DominoRestAPI {
@@ -48,7 +49,9 @@ class DominoRestAPI {
 	@Get("/ingredientes")
 	def getIngredientes() {
 		response.contentType = ContentType.APPLICATION_JSON
-		return ok(this.dominoPizza.menu.ingredientes.toJson)
+		val ingredientes = this.dominoPizza.menu.ingredientes
+		val res = ingredientes.map[p|new JSONViewerIngrediente(p)].toList
+		return ok(res.toJson)
 	}
 
 	@Post("/pedidos")
