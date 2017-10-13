@@ -13,6 +13,10 @@ import org.eclipse.xtend.lib.annotations.Accessors
 class JSONAdapterEstado {
 	String nombre
 	
+	new(){
+		
+	}
+	
 	new(EstadoPedido estadoPedido) {
 		nombre = estadoPedido.nombre
 	}

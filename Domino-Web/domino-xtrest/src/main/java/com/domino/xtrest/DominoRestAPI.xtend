@@ -22,6 +22,7 @@ import org.domino.repo.RepoClientes
 import org.domino.dominio.Cliente
 import org.domino.repo.RepoPedidos
 import org.domino.json.JSONViewerIngrediente
+import org.domino.json.JSONViewerPromo
 
 @Controller
 class DominoRestAPI {
@@ -37,7 +38,10 @@ class DominoRestAPI {
 	@Get("/promos")
 	def getPromos() {
 		response.contentType = ContentType.APPLICATION_JSON
-		return ok(this.dominoPizza.menu.promos.toJson)
+		val promos = this.dominoPizza.menu.promos
+		val res = promos.map[p|new JSONViewerPromo(p)].toList
+		return ok(res.toJson)
+		
 	}
 	
 	@Get("/tamanios")
