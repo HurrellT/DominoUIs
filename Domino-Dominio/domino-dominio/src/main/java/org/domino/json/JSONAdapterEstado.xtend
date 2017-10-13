@@ -12,6 +12,10 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class JSONAdapterEstado {
 	String nombre
+	
+	new(EstadoPedido estadoPedido) {
+		nombre = estadoPedido.nombre
+	}
 
 	def toInstance() {
 		var EstadoPedido res = new Cancelado

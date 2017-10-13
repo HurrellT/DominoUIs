@@ -100,8 +100,7 @@ class DominoRestAPI {
 	def changePedidoState(@Body String body) {
 		response.contentType = ContentType.APPLICATION_JSON
 		try {
-			val estadoJSON = body.fromJson(JSONAdapterEstado
-			)
+			val estadoJSON = body.fromJson(JSONAdapterEstado)
 			try {
 				val pedido = this.dominoPizza.pedidos.findFirst[p | p.id == Integer.valueOf(id)]
 				val estado = estadoJSON.toInstance
@@ -115,6 +114,13 @@ class DominoRestAPI {
 		}
 
 	}
+    
+    @Get("/pedidos/:id/estado")
+    def getStateOfPedido(){
+  		response.contentType = ContentType.APPLICATION_JSON
+	   	val res = new JSONAdapterEstado(this.dominoPizza.pedidos.findFirst[p | p.id == Integer.valueOf(id)].estado).toInstance	
+   		return ok(res.toJson)
+    }
     
     @Get("/usuarios/:id")
     def getUsuarioById() {

@@ -1,10 +1,9 @@
 package org.domino.json
 
 import org.domino.dominio.Cliente
+import org.domino.repo.RepoClientes
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.applicationContext.ApplicationContext
-import org.domino.repo.RepoClientes
-import org.junit.runner.notification.RunNotifier
 
 @Accessors
 class JSONAdapterUsuario {
@@ -44,8 +43,8 @@ class JSONAdapterUsuario {
 	}
 	
 	def toInstance() {
-		var usuario = new Cliente(nombre, usuario, password, email, direccion)
-		usuario
+		var usuario1 = new Cliente(nombre, usuario, password, email, direccion)
+		usuario1
 	}
 	
 	def validarSesionDeUsuario() {
