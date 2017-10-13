@@ -8,7 +8,7 @@ class MenuTest {
 
 	Menu menu = new Menu
 	Pizza pizza = new Pizza("Muzza", 55)
-	Ingrediente ingredienteJamon = new Ingrediente("Jamon", 55, "Izquierda")
+	Ingrediente ingredienteJamon = new Ingrediente("Jamon", 55,Distribucion.IZQUIERDA)
 
 	@Test
 	def testUnMenuEstaCompuestoPorPromosYIngredientes() {

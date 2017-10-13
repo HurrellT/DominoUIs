@@ -22,9 +22,9 @@ class Pedido extends Entity {
 	long tiempoDeCierre
 	List<ServicioDeNotificacion> obs = newArrayList
 
-	new(Cliente cliente, LocalDateTime fecha, String aclaracion, FormaDeEnvio envio) {
+	new(Cliente cliente, String aclaracion, FormaDeEnvio envio) {
 		this.cliente 	= cliente
-		this.fecha		= fecha
+		this.fecha		= LocalDateTime.now
 		this.aclaracion	= aclaracion
 		this.envio		= envio
 		this.estado = new Preparando
@@ -34,6 +34,7 @@ class Pedido extends Entity {
 	new() {
 		this.estado = new Preparando
 		this.platos = newArrayList
+		this.fecha = LocalDateTime.now
 	}
 	
 	def siguienteEstado(){

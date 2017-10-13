@@ -23,4 +23,8 @@ class RepoClientes extends CollectionBasedRepo<Cliente>{
 		typeof(Cliente)
 	}
 	
+	def usuarioConId(Integer id) {
+		allInstances.findFirst[c | c.id == id]
+	}
+	
 }

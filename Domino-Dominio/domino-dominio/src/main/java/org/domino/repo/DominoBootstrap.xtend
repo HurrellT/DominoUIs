@@ -1,23 +1,23 @@
 package org.domino.repo
 
-import java.time.LocalDateTime
+import org.domino.dominio.Cancelado
 import org.domino.dominio.Cliente
 import org.domino.dominio.Delivery
+import org.domino.dominio.Distribucion
+import org.domino.dominio.EnViaje
+import org.domino.dominio.Entregado
+import org.domino.dominio.EstadoPedido
 import org.domino.dominio.Ingrediente
+import org.domino.dominio.ListoParaEnviar
+import org.domino.dominio.ListoParaRetirar
 import org.domino.dominio.Pedido
 import org.domino.dominio.Pizza
 import org.domino.dominio.Plato
+import org.domino.dominio.Preparando
+import org.domino.dominio.RetiraPorElLocal
 import org.domino.dominio.Tamanio
 import org.uqbar.arena.bootstrap.CollectionBasedBootstrap
 import org.uqbar.commons.applicationContext.ApplicationContext
-import org.domino.dominio.EstadoPedido
-import org.domino.dominio.Preparando
-import org.domino.dominio.ListoParaRetirar
-import org.domino.dominio.ListoParaEnviar
-import org.domino.dominio.EnViaje
-import org.domino.dominio.Entregado
-import org.domino.dominio.Cancelado
-import org.domino.dominio.RetiraPorElLocal
 
 class DominoBootstrap extends CollectionBasedBootstrap {
 
@@ -80,11 +80,11 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 		val plato3 = new Plato(pizza3, tamanioFamiliar)
 
 		repoIngredientes => [
-			create("Jamon", 15, "Derecha")
-			create("Queso", 20, "Izquierda")
-			create("Anchoas", 50, "Derecha")
-			create("Aceitunas", 15, "Toda la Pizza")
-			create("Salchichas", 35, "Toda la Pizza")
+			create("Jamon", 15, Distribucion.DERECHA)
+			create("Queso", 20, Distribucion.IZQUIERDA)
+			create("Anchoas", 50, Distribucion.DERECHA)
+			create("Aceitunas", 15, Distribucion.TODA)
+			create("Salchichas", 35,Distribucion.TODA)
 		]
 
 		pizza1.agregarIngrediente(repoIngredientes.allInstances.get(1))
@@ -94,9 +94,9 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 		pizza2.agregarIngrediente(repoIngredientes.allInstances.get(2))
 		
 		repoPedidos => [
-			create(cliente1, LocalDateTime.now, "Primer pedido", delivery)
-			create(cliente2, LocalDateTime.now, "Segundo pedido", retiroLocal)
-			create(cliente3, LocalDateTime.now, "Tercer pedido", delivery)
+			create(cliente1, "Primer pedido", delivery)
+			create(cliente2, "Segundo pedido", retiroLocal)
+			create(cliente3, "Tercer pedido", delivery)
 		]
 		
 		repoEstados => [

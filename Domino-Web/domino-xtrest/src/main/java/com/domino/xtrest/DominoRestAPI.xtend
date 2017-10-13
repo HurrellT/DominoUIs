@@ -17,6 +17,10 @@ import org.uqbar.xtrest.http.ContentType
 import org.uqbar.xtrest.json.JSONUtils
 import org.domino.json.JSONAdapterEstado
 import org.domino.json.JSONAdapterUsuario
+import org.uqbar.commons.applicationContext.ApplicationContext
+import org.domino.repo.RepoClientes
+import org.domino.dominio.Cliente
+import org.domino.repo.RepoPedidos
 
 @Controller
 class DominoRestAPI {
@@ -55,9 +59,9 @@ class DominoRestAPI {
 			try {
 
 				val platos = pedidoJSON.platos
-				val cliente = this.dominoPizza.clientes.findFirst[c|c.id == pedidoJSON.id_usuario]
+				val cliente = repoClientes.usuarioConId(pedidoJSON.id_usuario)
 				val envio = pedidoJSON.entrega.toInstance
-				val pedido = new Pedido(cliente, LocalDateTime.now, pedidoJSON.aclaraciones, envio);
+				val pedido = new Pedido(cliente, pedidoJSON.aclaraciones, envio);
 				platos.forEach[p|pedido.agregarPlato(p)]
 				this.dominoPizza.realizarPedido(pedido)
 				return ok()
@@ -68,12 +72,20 @@ class DominoRestAPI {
 			return badRequest(getErrorJson("El body debe ser un Pedido"))
 		}
 	}
+	
+	def getRepoClientes() {
+		ApplicationContext.instance.getSingleton(typeof(Cliente)) as RepoClientes
+	}
 
 	@Get("/pedidos/:id")
 	def getPedidoById() {
 		response.contentType = ContentType.APPLICATION_JSON
-		val res = new JSONViewerPedido(this.dominoPizza.pedidos.findFirst[p | p.id == Integer.valueOf(id)])
+		val res = new JSONViewerPedido(repoPedidos.getPedidoConId(Integer.valueOf(id)))
 		return ok(res.toJson)
+	}
+	
+	def getRepoPedidos() {
+		ApplicationContext.instance.getSingleton(typeof(Pedido)) as RepoPedidos
 	}
 
 	@Get("/pedidos/estados")
@@ -102,7 +114,7 @@ class DominoRestAPI {
 		try {
 			val estadoJSON = body.fromJson(JSONAdapterEstado)
 			try {
-				val pedido = this.dominoPizza.pedidos.findFirst[p | p.id == Integer.valueOf(id)]
+				val pedido = repoPedidos.getPedidoConId(Integer.valueOf(id))
 				val estado = estadoJSON.toInstance
 				pedido.estado = estado
 				return ok()
@@ -125,7 +137,7 @@ class DominoRestAPI {
     @Get("/usuarios/:id")
     def getUsuarioById() {
     	response.contentType = ContentType.APPLICATION_JSON
-    	val res = new JSONViewerUsuario(this.dominoPizza.clientes.findFirst[c | c.id == Integer.valueOf(id)])
+    	val res = new JSONViewerUsuario(repoClientes.usuarioConId(Integer.valueOf(id)))
     	return ok(res.toJson)
     }
     
@@ -134,7 +146,7 @@ class DominoRestAPI {
         response.contentType = ContentType.APPLICATION_JSON
         try {
             var userJSON = body.fromJson(JSONAdapterUsuario)
-        	var usuario = this.dominoPizza.clientes.findFirst[c | c.id == Integer.valueOf(id)]
+        	var usuario = repoClientes.usuarioConId(Integer.valueOf(id))
             try {
                 userJSON.actualizar(usuario)
                 return ok()
