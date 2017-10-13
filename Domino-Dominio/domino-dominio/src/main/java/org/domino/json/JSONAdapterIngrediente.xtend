@@ -4,6 +4,7 @@ import org.domino.dominio.Ingrediente
 import org.uqbar.commons.applicationContext.ApplicationContext
 import org.domino.repo.RepoIngredientes
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.domino.dominio.Distribucion
 
 @Accessors
 class JSONAdapterIngrediente {
@@ -13,7 +14,7 @@ class JSONAdapterIngrediente {
 	
 	new(Ingrediente ingrediente) {
 		this.id_ingrediente = ingrediente.id
-		this.posicion = ingrediente.distribucionElegida
+		this.posicion = ingrediente.distribucionElegida.getName
 	}
 	
 	new() {
@@ -23,12 +24,11 @@ class JSONAdapterIngrediente {
 	def toInstance() {
 		var ing = ingredientes.findFirst[i | i.id.intValue == id_ingrediente.intValue]
 		
-		ing.distribucionElegida = posicion // TODO: esto tiene que estar uniforme en todos lados (repo o enum de distribuciones)
-		
+		ing.distribucionElegida = Distribucion.valueOf(this.posicion.toUpperCase)
 		ing
 	}
 	
-	def getIngredientes() {
+	def private getIngredientes() {
 		val repo = ApplicationContext.instance.getSingleton(typeof(Ingrediente)) as RepoIngredientes
 		repo.allInstances
 	}

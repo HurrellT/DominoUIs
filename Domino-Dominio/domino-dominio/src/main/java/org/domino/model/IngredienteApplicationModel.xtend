@@ -8,13 +8,14 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Dependencies
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
 import org.uqbar.commons.model.utils.ObservableUtils
+import org.domino.dominio.Distribucion
 
 @Accessors
 @TransactionalAndObservable
 class IngredienteApplicationModel {
 
 	Ingrediente ingredienteSeleccionado
-	String distribucionSeleccionada
+	Distribucion distribucionSeleccionada
 	Ingrediente ingredienteNuevo = new Ingrediente
 	Plato plato
 	Pizza pizzaModel
