@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="createOrderModule">
 
   <head>
     <meta charset="utf-8">
     <title>Crear pedido</title>
+    <script src="node_modules/angular/angular.min.js"></script> <!-- AngularJS  -->
 
-    <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> <!-- Bootstrap -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css"> <!-- Bootstrap -->
   </head>
 
-  <body>
+  <body ng-controller="CreateOrderCtrl as createOrder">
     <ul class="nav nav-pills">
       <li class="active">
         <a href="#">Menu</a>
@@ -23,43 +23,20 @@
         <h2>Elige tu pizza ideal</h2>
     </div>
     
-    <!--Aca va un ciclo for usando javascript con los tipos de pizzas-->
     <div class="col-md-3 column margintop20">
       <ul class="nav nav-pills nav-stacked">
-        <li>
+        <li ng-repeat="pizza in pizzas">
           <a href="#">
             <span class="glyphicon glyphicon-chevron-right"></span> 
-              <big> Muzzarella </big> 
-              <span class="badge badge-important">$75</span> <br>
-              <small> Muzzarella y aceitunas </small>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="glyphicon glyphicon-chevron-right"></span> 
-              <big> Jamon y morrones </big> 
-              <span class="badge badge-important">$100</span> <br>
-              <small> Jamon, morrones y aceitunas </small> 
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="glyphicon glyphicon-chevron-right"></span> 
-              <big> Provolone </big> 
-              <span class="badge badge-important">$130</span> <br>
-              <small> Provolone y jamon </small> 
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="glyphicon glyphicon-chevron-right"></span> 
-              <big> Armá tu pizza </big> 
-              <span class="badge badge-important">$70</span> <br>
-              <small> Con los ingredientes que mas te gusten </small> 
+              <big> {{pizza.name}} </big> 
+              <span class="badge badge-important">{{pizza.price}}</span> <br>
+              <small> {{pizza.description}} </small>
           </a>
         </li>
       </ul>
     </div>
+
+    <script src="createOrderApp.js"></script> <!-- JavaScript -->
   </body>
   
 </html>
