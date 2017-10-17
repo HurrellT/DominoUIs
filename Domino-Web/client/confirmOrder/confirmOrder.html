@@ -4,46 +4,86 @@
   <head>
     <meta charset="utf-8">
     <title>Confirmar pedido</title>
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
   </head>
 
   <body>
-    <div>
-        <p> Tamaño > Ingredientes > Confirmar </p>
+
+    <ul class="nav nav-pills">
+        <li class="active">
+            <a href="#">Menu</a>
+        </li>
+        <li class="pull-right">
+            <a href="#">Usuario87</a>  <!-- Aca debe ir el nickname del usuario pasado por parametro -->
+        </li> 
+    </ul>
+
+    <div class="container">
+        <ul class="breadcrumb">
+            <li class="active">Tamaño > Ingredientes > Confirmar</li>
+        </ul>
     </div>
+
     <div>
         <h1> Pedido </h1>
     </div>
-    <div>
-        <h2> Pizzas </h2>
+
+    <div class="container">
+        <div>
+            <h3> Pizzas </h3>
+        </div>
+        <div>
+        <!--Aca va un ciclo for usando javascript-->
+            <ul class="nav nav-pills nav-stacked">
+                <li>
+                <a href="#">
+                    <span class="glyphicon glyphicon-chevron-right"></span> 
+                    <big> Napolitana </big> 
+                    <span class="badge badge-important">$105</span> <br>
+                    <small> Queso, tomate y palmitos </small>
+                </a>
+                </li>
+            </ul>
+            <div>
+                <a href="url">Agregar otra pizza</a>
+            </div>
+        </div>
     </div>
-    <div>
-        <form>
-            <!--Aca va un ciclo for usando javascript-->
-        </form>
+
+    <div class="container">
+        <label for="aclaraciones"><h3>Aclaraciones</h3></label>
+        <textarea class="form-control" id="aclaraciones" rows="3"></textarea>
+        </div>
     </div>
-    <div>
-        <a href="url">Agregar otra pizza</a>
+    
+    <div class="container">
+        <label for="envio"><h3>Envio</h3></label>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="envio" id="retiroLocal" value="option1" checked>
+                Retiro por el local
+            </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="envio" id="Delivery" value="option2">
+                Delivery
+            </label>
+            <span class="badge badge-important">$15</span> 
+            <input type="text" class="form-control" id="direccion" placeholder="Ingrese direccion">
+        </div>
     </div>
-    <div>
-        <h2> Aclaraciones </h2>
-    </div>
-    <div>
-        <!--Aca van las aclaraciones del pedido-->
-    </div>
-    <div>
-        <h2> Envio </h2>
-    </div>
-    <div>
-        <!--Aca va los tipos de envios-->
-    </div>
-    <div>
+
+    <div class= "container">
         <h1> Total a pagar: </h1>
+        <span class="badge badge-important">$120</span> 
     </div>
+
     <div>
-        <!--Aca va el precio del pedido-->
-    </div>
-    <div>
-        <button type="submit" onclick="alert('not yet implemented')"> Confirmar pedido </button>
+        <button type="submit" class="btn btn-success" onclick="alert('not yet implemented')"> Confirmar pedido </button>
     </div>
   </body>
   
