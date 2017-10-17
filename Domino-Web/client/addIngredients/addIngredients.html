@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Agregar ingredientes</title>
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+  </head>
+
+  <body>
+    <ul class="nav nav-pills">
+        <li class="active">
+            <a href="#">Menu</a>
+        </li>
+        <li class="pull-right">
+            <a href="#">Usuario87</a>  <!-- Aca debe ir el nickname del usuario pasado por parametro -->
+        </li> 
+    </ul>
+    <div class="container">
+        <ul class="breadcrumb">
+            <li class="active">Tamaño > Ingredientes</li>
+        </ul>
+    </div>
+    <div class="container">
+        <h2>Napolitana</h2>  <!--Nombre de la pizza pasada por parametro-->
+        <h4> Grande </h4>  <!--Tamaño de la pizza pasada por parametro-->
+        <span class="badge badge-important">$105</span> <br>  <!--Precio de la pizza pasada por parametro-->
+    </div>
+    <br>
+    
+    <!--Aca va un ciclo for usando javascript con los ingredientes agregados y sus distribuciones-->
+    <div class="well well-sm">
+        <div class="pull left"><h4>Queso</h4></div>
+        <div class="container">
+            <div class="row">
+                <div class="radio radio-primary">
+                    <input type="radio" name="radio1" id="radio1" value="option1">
+                        <label for="radio1">Mitad izquierda</label>
+                </div>
+                <div class="radio radio-primary">
+                    <input type="radio" name="radio2" id="radio2" value="option2">
+                        <label for="radio2">Toda la pizza</label>
+                </div>
+                <div class="radio radio-primary">
+                    <input type="radio" name="radio3" id="radio3" value="option3">
+                        <label for="radio3">Mitad derecha</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well well-sm">
+        <div class="pull left"><h4>Tomate</h4></div>
+        <div class="container">
+            <div class="row">
+                <div class="radio radio-primary">
+                    <input type="radio" name="radio1" id="radio1" value="option1">
+                        <label for="radio1">Mitad izquierda</label>
+                </div>
+                <div class="radio radio-primary">
+                    <input type="radio" name="radio2" id="radio2" value="option2">
+                        <label for="radio2">Toda la pizza</label>
+                </div>
+                <div class="radio radio-primary">
+                    <input type="radio" name="radio3" id="radio3" value="option3">
+                        <label for="radio3">Mitad derecha</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well well-sm">
+        <div class="pull left"><h4>Palmitos</h4></div>
+        <div class="container">
+            <div class="row">
+                <div class="radio radio-primary">
+                    <input type="radio" name="radio1" id="radio1" value="option1">
+                        <label for="radio1">Mitad izquierda</label>
+                </div>
+                <div class="radio radio-primary">
+                    <input type="radio" name="radio2" id="radio2" value="option2">
+                        <label for="radio2">Toda la pizza</label>
+                </div>
+                <div class="radio radio-primary">
+                    <input type="radio" name="radio3" id="radio3" value="option3">
+                        <label for="radio3">Mitad derecha</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h4> Extras </h4>
+        <!--Aca va un ciclo for usando javascript con los ingredientes del menu y su precio-->
+        <button type="submit" class="btn btn-success" onclick="alert('not yet implemented')"> Continuar </button>
+    </div>
+    
+  </body>
+  
+</html>
