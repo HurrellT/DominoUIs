@@ -1,51 +1,32 @@
 <!DOCTYPE html>
-<html ng-app="loginApp">
+<html ng-app="loginModule">
 
   <head>
     <meta charset="utf-8">
     <title>Iniciar sesión</title>
-    <script src="node_modules/angular/angular.min.js"></script>
-    <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script src="node_modules/angular/angular.min.js"></script> <!-- AngularJS  -->
+    
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> <!-- Bootstrap -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css"> <!-- Bootstrap -->
   </head>
 
   <body ng-controller="LoginCtrl as login">
     <div class="well well-small">
       <form>
         <div class="input-group">
-          Usuario <input type="text" class="form-control" name="nickname" ng-model="login.nombre"><br>
-          Contraseña <input type="password" class="form-control" name="password" ng-model="login.password" ><br>
+          Usuario <input type="text" class="form-control" 
+                   name="nickname" placeholder="Ingresa tu nombre de usuario" 
+                   ng-model="login.nombre"><br>
+          Contraseña <input type="password" class="form-control" 
+                      name="password" placeholder="Ingresa tu contraseña" 
+                      ng-model="login.password" ><br>
         </div>
         <br>
         <input type="submit" class="btn btn-success" value="Iniciar sesión" ng-click="login.send()" >
       </form>
     </div>
 
-    <!--
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <h2>Usuario</h2>
-            </div>
-            <div class="col">
-              <input id="search" type="text" placeholder="ingrese usuario...">
-            </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <h2>Contraseña</h2>
-          </div>
-          <div class="col">
-            <input id="search" type="password" placeholder="ingrese contraseña...">
-          </div>
-        </div>
-        <button type="submit" onclick="alert('not yet implemented')"> Iniciar sesión </button>
-      </div>
-      -->
-  
-  <!-- JS -->
-  <script src="app.js"></script>
+  <script src="loginApp.js"></script> <!-- JavaScript -->
   </body>
   
 </html>

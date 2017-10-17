@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('loginApp', []);
+var app = angular.module('loginModule', []);
 
 app.controller('LoginCtrl', function () {
 
