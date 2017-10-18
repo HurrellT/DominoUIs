@@ -7,3 +7,4 @@
 *generated-sources*
 /bin
 /xtend-gen
+*package-lock.json
