@@ -13,4 +13,4 @@ app.controller('LoginCtrl', function () {
         //Aca hay que hacer un request al server con los datos del login
     };
     
-});
+});	

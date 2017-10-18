@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+<head>
     <meta charset="utf-8">
     <title>Agregar ingredientes</title>
 
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
-  </head>
+</head>
 
-  <body>
+<body>
     <ul class="nav nav-pills">
         <li class="active">
             <a href="#">Menu</a>
@@ -31,70 +31,98 @@
     </div>
     <br>
     
-    <!--Aca va un ciclo for usando javascript con los ingredientes agregados y sus distribuciones-->
-    <div class="well well-sm">
-        <div class="pull left"><h4>Queso</h4></div>
-        <div class="container">
-            <div class="row">
-                <div class="radio radio-primary">
-                    <input type="radio" name="radio1" id="radio1" value="option1">
-                        <label for="radio1">Mitad izquierda</label>
+    <div style="float: left; margin: 0px 50px">
+        <!--Aca va un ciclo for usando javascript con los ingredientes agregados y sus distribuciones-->
+        <div class="well well-sm" style="max-width: 30rem;">
+            <div class="pull left" style="float: left; margin: 20px 10px"><h4>Queso</h4></div>
+            <div class="container">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="queso" id="retiroLocal" value="option1" checked>
+                        Mitad Izquierda
+                    </label>
                 </div>
-                <div class="radio radio-primary">
-                    <input type="radio" name="radio2" id="radio2" value="option2">
-                        <label for="radio2">Toda la pizza</label>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="queso" id="retiroLocal" value="option2" checked>
+                        Toda la Piza
+                    </label>
                 </div>
-                <div class="radio radio-primary">
-                    <input type="radio" name="radio3" id="radio3" value="option3">
-                        <label for="radio3">Mitad derecha</label>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="queso" id="retiroLocal" value="option3" checked>
+                        Mitad Derecha
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="well well-sm" style="max-width: 30rem;">
+            <div class="pull left" style="float: left; margin: 20px 10px"><h4>Tomate</h4></div>
+            <div class="container">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="tomate" id="retiroLocal" value="option7" checked>
+                        Mitad Izquierda
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="tomate" id="retiroLocal" value="option8" checked>
+                        Toda la Piza
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="tomate" id="retiroLocal" value="option9" checked>
+                        Mitad Derecha
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="well well-sm" style="max-width: 30rem;">
+            <div class="pull left" style="float: left; margin: 20px 10px"><h4>Palmitos</h4></div>
+            <div class="container">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="palmitos" id="retiroLocal" value="option4" checked>
+                        Mitad Izquierda
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="palmitos" id="retiroLocal" value="option5" checked>
+                        Toda la Piza
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="palmitos" id="retiroLocal" value="option6" checked>
+                        Mitad Derecha
+                    </label>
                 </div>
             </div>
         </div>
     </div>
-    <div class="well well-sm">
-        <div class="pull left"><h4>Tomate</h4></div>
-        <div class="container">
-            <div class="row">
-                <div class="radio radio-primary">
-                    <input type="radio" name="radio1" id="radio1" value="option1">
-                        <label for="radio1">Mitad izquierda</label>
-                </div>
-                <div class="radio radio-primary">
-                    <input type="radio" name="radio2" id="radio2" value="option2">
-                        <label for="radio2">Toda la pizza</label>
-                </div>
-                <div class="radio radio-primary">
-                    <input type="radio" name="radio3" id="radio3" value="option3">
-                        <label for="radio3">Mitad derecha</label>
-                </div>
-            </div>
+</div>
+
+<div style="float: left; margin: 00px 200px">
+    <div class="panel panel-success" style="max-width: 30rem;">
+        <h4 class="panel-heading"> Extras</h4>
+        <div class = "panel-body">
+            <a class="panel-link" href="#">Chorizo colorado(+15) </a>
+            <br>
+            <a class="panel-link" href="#">Morzilla Firefox(+15) </a><br>
+            <a class="panel-link" href="#">Batata (+15) </a><br>
+            <a class="panel-link" href="#">Chinchulin (+15)</a><br>
+            <a class="panel-link" href="#"> Anana (+15)</a><br>
+
         </div>
-    </div>
-    <div class="well well-sm">
-        <div class="pull left"><h4>Palmitos</h4></div>
-        <div class="container">
-            <div class="row">
-                <div class="radio radio-primary">
-                    <input type="radio" name="radio1" id="radio1" value="option1">
-                        <label for="radio1">Mitad izquierda</label>
-                </div>
-                <div class="radio radio-primary">
-                    <input type="radio" name="radio2" id="radio2" value="option2">
-                        <label for="radio2">Toda la pizza</label>
-                </div>
-                <div class="radio radio-primary">
-                    <input type="radio" name="radio3" id="radio3" value="option3">
-                        <label for="radio3">Mitad derecha</label>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <h4> Extras </h4>
         <!--Aca va un ciclo for usando javascript con los ingredientes del menu y su precio-->
-        <button type="submit" class="btn btn-success" onclick="alert('not yet implemented')"> Continuar </button>
     </div>
-    
-  </body>
-  
+    <button type="submit" class="btn btn-success" onclick="alert('not yet implemented')"> Continuar </button>
+</div>
+
+
+</body>
+
 </html>

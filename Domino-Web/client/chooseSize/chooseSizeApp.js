@@ -1,4 +1,4 @@
-'use strict';
+"se strict";
 
 var app = angular.module('chooseSizeModule', []);
 
@@ -21,6 +21,6 @@ app.controller('ChooseSizeCtrl', function ($scope) {
             "name": "Familiar",
             "price": "$125"
         }
-    ]
+    ];
 
 });

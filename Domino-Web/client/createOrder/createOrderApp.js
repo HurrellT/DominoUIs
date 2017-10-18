@@ -1,4 +1,4 @@
-'use strict';
+" use strict";
 
 var app = angular.module('createOrderModule', []);
 
@@ -25,6 +25,6 @@ app.controller('CreateOrderCtrl', function ($scope) {
             "description": "Con los ingredientes que más te gusten",
             "price": "$70"
         }
-    ]
+    ];
 
 });
