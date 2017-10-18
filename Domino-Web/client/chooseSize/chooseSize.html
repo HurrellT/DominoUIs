@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="chooseSizeModule">
 
   <head>
     <meta charset="utf-8">
     <title>Elegir tamaño</title>
+    <script src="node_modules/angular/angular.min.js"></script> <!-- AngularJS  -->
 
-    <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> <!-- Bootstrap -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css"> <!-- Bootstrap -->
   </head>
 
-  <body>
+  <body ng-controller="ChooseSizeCtrl as chooseSize">
     <ul class="nav nav-pills">
       <li class="active">
         <a href="#">Menu</a>
@@ -25,41 +25,22 @@
       </ul>
     </div>
     <div>
-        <h2>Napolitana</h2>  <!--Nombre de la pizza pasada por parametro-->
+        <h2>Napolitana</h2>  <!--Aca debe ir el nombre de la pizza pasada por parametro-->
     </div>
-    <!--Aca va un ciclo for usando javascript con los tamaños del menu-->
+
     <div class="col-md-3 column margintop20">
       <ul class="nav nav-pills nav-stacked">
-        <li>
-          <a href="#">
+        <li ng-repeat="size in sizes">
+          <a href="#"> <!-- Aca pasa a la siguiente ventana guardando el tamaño elegido -->
+            <big> {{size.name}} </big> 
+            <span class="badge badge-important">{{size.price}}</span> 
             <span class="glyphicon glyphicon-chevron-right"></span> 
-              <big> Una porción </big> 
-              <span class="badge badge-important">$12,5</span> <br>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="glyphicon glyphicon-chevron-right"></span> 
-              <big> Chica </big> 
-              <span class="badge badge-important">$50</span> <br>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="glyphicon glyphicon-chevron-right"></span> 
-              <big> Grande </big> 
-              <span class="badge badge-important">$100</span> <br>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="glyphicon glyphicon-chevron-right"></span> 
-              <big> Familiar </big> 
-              <span class="badge badge-important">$125</span> <br>
           </a>
         </li>
       </ul>
     </div>
+
+    <script src="chooseSizeApp.js"></script> <!-- JavaScript -->
   </body>
   
 </html>
