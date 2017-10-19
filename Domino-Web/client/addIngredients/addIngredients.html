@@ -9,7 +9,9 @@
     <script src="node_modules/angular/angular.min.js"></script>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+
 </head>
+
 
 <body ng-controller="AddIngredienteCtrl as addIngrediente">
     <ul class="nav nav-pills">
@@ -34,12 +36,24 @@
     
     <div style="float: left; margin: 0px 50px">
         <!--Aca va un ciclo for usando javascript con los ingredientes agregados y sus distribuciones-->
-        <div ng-repeat = "ingrediente in ingredientes" class="well well-sm" style="max-width: 30rem;"> <!--Estos deberian ser lo ingredientes de la pizza-->
+        <div ng-repeat = "ingrediente in promo.ingredientes" class="well well-sm" style="max-width: 30rem; background-image: linear-gradient(to bottom,#766b6b 0,#9f9393 100%);"> <!--Estos deberian ser lo ingredientes de la pizza-->
             <div class="pull left" style="float: left; margin: 20px 10px"><h4>{{ingrediente.nombre}}</h4></div>
             <div class="container">
                 <div ng-repeat = "distribucion in distros" class="form-check">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="{{ingrediente.nombre}}" id="{{ingrediente.nombre}}" value="ingrediente-{{index}}">
+                        <input class="form-check-input" ng-model = "ingrediente.distribucionElegida" ng-checked = "ingrediente.distribucionElegida == distribucion" type="radio" name="{{ingrediente.nombre}}" id="{{ingrediente.nombre}}" value="ingrediente-{{index}}" onclick="return false;">
+                        {{distribucion}}
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div ng-repeat = "ingrediente in promo.extras" class="well well-sm" style="max-width: 30rem;"> <!--Estos deberian ser lo ingredientes de la pizza-->
+            <div class="pull left" style="float: left; margin: 20px 10px"><h4>{{ingrediente.nombre}}</h4></div>
+            <div class="container">
+                <div ng-repeat = "distribucion in distros" class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" ng-model = "ingrediente.distribucionElegida" ng-checked = "ingrediente.distribucionElegida == distribucion" type="radio" name="{{ingrediente.nombre}}" id="{{ingrediente.nombre}}" value="ingrediente-{{index}}">
                         {{distribucion}}
                     </label>
                 </div>
@@ -53,7 +67,7 @@
     <div class="panel panel-success" style="max-width: 30rem;">
         <h4 class="panel-heading"> Extras</h4>
         <div class = "panel-body">
-            <a ng-repeat= "ingrediente in ingredientes" class="panel-link" href="#">{{ingrediente.nombre}}(+{{ingrediente.precio}}) <br></a>
+            <a ng-repeat= "ingrediente in ingredientes" class="panel-link"  ng-click="addIngrediente.agregar(ingrediente)" >{{ingrediente.nombre}}(+{{ingrediente.precio}})<br></a>
         </div>
         <!--Aca va un ciclo for usando javascript con los ingredientes del menu y su precio-->
     </div>
