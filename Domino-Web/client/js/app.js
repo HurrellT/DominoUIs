@@ -1,3 +1,3 @@
 "use strict";
 
- var dominoapp = angular.module("dominoPizzaApp", ["ui.router"]);
+ var dominoPizzaApp = angular.module("dominoPizzaApp", ["ui.router"]);

@@ -1,12 +1,15 @@
 
-dominoPizzaApp.controller('LoginCtrl', function () {
+dominoPizzaApp.controller('LoginCtrl', function ($state) {
 
-    this.nombre = ''
-    this.password = ''
+    this.nombre = '';
+    this.password = '';
 
-    this.send = function() {
-        this.nombre = 'Nombre de prueba'
-        this.password = 'password12345'
+    this.acceder = function() {
+    	if(this.nombre == "admin" && this.password == "admin"){
+    		$state.go("crearPedido");
+    	}else{
+    		window.alert("Nombre de usuario y contraseña incorrectos");
+    	}
         //Aca hay que hacer un request al server con los datos del login
     };
     

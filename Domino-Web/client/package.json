@@ -1,10 +1,15 @@
 {
-  "version": "1.0.0",
-  "description": "Example",
-  "author": "",
-  "license": "",
-  "dependencies": {
-    "angular": "^1.4.4",
-    "bootstrap": "^3.3.5"
-  }
+	"version": "1.0.0",
+	"description": "Example",
+	"author": "",
+	"license": "",
+	"scripts": {
+		"start": "http-server -p 8000 -c-1"
+	},
+	"dependencies": {
+		"angular": "^1.4.4",
+		"bootstrap": "^3.3.5",
+		"angular-ui-router": "^0.2.18",
+		"http-server": "^0.8.0"
+	}
 }
