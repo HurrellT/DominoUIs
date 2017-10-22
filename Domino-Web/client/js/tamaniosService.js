@@ -19,5 +19,11 @@ dominoPizzaApp.service("TamanioService",function(){
 		"price": "$125"
 	}
 	];
+
+	this.tamanio = '';
+	
+	this.tamanioPedido= function(tamanio){
+		this.tamanio = tamanio;
+	}
 	
 });
