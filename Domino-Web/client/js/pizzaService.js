@@ -1,5 +1,12 @@
-
 dominoPizzaApp.service("PizzaService", function () {
+
+
+	 this.getPizzaById = function (id) {
+    return this.pizzas.find(function (pizza) {
+      return pizza.id == id;
+   	 })
+  	};
+
 	this.pizzas =[	
 	{
 		"id": 1,
@@ -49,9 +56,5 @@ dominoPizzaApp.service("PizzaService", function () {
 		"extras":[]
 	}
 	];
-	this.pizza = '';
 
-	this.pizzaPedido = function(pizza){
-		this.pizza = pizza;
-	}
 });

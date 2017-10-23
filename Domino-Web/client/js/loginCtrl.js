@@ -1,4 +1,3 @@
-
 dominoPizzaApp.controller('LoginCtrl', function ($state) {
 
     this.nombre = '';

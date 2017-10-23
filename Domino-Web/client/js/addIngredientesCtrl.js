@@ -1,8 +1,21 @@
 
-dominoPizzaApp.controller("AddIngredienteCtrl" , function($scope) {
+dominoPizzaApp.controller("AddIngredienteCtrl", function($stateParams, 
+	DistribucionesService,
+	IngredienteService, 
+	PizzaService,
+	TamanioService, 
+	PedidoService) {
 
-	this.agregar = function(ingred,promo){
-		console.log(ingred);
-		promo.extras.push(ingred);
+	this.pizza   = PizzaService.getPizzaById($stateParams.idP);
+	this.ingredientes = IngredienteService.ingredientes;
+	this.distros = DistribucionesService.distribuciones;
+	this.tamanio = TamanioService.getTamanioById($stateParams.idT);
+
+	this.agregar = function(ingred){
+		this.pizza.extras.push(ingred);
+	};
+
+	this.generarPedido = function() {
+		window.alert("TOMY HACE ESTO");
 	};
 });

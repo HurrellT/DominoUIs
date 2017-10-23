@@ -1,8 +1,6 @@
-dominoPizzaApp.controller("ChooseSizeCtrl", function($state,TamanioService){
-
+dominoPizzaApp.controller('ChooseSizeCtrl', function($stateParams, PizzaService, TamanioService){
+	
+	this.pizza = PizzaService.getPizzaById($stateParams.id);
 	this.sizes = TamanioService.tamanios;
-	this.confirmarTamanio = function(tamanio){
-		TamanioService.tamanioPedido(tamanio);
-		$state.go("agregarIngrediente")
-	}
+
 });

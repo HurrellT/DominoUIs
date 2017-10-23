@@ -1,3 +1,4 @@
+<div ng-controller= "ChooseSizeCtrl as chooseS">
 <ul class="nav nav-pills">
   <li class="active">
     <a href="#">Menu</a>
@@ -12,13 +13,13 @@
   </ul>
 </div>
 <div>
-  <h2>Napolitana</h2>  <!--Aca debe ir el nombre de la pizza pasada por parametro-->
+  <h2>{{chooseS.pizza.nombre}}</h2>  <!--Aca debe ir el nombre de la pizza pasada por parametro-->
 </div>
 
-<div class="col-md-3 column margintop20" ng-controller= "ChooseSizeCtrl as chooseS">
+<div class="col-md-3 column margintop20">
   <ul class="nav nav-pills nav-stacked">
     <li ng-repeat="size in chooseS.sizes">
-      <a ng-click="chooseS.confirmarTamanio(size)"> <!-- Aca pasa a la siguiente ventana guardando el tamaño elegido -->
+      <a ui-sref="agregarIngrediente({idP:chooseS.pizza.id, idT: size.id})"> <!-- Aca pasa a la siguiente ventana guardando el tamaño elegido -->
         <big> {{size.name}} </big> 
         <span class="badge badge-important">{{size.price}}</span> 
         <span class="glyphicon glyphicon-chevron-right"></span> 
@@ -26,5 +27,4 @@
     </li>
   </ul>
 </div>
-
-<script src="chooseSizeApp.js"></script> <!-- JavaScript -->
+</div>

@@ -1,8 +1,8 @@
-dominoPizzaApp.service("DistribucionService", function(){
+dominoPizzaApp.service("DistribucionesService", function(){
 
 
-	this.distros = [ "Mitad derecha",
+	this.distribuciones = [ "Mitad derecha",
 	"Toda la pizza",
 	"Mitad Izquierda"
-	];s
+	];
 });

@@ -14,13 +14,13 @@
   <div class="col-md-3 column margintop20">
     <ul class="nav nav-pills nav-stacked">
       <li ng-repeat="pizza in create.pizzas">
-        <!-- Aca pasa a la siguiente ventana guardando la pizza elegida -->
-        <big> {{pizza.nombre}} </big> 
-        <span class="badge badge-important">{{pizza.precio}}</span> <br>
-        <small> Aca va una descripcion </small>
-        <span class="glyphicon glyphicon-chevron-right" ng-click="create.confirmarPizza(pizza)"></span> 
-      </a>
-    </li>
+        <a ui-sref="elegirTamaño({id: pizza.id})"><!-- Aca pasa a la siguiente ventana guardando la pizza elegida -->
+         <big> {{pizza.nombre}} </big> 
+          <span class="badge badge-important">{{pizza.precio}}</span> <br>
+          <small> Aca va una descripcion </small>
+          <span class="glyphicon glyphicon-chevron-right"></span> 
+        </a>
+      </li>
   </ul>
 </div>
 </div>

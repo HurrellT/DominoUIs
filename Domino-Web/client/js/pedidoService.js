@@ -11,7 +11,7 @@ dominoPizzaApp.service("PedidoService", function() {
 			"id_tamanio": 2,
 			"extras": []
 		}
-		]
+		],
 		"id_usuario": 1,
 		"aclaraciones": "Primer pedido",
 		"entrega": {
@@ -36,8 +36,6 @@ dominoPizzaApp.service("PedidoService", function() {
 			"tipo": "retiro",
 			"direccion": null
 		}
-	}
-	];
-
+	}];
 
 });

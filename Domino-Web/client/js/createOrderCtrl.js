@@ -1,8 +1,3 @@
-dominoPizzaApp.controller("CreateOrderCtrl", function($state,PizzaService){
+dominoPizzaApp.controller("CreateOrderCtrl", function(PizzaService){
 	this.pizzas = PizzaService.pizzas;
-
-	this.confirmarPizza = function (pizza){
-		PizzaService.pizzaPedido(pizza);
-		$state.go("elegirTamaño");
-	}
 });
