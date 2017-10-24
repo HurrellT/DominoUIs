@@ -5,7 +5,7 @@ dominoPizzaApp.service("PedidoService", function() {
 		"id": 1,
 		"estado": "preparando",
 		"monto": 140,
-		"pizzas": [
+		"platos": [
 		{
 			"id_promo": 1,
 			"id_tamanio": 2,
@@ -23,7 +23,7 @@ dominoPizzaApp.service("PedidoService", function() {
 		"id": 2,
 		"estado": "preparando",
 		"monto": 170,
-		"pizzas": [
+		"platos": [
 		{
 			"id_promo": 2,
 			"id_tamanio": 3,
