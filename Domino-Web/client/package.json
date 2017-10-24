@@ -8,9 +8,9 @@
 	},
 	"dependencies": {
 		"angular": "^1.4.4",
+		"angular-ui-router": "^0.4.3",
 		"bootstrap": "^3.3.5",
-		"angular-ui-router": "^0.4.2",
-		"jquery": "^2.1.4",
-		"http-server": "^0.8.0"
+		"http-server": "^0.8.0",
+		"jquery": "^2.2.4"
 	}
 }
