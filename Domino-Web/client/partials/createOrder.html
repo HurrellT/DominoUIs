@@ -17,9 +17,9 @@
             <li ng-repeat="pizza in create.platos">
                 <a ui-sref="elegirTamaño({id: pizza.id})">
                     <!-- Aca pasa a la siguiente ventana guardando la pizza elegida -->
-                    <big> {{pizza.nombre}} </big>
+                    <span style="font-size: large"> {{pizza.nombre}} </span>
                     <span class="badge badge-important">{{pizza.precio}}</span> <br>
-                    <small> Aca va una descripcion</small>
+                    <span style="font-size: small"> Aca va una descripcion</span> <!-- Verificar donde estaba la descripcion, sin en pizza o plato y pasarla como parametro -->
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>
             </li>

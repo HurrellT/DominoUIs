@@ -21,7 +21,7 @@
             <li ng-repeat="size in chooseS.sizes">
                 <a ui-sref="agregarIngrediente({idP:chooseS.pizza.id, idT: size.id})">
                     <!-- Aca pasa a la siguiente ventana guardando el tamaño elegido -->
-                    <big> {{size.name}} </big>
+                    <span style="font-size: large;"> {{size.name}} </span>
                     <span class="badge badge-important">{{size.price}}</span>
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>
