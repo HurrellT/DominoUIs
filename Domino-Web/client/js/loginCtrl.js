@@ -5,8 +5,8 @@ dominoPizzaApp.controller('LoginCtrl', function ($rootScope, $state, UsuarioServ
 
     this.acceder = function() {
     	if(UsuarioService.hasUser(this.nombre, this.password)){
+			$rootScope.usuario = UsuarioService.getUsuarioByName(this.nombre); //Will be validateLogin from Server
 			sessionStorage.setItem("Nombre", this.nombre);
-    		$rootScope.usuario = UsuarioService.getUsuarioByName(this.nombre); //Will be validateLogin from Server
     		$state.go("crearPedido");
     	}else{
     		window.alert("Nombre de usuario o contraseña incorrectos");
