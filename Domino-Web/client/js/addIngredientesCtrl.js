@@ -20,6 +20,6 @@ dominoPizzaApp.controller("AddIngredienteCtrl", function ($state,
 
     this.generarPedido = function () {
         // window.alert("En proceso");
-        $state.go("confirmarPedido({idP:pizza.id, idT:tamanio.id})")
+        $state.go("confirmarPedido({idP:this.pizza.id, idT:this.tamanio.id})")
     };
 });

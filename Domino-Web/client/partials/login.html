@@ -1,6 +1,6 @@
 <div class="well well-small" ng-controller="LoginCtrl as login">
     <form>
-        <div class="input-group">
+        <div class="input-group" style="width: 100%">
             Usuario <input type="text" class="form-control"
                            name="nickname" id="name" placeholder="Ingresa tu nombre de usuario"
                            ng-model="login.nombre">
@@ -10,9 +10,11 @@
                               ng-model="login.password">
             <br>
         </div>
-        <br>
-        <input type="submit" class="btn btn-success" value="Iniciar sesión" ng-click="login.acceder()"><br>
-        <br>
-        <a ui-sref="register">Crear cuenta</a>
+        <div style="text-align: center;">
+            <br>
+            <input type="submit" class="btn btn-success" value="Iniciar sesión" ng-click="login.acceder()"><br>
+            <br>
+            <a ui-sref="register" style="">Crear cuenta</a>
+        </div>
     </form>
 </div>
