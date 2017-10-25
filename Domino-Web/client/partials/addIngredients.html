@@ -4,9 +4,20 @@
             <a href="#">Menu</a>
         </li>
         <li class="pull-right">
-            <a id="userName"></a>
+            <!--<a id="userName"></a>-->
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="height: 40px">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true">
+                        <span id="userName" style="font-family:'sans-serif'"></span>
+                    </span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Cerrar Sesion</a></li>
+                </ul>
+            </div>
         </li>
-        <div class="container" style="position: relative; width: 70%">
+        <div class="container" style="margin-left: 8rem; width: 65%">
             <ul class="breadcrumb" style="height: 40px">
                 <li class="active">Tamaño > Ingredientes</li>
             </ul>
