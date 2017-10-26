@@ -13,6 +13,7 @@ dominoPizzaApp.controller('RegisterCtrl', function ($rootScope, $state, UsuarioS
         if(this.password1 == this.password2){
             UsuarioService.addUser(this.nickname, this.password1, this.username, this.email, this.adress);
             $rootScope.usuario = UsuarioService.getUsuarioByName(this.nickname);
+            sessionStorage.setItem("Nombre", this.nickname);
             $state.go("crearPedido");
         }else{
             window.alert("Comproba tu contraseña");
