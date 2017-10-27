@@ -1,4 +1,5 @@
 dominoPizzaApp.service("UsuarioService", function () {
+    this.usuarioSesion="";
 
     this.usuarios = [
         {
@@ -30,13 +31,20 @@ dominoPizzaApp.service("UsuarioService", function () {
     this.getUsuarioByName = function (name) {
         return this.usuarios.find(function (usuario) {
             return usuario.usuario == name;
-        })
-    }
+        });
+    };
 
-    this.hasUser = function (name, password) {
-        return this.usuarios.some(elem => elem.usuario == name && elem.password == password)
-    }
+    this.login = function (name, password) {
+        if(this.usuarios.some(elem => elem.usuario == name && elem.password == password)){
+            return true;
+        }else{
+            return false;
+        }
+    };
 
+    this.setUser= function(name){
+        this.usuarioSesion=name;
+    };
     this.addUser = function (nickname, password, username, email, adress) {
         newUser = { "id": 4, "usuario": nickname, "password": password, "nombre": username, "email": email, "direccion": adress};
         this.usuarios.push(newUser);    

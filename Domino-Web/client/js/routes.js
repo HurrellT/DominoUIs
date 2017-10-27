@@ -9,6 +9,10 @@ dominoPizzaApp.config(function ($stateProvider, $urlRouterProvider) {
             url: "/register",
             templateUrl: "partials/register.html"
         })
+        .state('editarUsuario', {
+            url: "/editUser",
+            templateUrl: "partials/editUser.html"
+        })
         .state("crearPedido", {
             url: "/create",
             templateUrl: "partials/createOrder.html"

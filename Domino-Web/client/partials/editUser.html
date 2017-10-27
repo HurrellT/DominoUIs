@@ -1,15 +1,12 @@
+<div ng-controller= "EditarUsuarioCtrl as ctrl">
 <ul class="nav nav-pills">
     <li class="active">
         <a href="#">Menu</a>
     </li>
     <li class="pull-right">
-        <a href="#">Usuario87</a>  <!-- Aca debe ir el nickname del usuario pasado por parametro -->
+        <a href="#">{{ctrl.usuario}}</a>  <!-- Aca debe ir el nickname del usuario pasado por parametro -->
     </li>
 </ul>
-<div>
-    <h2>Usuario87</h2>  <!-- Aca debe ir el nickname del usuario pasado por parametro -->
-</div>
-
 <div class= "container">
     <form>
         <div class="form-group">
@@ -51,4 +48,5 @@
             <td> <a href="url">Repetir</a> </td>
         </tr>
     </table>
+</div>
 </div>

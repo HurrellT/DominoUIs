@@ -1,7 +1,6 @@
-dominoPizzaApp.controller("CreateOrderCtrl", function($rootScope, PizzaService){
+dominoPizzaApp.controller("CreateOrderCtrl", function(PizzaService, UsuarioService){
 	this.platos = PizzaService.platos;
 
-	var nombre = sessionStorage.getItem("Nombre");
-	document.getElementById("userName").innerHTML = nombre;
-
+	this.nombre = UsuarioService.usuarioSesion;
+	console.log(this.nombre);
 });

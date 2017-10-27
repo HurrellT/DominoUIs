@@ -10,11 +10,12 @@
             <div class="dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="height: 40px">
                     <span class="glyphicon glyphicon-cog" aria-hidden="true">
-                        <span id="userName" style="font-family:'sans-serif'"></span>
+                        <span id="userName" style="font-family:'sans-serif'">{{create.nombre}}</span>
                     </span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a ui-sref="editarUsuario">Edita Usuario</a></li>
                     <li><a href="#">Cerrar Sesion</a></li>
                 </ul>
             </div>
