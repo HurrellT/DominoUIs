@@ -34,61 +34,58 @@
     <div style="float: left; margin-left: -15px 50px">
         <!--Aca va un ciclo for usando javascript con los ingredientes agregados y sus distribuciones-->
         <div ng-repeat="ingrediente in ingredienteCtrl.pizza.ingredientes" class="well well-sm"
-             style="max-width: 30rem; background-image: linear-gradient(to bottom,#766b6b 0,#9f9393 100%);">
-            <!--Estos deberian ser lo ingredientes de la pizza-->
-            <div class="pull left" style="float: left; margin: 20px 10px"><h4>{{ingrediente.nombre}}</h4></div>
-            <div class="container">
-                <div ng-repeat="distribucion in ingredienteCtrl.distros" class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input"
-                               ng-model="ingrediente.distribucionElegida"
-                               ng-checked="ingrediente.distribucionElegida == distribucion"
-                               type="radio"
-                               name="{{ingrediente.nombre}}"
-                               id="{{ingrediente.id}}"
-                               value="ingrediente-{{index}}"
-                               onclick="return false;">
-                        {{distribucion}}
-                    </label>
-                </div>
+        style="max-width: 30rem; background-image: linear-gradient(to bottom,#766b6b 0,#9f9393 100%);">
+        <!--Estos deberian ser lo ingredientes de la pizza-->
+        <div class="pull left" style="float: left; margin: 20px 10px"><h4>{{ingrediente.nombre}}</h4></div>
+        <div class="container">
+            <div ng-repeat="distribucion in ingredienteCtrl.distros" class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input"
+                    ng-model="ingrediente.distribucionElegida"
+                    ng-checked="ingrediente.distribucionElegida == distribucion"
+                    type="radio"
+                    name="{{ingrediente.nombre}}"
+                    id="{{ingrediente.id}}"
+                    onclick="return false;">
+                    {{distribucion}}
+                </label>
             </div>
         </div>
-
-        <div ng-repeat="ingrediente in ingredienteCtrl.pizza.extras" class="well well-sm" style="max-width: 30rem;">
-            <!--Estos deberian ser lo ingredientes de la pizza-->
-            <div class="pull left"
-                 style="float: left; margin: 20px 10px"><h4>{{ingrediente.nombre}}</h4></div>
-            <div class="container">
-                <div ng-repeat="distribucion in ingredienteCtrl.distros" class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input"
-                               ng-model="ingrediente.distribucionElegida"
-                               ng-checked="ingrediente.distribucionElegida == distribucion"
-                               type="radio"
-                               name="{{ingrediente.nombre}}"
-                               id="{{ingrediente.id}}"
-                               value="ingrediente-{{index}}">
-                        {{distribucion}}
-                    </label>
-                </div>
-            </div>
-        </div>
-        <!-- Aca deberian ir los que vamos agregando a la pizza-->
     </div>
 
-    <div style="float: right; margin-right: 50px">
-        <div class="panel panel-success" style="width: 15rem;">
-            <h4 class="panel-heading"> Extras</h4>
-            <div class="panel-body">
-                <a ng-repeat="ingrediente in ingredienteCtrl.ingredientes"
-                   class="panel-link"
-                   ng-click="ingredienteCtrl.agregar(ingrediente)">{{ingrediente.nombre}}(+${{ingrediente.precio}})<br></a>
+    <div ng-repeat="ingrediente in ingredienteCtrl.pizza.extras" class="well well-sm" style="max-width: 30rem;">
+        <!--Estos deberian ser lo ingredientes de la pizza-->
+        <div class="pull left"
+        style="float: left; margin: 20px 10px"><h4>{{ingrediente.nombre}}</h4></div>
+        <div class="container">
+            <div ng-repeat="distribucion in ingredienteCtrl.distros" class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input"
+                    ng-model="ingrediente.distribucionElegida"
+                    type="radio"
+                    name="{{ingrediente.nombre}}"
+                    id="{{ingrediente.id}}">
+                    {{distribucion}}
+                </label>
             </div>
         </div>
-        <button type="submit"
-                class="btn btn-success"
-                style="width: 15rem"
-                ng-click="ingredienteCtrl.generarPedido()"> Continuar
-        </button>
     </div>
+    <!-- Aca deberian ir los que vamos agregando a la pizza-->
+</div>
+
+<div style="float: right; margin-right: 50px">
+    <div class="panel panel-success" style="width: 15rem;">
+        <h4 class="panel-heading"> Extras</h4>
+        <div class="panel-body">
+            <a ng-repeat="ingrediente in ingredienteCtrl.ingredientesDisponibles"
+            class="panel-link"
+            ng-click="ingredienteCtrl.agregar(ingrediente)">{{ingrediente.nombre}}(+${{ingrediente.precio}})<br></a>
+        </div>
+    </div>
+    <button type="submit"
+    class="btn btn-success"
+    style="width: 15rem"
+    ng-click="ingredienteCtrl.generarPedido()"> Continuar
+</button>
+</div>
 </div>
