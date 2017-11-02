@@ -10,7 +10,7 @@ class JSONViewerPedido {
 	Integer id
 	String estado
 	Integer monto
-	List<JSONViewerPlato> pizzas
+	List<JSONViewerPlato> platos
 	Integer id_usuario
 	String aclaraciones
 	JSONAdapterEntrega entrega
@@ -22,8 +22,8 @@ class JSONViewerPedido {
 		this.id_usuario = pedido.cliente.id
 		this.aclaraciones = pedido.aclaracion
 		this.entrega  = new JSONAdapterEntrega(pedido.envio)
-		this.pizzas = newArrayList
-		pedido.platos.forEach[p| pizzas.add(new JSONViewerPlato(p))]
+		this.platos = newArrayList
+		pedido.platos.forEach[p| platos.add(new JSONViewerPlato(p))]
 	}
 	
 }
