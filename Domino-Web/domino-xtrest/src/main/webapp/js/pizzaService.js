@@ -1,18 +1,25 @@
 dominoPizzaApp.service("PizzaService", function ($http) {
 
 	var getData = function(response) { return response.data }
-    var transform = function(json) { return new Pizza(json) }
+	var transform = function(json) { return new Pizza(json) }
 
 	return {
-        
-        getPizzas: function(errorHandler) { 
+
+		getPizzas: function() { 
 			return $http.get("http://localhost:9000/promos")
 			.then(getData)
 			.then(function(listaJson){ 
-                return listaJson.map(transform) 
-            })
-			.catch(errorHandler) },
-    };
+				return listaJson.map(transform); 
+			});
+		},
+		getPizzaById : function (id){
+			return $http.get("http://localhost:9000/promos/" + id)
+			.then(getData)
+			.then(function(dataPizza){
+				return transform(dataPizza);
+			});
+		}
+	};
 
 	//  this.getPizzaById = function (id) {
     // return this.platos.find(function (pizza) {
