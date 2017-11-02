@@ -1,4 +1,4 @@
-dominoPizzaApp.controller("CreateOrderCtrl", function(PizzaService, UsuarioService){
+dominoPizzaApp.controller("CreateOrderCtrl", function($state, PizzaService, UsuarioService){
 	
 	var self = this;
 
@@ -18,6 +18,9 @@ dominoPizzaApp.controller("CreateOrderCtrl", function(PizzaService, UsuarioServi
 
 	self.actualizarPizzas();
 
-	//this.nombre = UsuarioService.usuarioSesion;
-	//console.log(this.nombre);
+	this.choosePizza = function(id) {
+		self.plato.id_promo = id;
+		sessionStorage.setItem("Plato",JSON.stringify(self.plato));
+	};
+
 });

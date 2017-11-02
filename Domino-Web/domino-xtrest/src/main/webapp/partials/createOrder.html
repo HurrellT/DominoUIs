@@ -29,7 +29,7 @@
     <div class="col-md-3 column margintop20" style="width: 100%">
         <ul class="nav nav-pills nav-stacked">
             <li ng-repeat="pizza in create.pizzas">
-                <a ui-sref="elegirTamaño({id: pizza.id})">
+                <a ng-click="create.choosePizza(pizza.id)" ui-sref="elegirTamaño">
                     <!-- Aca pasa a la siguiente ventana guardando la pizza elegida -->
                     <span style="font-size: large"> {{pizza.nombre}} </span>
                     <span class="badge badge-important">${{pizza.precio}}</span> <br>
