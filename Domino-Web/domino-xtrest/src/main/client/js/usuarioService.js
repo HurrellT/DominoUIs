@@ -58,7 +58,7 @@ dominoPizzaApp.service("UsuarioService", function ($http) {
                 "usuario": name, 
                 "password": password,
               }
-            return $http.post("/login", this.infoLogin).then(name).catch(errorHandler) },
+            return $http.post("http://localhost:9000/login", this.infoLogin).then(name).catch(errorHandler) },
     };
 
     // this.setUser= function(name){

@@ -1,0 +1,91 @@
+<div ng-controller="AddIngredienteCtrl as ingredienteCtrl">
+    <ul class="nav nav-pills">
+        <li class="active">
+            <a href="#">Menu</a>
+        </li>
+        <li class="pull-right">
+            <!--<a id="userName"></a>-->
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="height: 40px">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true">
+                        <span id="userName" style="font-family:'sans-serif'"></span>
+                    </span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Cerrar Sesion</a></li>
+                </ul>
+            </div>
+        </li>
+        <div class="container" style="margin-left: 8rem; width: 65%">
+            <ul class="breadcrumb" style="height: 40px">
+                <li class="active">Tamaño > Ingredientes</li>
+            </ul>
+        </div>
+    </ul>
+    <div class="container" style="margin-left: -15px">
+        <h2>{{ingredienteCtrl.pizza.nombre}}</h2>  <!--Nombre de la pizza pasada por parametro-->
+        <h4 style="display:inline-block;"> {{ingredienteCtrl.tamanio.name}} </h4>  <!--Tamaño de la pizza pasada por parametro-->
+        <span class="badge badge-important" style="display: inline-block">${{ingredienteCtrl.pizza.precio}}</span> <br>
+        <!--Precio de la pizza pasada por parametro-->
+    </div>
+    <br>
+
+    <div style="float: left; margin-left: -15px 50px">
+        <!--Aca va un ciclo for usando javascript con los ingredientes agregados y sus distribuciones-->
+        <div ng-repeat="ingrediente in ingredienteCtrl.pizza.ingredientes" class="well well-sm"
+        style="max-width: 30rem; background-image: linear-gradient(to bottom,#766b6b 0,#9f9393 100%);">
+        <!--Estos deberian ser lo ingredientes de la pizza-->
+        <div class="pull left" style="float: left; margin: 20px 10px"><h4>{{ingrediente.nombre}}</h4></div>
+        <div class="container">
+            <div ng-repeat="distribucion in ingredienteCtrl.distros" class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input"
+                    ng-model="ingrediente.distribucionElegida"
+                    ng-checked="ingrediente.distribucionElegida == distribucion"
+                    type="radio"
+                    name="{{ingrediente.nombre}}"
+                    id="{{ingrediente.id}}"
+                    onclick="return false;">
+                    {{distribucion}}
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div ng-repeat="ingrediente in ingredienteCtrl.pizza.extras" class="well well-sm" style="max-width: 30rem;">
+        <!--Estos deberian ser lo ingredientes de la pizza-->
+        <div class="pull left"
+        style="float: left; margin: 20px 10px"><h4>{{ingrediente.nombre}}</h4></div>
+        <div class="container">
+            <div ng-repeat="distribucion in ingredienteCtrl.distros" class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input"
+                    ng-model="ingrediente.distribucionElegida"
+                    type="radio"
+                    name="{{ingrediente.nombre}}"
+                    id="{{ingrediente.id}}">
+                    {{distribucion}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <!-- Aca deberian ir los que vamos agregando a la pizza-->
+</div>
+
+<div style="float: right; margin-right: 50px">
+    <div class="panel panel-success" style="width: 15rem;">
+        <h4 class="panel-heading"> Extras</h4>
+        <div class="panel-body">
+            <a ng-repeat="ingrediente in ingredienteCtrl.ingredientesDisponibles"
+            class="panel-link"
+            ng-click="ingredienteCtrl.agregar(ingrediente)">{{ingrediente.nombre}}(+${{ingrediente.precio}})<br></a>
+        </div>
+    </div>
+    <button type="submit"
+    class="btn btn-success"
+    style="width: 15rem"
+    ng-click="ingredienteCtrl.generarPedido()"> Continuar
+</button>
+</div>
+</div>

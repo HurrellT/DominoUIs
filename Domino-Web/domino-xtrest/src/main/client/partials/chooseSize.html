@@ -1,0 +1,42 @@
+<div ng-controller="ChooseSizeCtrl as chooseS">
+    <ul class="nav nav-pills">
+        <li class="active">
+            <a href="#">Menu</a>
+        </li>
+        <li class="pull-right">
+            <!--<a id="userName"></a>-->
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="height: 40px">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true">
+                        <span id="userName" style="font-family:'sans-serif'"></span>
+                    </span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Cerrar Sesion</a></li>
+                </ul>
+            </div>
+        </li>
+        <div class="container" style="margin-left: 8rem; width: 65%">
+            <ul class="breadcrumb" style="height: 40px">
+                <li class="active">Tamaño</li>
+            </ul>
+        </div>
+    </ul>
+    <div>
+        <h2>{{chooseS.pizza.nombre}}</h2>  <!--Aca debe ir el nombre de la pizza pasada por parametro-->
+    </div>
+
+    <div class="col-md-3 column margintop20" style="width: 100%">
+        <ul class="nav nav-pills nav-stacked">
+            <li ng-repeat="size in chooseS.sizes">
+                <a ui-sref="agregarIngrediente({idP:chooseS.pizza.id, idT: size.id})">
+                    <!-- Aca pasa a la siguiente ventana guardando el tamaño elegido -->
+                    <span style="font-size: large;"> {{size.name}} </span>
+                    <span class="badge badge-important">{{size.price}}</span>
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
