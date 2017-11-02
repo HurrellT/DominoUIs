@@ -2,5 +2,5 @@ dominoPizzaApp.controller("CreateOrderCtrl", function(PizzaService, UsuarioServi
 	this.platos = PizzaService.platos;
 
 	this.nombre = UsuarioService.usuarioSesion;
-	console.log(this.nombre);
+	//console.log(this.nombre);
 });

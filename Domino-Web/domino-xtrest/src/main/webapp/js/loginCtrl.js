@@ -11,10 +11,10 @@ dominoPizzaApp.controller('LoginCtrl', function ($resource, $rootScope, $state, 
 
   this.acceder = function() {
     UsuarioService.login(self.name, self.password, self.errorHandler)
-    .then(function(name) {
+    .then(function() {
+        console.log("Has accedido a Domino Pizza");
+        sessionStorage.setItem("Nombre", self.name);
         $state.go("crearPedido");
-        console.log("Ok");
-        sessionStorage.setItem("Nombre", name);
     })
     .catch(errorHandler);
 }

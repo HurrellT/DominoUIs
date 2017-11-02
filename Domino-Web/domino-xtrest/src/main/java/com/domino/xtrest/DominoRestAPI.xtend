@@ -184,7 +184,7 @@ class DominoRestAPI {
          var userJSON = body.fromJson(JSONAdapterUsuario)
         try {
 			userJSON.validarSesionDeUsuario()
-                return ok()           
+                return ok('''{ "status" : "ok" }''')           
             }catch (UnrecognizedPropertyException exception) {
           return badRequest(getErrorJson("La contraseña o usuario no coiniciden con nuestros registros, por favor, revise los datos"))
     	}
