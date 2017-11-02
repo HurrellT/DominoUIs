@@ -15,12 +15,14 @@ class Pizza extends Entity implements ConIngrediente {
 	int precio
 	List<Ingrediente> ingredientes
 	int precioConIngredientes
+	String descripcion
 	
-	new(String nombre, int precio) {
+	new(String nombre, int precio, String descripcion) {
 		this.nombre = nombre
 		this.precio = precio
 		this.ingredientes = newArrayList
 		this.precioConIngredientes = precio
+		this.descripcion = descripcion
 	}
 	
 	new() {

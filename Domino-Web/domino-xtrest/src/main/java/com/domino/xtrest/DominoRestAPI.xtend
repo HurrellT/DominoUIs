@@ -43,6 +43,14 @@ class DominoRestAPI {
 		
 	}
 	
+	
+	@Get("/promos/:id")
+	def getPromoById(){
+		response.contentType = ContentType.APPLICATION_JSON
+		val pizza = this.dominoPizza.menu.promos.findFirst[p | p.id == Integer.valueOf(id)]
+		val res = new JSONViewerPromo(pizza)
+		return ok(res.toJson)
+	}
 	@Get("/tamanios")
 	def getTamaniosAPI() {
 		response.contentType = ContentType.APPLICATION_JSON
