@@ -20,7 +20,7 @@ class DominoPizzaTest {
 	val pedido2 = mock(Pedido)
 	val pedido3 = mock(Pedido)
 
-	Pizza pizza = new Pizza("Muzza", 70)
+	Pizza pizza = new Pizza("Muzza", 70, "Pizza clasica de Muzzarela")
 
 	@Test(expected=RuntimeException)
 	def test001_UnDominoPizzaTiene2ClientesConMailsYNicksUnicos() {

@@ -7,7 +7,7 @@ import static org.junit.Assert.*
 class MenuTest {
 
 	Menu menu = new Menu
-	Pizza pizza = new Pizza("Muzza", 55)
+	Pizza pizza = new Pizza("Muzza", 55, "Pizza clasica de Muzzarela")
 	Ingrediente ingredienteJamon = new Ingrediente("Jamon", 55,Distribucion.IZQUIERDA)
 
 	@Test
