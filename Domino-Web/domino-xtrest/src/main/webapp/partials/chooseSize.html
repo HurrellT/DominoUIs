@@ -30,7 +30,7 @@
     <div class="col-md-3 column margintop20" style="width: 100%">
         <ul class="nav nav-pills nav-stacked">
             <li ng-repeat="size in chooseS.sizes">
-                <a ui-sref="agregarIngrediente({idP:chooseS.pizza.id, idT: size.id})">
+                <a ng-click = "chooseS.seleccionarTamanio(size)">
                     <!-- Aca pasa a la siguiente ventana guardando el tamaño elegido -->
                     <span style="font-size: large;"> {{size.name}} </span>
                     <span class="badge badge-important">{{size.price}}</span>

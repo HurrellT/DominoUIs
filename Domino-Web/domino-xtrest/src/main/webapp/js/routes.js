@@ -22,7 +22,7 @@ dominoPizzaApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "partials/chooseSize.html"
         })
         .state('agregarIngrediente', {
-            url: "/addIngredient/:idP/:idT",
+            url: "/addIngredient/",
             templateUrl: "partials/addIngredients.html"
         })
         .state('confirmarPedido', {
