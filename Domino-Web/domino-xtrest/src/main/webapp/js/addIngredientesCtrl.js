@@ -1,6 +1,6 @@
 dominoPizzaApp.controller("AddIngredienteCtrl", function ($state,$stateParams,  DistribucionesService,  IngredienteService,  PizzaService,  TamanioService,  PedidoService) {
 
-  this.pizza = PizzaService.getPizzaById($stateParams.idP);
+  this.pizza = [];
   var ingaux = this.pizza.ingredientes.map(function(i){return i.id;}).concat(this.pizza.extras.map(function(i){return i.id;}));
   this.ingredientesDisponibles = IngredienteService.ingredientes.filter(yaEstaEnLaPizza);
 
