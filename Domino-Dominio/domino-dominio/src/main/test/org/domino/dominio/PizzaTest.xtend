@@ -7,7 +7,7 @@ import static org.mockito.Mockito.*
 
 class PizzaTest {
 	String nombre = 'Clasica'
-	Pizza pizzaBase = new Pizza(nombre, 90)
+	Pizza pizzaBase = new Pizza(nombre, 90, "Pizza clasica")
 
 	@Test
 	def testUnaPizzaEstaCompuestaPorNombrePrecioEIngredientes() {

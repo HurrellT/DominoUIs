@@ -52,11 +52,11 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 		val retiroLocal = new RetiraPorElLocal
 
 		repoPizzas => [
-			create("Muzzarella", 125)
-			create("Napolitana", 170)
-			create("Faina", 70)
-			create("Americana", 160)
-			create("Calabresa", 190)
+			create("Muzzarella", 125, "Pizza clasica de Muzzarela")
+			create("Napolitana", 170, "Pizza clasica de Napolitana")
+			create("Faina", 70, "Faina casera")
+			create("Americana", 160, "Pizza con huevo frito")
+			create("Calabresa", 190, "Pizza con calabresa de gran sabor")
 		]
 
 		val pizza1 = repoPizzas.allInstances.get(0)

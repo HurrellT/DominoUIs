@@ -8,8 +8,8 @@ import org.uqbar.commons.model.annotations.TransactionalAndObservable
 @TransactionalAndObservable
 class RepoPizzas extends CollectionBasedRepo<Pizza>{
 	
-	def void create(String nombreP, int precio){
-		this.create(new Pizza(nombreP,precio))
+	def void create(String nombreP, int precio, String descripcion){
+		this.create(new Pizza(nombreP,precio, descripcion))
 	}
 	
 	override protected getCriterio(Pizza example) {
