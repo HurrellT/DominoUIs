@@ -9,12 +9,12 @@ class DominoApp {
 	def static void main(String[] args) {
 		val menu = new Menu()
 		
-		val biblioteca = new DominoPizza(menu, null);
+		val dominoPizza = new DominoPizza(menu, null);
 		
 		val bootstrap = new DominoBootstrap
 		bootstrap.run
 
-   		XTRest.startInstance(9000	, new DominoRestAPI(biblioteca))
+   		XTRest.startInstance(9000	, new DominoRestAPI(dominoPizza))
 	}
 	
 }

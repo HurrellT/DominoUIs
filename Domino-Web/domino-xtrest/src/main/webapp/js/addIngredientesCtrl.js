@@ -1,13 +1,26 @@
-dominoPizzaApp.controller("AddIngredienteCtrl", function ($state,$stateParams,  DistribucionesService,  IngredienteService,  PizzaService,  TamanioService,  PedidoService) {
+dominoPizzaApp.controller("AddIngredienteCtrl", function ($state,
+                                                          $stateParams,
+                                                          DistribucionesService,
+                                                          IngredienteService,
+                                                          PizzaService,
+                                                          TamanioService,
+                                                          PedidoService) {
 
-  this.pizza = [];
-  var ingaux = this.pizza.ingredientes.map(function(i){return i.id;}).concat(this.pizza.extras.map(function(i){return i.id;}));
-  this.ingredientesDisponibles = IngredienteService.ingredientes.filter(yaEstaEnLaPizza);
+  this.plato = JSON.parse(sessionStorage.getItem('Plato'));
 
-  this.distros = DistribucionesService.distribuciones;
+  this.pizza = PizzaService.getPizzaById(plato.id_promo);
+
+  var ingaux = this.pizza.ingredientes.map(function(i){return i.id;})
+                                      .concat(this.pizza.extras.map(function(i){return i.id;}));
+
+  this.ingredientesDisponibles = IngredienteService.getIngredientes().filter(yaEstaEnLaPizza);
+
+  this.distros = DistribucionesService.getDistribuciones();
+
   this.tamanio = TamanioService.getTamanioById($stateParams.idT);
 
-
+  //Queda seguir a partir de aca
+  
   var nombre = sessionStorage.getItem("Nombre");
   document.getElementById("userName").innerHTML = nombre;
 
@@ -23,4 +36,14 @@ dominoPizzaApp.controller("AddIngredienteCtrl", function ($state,$stateParams,  
     console.log(ingaux);
     return !_.includes(ingaux,ingrediente.id);
   }
+
+  var self = this;
+
+  var ingredientes = [];
+
+  this.actualizarIngredientes = function(){
+    IngredienteService.getIndredientes().then(function(data){
+      self.ingredientes = data;
+    });
+  };
 });

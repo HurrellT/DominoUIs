@@ -1,8 +1,22 @@
 dominoPizzaApp.service("DistribucionesService", function(){
 
+	var getData = function(response) { return response.data }
+	var transform = function(json) { return new Distribucion(json) }
 
-	this.distribuciones = [ "Mitad derecha",
-	"Toda la pizza",
-	"Mitad Izquierda"
-	];
+	return {
+
+		getDistribuciones: function() { 
+			return $http.get("http://localhost:9000/distribuciones") //TODO: Hacer el GET
+			.then(getData)
+			.then(function(listaJson){ 
+				return listaJson.map(transform); 
+			});
+		},
+	};
+
+
+	// this.distribuciones = [ "Mitad derecha",
+	// "Toda la pizza",
+	// "Mitad Izquierda"
+	// ];
 });
