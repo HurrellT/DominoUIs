@@ -21,6 +21,7 @@ dominoPizzaApp.controller("CreateOrderCtrl", function($state, PizzaService, Usua
 	this.choosePizza = function(id) {
 		self.plato.id_promo = id;
 		sessionStorage.setItem("Plato",JSON.stringify(self.plato));
+		$state.go('elegirTamaño');
 	};
 
 });
