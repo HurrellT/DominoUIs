@@ -1,7 +1,7 @@
-dominoPizzaApp.service("IngredienteService", function () {
+dominoPizzaApp.service("IngredienteService", function ($http) {
 
 	var getData = function(response) { return response.data }
-	var transform = function(json) { return new Plato(json) }
+	var transform = function(json) { return new Ingrediente(json) }
 
 	return {
 
@@ -12,7 +12,8 @@ dominoPizzaApp.service("IngredienteService", function () {
 				return listaJson.map(transform); 
 			});
 		},
-	};
+		};
+});	
 
 // this.ingredientes = [
 // 	{

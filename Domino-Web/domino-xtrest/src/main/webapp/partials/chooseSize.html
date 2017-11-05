@@ -32,8 +32,8 @@
             <li ng-repeat="size in chooseS.sizes">
                 <a ng-click = "chooseS.seleccionarTamanio(size)">
                     <!-- Aca pasa a la siguiente ventana guardando el tamaño elegido -->
-                    <span style="font-size: large;"> {{size.name}} </span>
-                    <span class="badge badge-important">{{size.price}}</span>
+                    <span style="font-size: large;"> {{size.nombre}} </span>
+                    <span class="badge badge-important">${{size.factor}}</span>
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>
             </li>

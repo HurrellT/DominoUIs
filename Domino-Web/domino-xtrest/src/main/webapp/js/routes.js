@@ -26,7 +26,7 @@ dominoPizzaApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "partials/addIngredients.html"
         })
         .state('confirmarPedido', {
-            url: "/confirmOrder/:idP/:idT",
+            url: "/confirmOrder/",
             templateUrl: "partials/confirmOrder.html"
         });
 
