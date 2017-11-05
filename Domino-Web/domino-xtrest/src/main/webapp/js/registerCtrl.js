@@ -1,27 +1,29 @@
 
-dominoPizzaApp.controller('RegisterCtrl', function ($rootScope, $state, UsuarioService) {
+dominoPizzaApp.controller('RegisterCtrl', function ($state, UsuarioService) {
 
-    this.nickname = '';
-    this.password1 = '';
-    this.password2 = '';
-    this.username = '';
-    this.email = '';
-    this.adress = '';
+    var self = this;
 
-    this.confirm = function() {
-        //Aca hay que hacer un request al server con los datos del register
-        if(this.password1 == this.password2){
-            UsuarioService.addUser(this.nickname, this.password1, this.username, this.email, this.adress);
-            $rootScope.usuario = UsuarioService.getUsuarioByName(this.nickname);
-            sessionStorage.setItem("Nombre", this.nickname);
+    self.name = '';
+    self.username = '';
+    self.adress = '';
+    self.email = '';
+    self.password1 = '';
+    self.password2 = '';
+
+  function errorHandler(error) {
+    //self.notificarError(error.data);
+    }
+
+  this.confirm = function() {
+       UsuarioService.register(self.name, self.username, self.adress, self.email, self.password1, self.password2, self.errorHandler)
+        .then(function() {
+            console.log("Has accedido a Domino Pizza");
+            sessionStorage.setItem("Nombre", self.username);
             $state.go("crearPedido");
-        }else{
-            window.alert("Comproba tu contraseña");
-        }
+        })
+        .catch(errorHandler);
     };
-
-    this.guest = function() {
+  this.guest = function() {
         //Aca hay que registrarse como invitado
     };
-    
 });
