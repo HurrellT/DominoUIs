@@ -1,4 +1,4 @@
-dominoPizzaApp.service("DistribucionesService", function(){
+dominoPizzaApp.service("DistribucionesService", function($http){
 
 	var getData = function(response) { return response.data }
 	var transform = function(json) { return new Distribucion(json) }

@@ -6,21 +6,39 @@ dominoPizzaApp.controller("AddIngredienteCtrl", function ($state,
                                                           TamanioService,
                                                           PedidoService) {
 
+
+  var self = this;
+
   this.plato = JSON.parse(sessionStorage.getItem('Plato'));
 
-  this.pizza = PizzaService.getPizzaById(plato.id_promo);
+  this.pizza = {};
 
-  var ingaux = this.pizza.ingredientes.map(function(i){return i.id;})
-                                      .concat(this.pizza.extras.map(function(i){return i.id;}));
-
-  this.ingredientesDisponibles = IngredienteService.getIngredientes().filter(yaEstaEnLaPizza);
-
-  this.distros = DistribucionesService.getDistribuciones();
-
-  this.tamanio = TamanioService.getTamanioById($stateParams.idT);
-
-  //Queda seguir a partir de aca
+  this.setPizza = function(){
+    PizzaService.getPizzaById(self.plato.id_promo).then(function(pizza){
+      self.pizza = pizza;
+    });
+  };
   
+  var ingaux = {};
+
+  this.ingredientesDisponibles = {};
+
+    this.setIngredientes = function(){
+    IngredienteService.getIngredientes().then(function(ingredientes){
+      self.ingredientesDisponibles = ingredientes;
+    });
+  };
+
+  this.distros ={};
+
+    this.setDistros = function(){
+    DistribucionesService.getDistribuciones().then(function(distros){
+      self.distros = distros;
+    });
+  };
+  this.setDistros();
+  this.setIngredientes();
+  this.setPizza();
   var nombre = sessionStorage.getItem("Nombre");
   document.getElementById("userName").innerHTML = nombre;
 
@@ -32,18 +50,4 @@ dominoPizzaApp.controller("AddIngredienteCtrl", function ($state,
     $state.go("confirmarPedido({idP:this.pizza.id, idT:this.tamanio.id})");
   };
 
-  function yaEstaEnLaPizza (ingrediente){
-    console.log(ingaux);
-    return !_.includes(ingaux,ingrediente.id);
-  }
-
-  var self = this;
-
-  var ingredientes = [];
-
-  this.actualizarIngredientes = function(){
-    IngredienteService.getIndredientes().then(function(data){
-      self.ingredientes = data;
-    });
-  };
 });
