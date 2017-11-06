@@ -42,11 +42,13 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 			create("Luca", "lucakapo", "alsjdnas", "luka@gmail.com", "calle 28")
 			create("Pepe", "pepin", "wassa", "pepo@gmail.com", "calle 67")
 			create("Cuca", "cucaracha", "tttrrr", "cuca@gmail.com", "calle 71")
+			create("admin", "admin", "admin", "admin@gmail.com", "calle 1")
 		]
 
 		val cliente1 = repoCliente.allInstances.get(0)
 		val cliente2 = repoCliente.allInstances.get(1)
 		val cliente3 = repoCliente.allInstances.get(2)
+		val cliente4 = repoCliente.allInstances.get(3)
 
 		val delivery = new Delivery("calle 28")
 		val retiroLocal = new RetiraPorElLocal
@@ -78,6 +80,7 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 		val plato1 = new Plato(pizza1, tamanioGrande)
 		val plato2 = new Plato(pizza2, tamanioChico)
 		val plato3 = new Plato(pizza3, tamanioFamiliar)
+		val plato4 = new Plato(pizza3, tamanioGrande)
 
 		repoIngredientes => [
 			create("Jamon", 15, Distribucion.DERECHA)
@@ -97,6 +100,7 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 			create(cliente1, "Primer pedido", delivery)
 			create(cliente2, "Segundo pedido", retiroLocal)
 			create(cliente3, "Tercer pedido", delivery)
+			create(cliente4, "Cuarto pedido", retiroLocal)
 		]
 		
 		repoEstados => [
@@ -113,6 +117,7 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 		pedidosList.get(0).agregarPlato(plato1)
 		pedidosList.get(1).agregarPlato(plato2)
 		pedidosList.get(2).agregarPlato(plato3)
+		pedidosList.get(3).agregarPlato(plato4)
 
 	}
 
