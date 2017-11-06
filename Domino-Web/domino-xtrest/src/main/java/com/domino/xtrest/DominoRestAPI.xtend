@@ -22,6 +22,7 @@ import org.uqbar.xtrest.http.ContentType
 import org.uqbar.xtrest.json.JSONUtils
 import org.domino.json.JSONViewerPromo
 import org.domino.json.JSONViewerIngrediente
+import org.domino.json.JSONViewerTamanios
 
 @Controller
 class DominoRestAPI {
@@ -42,13 +43,28 @@ class DominoRestAPI {
 		return ok(res.toJson)
 		
 	}
-	
+	@Get("/tamanios")
+	def getTamanios() {
+		response.contentType = ContentType.APPLICATION_JSON
+		val tamanios = this.dominoPizza.menu.tamanios
+		val res = tamanios.map[t|new JSONViewerTamanios(t)].toList
+		return ok(res.toJson)
+		
+	}
 	
 	@Get("/promos/:id")
 	def getPromoById(){
 		response.contentType = ContentType.APPLICATION_JSON
 		val pizza = this.dominoPizza.menu.promos.findFirst[p | p.id == Integer.valueOf(id)]
 		val res = new JSONViewerPromo(pizza)
+		return ok(res.toJson)
+	}
+	
+	@Get("/tamanios/:id")
+	def getTamanioByName(){
+		response.contentType = ContentType.APPLICATION_JSON
+		val tamanio = this.dominoPizza.menu.tamanios.findFirst[t | t.nombre.equals(id)]
+		val res = new JSONViewerTamanios(tamanio)
 		return ok(res.toJson)
 	}
 	@Get("/tamanios")

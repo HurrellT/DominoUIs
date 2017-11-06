@@ -1,10 +1,16 @@
-dominoPizzaApp.service("TamanioService", function () {
+dominoPizzaApp.service("TamanioService", function ($http) {
 
     var getData = function(response) { return response.data }
     var transform = function(json) { return new Tamanio(json) }
 
     return {
-
+        getTamanios: function() { 
+            return $http.get("http://localhost:9000/tamanios")
+            .then(getData)
+            .then(function(listaJson){ 
+                return listaJson.map(transform); 
+            });
+        },
         getTamanioById : function (id){
             return $http.get("http://localhost:9000/tamanios/" + id) //TODO: Hacer el GET
             .then(getData)
