@@ -27,13 +27,5 @@ dominoPizzaApp.service("UsuarioService", function ($http) {
         alert("Revise las contraseñas");
        }
     };
-    // this.setUser= function(name){
-    //     this.usuarioSesion=name;
-    // };
-    
-    // this.addUser = function (nickname, password, username, email, adress) {
-    //     newUser = { "id": 4, "usuario": nickname, "password": password, "nombre": username, "email": email, "direccion": adress};
-    //     this.usuarios.push(newUser);    
-    // }
 
 });
