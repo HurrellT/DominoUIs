@@ -5,6 +5,7 @@ import org.domino.repo.RepoPedidos
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.applicationContext.ApplicationContext
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import java.util.List
 
 @Accessors
 @TransactionalAndObservable 
@@ -14,12 +15,19 @@ class DominoPizza {
 	
 	ServicioDeNotificacion servicio
 	
+	List <Distribucion> distribucion
+	
 			
 	new(Menu menu, ServicioDeNotificacion servicio){
 		this.menu = menu
 		this.servicio = servicio
 		ServicioDeNotificacion.config(this.servicio)
+		this.distribucion = getDistribuciones()
 		
+	}
+	
+	def getDistribuciones(){
+		Distribucion.values()
 	}
 	
 	def agregarCliente(Cliente cliente) {

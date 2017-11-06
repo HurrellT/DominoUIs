@@ -217,5 +217,12 @@ class DominoRestAPI {
     private def getErrorJson(String message) {
         '{ "error": "' + message + '" }'
     }
-	
+    
+    @Get("/distribuciones")
+	def getDistribiciones() {
+		response.contentType = ContentType.APPLICATION_JSON
+		val res = this.dominoPizza.distribucion
+		//val res = distribuciones.map[p|getName(p)].toList
+		return ok(res.toJson)
+	}
 }
