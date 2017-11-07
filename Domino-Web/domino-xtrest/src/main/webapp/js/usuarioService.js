@@ -1,6 +1,7 @@
 dominoPizzaApp.service("UsuarioService", function ($http) {
     // this.usuarioSesion="";
-
+    var getData = function(response) { return response.data }
+    var transform = function(json) { return new Usuario(json) }
     return {
         
         login: function(name, password, errorHandler) { 
@@ -25,7 +26,19 @@ dominoPizzaApp.service("UsuarioService", function ($http) {
                 return $http.post("http://localhost:9000/usuarios", this.infoRegister).then(name).catch(errorHandler)
            }
         alert("Revise las contraseñas");
-       }
-    };
+       },
+        getUsuarioByUsername : function (name){
+            return $http.get("http://localhost:9000/usuarios/" + name)
+            .then(getData)
+            .then(function(usuario){
+                return transform(usuario);
+            });
+        },
+        actualizarDatos : function (name,usuario){
+            return $http.put("http://localhost:9000/usuarios/"+name,usuario)
+            .then(getData).catch(errorHandler)
+        },
+
+     };
 
 });

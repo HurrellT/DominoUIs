@@ -89,7 +89,7 @@ class DominoRestAPI {
 			try {
 
 				val platos = pedidoJSON.platos
-				val cliente = repoClientes.usuarioConId(pedidoJSON.id_usuario)
+				val cliente = repoClientes.usuarioConUsername(pedidoJSON.id_usuario)
 				val envio = pedidoJSON.entrega.toInstance
 				val pedido = new Pedido(cliente, pedidoJSON.aclaraciones, envio);
 				platos.forEach[p|pedido.agregarPlato(p)]
@@ -164,19 +164,19 @@ class DominoRestAPI {
    		return ok(res.toJson)
     }
     
-    @Get("/usuarios/:id")
+    @Get("/usuarios/:username")
     def getUsuarioById() {
     	response.contentType = ContentType.APPLICATION_JSON
-    	val res = new JSONViewerUsuario(repoClientes.usuarioConId(Integer.valueOf(id)))
+    	val res = new JSONViewerUsuario(repoClientes.usuarioConUsername(username))
     	return ok(res.toJson)
     }
     
-    @Put("/usuarios/:id")
+    @Put("/usuarios/:username")
     def editUsuario(@Body String body) {
         response.contentType = ContentType.APPLICATION_JSON
         try {
             var userJSON = body.fromJson(JSONAdapterUsuario)
-        	var usuario = repoClientes.usuarioConId(Integer.valueOf(id))
+        	var usuario = repoClientes.usuarioConUsername(username)
             try {
                 userJSON.actualizar(usuario)
                 return ok()
@@ -207,8 +207,8 @@ class DominoRestAPI {
     	 response.contentType = ContentType.APPLICATION_JSON
          var userJSON = body.fromJson(JSONAdapterUsuario)
         try {
-			userJSON.validarSesionDeUsuario()
-                return ok('''{ "status" : "ok" }''')           
+          userJSON.validarSesionDeUsuario()
+    	  return ok("Has accedido a DominoPizza")       
             }catch (UnrecognizedPropertyException exception) {
           return badRequest(getErrorJson("La contraseña o usuario no coiniciden con nuestros registros, por favor, revise los datos"))
     	}
