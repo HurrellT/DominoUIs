@@ -1,12 +1,21 @@
-<div ng-controller="ConfirmarPedidoCtrl as pedidoCtrl">
+<div ng-controller="ConfirmarPedidoCtrl as controller">
 
     <ul class="nav nav-pills">
         <li class="active">
             <a href="#">Menu</a>
         </li>
-        <li class="pull-right">
-            <a href="#">Usuario87</a>  <!-- Aca debe ir el nickname del usuario pasado por parametro -->
-        </li>
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="height: 40px">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true">
+                    <span id="userName" style="font-family:'sans-serif'"></span>
+                </span>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a ui-sref="editarUsuario">Edita Usuario</a></li>
+                <li><a href="#">Cerrar Sesion</a></li>
+            </ul>
+        </div>
     </ul>
 
     <div class="container">
@@ -23,51 +32,53 @@
         <div>
             <h3> Pizzas </h3>
         </div>
+        <ul class="nav nav-pills nav-stacked">
+            <li  ng-repeat='platos in controller.pedido'>
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span style="font-size: large"> {{plato.pizza.nombre}} </span>
+                <span class="badge badge-important">{{plato.montoTotal}} </span> <br>
+                <small ng-repeat= 'ingrediente in plato.extras'>{{ingrediente.nombre}},</small>
+            </li>
+        </ul>
         <div>
-            <!--Aca va un ciclo for usando javascript-->
-            <ul class="nav nav-pills nav-stacked">
-                <li>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        <span style="font-size: large"> Napolitana </span>
-                        <span class="badge badge-important">$105</span> <br>
-                        <small> Queso, tomate y palmitos</small>
-                    </a>
-                </li>
-            </ul>
-            <div>
-                <a href="url">Agregar otra pizza</a>
-            </div>
+            <a href="url">Agregar otra pizza</a>
         </div>
     </div>
 
     <div class="container">
         <label for="aclaraciones"><h3>Aclaraciones</h3></label>
-        <textarea class="form-control" id="aclaraciones" rows="3"></textarea>
+        <textarea class="form-control" id="aclaraciones" rows="3" ng-model = 'controller.pedido.aclaraciones'></textarea>
     </div>
 </div>
 
 <div class="container">
     <label for="envio"><h3>Envio</h3></label>
-    <div class="form-check">
-        <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="envio" id="retiroLocal" value="option1" checked>
-            Retiro por el local
-        </label>
-    </div>
-    <div class="form-check">
-        <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="envio" id="Delivery" value="option2">
-            Delivery
-        </label>
-        <span class="badge badge-important">$15</span>
-        <input type="text" class="form-control" id="direccion" placeholder="Ingrese direccion">
+    <div class="container">
+        <div class="form-check" ng-model = 'controller.pedido.envio'>
+            <label class="form-check-label">
+                <input class="form-check-input"
+                type="radio"
+                name="retiro"
+                id="retiro"
+                ng-true-value = 'retiro'>
+                Retiro por el Local
+            </label>
+            <label class="form-check-label">
+                <input class="form-check-input"
+                type="radio"
+                name="delivery"
+                id="delivery"
+                ng-true-value = 'delivery'>
+                Delivery
+            </label><span class="badge badge-important">$15</span>
+            <textarea class="form-control" id="direccion" rows="1"></textarea>
+        </div>
     </div>
 </div>
 
 <div class="container">
     <h1> Total a pagar: </h1>
-    <span class="badge badge-important">$120</span>
+    <span class="badge badge-important">{{controller.pedido.montoTotal}}</span>
 </div>
 
 <div>
