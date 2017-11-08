@@ -1,13 +1,15 @@
 dominoPizzaApp.controller("AddIngredienteCtrl", function ($state,
-                                                          $stateParams,
-                                                          DistribucionesService,
-                                                          IngredienteService,
-                                                          PizzaService,
-                                                          TamanioService,
-                                                          PedidoService) {
+  $stateParams,
+  DistribucionesService,
+  IngredienteService,
+  PizzaService,
+  TamanioService,
+  PedidoService) {
 
 
   var self = this;
+  var nombre = sessionStorage.getItem("Nombre");
+  document.getElementById("userName").innerHTML = nombre;
 
   this.plato = JSON.parse(sessionStorage.getItem('Plato'));
   this.tamanio = {};
@@ -28,7 +30,7 @@ dominoPizzaApp.controller("AddIngredienteCtrl", function ($state,
   
   this.ingredientesDisponibles = {};
 
-    this.setIngredientes = function(){
+  this.setIngredientes = function(){
     IngredienteService.getIngredientes().then(function(ingredientes){
       self.ingredientesDisponibles = _.reject(ingredientes, function(ingrediente){
         return self.pizza.tieneIngrediente(ingrediente);
@@ -38,7 +40,7 @@ dominoPizzaApp.controller("AddIngredienteCtrl", function ($state,
 
   this.distros = {};
 
-    this.setDistros = function(){
+  this.setDistros = function(){
     DistribucionesService.getDistribuciones().then(function(distros){
       self.distros = distros;
     });
