@@ -10,6 +10,13 @@ dominoPizzaApp.controller("AddIngredienteCtrl", function ($state,
   var self = this;
 
   this.plato = JSON.parse(sessionStorage.getItem('Plato'));
+  this.tamanio = {};
+
+  this.setTamanio = function(){
+    TamanioService.getTamanioById(self.plato.id_tamanio).then(function(data){
+      self.tamanio = data;
+    });
+  };
 
   this.pizza = {};
 
@@ -19,8 +26,6 @@ dominoPizzaApp.controller("AddIngredienteCtrl", function ($state,
     });
   };
   
-  var ingaux = {};
-
   this.ingredientesDisponibles = {};
 
     this.setIngredientes = function(){
@@ -36,11 +41,12 @@ dominoPizzaApp.controller("AddIngredienteCtrl", function ($state,
       self.distros = distros;
     });
   };
+
+
   this.setDistros();
   this.setIngredientes();
   this.setPizza();
-  var nombre = sessionStorage.getItem("Nombre");
-  document.getElementById("userName").innerHTML = nombre;
+  this.setTamanio();
 
   this.agregar = function (ingred) {
     this.pizza.extras.push(ingred);

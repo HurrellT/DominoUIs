@@ -12,7 +12,7 @@ dominoPizzaApp.service("TamanioService", function ($http) {
             });
         },
         getTamanioById : function (id){
-            return $http.get("http://localhost:9000/tamanios/" + id) //TODO: Hacer el GET
+            return $http.get("http://localhost:9000/tamanios/" + id)
             .then(getData)
             .then(function(dataTamanio){
                 return transform(dataTamanio);
