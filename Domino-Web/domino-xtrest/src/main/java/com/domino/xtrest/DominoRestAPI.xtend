@@ -23,6 +23,7 @@ import org.uqbar.xtrest.json.JSONUtils
 import org.domino.json.JSONViewerPromo
 import org.domino.json.JSONViewerIngrediente
 import org.domino.json.JSONViewerTamanios
+import org.domino.json.JSONViewerEstado
 
 @Controller
 class DominoRestAPI {
@@ -160,7 +161,7 @@ class DominoRestAPI {
     @Get("/pedidos/:id/estado")
     def getStateOfPedido(){
   		response.contentType = ContentType.APPLICATION_JSON
-	   	val res = new JSONAdapterEstado(this.dominoPizza.pedidos.findFirst[p | p.id == Integer.valueOf(id)].estado).toInstance	
+	   	val res = new JSONViewerEstado(this.dominoPizza.pedidos.findFirst[p | p.id == Integer.valueOf(id)].estado)	
    		return ok(res.toJson)
     }
     

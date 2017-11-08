@@ -24,13 +24,13 @@ class JSONAdapterEstado {
 	def toInstance() {
 		var EstadoPedido res = new Cancelado
 		switch this.nombre {
-			case nombre.contains("entrega") : res = new Entregado
-			case nombre.contains("cancela") : res = new Cancelado
-			case nombre.contains("viaje") : res =new EnViaje
-			case nombre.contains("preparan") :  res =new Preparando
-			case nombre.contains("retirar") : res = new ListoParaRetirar
+			case nombre.contains("Entregado") : res = new Entregado
+			case nombre.contains("Cancelado") : res = new Cancelado
+			case nombre.contains("En Viaje") : res =new EnViaje
+			case nombre.contains("Preparando") :  res =new Preparando
+			case nombre.contains("Listo Para Retirar") : res = new ListoParaRetirar
 				
-			case nombre.contains("enviar") : res = new ListoParaEnviar
+			case nombre.contains("Listo Para Enviar") : res = new ListoParaEnviar
 		}
 		res
 	}
