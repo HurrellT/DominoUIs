@@ -29,7 +29,7 @@ dominoPizzaApp.controller("AddIngredienteCtrl", function ($state,
     });
   };
 
-  this.distros ={};
+  this.distros = {};
 
     this.setDistros = function(){
     DistribucionesService.getDistribuciones().then(function(distros){
