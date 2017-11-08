@@ -25,7 +25,7 @@
     </ul>
     <div class="container" style="margin-left: -15px">
         <h2>{{ingredienteCtrl.pizza.nombre}}</h2>  <!--Nombre de la pizza pasada por parametro-->
-        <h4 style="display:inline-block;"> {{ingredienteCtrl.plato.tamanio.name}} </h4>  <!--Tamaño de la pizza pasada por parametro-->
+        <h4 style="display:inline-block;"> {{ingredienteCtrl.tamanio.nombre}} </h4>
         <span class="badge badge-important" style="display: inline-block">${{ingredienteCtrl.pizza.precio}}</span> <br>
         <!--Precio de la pizza pasada por parametro-->
     </div>
@@ -53,7 +53,7 @@
         </div>
     </div>
 
-    <div ng-repeat="ingrediente in ingredienteCtrl.pizza.extras" class="well well-sm" style="max-width: 30rem;">
+    <div ng-repeat="ingrediente in ingredienteCtrl.plato.extras" class="well well-sm" style="max-width: 30rem;">
         <!--Estos deberian ser lo ingredientes de la pizza-->
         <div class="pull left"
         style="float: left; margin: 20px 10px"><h4>{{ingrediente.nombre}}</h4></div>
