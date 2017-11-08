@@ -10,7 +10,7 @@ class JSONAdapterPedido {
 	
 	List<JSONAdapterPlato> pizzas
 	
-	String id_usuario
+	String username
 	
 	String aclaraciones
 	

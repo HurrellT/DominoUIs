@@ -15,15 +15,6 @@ class JSONAdapterUsuario {
 	String direccion
 
 	def actualizar(Cliente cliente) {
-//		switch 0 {
-//			case this.usuario 	!== null : cliente.nick 		= this.usuario
-//			case this.password 	!== null : cliente.password		= this.password
-//			case this.nombre 	!== null : cliente.nombre		= this.nombre
-//			case this.email		!== null : cliente.email		= this.email
-//			case this.direccion	!== null : cliente.direccion	= this.direccion
-//		}
-
-		//TODO: Preguntar una forma linda de hacer esto
 		
 		if (this.usuario !== null) {
 			cliente.nick = this.usuario

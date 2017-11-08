@@ -89,7 +89,7 @@ class DominoRestAPI {
 			try {
 
 				val platos = pedidoJSON.platos
-				val cliente = repoClientes.usuarioConUsername(pedidoJSON.id_usuario)
+				val cliente = repoClientes.usuarioConUsername(pedidoJSON.username)
 				val envio = pedidoJSON.entrega.toInstance
 				val pedido = new Pedido(cliente, pedidoJSON.aclaraciones, envio);
 				platos.forEach[p|pedido.agregarPlato(p)]
@@ -165,7 +165,7 @@ class DominoRestAPI {
     }
     
     @Get("/usuarios/:username")
-    def getUsuarioById() {
+    def getUsuarioByUsername() {
     	response.contentType = ContentType.APPLICATION_JSON
     	val res = new JSONViewerUsuario(repoClientes.usuarioConUsername(username))
     	return ok(res.toJson)
