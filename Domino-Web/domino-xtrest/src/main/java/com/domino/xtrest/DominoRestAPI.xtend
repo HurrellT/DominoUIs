@@ -223,8 +223,8 @@ class DominoRestAPI {
     @Get("/distribuciones")	
     def getDistribiciones() {		
     	response.contentType = ContentType.APPLICATION_JSON		
-    	val distribuciones = this.dominoPizza.distribucion		
-    	val res = distribuciones.map[d|d.getName()].toList		
+    	val distribuciones = this.dominoPizza.distribucion
+		var res = distribuciones.stream.filter(d | d.getName !== "").map[d|d.getName()].collect(Collectors.toList)		
     	return ok(res.toJson)
     }
 	
