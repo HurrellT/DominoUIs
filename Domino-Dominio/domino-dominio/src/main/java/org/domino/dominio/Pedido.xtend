@@ -51,7 +51,7 @@ class Pedido extends Entity {
 	}
 	@Dependencies("platos")
 	def getMontoTotal() {
-		platos.stream.mapToInt[p | p.monto as int].sum() + this.envio.recargo
+		platos.stream.mapToInt[p | p.monto as int].sum() + 0 //this.envio.recargo
 	}
 	
 	def cancelar() {

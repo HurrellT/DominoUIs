@@ -13,12 +13,12 @@ import org.eclipse.xtend.lib.annotations.Accessors
 class JSONAdapterPlato {
 	
 	int id_promo
-	int id_tamanio
+	String id_tamanio
 	List<JSONAdapterIngrediente> extras
 	
 	def crearPlato() {
 		val promo = promos.findFirst[p| p.id == this.id_promo]
-		val tamanio = tamanios.findFirst[t | t.id == this.id_tamanio]
+		val tamanio = tamanios.findFirst[t | t.nombre == this.id_tamanio]
 		
 		var plato = new Plato()
 		plato.tamanio = tamanio

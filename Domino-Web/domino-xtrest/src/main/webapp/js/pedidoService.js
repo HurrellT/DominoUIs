@@ -1,41 +1,29 @@
-dominoPizzaApp.service("PedidoService", function() {
+dominoPizzaApp.service("PedidoService", function($http) {
 
-	this.pedidos = [
-	{
-		"id": 1,
-		"estado": "preparando",
-		"monto": 140,
-		"platos": [
-		{
-			"id_promo": 1,
-			"id_tamanio": 2,
-			"extras": []
-		}
-		],
-		"id_usuario": 1,
-		"aclaraciones": "Primer pedido",
-		"entrega": {
-			"tipo": "delivery",
-			"direccion": "calle 28"
-		}
-	},
-	{
-		"id": 2,
-		"estado": "preparando",
-		"monto": 170,
-		"platos": [
-		{
-			"id_promo": 2,
-			"id_tamanio": 3,
-			"extras": []
-		}
-		],
-		"id_usuario": 2,
-		"aclaraciones": "Segundo pedido",
-		"entrega": {
-			"tipo": "retiro",
-			"direccion": null
-		}
-	}];
+var self = this;
 
+this.pedidoBase = { "platos": [],
+					"aclaraciones": " ",
+					"id_usuario": sessionStorage.getItem("Nombre"),
+					"entrega": { "tipo": " ", "direccion": " "}}; 
+
+return {
+			enviarPedido: function(error, cb) { 
+				return $http.post("http://localhost:9000/pedidos", self.pedidoBase)
+				.then(cb)
+				.catch(error);
+			},
+			
+			agregarPlato: function(plato) {
+				self.pedidoBase.platos.push(plato);
+				console.log(self.pedidoBase);
+			},
+
+			terminarPedido: function(plato, entrega, direccion, aclaracion){
+				self.pedidoBase.platos.push(plato);
+				self.pedidoBase.entrega.tipo = entrega;
+				self.pedidoBase.entrega.direccion = direccion;
+				self.pedidoBase.aclaraciones = aclaracion
+			}
+		};
 });

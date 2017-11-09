@@ -41,21 +41,22 @@
             </li>
         </ul>
         <div>
-            <a href="url">Agregar otra pizza</a>
+            <a ng-click="controller.agregarPlato()">Agregar otra pizza</a>
         </div>
     </div>
 
     <div class="container">
         <label for="aclaraciones"><h3>Aclaraciones</h3></label>
-        <textarea class="form-control" id="aclaraciones" rows="3" ng-model = 'controller.pedido.aclaraciones'></textarea>
+        <textarea class="form-control" id="aclaraciones" rows="3" ng-model = 'controller.aclaracion'></textarea>
     </div>
-</div>
+
 
 <div class="container">
     <label for="envio"><h3>Envio</h3></label>
     <div class="container">
-        <div class="form-check" ng-model = 'controller.pedido.envio'>
-            <label class="form-check-label">
+        <!-- <div class="form-check" ng-model = 'controller.tipo'>
+            <div>
+            <label class="form-check-label" >
                 <input class="form-check-input"
                 type="radio"
                 name="retiro"
@@ -63,16 +64,19 @@
                 ng-true-value = 'retiro'>
                 Retiro por el Local
             </label>
-            <label class="form-check-label">
+            </div>
+            <div>
+            <label class="form-check-label" >
                 <input class="form-check-input"
                 type="radio"
                 name="delivery"
                 id="delivery"
                 ng-true-value = 'delivery'>
                 Delivery
-            </label><span class="badge badge-important">$15</span>
-            <textarea class="form-control" id="direccion" rows="1"></textarea>
-        </div>
+            </label>
+            </div><span class="badge badge-important">$15</span>
+            <textarea class="form-control" id="direccion" rows="1" ng-model= 'controller.direccion'></textarea>
+        </div> -->
     </div>
 </div>
 
@@ -82,6 +86,7 @@
 </div>
 
 <div>
-    <button type="submit" class="btn btn-success" onclick="alert('not yet implemented')"> Confirmar pedido</button>
+    <input type="submit" class="btn btn-success" value="Confirmar Pedido" ng-click="controller.confirmar()"></input>
+</div>
 </div>
 </div>

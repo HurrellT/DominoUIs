@@ -22,7 +22,6 @@ class JSONAdapterEntrega {
 		}
 		if(envio.esRetiro){
 			this.tipo = "retiro"
-			//TODO: Arreglar que cuando es Retiro, la direccion se muestra igual pero con un null
 		}
 	}
 	

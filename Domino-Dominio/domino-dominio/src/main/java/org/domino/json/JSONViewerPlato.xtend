@@ -8,12 +8,12 @@ import org.eclipse.xtend.lib.annotations.Accessors
 class JSONViewerPlato {
 	
 	Integer id_promo
-	Integer id_tamanio
+	String id_tamanio
 	List<JSONAdapterIngrediente> extras
 	
 	new(Plato plato) {
 		this.id_promo = plato.pizza.id
-		this.id_tamanio= plato.tamanio.id
+		this.id_tamanio= plato.tamanio.nombre
 		this.extras = newArrayList
 		plato.ingredientes.forEach[i | extras.add(new JSONAdapterIngrediente(i))]
 	}

@@ -8,16 +8,16 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class JSONAdapterPedido {
 	
-	List<JSONAdapterPlato> pizzas
+	List<JSONAdapterPlato> platos
 	
-	String username
+	String id_usuario
 	
 	String aclaraciones
 	
 	JSONAdapterEntrega entrega
 	
 	def getPlatos() {
-		pizzas.stream.map[ p | p.crearPlato].collect(Collectors.toList)
+		platos.stream.map[ p | p.crearPlato].collect(Collectors.toList)
 	}
 	
 }

@@ -11,7 +11,7 @@ class JSONViewerPedido {
 	String estado
 	Integer monto
 	List<JSONViewerPlato> platos
-	Integer id_usuario
+	String id_usuario
 	String aclaraciones
 	JSONAdapterEntrega entrega
 	
@@ -19,7 +19,7 @@ class JSONViewerPedido {
 		this.id = pedido.id
 		this.estado = pedido.estado.getNombre.replaceAll("[^A-Za-z]+", "").toLowerCase
 		this.monto = pedido.montoTotal
-		this.id_usuario = pedido.cliente.id
+		this.id_usuario = pedido.cliente.nick
 		this.aclaraciones = pedido.aclaracion
 		this.entrega  = new JSONAdapterEntrega(pedido.envio)
 		this.platos = newArrayList

@@ -14,8 +14,6 @@ dominoPizzaApp.controller('ChooseSizeCtrl', function($state, PizzaService, Taman
 	};
 
 	this.setPizza();
-	
-	console.log(this.pizza);
 
 	this.actualizarTamanios = function(){
 		TamanioService.getTamanios().then(function(data){

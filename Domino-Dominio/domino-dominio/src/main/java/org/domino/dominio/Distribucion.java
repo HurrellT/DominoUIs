@@ -1,9 +1,5 @@
 package org.domino.dominio;
- 
-import com.fasterxml.jackson.core.*;
-import com.fasterxml.jackson.annotation.*;
 
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Distribucion {
 	TODA {
 		@Override
@@ -23,8 +19,5 @@ public enum Distribucion {
 			return "Derecha";
 		}
 	};
-	
-	@JsonValue
 	public abstract String getName();
-	
 }
