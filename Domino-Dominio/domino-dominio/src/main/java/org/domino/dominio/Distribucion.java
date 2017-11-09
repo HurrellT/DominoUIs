@@ -22,6 +22,12 @@ public enum Distribucion {
 		public String getName() {
 			return "Derecha";
 		}
+	},
+	NOTSELECTED {
+		@Override
+		public String getName() {
+			return "";
+		}
 	};
 	
 	@JsonValue

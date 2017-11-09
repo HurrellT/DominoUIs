@@ -85,9 +85,9 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 		repoIngredientes => [
 			create("Jamon", 15, Distribucion.DERECHA)
 			create("Queso", 20, Distribucion.IZQUIERDA)
-			create("Anchoas", 50, Distribucion.DERECHA)
-			create("Aceitunas", 15, Distribucion.TODA)
-			create("Salchichas", 35,Distribucion.TODA)
+			create("Anchoas", 50, Distribucion.NOTSELECTED)
+			create("Aceitunas", 15, Distribucion.NOTSELECTED)
+			create("Salchichas", 35, Distribucion.NOTSELECTED)
 		]
 
 		pizza1.agregarIngrediente(repoIngredientes.allInstances.get(1))

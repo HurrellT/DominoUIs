@@ -24,6 +24,7 @@ import org.domino.json.JSONViewerPromo
 import org.domino.json.JSONViewerIngrediente
 import org.domino.json.JSONViewerTamanios
 import org.domino.json.JSONViewerEstado
+import java.util.stream.Collectors
 
 @Controller
 class DominoRestAPI {
@@ -222,8 +223,8 @@ class DominoRestAPI {
     @Get("/distribuciones")
 	def getDistribiciones() {
 		response.contentType = ContentType.APPLICATION_JSON
-		val res = this.dominoPizza.distribucion
-		//val res = distribuciones.map[p|getName(p)].toList
+		val dists = this.dominoPizza.distribucion
+		val res = dists.stream.filter(d | d.getName !== "").collect(Collectors.toList)
 		return ok(res.toJson)
 	}
 }
