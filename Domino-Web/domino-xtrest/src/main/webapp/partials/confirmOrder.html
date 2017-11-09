@@ -55,10 +55,11 @@
 <div class="container" style="width: 100%">
     <label for="envio"><h3>Envio</h3></label>
     <div class="container">
-        <!-- <div class="form-check" ng-model = 'controller.tipo'>
+         <div class="form-check" ng-model = 'controller.tipo'>
             <div>
             <label class="form-check-label" >
                 <input class="form-check-input"
+                ng-click = "controller.setRetiro()"
                 type="radio"
                 name="retiro"
                 id="retiro"
@@ -69,6 +70,7 @@
             <div>
             <label class="form-check-label" >
                 <input class="form-check-input"
+                ng-click =  "controller.setDelivery()"
                 type="radio"
                 name="delivery"
                 id="delivery"
@@ -77,7 +79,7 @@
             </label>
             </div><span class="badge badge-important">$15</span>
             <textarea class="form-control" id="direccion" rows="1" ng-model= 'controller.direccion'></textarea>
-        </div> -->
+        </div> 
     </div>
 </div>
 

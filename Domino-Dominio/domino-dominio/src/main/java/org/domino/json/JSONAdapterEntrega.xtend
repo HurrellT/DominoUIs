@@ -29,7 +29,7 @@ class JSONAdapterEntrega {
 		var FormaDeEnvio res
 		if(tipo == "retiro"){
 			res = new RetiraPorElLocal
-		}if(tipo == "envio"){
+		}if(tipo == "delivery"){
 			res = new Delivery(this.direccion)
 		}
 		res

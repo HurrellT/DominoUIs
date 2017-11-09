@@ -3,7 +3,7 @@ dominoPizzaApp.controller("ConfirmarPedidoCtrl", function ($state, PedidoService
 
     var self = this;
 
-    this.tipo = "retiro";
+    this.tipo = " ";
 
     this.direccion = " ";
 
@@ -15,13 +15,23 @@ dominoPizzaApp.controller("ConfirmarPedidoCtrl", function ($state, PedidoService
 
     this.agregarPlato = function(){
         PedidoService.agregarPlato(self.platoTerminado);
-        $state.go("crearPedido")
+        $state.go("crearPedido");
     };
 
     this.confirmar = function() {
         PedidoService.terminarPedido(self.platoTerminado, self.tipo, self.direccion, self.aclaracion);
-        PedidoService.enviarPedido(errorHandler, function() { $state.go("editarUsuario") });
+        PedidoService.enviarPedido(errorHandler, function() { $state.go("editarUsuario"); });
         
+    };
+
+    this.setRetiro = function() {
+        self.tipo = 'retiro';
+    };
+
+
+    this.setDelivery = function() {
+        self.tipo = 'delivery';
+        self.direccion = self.direccion;
     };
 
     function errorHandler(error) {

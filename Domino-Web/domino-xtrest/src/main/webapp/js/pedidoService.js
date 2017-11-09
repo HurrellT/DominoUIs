@@ -20,14 +20,13 @@ return {
 			
 			agregarPlato: function(plato) {
 				self.pedidoBase.platos.push(plato);
-				console.log(self.pedidoBase);
 			},
 
-			terminarPedido: function(plato, entrega, direccion, aclaracion){
+			terminarPedido: function(plato, tipo, direccion, aclaracion){
 				self.pedidoBase.platos.push(plato);
-				self.pedidoBase.entrega.tipo = entrega;
+				self.pedidoBase.entrega.tipo = tipo;
 				self.pedidoBase.entrega.direccion = direccion;
-				self.pedidoBase.aclaraciones = aclaracion
+				self.pedidoBase.aclaraciones = aclaracion;
 			},
 
 			pedidosDeUsuario: function(username){
@@ -39,7 +38,7 @@ return {
 			},
 
 			setPedido: function(pedido){
-				self.pedidoBase = new Pedido(pedido); 
+				self.pedidoBase.platos = pedido.platos; 
 			}
 		};
 });

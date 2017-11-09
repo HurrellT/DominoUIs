@@ -43,7 +43,6 @@ class DominoRestAPI {
 		val promos = this.dominoPizza.menu.promos
 		val res = promos.map[p|new JSONViewerPromo(p)].toList
 		return ok(res.toJson)
-		
 	}
 	@Get("/tamanios")
 	def getTamanios() {
