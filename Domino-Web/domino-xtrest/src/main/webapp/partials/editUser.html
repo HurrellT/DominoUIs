@@ -33,24 +33,19 @@
 
 <div class="container">
     <h4>Pedidos anteriores</h4>
-    <table style="width:50%">
-        <tr>
-            <th>Pizzas</th>
-            <th>Direccion</th>
-            <th>Monto</th>
-            <th> </th>
-        </tr>
-        <tr>
-            <td>Muzzarella</td>
-            <td>Calle Falsa 123</td>
-            <td>$100</td>
-            <td> <a href="url">Repetir</a> </td>
-        </tr>
-        <tr>
-            <td>Napolitana</td>
-            <td> </td>
-            <td>$120</td>
-            <td> <a href="url">Repetir</a> </td>
+    <table style="width:50%" class="table">
+        <thead>
+             <tr>
+                <th>Pedido</th>
+                <th>Direccion</th>
+                <th>Monto</th>
+            </tr>
+        </thead>
+        <tr ng-repeat="pedido in ctrl.pedidosUsuario">
+            <td>Pedido{{pedido.id}}</td>
+            <td>{{pedido.entrega.direccion}}</td>
+            <td>${{pedido.monto}}</td>
+           <td><input type="submit" class="btn btn-success" value="Repetir" ng-click="ctrl.repetirPedido()"></td> 
         </tr>
     </table>
 </div>

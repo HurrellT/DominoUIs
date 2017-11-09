@@ -2,6 +2,10 @@ dominoPizzaApp.service("PedidoService", function($http) {
 
 var self = this;
 
+var getData = function(response) { return response.data }
+var transform = function(json) { return new Pedido(json) }
+var self=this;
+
 this.pedidoBase = { "platos": [],
 					"aclaraciones": " ",
 					"id_usuario": sessionStorage.getItem("Nombre"),
@@ -24,6 +28,18 @@ return {
 				self.pedidoBase.entrega.tipo = entrega;
 				self.pedidoBase.entrega.direccion = direccion;
 				self.pedidoBase.aclaraciones = aclaracion
+			},
+
+			pedidosDeUsuario: function(username){
+				return $http.get("http://localhost:9000/pedidos/usuarios/"+username)
+				.then(getData)
+				.then(function(listaJson){
+					return transform(listaJson);
+				} );
+			},
+
+			setPedido: function(pedido){
+				self.pedidoBase = new Pedido(pedido); 
 			}
 		};
 });

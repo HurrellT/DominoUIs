@@ -11,6 +11,8 @@ dominoPizzaApp.controller("ConfirmarPedidoCtrl", function ($state, PedidoService
 
     self.platoTerminado = new Plato(JSON.parse(sessionStorage.getItem("Plato")));
 
+    this.pedido = PedidoService.pedidoBase;
+
     this.agregarPlato = function(){
         PedidoService.agregarPlato(self.platoTerminado);
         $state.go("crearPedido")
@@ -21,7 +23,6 @@ dominoPizzaApp.controller("ConfirmarPedidoCtrl", function ($state, PedidoService
         PedidoService.enviarPedido(errorHandler, function() { $state.go("editarUsuario") });
         
     };
-
 
     function errorHandler(error) {
         //self.notificarError(error.data);
