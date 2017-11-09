@@ -55,6 +55,7 @@
 
     <div ng-repeat="ingrediente in ingredienteCtrl.plato.extras" class="well well-sm" style="max-width: 30rem;">
         <!--Estos deberian ser lo ingredientes de la pizza-->
+        <button class = 'label label-danger' ng-click='ingredienteCtrl.eliminarIngrediente(ingrediente)'>X</button>
         <div class="pull left"
         style="float: left; margin: 20px 10px"><h4>{{ingrediente.nombre}}</h4></div>
         <div class="container">

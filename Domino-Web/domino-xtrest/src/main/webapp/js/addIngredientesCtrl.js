@@ -57,6 +57,11 @@ dominoPizzaApp.controller("AddIngredienteCtrl", function ($state,
     self.ingredientesDisponibles = _.without(self.ingredientesDisponibles, ingred);
   };
 
+  this.eliminarIngrediente = function(ingred){
+    self.plato.extras = _.without(self.plato.extras,ingred);
+    self.ingredientesDisponibles.push(ingred);
+  };
+
   this.generarPedido = function () {
     $state.go("confirmarPedido");
   };
