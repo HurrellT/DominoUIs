@@ -35,7 +35,7 @@ dominoPizzaApp.service("UsuarioService", function ($http) {
                 return transform(usuario);
             });
         },
-        actualizarDatos : function (name,usuario){
+        actualizarDatos : function (name,usuario, errorHandler){
             return $http.put("http://localhost:9000/usuarios/"+name,usuario)
             .then(getData).catch(errorHandler)
         },
