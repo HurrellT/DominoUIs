@@ -130,11 +130,11 @@ class DominoRestAPI {
 		return ok(res.toJson)
 	}
 
-	@Get("/pedidos/user_id")
-	def getPedidoByUserId(String user_id) {
+	@Get("/pedidos/usuarios/:user_id")
+	def getPedidoOfUSer() {
 		response.contentType = ContentType.APPLICATION_JSON
 		val matchedPedidos = this.dominoPizza.pedidos.filter [ p |
-			p.cliente.id == Integer.valueOf(user_id)
+			p.cliente.getNick == user_id
 		].toList
 		val res = matchedPedidos.map[p|new JSONViewerPedido(p)].toList
 		return ok(res.toJson)
