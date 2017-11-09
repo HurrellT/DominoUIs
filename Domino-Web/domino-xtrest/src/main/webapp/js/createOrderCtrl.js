@@ -6,6 +6,7 @@ dominoPizzaApp.controller("CreateOrderCtrl", function($state, PizzaService, Usua
 
 	var nombre = sessionStorage.getItem("Nombre");
 	document.getElementById("userName").innerHTML = nombre;
+	
 	this.plato = {
 		"id_promo": null,
 		"id_tamanio": null,

@@ -1,10 +1,10 @@
 <div ng-controller="AddIngredienteCtrl as ingredienteCtrl">
+    
     <ul class="nav nav-pills">
         <li class="active">
             <a href="#">Menu</a>
         </li>
         <li class="pull-right">
-            <!--<a id="userName"></a>-->
             <div class="dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="height: 40px">
                     <span class="glyphicon glyphicon-cog" aria-hidden="true">
@@ -13,6 +13,7 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a ui-sref="editarUsuario">Editar Usuario</a></li>
                     <li><a href="#">Cerrar Sesion</a></li>
                 </ul>
             </div>
@@ -55,7 +56,7 @@
 
     <div ng-repeat="ingrediente in ingredienteCtrl.plato.extras" class="well well-sm" style="max-width: 30rem;">
         <!--Estos deberian ser lo ingredientes de la pizza-->
-        <button class = 'label label-danger' ng-click='ingredienteCtrl.eliminarIngrediente(ingrediente)'>X</button>
+        <button style="float: right;" class = 'glyphicon glyphicon-remove' ng-click='ingredienteCtrl.eliminarIngrediente(ingrediente)'></button>
         <div class="pull left"
         style="float: left; margin: 20px 10px"><h4>{{ingrediente.nombre}}</h4></div>
         <div class="container">

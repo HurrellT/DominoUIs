@@ -6,6 +6,9 @@ dominoPizzaApp.controller("EditarUsuarioCtrl" , function($state,UsuarioService, 
 
 	this.pedidosUsuario = [];
 
+	var nombre = sessionStorage.getItem("Nombre");
+	document.getElementById("userName").innerHTML = nombre;
+
 	function errorHandler(error) {
 		//self.notificarError(error.data);
 		}

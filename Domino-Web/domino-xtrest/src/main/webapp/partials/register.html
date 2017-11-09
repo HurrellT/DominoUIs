@@ -1,10 +1,11 @@
 <div class="well Normal Well" ng-controller= "RegisterCtrl as register">
     <form name="myForm">
-        <div class="input-group">
-            Nombre <input type="text" class="form-control"
-                          name="name" placeholder="Ingresa tu nombre y apellido"
-                          ng-model="register.name" required>
-      					<span ng-show="myForm.name.$touched && myForm.name.$invalid">
+        <div class="input-group" style="width: 100%">
+            Nombre 
+            <input type="text" class="form-control"
+                   name="name" placeholder="Ingresa tu nombre y apellido"
+                   ng-model="register.name" required>
+      					   <span ng-show="myForm.name.$touched && myForm.name.$invalid">
        							inválido</span><br>
     				
             Usuario <input type="text" class="form-control"
@@ -43,7 +44,4 @@
         <input type="submit" ng-disabled="myForm.user.$invalid || myForm.username.$invalid || myForm.adress.$invalid || myForm.email.$invalid || myForm.password1.$invalid || myForm.password2.$invalid" class="btn btn-success" value="Registrarse" ng-click="register.confirm()">
     </form>
     <br>
-    <div>
-        <a href="url" ng-click="register.guest()">O puedes ingresar como INVITADO</a>
-    </div>
 </div>
