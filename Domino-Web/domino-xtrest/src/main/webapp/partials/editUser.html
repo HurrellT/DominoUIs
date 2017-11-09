@@ -55,7 +55,7 @@
             <td>Pedido{{pedido.id}}</td>
             <td>{{pedido.entrega.direccion}}</td>
             <td>${{pedido.monto}}</td>
-           <td><input type="submit" class="btn btn-success" value="Repetir" ng-click="ctrl.repetirPedido()"></td> 
+           <td><input type="submit" class="btn btn-success" value="Repetir" ng-click="ctrl.repetirPedido(pedido)"></td> 
         </tr>
     </table>
 </div>

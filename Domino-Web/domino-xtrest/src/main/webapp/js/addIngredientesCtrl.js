@@ -51,8 +51,10 @@ dominoPizzaApp.controller("AddIngredienteCtrl", function ($state,
   this.setPizza();
   this.setTamanio();
   this.setIngredientes();
+  console.log(JSON.stringify(self.ingredientesDisponibles));
 
   this.agregar = function (ingred) {
+
     self.plato.extras.push(ingred);
     self.ingredientesDisponibles = _.without(self.ingredientesDisponibles, ingred);
   };
@@ -63,7 +65,13 @@ dominoPizzaApp.controller("AddIngredienteCtrl", function ($state,
   };
 
   this.generarPedido = function () {
+    sessionStorage.setItem('Plato', angular.toJson(self.plato));
     $state.go("confirmarPedido");
+  };
+  
+
+  this.setDistribucion = function(ingrediente,distribucion){
+    ingrediente.distribucionElegida = distribucion;
   };
 
 });

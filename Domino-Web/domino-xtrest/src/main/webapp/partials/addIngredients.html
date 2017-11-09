@@ -63,7 +63,7 @@
             <div ng-repeat="distribucion in ingredienteCtrl.distros" class="form-check">
                 <label class="form-check-label">
                     <input class="form-check-input"
-                    ng-model="ingrediente.distribucionElegida"
+                    ng-click="ingredienteCtrl.setDistribucion(ingrediente, distribucion)"
                     type="radio"
                     name="{{ingrediente.nombre}}"
                     id="{{ingrediente.id}}">

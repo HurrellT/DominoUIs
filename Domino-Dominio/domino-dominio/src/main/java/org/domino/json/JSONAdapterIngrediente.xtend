@@ -9,12 +9,12 @@ import org.domino.dominio.Distribucion
 @Accessors
 class JSONAdapterIngrediente {
 	
-	Integer id_ingrediente
-	String posicion
+	Integer id
+	String distribucionElegida
 	
 	new(Ingrediente ingrediente) {
-		this.id_ingrediente = ingrediente.id
-		this.posicion = ingrediente.distribucionElegida.getName
+		this.id = ingrediente.id
+		this.distribucionElegida = ingrediente.distribucionElegida.getName
 	}
 	
 	new() {
@@ -22,9 +22,9 @@ class JSONAdapterIngrediente {
 	}
 	
 	def toInstance() {
-		var ing = ingredientes.findFirst[i | i.id.intValue == id_ingrediente.intValue]
+		var ing = ingredientes.findFirst[i | i.id.intValue == id.intValue]
 		
-		ing.distribucionElegida = Distribucion.valueOf(this.posicion.toUpperCase)
+		ing.distribucionElegida = Distribucion.valueOf(this.distribucionElegida.toUpperCase)
 		ing
 	}
 	

@@ -4,7 +4,7 @@ public enum Distribucion {
 	TODA {
 		@Override
 		public String getName() {
-			return "Toda la pizza";
+			return "Toda";
 		}
 	},
 	IZQUIERDA {
