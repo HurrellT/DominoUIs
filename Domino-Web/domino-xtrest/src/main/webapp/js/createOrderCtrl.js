@@ -1,4 +1,4 @@
-dominoPizzaApp.controller("CreateOrderCtrl", function($state, PizzaService, UsuarioService){
+dominoPizzaApp.controller("CreateOrderCtrl", function($state, PizzaService, UsuarioService, EstadosService){
 	
 	var self = this;
 

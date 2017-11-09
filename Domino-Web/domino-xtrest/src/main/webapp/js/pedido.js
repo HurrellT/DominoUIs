@@ -1,16 +1,12 @@
-var Pedido = function (EstadosService) {
-
-    this.platos         = new Array([]);
-    this.aclaraciones   = "";
-    this.fecha          = new Date();
-    this.estado         = EstadosService.estadoInicial;
+var Pedido = function (json) {
+    angular.extend(this, json);
 
 };
 
-this.agregarPlato = function (plato) {
-    this.platos.push(plato);
-};
+// this.agregarPlato = function (plato) {
+//     this.platos.push(plato);
+// };
 
-this.cambiarAclaracion = function (aclaracionNueva) {
-    this.aclaraciones = aclaracionNueva;
-};
+// this.cambiarAclaracion = function (aclaracionNueva) {
+//     this.aclaraciones = aclaracionNueva;
+// };

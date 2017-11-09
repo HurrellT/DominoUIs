@@ -91,7 +91,7 @@ class DominoRestAPI {
 			try {
 
 				val platos = pedidoJSON.platos
-				val cliente = repoClientes.usuarioConUsername(pedidoJSON.username)
+				val cliente = repoClientes.usuarioConUsername(pedidoJSON.id_usuario)
 				val envio = pedidoJSON.entrega.toInstance
 				val pedido = new Pedido(cliente, pedidoJSON.aclaraciones, envio);
 				platos.forEach[p|pedido.agregarPlato(p)]
@@ -220,11 +220,19 @@ class DominoRestAPI {
         '{ "error": "' + message + '" }'
     }
     
-    @Get("/distribuciones")
-	def getDistribiciones() {
+    @Get("/distribuciones")	
+    def getDistribiciones() {		
+    	response.contentType = ContentType.APPLICATION_JSON		
+    	val distribuciones = this.dominoPizza.distribucion		
+    	val res = distribuciones.map[d|d.getName()].toList		
+    	return ok(res.toJson)
+    }
+	
+	@Get("/pedidos")
+	def getAllPedidos(){
 		response.contentType = ContentType.APPLICATION_JSON
-		val dists = this.dominoPizza.distribucion
-		val res = dists.stream.filter(d | d.getName !== "").collect(Collectors.toList)
+		val pedidos = dominoPizza.pedidos
+		val res = pedidos.map[p|new JSONViewerPedido(p)].toList
 		return ok(res.toJson)
 	}
 }
