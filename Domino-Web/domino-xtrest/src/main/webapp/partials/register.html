@@ -1,10 +1,11 @@
 <div class="well Normal Well" ng-controller= "RegisterCtrl as register">
     <form name="myForm">
-        <div class="input-group">
-            Nombre <input type="text" class="form-control"
-                          name="name" placeholder="Ingresa tu nombre y apellido"
-                          ng-model="register.name" required>
-      					<span ng-show="myForm.name.$touched && myForm.name.$invalid">
+        <div class="input-group" style="width: 100%">
+            Nombre 
+            <input type="text" class="form-control"
+                   name="name" placeholder="Ingresa tu nombre y apellido"
+                   ng-model="register.name" required>
+      					   <span ng-show="myForm.name.$touched && myForm.name.$invalid">
        							inválido</span><br>
     				
             Usuario <input type="text" class="form-control"

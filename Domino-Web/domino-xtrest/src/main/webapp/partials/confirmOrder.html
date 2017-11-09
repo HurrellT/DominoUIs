@@ -3,32 +3,33 @@
     <ul class="nav nav-pills">
         <li class="active">
             <a href="#">Menu</a>
+        <li class="pull-right">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="height: 40px">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true">
+                        <span id="userName" style="font-family:'sans-serif'"></span>
+                    </span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a ui-sref="editarUsuario">Editar Usuario</a></li>
+                    <li><a href="#">Cerrar Sesion</a></li>
+                </ul>
+            </div>
         </li>
-        <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="height: 40px">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true">
-                    <span id="userName" style="font-family:'sans-serif'"></span>
-                </span>
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a ui-sref="editarUsuario">Edita Usuario</a></li>
-                <li><a href="#">Cerrar Sesion</a></li>
+        <div class="container" style="margin-left: 8rem; width: 65%">
+            <ul class="breadcrumb" style="height: 40px">
+                <li class="active">Tamaño > Ingredientes > Confirmar</li>
             </ul>
         </div>
     </ul>
 
-    <div class="container">
-        <ul class="breadcrumb">
-            <li class="active">Tamaño > Ingredientes > Confirmar</li>
-        </ul>
-    </div>
 
     <div>
         <h1> Pedido </h1>
     </div>
 
-    <div class="container">
+    <div class="container" style="width: 100%">
         <div>
             <h3> Pizzas </h3>
         </div>
@@ -45,13 +46,13 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" style="width: 100%">
         <label for="aclaraciones"><h3>Aclaraciones</h3></label>
         <textarea class="form-control" id="aclaraciones" rows="3" ng-model = 'controller.aclaracion'></textarea>
     </div>
 
 
-<div class="container">
+<div class="container" style="width: 100%">
     <label for="envio"><h3>Envio</h3></label>
     <div class="container">
         <!-- <div class="form-check" ng-model = 'controller.tipo'>
@@ -80,13 +81,13 @@
     </div>
 </div>
 
-<div class="container">
-    <h1> Total a pagar: </h1>
+<div class="container" style="width: 100%">
+    <h1 style="float: left;"> Total a pagar: </h1>
     <span class="badge badge-important">{{controller.pedido.montoTotal}}</span>
+    <div style="float: right;">
+        <input type="submit" class="btn btn-success" value="Confirmar Pedido" ng-click="controller.confirmar()"></input>
+    </div>
 </div>
 
-<div>
-    <input type="submit" class="btn btn-success" value="Confirmar Pedido" ng-click="controller.confirmar()"></input>
-</div>
 </div>
 </div>
