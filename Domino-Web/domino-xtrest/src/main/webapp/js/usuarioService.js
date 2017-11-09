@@ -21,7 +21,7 @@ dominoPizzaApp.service("UsuarioService", function ($http) {
                 "password": password1,
                 "password2": password2,
                 "email": email,
-                "adress": adress,
+                "direccion": adress,
                 } 
            
                 return $http.post("http://localhost:9000/usuarios", this.infoRegister).then(name).catch(errorHandler)
