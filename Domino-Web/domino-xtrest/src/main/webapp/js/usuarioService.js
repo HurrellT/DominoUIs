@@ -13,6 +13,7 @@ dominoPizzaApp.service("UsuarioService", function ($http) {
             },
     
         register: function(name,username,adress,email,password1,password2,errorHandler){
+        	
            if(password1==password2){
             this.infoRegister = {
                 "usuario": username,
