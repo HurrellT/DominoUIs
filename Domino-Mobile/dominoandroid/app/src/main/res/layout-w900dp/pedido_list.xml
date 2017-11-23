@@ -12,7 +12,7 @@
     -->
 
     <fragment android:id="@+id/pelicula_list"
-        android:name="com.example.mellis.domino_android.dummy.PedidoListFragment" android:layout_width="0dp"
+        android:name="com.example.mellis.domino_android.PedidoListFragment" android:layout_width="0dp"
         android:layout_height="match_parent" android:layout_weight="1"
         tools:layout="@android:layout/list_content" />
 

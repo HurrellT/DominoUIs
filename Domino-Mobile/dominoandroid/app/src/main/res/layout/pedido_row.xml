@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/lblPelicula"
+        android:id="@+id/lblPedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@+id/label"
@@ -12,7 +12,7 @@
     </TextView>
 
     <TextView
-        android:id="@+id/lblActores"
+        android:id="@+id/lblAclaracion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@+id/label"

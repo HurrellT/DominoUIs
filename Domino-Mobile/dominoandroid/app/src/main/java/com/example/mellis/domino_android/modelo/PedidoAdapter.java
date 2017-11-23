@@ -35,8 +35,10 @@ public class PedidoAdapter extends ArrayAdapter<Pedido> {
         View rowView = inflater.inflate(R.layout.pedido_row, parent, false);
         final Pedido pedido = getItem(position);
 
-        TextView tvPelicula = (TextView) rowView.findViewById(R.id.lblPelicula);
-        tvPelicula.setText(pedido.toString());
+        TextView tvPelicula = (TextView) rowView.findViewById(R.id.lblPedido);
+        tvPelicula.setText(pedido.getNombrePedido());
+        TextView tvAclaracion = (TextView) rowView.findViewById(R.id.lblAclaracion);
+        tvAclaracion.setText(pedido.getAclaracion());
         return rowView;
     }
 }

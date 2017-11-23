@@ -21,6 +21,6 @@ public class RepoPedidos {
     }
 
     public static Pedido getPedido(long id) {
-        return pedidos.get(0);
+        return new Pedido();
     }
 }
