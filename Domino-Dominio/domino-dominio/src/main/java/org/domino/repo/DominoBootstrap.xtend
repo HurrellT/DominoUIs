@@ -1,23 +1,23 @@
 package org.domino.repo
 
-import java.time.LocalDateTime
+import org.domino.dominio.Cancelado
 import org.domino.dominio.Cliente
 import org.domino.dominio.Delivery
+import org.domino.dominio.Distribucion
+import org.domino.dominio.EnViaje
+import org.domino.dominio.Entregado
+import org.domino.dominio.EstadoPedido
 import org.domino.dominio.Ingrediente
+import org.domino.dominio.ListoParaEnviar
+import org.domino.dominio.ListoParaRetirar
 import org.domino.dominio.Pedido
 import org.domino.dominio.Pizza
 import org.domino.dominio.Plato
+import org.domino.dominio.Preparando
+import org.domino.dominio.RetiraPorElLocal
 import org.domino.dominio.Tamanio
 import org.uqbar.arena.bootstrap.CollectionBasedBootstrap
 import org.uqbar.commons.applicationContext.ApplicationContext
-import org.domino.dominio.EstadoPedido
-import org.domino.dominio.Preparando
-import org.domino.dominio.ListoParaRetirar
-import org.domino.dominio.ListoParaEnviar
-import org.domino.dominio.EnViaje
-import org.domino.dominio.Entregado
-import org.domino.dominio.Cancelado
-import org.domino.dominio.RetiraPorElLocal
 
 class DominoBootstrap extends CollectionBasedBootstrap {
 
@@ -42,21 +42,23 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 			create("Luca", "lucakapo", "alsjdnas", "luka@gmail.com", "calle 28")
 			create("Pepe", "pepin", "wassa", "pepo@gmail.com", "calle 67")
 			create("Cuca", "cucaracha", "tttrrr", "cuca@gmail.com", "calle 71")
+			create("admin", "admin", "admin", "admin@gmail.com", "calle 1")
 		]
 
 		val cliente1 = repoCliente.allInstances.get(0)
 		val cliente2 = repoCliente.allInstances.get(1)
 		val cliente3 = repoCliente.allInstances.get(2)
+		val cliente4 = repoCliente.allInstances.get(3)
 
 		val delivery = new Delivery("calle 28")
 		val retiroLocal = new RetiraPorElLocal
 
 		repoPizzas => [
-			create("Muzzarella", 125)
-			create("Napolitana", 170)
-			create("Faina", 70)
-			create("Americana", 160)
-			create("Calabresa", 190)
+			create("Muzzarella", 125, "Pizza clasica de Muzzarela")
+			create("Napolitana", 170, "Pizza clasica de Napolitana")
+			create("Faina", 70, "Faina casera")
+			create("Americana", 160, "Pizza con huevo frito")
+			create("Calabresa", 190, "Pizza con calabresa de gran sabor")
 		]
 
 		val pizza1 = repoPizzas.allInstances.get(0)
@@ -78,13 +80,14 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 		val plato1 = new Plato(pizza1, tamanioGrande)
 		val plato2 = new Plato(pizza2, tamanioChico)
 		val plato3 = new Plato(pizza3, tamanioFamiliar)
+		val plato4 = new Plato(pizza3, tamanioGrande)
 
 		repoIngredientes => [
-			create("Jamon", 15, "Derecha")
-			create("Queso", 20, "Izquierda")
-			create("Anchoas", 50, "Derecha")
-			create("Aceitunas", 15, "Toda la Pizza")
-			create("Salchichas", 35, "Toda la Pizza")
+			create("Jamon", 15, Distribucion.DERECHA)
+			create("Queso", 20, Distribucion.IZQUIERDA)
+			create("Anchoas", 50, Distribucion.IZQUIERDA)
+			create("Aceitunas", 15, Distribucion.DERECHA)
+			create("Salchichas", 35, Distribucion.DERECHA)
 		]
 
 		pizza1.agregarIngrediente(repoIngredientes.allInstances.get(1))
@@ -94,9 +97,10 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 		pizza2.agregarIngrediente(repoIngredientes.allInstances.get(2))
 		
 		repoPedidos => [
-			create(cliente1, LocalDateTime.now, "Primer pedido", delivery)
-			create(cliente2, LocalDateTime.now, "Segundo pedido", retiroLocal)
-			create(cliente3, LocalDateTime.now, "Tercer pedido", delivery)
+			create(cliente1, "Primer pedido", delivery)
+			create(cliente2, "Segundo pedido", retiroLocal)
+			create(cliente3, "Tercer pedido", delivery)
+			create(cliente4, "Cuarto pedido", retiroLocal)
 		]
 		
 		repoEstados => [
@@ -113,6 +117,7 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 		pedidosList.get(0).agregarPlato(plato1)
 		pedidosList.get(1).agregarPlato(plato2)
 		pedidosList.get(2).agregarPlato(plato3)
+		pedidosList.get(3).agregarPlato(plato4)
 
 	}
 

@@ -10,7 +10,8 @@ import org.uqbar.commons.model.annotations.Dependencies
 
 @Accessors
 @TransactionalAndObservable
-class Plato extends Entity implements ConIngrediente {
+class Plato implements ConIngrediente //TODO :revisar que ande bien en la vista sin el ENTITY
+{
 
 	Pizza pizza
 	public Tamanio tamanio
@@ -29,7 +30,7 @@ class Plato extends Entity implements ConIngrediente {
 		this.pizza = new Pizza
 		this.ingredientes = newArrayList
 	}
-	
+
 	@Dependencies("ingredientes","tamanio","pizza.ingredientes")
 	def montoTotal() {
 		monto = pizza.precioConIngredientes * (tamanio.factor)
@@ -50,23 +51,23 @@ class Plato extends Entity implements ConIngrediente {
 		this.tamanio = tamanio
 		this.montoTotal
 		ObservableUtils.firePropertyChanged(this, "monto")
-		ObservableUtils.firePropertyChanged(this,"tamanio")
+		ObservableUtils.firePropertyChanged(this, "tamanio")
 	}
-	
+
 	override agregarIngrediente(Ingrediente ingred) {
 		this.ingredientes.add(ingred)
 		this.montoTotal
-		ObservableUtils.firePropertyChanged(this,"ingredientes")
-		ObservableUtils.firePropertyChanged(pizza,"precio")
-		ObservableUtils.firePropertyChanged(this,"monto")
+		ObservableUtils.firePropertyChanged(this, "ingredientes")
+		ObservableUtils.firePropertyChanged(pizza, "precio")
+		ObservableUtils.firePropertyChanged(this, "monto")
 	}
-	
-	def eliminarIngrediente(Ingrediente ingred){
+
+	def eliminarIngrediente(Ingrediente ingred) {
 		ingredientes.remove(ingred)
 		this.monto = monto - ingred.precio
-		ObservableUtils.firePropertyChanged(this,"ingredientes")
-		ObservableUtils.firePropertyChanged(pizza,"precio")
-		ObservableUtils.firePropertyChanged(this,"monto")
+		ObservableUtils.firePropertyChanged(this, "ingredientes")
+		ObservableUtils.firePropertyChanged(pizza, "precio")
+		ObservableUtils.firePropertyChanged(this, "monto")
 	}
-		
+
 }

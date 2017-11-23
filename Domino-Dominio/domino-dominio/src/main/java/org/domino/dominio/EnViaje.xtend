@@ -33,5 +33,6 @@ class EnViaje extends EstadoPedido {
 	override esPreparando() {
 		false
 	}
+	
 }
 

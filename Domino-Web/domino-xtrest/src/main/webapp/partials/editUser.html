@@ -1,0 +1,62 @@
+<div ng-controller= "EditarUsuarioCtrl as ctrl">
+<ul class="nav nav-pills">
+    <li class="active">
+        <a href="#">Menu</a>
+    </li>
+        <li class="pull-right">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="height: 40px">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true">
+                        <span id="userName" style="font-family:'sans-serif'"></span>
+                    </span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Cerrar Sesion</a></li>
+                </ul>
+            </div>
+        </li>
+</ul>
+<br>
+<div class="container" style="width: 100%">
+    <form>
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre..." ng-model="ctrl.usuario.nombre">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Ingrese password..." ng-model="ctrl.usuario.password">
+        </div>
+        <div class="form-group">
+            <label for="mail">Mail</label>
+            <input type="mail" class="form-control" id="mail" placeholder="Ingrese mail..." ng-model="ctrl.usuario.email">
+        </div>
+        <div class="form-group">
+            <label for="direccion"> Dirección</label>
+            <input type="text" class="form-control" id="direccion" placeholder="Ingrese direccion..." ng-model="ctrl.usuario.direccion">
+        </div>
+    </form>
+    <button type="submit" class="btn btn-success" ng-click="ctrl.actualizarDatos()"> Guardar </button>
+</div>
+<br>
+
+<div class="container" style="width: 100%">
+    <h4>Pedidos anteriores</h4>
+    <table style="width:50%" class="table">
+        <thead>
+             <tr>
+                <th>Pedido</th>
+                <th>Direccion</th>
+                <th>Monto</th>
+            </tr>
+        </thead>
+        <tr ng-repeat="pedido in ctrl.pedidosUsuario">
+            <td>Pedido{{pedido.id}}</td>
+            <td>{{pedido.entrega.direccion}}</td>
+            <td>${{pedido.monto}}</td>
+           <td><input type="submit" class="btn btn-success" value="Repetir" ng-click="ctrl.repetirPedido(pedido)"></td> 
+        </tr>
+    </table>
+</div>
+</div>

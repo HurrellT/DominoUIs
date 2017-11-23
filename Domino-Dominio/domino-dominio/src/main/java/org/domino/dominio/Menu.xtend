@@ -7,6 +7,8 @@ import org.uqbar.commons.model.annotations.TransactionalAndObservable
 import java.util.List
 import org.uqbar.commons.applicationContext.ApplicationContext
 import org.domino.repo.RepoPizzas
+import org.domino.repo.RepoTamanios
+import org.domino.repo.RepoIngredientes
 
 @TransactionalAndObservable
 @Accessors
@@ -80,5 +82,23 @@ class Menu {
 	def quitarIngredienteDeMenu(Ingrediente ingrediente) {
 		ingredientesDisponibles.remove(ingrediente)
 
+	}
+	
+	def getPromos() {
+		val repoPizzas = ApplicationContext.instance.getSingleton(typeof (Pizza)) as RepoPizzas
+		
+		repoPizzas.allInstances
+	}
+	
+	def getTamanios() {
+		val repoTamanios = ApplicationContext.instance.getSingleton(typeof (Tamanio)) as RepoTamanios
+		
+		repoTamanios.allInstances
+	}
+	
+	def getIngredientes() {
+		val repoIng = ApplicationContext.instance.getSingleton(typeof (Ingrediente)) as RepoIngredientes
+		
+		repoIng.allInstances
 	}
 }

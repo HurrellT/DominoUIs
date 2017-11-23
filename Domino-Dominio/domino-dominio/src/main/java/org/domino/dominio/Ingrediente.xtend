@@ -14,18 +14,13 @@ class Ingrediente extends Entity {
 	String nombre
 	Integer precio
 
-	List<String> distribuciones = #["Izquierda","Derecha","Toda"]
-	String distribucionElegida
+	Distribucion distribucionElegida
 
 
-	new(String nombre, Integer precio, String distribucion) {
+	new(String nombre, Integer precio, Distribucion distribucion) {
 		this.nombre = nombre
 		this.precio = precio
-		for (String s : distribuciones) {
-			if (s == distribucion) {
-				this.distribucionElegida = distribucion
-			}
-		}
+		this.distribucionElegida = distribucion
 	}
 	
 	new() {

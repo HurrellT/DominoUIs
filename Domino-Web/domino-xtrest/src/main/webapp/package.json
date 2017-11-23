@@ -1,0 +1,19 @@
+{
+	"version": "1.0.0",
+	"description": "Example",
+	"author": "",
+	"license": "",
+	"scripts": {
+		"start": "http-server -p 8000 -c-1"
+	},
+	"dependencies": {
+		"angular": "^1.6.6",
+		"angular-resource": "^1.6.6",
+		"angular-route": "^1.6.6",
+		"angular-ui-router": "^0.4.3",
+		"bootstrap": "^3.3.7",
+		"http-server": "^0.8.5",
+		"jquery": "^2.2.4",
+		"underscore": "^1.8.3"
+	}
+}

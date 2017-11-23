@@ -8,11 +8,11 @@ import org.uqbar.commons.model.Entity
 @Accessors
 class Cliente extends Entity{
 	
-	String nombre
-	String nick
-	String password
-	String email
-	String direccion
+	public String nombre
+	public String nick
+	public String password
+	public String email
+	public String direccion
 	
 	new(String nombre, String nick, String password, String email, String direccion) {
 		this.nombre 	= nombre
