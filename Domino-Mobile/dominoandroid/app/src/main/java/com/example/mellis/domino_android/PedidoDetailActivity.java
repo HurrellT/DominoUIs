@@ -42,8 +42,8 @@ public class PedidoDetailActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(PedidoDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(PedidoDetailFragment.ARG_ITEM_ID));
+            arguments.putSerializable(PedidoDetailFragment.ARG_ITEM_ID,
+                    getIntent().getSerializableExtra(PedidoDetailFragment.ARG_ITEM_ID));
             PedidoDetailFragment fragment = new PedidoDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
