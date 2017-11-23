@@ -7,7 +7,7 @@ import static org.junit.Assert.*
 class IngredientesTest {
 	
 	String nombre = "Aceituna"
-	String distribucion = "Toda"
+	Distribucion distribucion = Distribucion.TODA
 	Ingrediente ingrediente = new Ingrediente(nombre, 17, distribucion)
 	
 	@Test

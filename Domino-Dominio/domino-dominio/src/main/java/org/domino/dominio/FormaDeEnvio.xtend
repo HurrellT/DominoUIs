@@ -6,5 +6,9 @@ interface FormaDeEnvio {
 	
 	def EstadoPedido siguienteEstado()
 	
+	def boolean esDelivery()
+	
+	def boolean esRetiro()
+	
 	
 }

@@ -18,8 +18,8 @@ class PedidosTest {
 	String aclaracion = "Esto es una aclaracion"
 	FormaDeEnvio envio1 = new RetiraPorElLocal
 	FormaDeEnvio envio2 = new Delivery("Calle 777")
-  	Pedido pedido1 = new Pedido(cl1, LocalDateTime.now, aclaracion, envio1)
-	Pedido pedido2 = new Pedido(cl1, LocalDateTime.now, aclaracion, envio2)
+  	Pedido pedido1 = new Pedido(cl1, aclaracion, envio1)
+	Pedido pedido2 = new Pedido(cl1, aclaracion, envio2)
 	Menu menu = mock(Menu)
 	ServicioDeNotificacion servicio = mock(ServicioDeNotificacion)
 	DominoPizza dominoPizza = new DominoPizza(menu, servicio)

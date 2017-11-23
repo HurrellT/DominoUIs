@@ -16,6 +16,5 @@ abstract class EstadoPedido extends Entity {
 	def String getNombre()
 	
 	def boolean esPreparando()
-
 	
 }

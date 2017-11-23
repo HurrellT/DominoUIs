@@ -7,3 +7,7 @@
 *generated-sources*
 /bin
 /xtend-gen
+*package-lock.json
+*node_modules*
+.idea
+.log

@@ -1,7 +1,9 @@
 package org.domino.dominio
 
 import org.uqbar.commons.model.annotations.Observable
+import org.eclipse.xtend.lib.annotations.Accessors
 
+@Accessors
 @Observable
 class Delivery implements FormaDeEnvio {
 	
@@ -18,6 +20,14 @@ class Delivery implements FormaDeEnvio {
 	
 	override siguienteEstado() {
 		new ListoParaEnviar()
+	}
+	
+	override esDelivery() {
+		true
+	}
+	
+	override esRetiro() {
+		false
 	}
 	
 }
