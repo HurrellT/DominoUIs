@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment1"
-        android:name="com.example.mellis.domino_android.PedidoListFragment"
+        android:name="com.example.mellis.domino_android.dominoapp.PedidoListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

@@ -97,10 +97,10 @@ class DominoBootstrap extends CollectionBasedBootstrap {
 		pizza2.agregarIngrediente(repoIngredientes.allInstances.get(2))
 		
 		repoPedidos => [
-			create(cliente1, "Primer pedido", delivery)
-			create(cliente2, "Segundo pedido", retiroLocal)
-			create(cliente3, "Tercer pedido", delivery)
-			create(cliente4, "Cuarto pedido", retiroLocal)
+			create(cliente1, "Cortar la pizza", delivery)
+			create(cliente2, "Cliente habitual", retiroLocal)
+			create(cliente3, "Zona peligrosa", delivery)
+			create(cliente4, "Cuidado con el perro", retiroLocal)
 		]
 		
 		repoEstados => [

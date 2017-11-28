@@ -1,4 +1,4 @@
-package com.example.mellis.domino_android;
+package com.example.mellis.domino_android.dominoapp;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -10,9 +10,19 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.ListView;
 
+import com.example.mellis.domino_android.R;
 import com.example.mellis.domino_android.modelo.Pedido;
-import com.example.mellis.domino_android.modelo.PedidoAdapter;
+import com.example.mellis.domino_android.adapter.PedidoAdapter;
 import com.example.mellis.domino_android.repo.RepoPedidos;
+import com.example.mellis.domino_android.service.PedidosService;
+
+import java.util.List;
+
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  * Created by Mellis on 23/11/2017.
@@ -43,6 +53,9 @@ public class PedidoListFragment extends ListFragment{
      * implement. This mechanism allows activities to be notified of item
      * selections.
      */
+
+    private PedidosService pedidosService;
+
     public interface Callbacks {
         void onItemSelected(Pedido pedido);
     }
@@ -73,10 +86,38 @@ public class PedidoListFragment extends ListFragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setListAdapter(new PedidoAdapter(
-                getActivity(),
-                RepoPedidos.getPedidos(null, 10)));
 
+        String BASE_URL = "http://8.8.8.8:8080/pedidos/";
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        pedidosService = retrofit.create(PedidosService.class);
+        this.buscarPedidos();
+    }
+
+    private void buscarPedidos() {
+        Call<List<Pedido>> pedidoCall = pedidosService.getAllPedidos();
+
+        pedidoCall.enqueue(new Callback<List<Pedido>>() {
+            @Override
+            public void onResponse(Response<List<Pedido>> response, Retrofit retrofit) {
+                List<Pedido> pedidos = response.body();
+
+                setListAdapter(new PedidoAdapter(
+                        getActivity(),
+                        pedidos));
+
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                t.printStackTrace();
+                Log.e("PedidosApp", t.getMessage());
+            }
+        });
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.mellis.domino_android;
+package com.example.mellis.domino_android.dominoapp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
+
+import com.example.mellis.domino_android.R;
 
 /**
  * An activity representing a single Pedido detail screen. This

@@ -1,4 +1,4 @@
-package com.example.mellis.domino_android;
+package com.example.mellis.domino_android.dominoapp;
 
 import android.app.Activity;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -7,10 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.mellis.domino_android.dummy.DummyContent;
+import com.example.mellis.domino_android.R;
 import com.example.mellis.domino_android.modelo.Pedido;
 
 /**
@@ -51,9 +50,9 @@ public class PedidoDetailFragment extends Fragment {
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                appBarLayout.setTitle(pedido.getNombrePedido());
+                appBarLayout.setTitle(pedido.getEstado());
             } else {
-                activity.setTitle(pedido.getNombrePedido());
+                activity.setTitle(pedido.getEstado());
             }
         }
     }
@@ -66,7 +65,7 @@ public class PedidoDetailFragment extends Fragment {
         // Show the dummy content as text in a TextView.
         if (pedido != null) {
             ((TextView) rootView.findViewById(R.id.pedido_estado)).setText(pedido.getEstado());
-            ((TextView) rootView.findViewById(R.id.pedido_aclaracion)).setText(pedido.getAclaracion());
+            ((TextView) rootView.findViewById(R.id.pedido_aclaracion)).setText(pedido.getAclaraciones());
         }
 
         return rootView;
