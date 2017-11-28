@@ -57,7 +57,7 @@ public class PedidoListFragment extends ListFragment{
     private PedidosService pedidosService;
 
     public interface Callbacks {
-        void onItemSelected(Pedido pedido);
+        void onItemSelected(long id);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class PedidoListFragment extends ListFragment{
      */
     private static Callbacks sDummyCallbacks = new Callbacks() {
         @Override
-        public void onItemSelected(Pedido pedido) {
+        public void onItemSelected(long id) {
         }
     };
 
@@ -162,8 +162,7 @@ public class PedidoListFragment extends ListFragment{
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        Pedido pedido = RepoPedidos.getPedido(id);
-        mCallbacks.onItemSelected(pedido);
+        mCallbacks.onItemSelected(id);
     }
 
     @Override

@@ -17,4 +17,7 @@ public interface PedidosService {
     @GET("http://8.8.8.8:8080/pedidos")
     public Call<List<Pedido>> getAllPedidos();
 
+    @GET("http://8.8.8.8:8080/pedidos/{id}")
+    public Call<Pedido> getPedidoById(@Path("id") String id);
+
 }

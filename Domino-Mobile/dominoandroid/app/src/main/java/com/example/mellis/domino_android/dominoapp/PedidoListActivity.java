@@ -77,13 +77,13 @@ public class PedidoListActivity extends AppCompatActivity
      * indicating that the item with the given ID was selected.
      */
     @Override
-    public void onItemSelected(Pedido pedido) {
+    public void onItemSelected(long id) {
         if (mTwoPane) {
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putSerializable(PedidoDetailFragment.ARG_ITEM_ID, pedido);
+            arguments.putSerializable(PedidoDetailFragment.ARG_ITEM_ID, id);
             PedidoDetailFragment fragment = new PedidoDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
@@ -94,7 +94,7 @@ public class PedidoListActivity extends AppCompatActivity
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
             Intent detailIntent = new Intent(this, PedidoDetailActivity.class);
-            detailIntent.putExtra(PedidoDetailFragment.ARG_ITEM_ID, pedido);
+            detailIntent.putExtra(PedidoDetailFragment.ARG_ITEM_ID, id);
             startActivity(detailIntent);
         }
     }
