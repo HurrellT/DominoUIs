@@ -11,7 +11,6 @@ import android.view.View;
 import com.example.mellis.domino_android.R;
 import com.example.mellis.domino_android.modelo.Pedido;
 
-
 /**
  * An activity representing a list of Peliculas. This activity
  * has different presentations for handset and tablet-size devices. On
@@ -28,8 +27,7 @@ import com.example.mellis.domino_android.modelo.Pedido;
  * {@link PedidoListFragment.Callbacks} interface
  * to listen for item selections.
  */
-public class PedidoListActivity extends AppCompatActivity
-        implements PedidoListFragment.Callbacks {
+public class PedidoListActivity extends AppCompatActivity implements PedidoListFragment.Callbacks {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -50,7 +48,7 @@ public class PedidoListActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Replace with your own action...", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -68,14 +66,13 @@ public class PedidoListActivity extends AppCompatActivity
                     .findFragmentById(R.id.pelicula_list))
                     .setActivateOnItemClick(true);
         }
-
-        // TODO: If exposing deep links into your app, handle intents here.
     }
 
     /**
      * Callback method from {@link PedidoListFragment.Callbacks}
      * indicating that the item with the given ID was selected.
      */
+
     @Override
     public void onItemSelected(long id) {
         if (mTwoPane) {

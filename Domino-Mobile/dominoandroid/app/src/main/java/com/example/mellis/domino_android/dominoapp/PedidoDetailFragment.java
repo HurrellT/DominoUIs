@@ -71,8 +71,6 @@ public class PedidoDetailFragment extends Fragment {
 
             pedidosService = retrofit.create(PedidosService.class);
             this.recuperarPedido(pedidoId);
-
-
         }
     }
 
@@ -91,10 +89,16 @@ public class PedidoDetailFragment extends Fragment {
                 } else {
                     activity.setTitle("Pedido " + pedido.getId());
                 }
-                System.out.println(pedido.getAclaraciones());
-                System.out.println(pedido.getMonto());
 
-
+                //Esto es solo para probar que esta recuperando correctamente el pedido con sus platos
+                System.out.println("Este es el pedido: " + pedido);
+                System.out.println("Este es la id del pedido: " + pedido.getId());
+                System.out.println("Este es la id_usuario del pedido: " + pedido.getId_usuario());
+                System.out.println("Este es el estado del pedido: " + pedido.getEstado());
+                System.out.println("Este es el monto del pedido: " + pedido.getMonto());
+                System.out.println("Este es la aclaracion del pedido: " + pedido.getAclaraciones());
+                System.out.println("Esta es la id_promo del primer plato del pedido: " + pedido.getPlatos().get(0).getId_promo());
+                System.out.println("Esta es la id_tamanio del primer plato del pedido: " + pedido.getPlatos().get(0).getId_tamanio());
             }
 
             @Override
@@ -112,10 +116,9 @@ public class PedidoDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         System.out.println("Estamos en el onCreateView");
+        // TODO: hacer que el onCreateView espere a que se recupere el pedido antes de mostrar el pedido
         //((TextView) rootView.findViewById(R.id.pedido_estado)).setText(pedido.getEstado());
         //((TextView) rootView.findViewById(R.id.pedido_aclaracion)).setText(pedido.getAclaraciones());
-
-
         return rootView;
     }
 }

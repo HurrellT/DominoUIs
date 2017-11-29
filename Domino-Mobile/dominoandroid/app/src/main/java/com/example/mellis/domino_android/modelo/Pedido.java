@@ -41,6 +41,14 @@ public class Pedido implements Serializable {
 
     public void setMonto(long monto){ this.monto = monto; }
 
+    public List<Plato> getPlatos() { return platos; }
+
+    public void setPlatos(List<Plato> platos) { this.platos = platos; }
+
+    public String getId_usuario() { return id_usuario; }
+
+    public void setId_usuario(String id_usuario) { this.id_usuario = id_usuario; }
+
     public String getAclaraciones() {
         return this.aclaraciones;
     }
