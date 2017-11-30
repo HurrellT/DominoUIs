@@ -44,15 +44,6 @@ public class PedidoListActivity extends AppCompatActivity implements PedidoListF
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action...", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         if (findViewById(R.id.pedido_detail_container) != null) {
             // The detail container view will be present only in the
             // large-screen layouts (res/values-large and
@@ -63,7 +54,7 @@ public class PedidoListActivity extends AppCompatActivity implements PedidoListF
             // In two-pane mode, list items should be given the
             // 'activated' state when touched.
             ((PedidoListFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.pelicula_list))
+                    .findFragmentById(R.id.pelicula_list)) //TODO:Ver con que reemplazarlo
                     .setActivateOnItemClick(true);
         }
     }

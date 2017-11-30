@@ -7,36 +7,40 @@
         android:id="@+id/lblId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
         android:text="@+id/label"
-        android:textSize="100px"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large.Inverse">
+        android:textSize="24dp"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large">
     </TextView>
 
     <TextView
         android:id="@+id/lblEstado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
         android:text="@+id/label"
-        android:textSize="80px"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse">
+        android:textSize="16dp"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium">
     </TextView>
 
     <TextView
         android:id="@+id/lblMonto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
         android:text="@+id/label"
-        android:textSize="80px"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse">
+        android:textSize="16dp"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium">
     </TextView>
 
     <TextView
         android:id="@+id/lblAclaracion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
         android:text="@+id/label"
-        android:textSize="60px"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse">
+        android:textSize="16dp"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium">
     </TextView>
 
 

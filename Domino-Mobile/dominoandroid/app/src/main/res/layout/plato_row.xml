@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@+id/label"
-        android:textSize="100px"
+        android:textSize="100dp"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large.Inverse">
     </TextView>
 
@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@+id/label"
-        android:textSize="80px"
+        android:textSize="80dp"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse">
     </TextView>
 

@@ -87,7 +87,7 @@ public class PedidoListFragment extends ListFragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String BASE_URL = "http://8.8.8.8.37:8080/pedidos/";
+        String BASE_URL = "http://192.168.0.25:8080/pedidos/";
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)

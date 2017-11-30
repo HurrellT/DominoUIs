@@ -69,7 +69,7 @@ public class PedidoDetailFragment extends Fragment {
             // to load content from a content provider.
             long pedidoId = (long) getArguments().get(ARG_ITEM_ID);
 
-            String BASE_URL = "http://8.8.8.8:8080/pedidos/";
+            String BASE_URL = "http://192.168.0.25:8080/pedidos/";
 
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
