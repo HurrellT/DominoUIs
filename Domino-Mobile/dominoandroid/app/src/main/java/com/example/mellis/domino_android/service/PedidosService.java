@@ -1,6 +1,7 @@
 package com.example.mellis.domino_android.service;
 
 import com.example.mellis.domino_android.modelo.Pedido;
+import com.example.mellis.domino_android.modelo.Promo;
 
 import java.util.List;
 
@@ -14,10 +15,12 @@ import retrofit.http.Path;
 
 public interface PedidosService {
 
-    @GET("http://8.8.8.8:8080/pedidos")
+    @GET("http://192.168.0.4:8080/pedidos")
     public Call<List<Pedido>> getAllPedidos();
 
-    @GET("http://8.8.8.8:8080/pedidos/{id}")
+    @GET("http://192.168.0.4:8080/pedidos/{id}")
     public Call<Pedido> getPedidoById(@Path("id") String id);
 
+    @GET("http://192.168.0.4:8080/promos/{id}")
+    public Call<Promo> getPromoById(@Path("id") String id);
 }
