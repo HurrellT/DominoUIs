@@ -34,7 +34,6 @@ import retrofit.Retrofit;
 public class PlatoAdapter extends ArrayAdapter<Plato> {
 
     private PedidosService pedidosService;
-    private String extrasList = "";
     private Plato plato;
 
     public PlatoAdapter(Context context, List<Plato> platos) {
@@ -99,6 +98,7 @@ public class PlatoAdapter extends ArrayAdapter<Plato> {
 
 
     public void setExtras(TextView tv,View rowView) {
+        final String[] extrasList = {""};
         for (Ingrediente ing: plato.getExtras()) {
             Call<IngredienteReal> ingcall = this.pedidosService.getIngredienteById(String.valueOf(ing.getId()));
 
@@ -106,9 +106,8 @@ public class PlatoAdapter extends ArrayAdapter<Plato> {
                 @Override
                 public void onResponse(Response<IngredienteReal> response, Retrofit retrofit) {
                     IngredienteReal ingredienteReal = response.body();
-                    extrasList = extrasList + ingredienteReal.getNombre() + ", " ;
-                    tv.setText("Extras : " + extrasList);
-                    extrasList = "";
+                    extrasList[0] = extrasList[0] + ingredienteReal.getNombre() + ", " ;
+                    tv.setText("Extras : " + extrasList[0]);
                 }
 
                 @Override
