@@ -10,11 +10,11 @@ public class Plato {
 
     private int id_promo;
     private String id_tamanio;
-    private List<String> extras;
+    private List<Ingrediente> extras;
 
     public Plato(){}
 
-    public Plato(int id_promo, String id_tamanio, List<String> extras){
+    public Plato(int id_promo, String id_tamanio, List<Ingrediente> extras){
         this.id_promo = id_promo;
         this.id_tamanio = id_tamanio;
         this.extras = extras;
@@ -28,7 +28,7 @@ public class Plato {
 
     public void setId_tamanio(String id_tamanio) { this.id_tamanio = id_tamanio; }
 
-    public List<String> getExtras() { return extras; }
+    public List<Ingrediente> getExtras() { return extras; }
 
-    public void setExtras(List<String> extras) { this.extras = extras; }
+    public void setExtras(List<Ingrediente> extras) { this.extras = extras; }
 }

@@ -69,7 +69,7 @@ public class PedidoDetailFragment extends Fragment {
             // to load content from a content provider.
             long pedidoId = (long) getArguments().get(ARG_ITEM_ID);
 
-            String BASE_URL = "http://192.168.0.25:8080/pedidos/";
+            String BASE_URL = "http://10.12.7.161:8080/pedidos/";
 
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -121,7 +121,7 @@ public class PedidoDetailFragment extends Fragment {
     private void mostrarPedido(Pedido pedido) {
         ((TextView) this.getView().findViewById(R.id.lblPedido_estado)).setText(pedido.getEstado());
         ((TextView) this.getView().findViewById(R.id.lblPedido_aclaracion)).setText(pedido.getAclaraciones());
-        ((ListView) this.getView().findViewById(R.id.lblPedido_platos)).setAdapter(new PlatoAdapter(this.getContext(),pedido.getPlatos()));
+        ((ListView) this.getView().findViewById(R.id.lblPedido_platos)).setAdapter(new PlatoAdapter(this.getActivity(),pedido.getPlatos()));
 
     }
 

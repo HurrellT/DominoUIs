@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.mellis.domino_android.R;
+import com.example.mellis.domino_android.modelo.Ingrediente;
 import com.example.mellis.domino_android.modelo.Plato;
 import com.example.mellis.domino_android.modelo.Promo;
 import com.example.mellis.domino_android.service.PedidosService;
@@ -33,6 +34,8 @@ import retrofit.Retrofit;
 public class PlatoAdapter extends ArrayAdapter<Plato> {
 
     private PedidosService pedidosService;
+    private String extrasList = "";
+    private Plato plato;
 
     public PlatoAdapter(Context context, List<Plato> platos) {
         super(context, R.layout.plato_row, platos);
@@ -49,7 +52,7 @@ public class PlatoAdapter extends ArrayAdapter<Plato> {
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.plato_row, parent, false);
-        final Plato plato = getItem(position);
+        plato = getItem(position);
 
         //necesito pedir la promo del plato para mostrarla
 
@@ -90,7 +93,29 @@ public class PlatoAdapter extends ArrayAdapter<Plato> {
         tvId.setText("Promo " + promo.getNombre());
         TextView tvTamanio = (TextView) rowView.findViewById(R.id.lblTamanio);
         tvTamanio.setText("Tamanio: " + plato.getId_tamanio());
+        TextView tvExtras = (TextView) rowView.findViewById(R.id.lblExtras);
+        setExtras(tvExtras,rowView);
     }
 
 
+    public void setExtras(TextView tv,View rowView) {
+        for (Ingrediente ing: plato.getExtras()) {
+            Call<IngredienteReal> ingcall = this.pedidosService.getIngredienteById(String.valueOf(ing.getId()));
+
+            ingcall.enqueue(new Callback<IngredienteReal>() {
+                @Override
+                public void onResponse(Response<IngredienteReal> response, Retrofit retrofit) {
+                    IngredienteReal ingredienteReal = response.body();
+                    extrasList = extrasList + ingredienteReal.getNombre() + ", " ;
+                    tv.setText("Extras : " + extrasList);
+                    extrasList = "";
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+
+                }
+            });
+        }
+    }
 }

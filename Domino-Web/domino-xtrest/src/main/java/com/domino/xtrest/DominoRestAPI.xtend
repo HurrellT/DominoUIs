@@ -25,6 +25,8 @@ import org.domino.json.JSONViewerIngrediente
 import org.domino.json.JSONViewerTamanios
 import org.domino.json.JSONViewerEstado
 import java.util.stream.Collectors
+import org.domino.dominio.Ingrediente
+import org.domino.repo.RepoIngredientes
 
 @Controller
 class DominoRestAPI {
@@ -115,8 +117,19 @@ class DominoRestAPI {
 		return ok(res.toJson)
 	}
 	
+	@Get("/ingredientes/:id")
+	def getIngredientById() {
+		response.contentType = ContentType.APPLICATION_JSON
+		val res = new JSONViewerIngrediente(repoIngredientes.getIngredienteConId(Integer.valueOf(id)))
+		return ok(res.toJson)
+	}
+	
 	def getRepoPedidos() {
 		ApplicationContext.instance.getSingleton(typeof(Pedido)) as RepoPedidos
+	}
+	
+	def getRepoIngredientes() {
+		ApplicationContext.instance.getSingleton(typeof(Ingrediente)) as RepoIngredientes
 	}
 
 	@Get("/pedidos/estados")

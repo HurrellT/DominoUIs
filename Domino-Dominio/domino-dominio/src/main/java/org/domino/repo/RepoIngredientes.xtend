@@ -28,4 +28,9 @@ class RepoIngredientes extends CollectionBasedRepo<Ingrediente>{
 	def getIngredientes(){
 		allInstances
 	}
+	
+	def getIngredienteConId(Integer id) {
+		allInstances.findFirst[i | i.id == id]
+	}
+	
 }
