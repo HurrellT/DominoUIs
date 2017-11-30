@@ -121,11 +121,7 @@ public class PedidoDetailFragment extends Fragment {
     private void mostrarPedido(Pedido pedido) {
         ((TextView) this.getView().findViewById(R.id.lblPedido_estado)).setText(pedido.getEstado());
         ((TextView) this.getView().findViewById(R.id.lblPedido_aclaracion)).setText(pedido.getAclaraciones());
-        String platos = "Platos: ";
-        for(int i=0; i < pedido.getPlatos().size(); i++){
-            platos = platos + " - " + "(Id: " + pedido.getPlatos().get(i).getId_promo() + " Tamaño: " + pedido.getPlatos().get(i).getId_tamanio() +  ")";
-        }
-        ((TextView) this.getView().findViewById(R.id.lblPedido_platos)).setText(platos);
+        ((ListView) this.getView().findViewById(R.id.lblPedido_platos)).setAdapter(new PlatoAdapter(this.getContext(),pedido.getPlatos()));
 
     }
 

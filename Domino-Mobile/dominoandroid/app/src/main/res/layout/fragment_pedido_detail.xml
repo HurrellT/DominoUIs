@@ -30,7 +30,7 @@
             android:textIsSelectable="true"
             tools:context=".dominoapp.PedidoDetailFragment" />
 
-        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        <ListView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/lblPedido_platos"
             style="?android:attr/textAppearanceMedium"
