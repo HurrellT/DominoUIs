@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.mellis.domino_android.R;
@@ -62,7 +63,7 @@ public class PedidoDetailFragment extends Fragment {
             // to load content from a content provider.
             long pedidoId = (long) getArguments().get(ARG_ITEM_ID);
 
-            String BASE_URL = "http://8.8.8.8:8080/pedidos/";
+            String BASE_URL = "http://192.168.0.4:8080/pedidos/";
 
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -90,6 +91,8 @@ public class PedidoDetailFragment extends Fragment {
                     activity.setTitle("Pedido " + pedido.getId());
                 }
 
+                mostrarPedido(pedido);
+
                 //Esto es solo para probar que esta recuperando correctamente el pedido con sus platos
                 System.out.println("Este es el pedido: " + pedido);
                 System.out.println("Este es la id del pedido: " + pedido.getId());
@@ -107,6 +110,13 @@ public class PedidoDetailFragment extends Fragment {
                 Log.e("PedidosApp", t.getMessage());
             }
         });
+    }
+
+    private void mostrarPedido(Pedido pedido) {
+        ((TextView) this.getView().findViewById(R.id.pedido_estado)).setText(pedido.getEstado());
+        ((TextView) this.getView().findViewById(R.id.pedido_aclaracion)).setText(pedido.getAclaraciones());
+        //((ListView) this.getView().findViewById(R.id.pedido_extras)).getAdapter();
+
     }
 
     @Override
