@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Pedidos</string>
-    <string name="title_pedido_detail">Pedido Detail</string>
+    <string name="app_name">DominoPizza - Pedidos</string>
+    <string name="title_pedido_detail">Detalles del Pedido</string>
 </resources>

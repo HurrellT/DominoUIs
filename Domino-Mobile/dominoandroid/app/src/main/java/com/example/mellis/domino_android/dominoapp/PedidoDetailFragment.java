@@ -119,8 +119,8 @@ public class PedidoDetailFragment extends Fragment {
     }
 
     private void mostrarPedido(Pedido pedido) {
-        ((TextView) this.getView().findViewById(R.id.lblPedido_estado)).setText(pedido.getEstado());
-        ((TextView) this.getView().findViewById(R.id.lblPedido_aclaracion)).setText(pedido.getAclaraciones());
+        ((TextView) this.getView().findViewById(R.id.lblPedido_estado)).setText("Estado: " + pedido.getEstado());
+        ((TextView) this.getView().findViewById(R.id.lblPedido_aclaracion)).setText("Aclaraciones: " + pedido.getAclaraciones());
         ((ListView) this.getView().findViewById(R.id.lblPedido_platos)).setAdapter(new PlatoAdapter(this.getActivity(),pedido.getPlatos()));
 
     }
