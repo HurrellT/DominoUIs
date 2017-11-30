@@ -6,11 +6,11 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/pedido_estado"
+            android:id="@+id/lblPedido_estado"
             style="?android:attr/textAppearanceLarge"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -19,26 +19,29 @@
             android:textIsSelectable="true"
             tools:context=".dominoapp.PedidoDetailFragment" />
 
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/lblPedido_aclaracion"
+            style="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="typeface:BOLD"
+            android:padding="16dp"
+            android:textIsSelectable="true"
+            tools:context=".dominoapp.PedidoDetailFragment" />
+
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/lblPedido_platos"
+            style="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:textIsSelectable="true"
+            tools:context=".dominoapp.PedidoDetailFragment" />
     </LinearLayout>
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/pedido_extras"
-        style="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        android:textIsSelectable="true"
-        tools:context=".dominoapp.PedidoDetailFragment" />
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/pedido_aclaracion"
-        style="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        android:textIsSelectable="true"
-        tools:context=".dominoapp.PedidoDetailFragment" />
+
 
 </LinearLayout>

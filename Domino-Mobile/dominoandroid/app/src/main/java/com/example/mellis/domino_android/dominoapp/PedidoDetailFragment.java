@@ -1,6 +1,8 @@
 package com.example.mellis.domino_android.dominoapp;
 
 import android.app.Activity;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,15 +10,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.mellis.domino_android.R;
 import com.example.mellis.domino_android.adapter.PedidoAdapter;
+import com.example.mellis.domino_android.adapter.PlatoAdapter;
 import com.example.mellis.domino_android.modelo.Pedido;
+import com.example.mellis.domino_android.modelo.Plato;
 import com.example.mellis.domino_android.service.PedidosService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -63,7 +69,7 @@ public class PedidoDetailFragment extends Fragment {
             // to load content from a content provider.
             long pedidoId = (long) getArguments().get(ARG_ITEM_ID);
 
-            String BASE_URL = "http://192.168.0.4:8080/pedidos/";
+            String BASE_URL = "http://8.8.8.8:8080/pedidos/";
 
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -79,6 +85,7 @@ public class PedidoDetailFragment extends Fragment {
         Call<Pedido> pedidoCall = pedidosService.getPedidoById(String.valueOf(pedidoId));
 
         pedidoCall.enqueue(new Callback<Pedido>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResponse(Response<Pedido> response, Retrofit retrofit) {
                 Pedido pedido = response.body();
@@ -93,7 +100,6 @@ public class PedidoDetailFragment extends Fragment {
 
                 mostrarPedido(pedido);
 
-                //Esto es solo para probar que esta recuperando correctamente el pedido con sus platos
                 System.out.println("Este es el pedido: " + pedido);
                 System.out.println("Este es la id del pedido: " + pedido.getId());
                 System.out.println("Este es la id_usuario del pedido: " + pedido.getId_usuario());
@@ -113,9 +119,13 @@ public class PedidoDetailFragment extends Fragment {
     }
 
     private void mostrarPedido(Pedido pedido) {
-        ((TextView) this.getView().findViewById(R.id.pedido_estado)).setText(pedido.getEstado());
-        ((TextView) this.getView().findViewById(R.id.pedido_aclaracion)).setText(pedido.getAclaraciones());
-        //((ListView) this.getView().findViewById(R.id.pedido_extras)).getAdapter();
+        ((TextView) this.getView().findViewById(R.id.lblPedido_estado)).setText(pedido.getEstado());
+        ((TextView) this.getView().findViewById(R.id.lblPedido_aclaracion)).setText(pedido.getAclaraciones());
+        String platos = "Platos: ";
+        for(int i=0; i < pedido.getPlatos().size(); i++){
+            platos = platos + " - " + "(Id: " + pedido.getPlatos().get(i).getId_promo() + " Tamaño: " + pedido.getPlatos().get(i).getId_tamanio() +  ")";
+        }
+        ((TextView) this.getView().findViewById(R.id.lblPedido_platos)).setText(platos);
 
     }
 
@@ -125,8 +135,6 @@ public class PedidoDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_pedido_detail, container, false);
 
         // Show the dummy content as text in a TextView.
-        System.out.println("Estamos en el onCreateView");
-        // TODO: hacer que el onCreateView espere a que se recupere el pedido antes de mostrar el pedido
         //((TextView) rootView.findViewById(R.id.pedido_estado)).setText(pedido.getEstado());
         //((TextView) rootView.findViewById(R.id.pedido_aclaracion)).setText(pedido.getAclaraciones());
         return rootView;
