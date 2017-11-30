@@ -93,6 +93,7 @@ public class PlatoAdapter extends ArrayAdapter<Plato> {
         TextView tvTamanio = (TextView) rowView.findViewById(R.id.lblTamanio);
         tvTamanio.setText("Tamanio: " + plato.getId_tamanio());
         TextView tvExtras = (TextView) rowView.findViewById(R.id.lblExtras);
+        tvExtras.setText("Sin ingredientes");
         setExtras(tvExtras,rowView);
     }
 

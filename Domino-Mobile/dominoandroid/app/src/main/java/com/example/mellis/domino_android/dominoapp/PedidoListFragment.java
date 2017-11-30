@@ -13,7 +13,6 @@ import android.widget.ListView;
 import com.example.mellis.domino_android.R;
 import com.example.mellis.domino_android.modelo.Pedido;
 import com.example.mellis.domino_android.adapter.PedidoAdapter;
-import com.example.mellis.domino_android.repo.RepoPedidos;
 import com.example.mellis.domino_android.service.PedidosService;
 
 import java.util.List;
