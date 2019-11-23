@@ -13,7 +13,7 @@
 		"angular-ui-router": "^0.4.3",
 		"bootstrap": "^3.3.7",
 		"http-server": "^0.8.5",
-		"jquery": "^2.2.4",
+		"jquery": "^3.4.1",
 		"underscore": "^1.8.3"
 	}
 }
